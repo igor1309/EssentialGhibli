@@ -5,22 +5,52 @@
 //  Created by Igor Malyarov on 06.10.2022.
 //
 
+import EssentialGhibliList
+import EssentialGhibliListRow
 import SwiftUI
 
+typealias ListItem = EssentialGhibliList.GhibliListItem
+typealias RowItem = EssentialGhibliListRow.GhibliListItem
+
 struct ContentView: View {
+    let items = [ListItem.castleInTheSky, .kikisDeliveryService]
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationView {
+            GhibliListView(listState: .list(items)) { item in
+                NavigationLink {
+                    VStack {
+                        Text("TBD: \(item.title) Film Details")
+                            .font(.headline)
+                        
+                        Spacer()
+                    }
+                } label: {
+                    GhibliListItemRow(item: item.rowItem)
+                }
+            }
         }
-        .padding()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Group {
+            ContentView()
+                .environment(\.locale, .en_US)
+                .previewDisplayName("en-US")
+            
+            ContentView()
+                .environment(\.locale, .ru_RU)
+                .previewDisplayName("ru-RU")
+            
+        }
+        .preferredColorScheme(.dark)
+    }
+}
+
+extension ListItem {
+    var rowItem: RowItem {
+        .init(id: id, title: title, description: description, image: image, film: film)
     }
 }
