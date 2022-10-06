@@ -45,7 +45,9 @@ public struct GhibliListView<Row: View>: View {
     private func errorView(_ stateError: Error) -> some View {
         Text(stateError.localizedDescription)
             .foregroundColor(.white)
+            .padding()
             .background(.red)
+            .cornerRadius(24)
     }
     
     private func list(items: [GhibliListItem]) -> some View {
@@ -57,20 +59,20 @@ public struct GhibliListView<Row: View>: View {
 }
 
 struct SwiftUIView_Previews: PreviewProvider {
+    static func ghibliListView(
+        _ listState: ListState<GhibliListItem, Error>
+    ) -> some View {
+        GhibliListView(listState: listState) {
+            Text($0.title)
+        }
+    }
+    
     static var previews: some View {
         Group {
-            GhibliListView(listState: .loading) {
-                Text($0.title)
-            }
-            GhibliListView(listState: .empty) {
-                Text($0.title)
-            }
-            GhibliListView(listState: .list([.castleInTheSky, .kikisDeliveryService])) {
-                Text($0.title)
-            }
-            GhibliListView(listState: .error(APIError())) {
-                Text($0.title)
-            }
+            ghibliListView(.loading)
+            ghibliListView(.empty)
+            ghibliListView(.list([.castleInTheSky, .kikisDeliveryService]))
+            ghibliListView(.error(APIError()))
         }
         .preferredColorScheme(.dark)
     }
