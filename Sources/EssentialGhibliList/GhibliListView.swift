@@ -92,7 +92,3 @@ struct GhibliListView_Previews: PreviewProvider {
         .preferredColorScheme(.dark)
     }
 }
-
-public struct APIError: Error {
-    public init() {}
-}
