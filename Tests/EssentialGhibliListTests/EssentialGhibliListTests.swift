@@ -5,14 +5,46 @@
 //  Created by Igor Malyarov on 06.10.2022.
 //
 
-@testable import EssentialGhibliList
+//@testable
+import EssentialGhibliList
 import SnapshotTesting
 import SwiftUI
 import XCTest
 
 final class EssentialGhibliListTests: XCTestCase {
-    func test_snapshotGhibliListView() {
-        let view = GhibliListView(items: [.castleInTheSky, .kikisDeliveryService])
+    
+    func test_snapshotGhibliListView_loading() {
+        let view = GhibliListView(listState: .loading)
+        
+        assert(
+            snapshot: view,
+            as: [.iPhone13Pro_light, .iPhone13Pro_dark],
+            record: false
+        )
+    }
+    
+    func test_snapshotGhibliListView_empty() {
+        let view = GhibliListView(listState: .empty)
+        
+        assert(
+            snapshot: view,
+            as: [.iPhone13Pro_light, .iPhone13Pro_dark],
+            record: false
+        )
+    }
+    
+    func test_snapshotGhibliListView_list() {
+        let view = GhibliListView(listState: .list([.castleInTheSky, .kikisDeliveryService]))
+        
+        assert(
+            snapshot: view,
+            as: [.iPhone13Pro_light, .iPhone13Pro_dark],
+            record: false
+        )
+    }
+    
+    func test_snapshotGhibliListView_error() {
+        let view = GhibliListView(listState: .error(APIError()))
         
         assert(
             snapshot: view,
