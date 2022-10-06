@@ -16,48 +16,32 @@ final class EssentialGhibliListTests: XCTestCase {
     func test_snapshotGhibliListView_loading() {
         let view = GhibliListView(listState: .loading)
         
-        assert(
-            snapshot: view,
-            as: [.iPhone13Pro_light, .iPhone13Pro_dark],
-            record: false
-        )
+        assert(snapshot: view, record: false)
     }
     
     func test_snapshotGhibliListView_empty() {
         let view = GhibliListView(listState: .empty)
         
-        assert(
-            snapshot: view,
-            as: [.iPhone13Pro_light, .iPhone13Pro_dark],
-            record: false
-        )
+        assert(snapshot: view, record: false)
     }
     
     func test_snapshotGhibliListView_list() {
         let view = GhibliListView(listState: .list([.castleInTheSky, .kikisDeliveryService]))
         
-        assert(
-            snapshot: view,
-            as: [.iPhone13Pro_light, .iPhone13Pro_dark],
-            record: false
-        )
+        assert(snapshot: view, record: false)
     }
     
     func test_snapshotGhibliListView_error() {
         let view = GhibliListView(listState: .error(APIError()))
         
-        assert(
-            snapshot: view,
-            as: [.iPhone13Pro_light, .iPhone13Pro_dark],
-            record: false
-        )
+        assert(snapshot: view, record: false)
     }
     
     // MARK: - Helpers
     
     func assert<V: View>(
         snapshot view: V,
-        as strategies: [Snapshotting<UIViewController, UIImage>],
+        as strategies: [Snapshotting<UIViewController, UIImage>] = [.iPhone13Pro_light, .iPhone13Pro_dark],
         record: Bool,
         file: StaticString = #file,
         testName: String = #function,
