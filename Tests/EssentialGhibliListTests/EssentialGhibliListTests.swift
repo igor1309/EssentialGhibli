@@ -12,29 +12,30 @@ import SwiftUI
 import XCTest
 
 final class EssentialGhibliListTests: XCTestCase {
+    let record = false
     
     func test_snapshotGhibliListView_loading() {
         let view = GhibliListView(listState: .loading)
         
-        assert(snapshot: view, record: false)
+        assert(snapshot: view, record: record)
     }
     
     func test_snapshotGhibliListView_empty() {
         let view = GhibliListView(listState: .empty)
         
-        assert(snapshot: view, record: false)
+        assert(snapshot: view, record: record)
     }
     
     func test_snapshotGhibliListView_list() {
         let view = GhibliListView(listState: .list([.castleInTheSky, .kikisDeliveryService]))
         
-        assert(snapshot: view, record: false)
+        assert(snapshot: view, record: record)
     }
     
     func test_snapshotGhibliListView_error() {
         let view = GhibliListView(listState: .error(APIError()))
         
-        assert(snapshot: view, record: false)
+        assert(snapshot: view, record: record)
     }
     
     // MARK: - Helpers
