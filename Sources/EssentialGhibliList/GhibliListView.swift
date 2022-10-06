@@ -55,7 +55,19 @@ public struct GhibliListView<Row: View>: View {
             ForEach(items, content: itemRow)
         }
         .listStyle(.plain)
+        .navigationTitle(Self.title)
     }
+}
+
+extension GhibliListView {
+    public static var title: String {
+        NSLocalizedString(
+            "FEED_VIEW_TITLE",
+            tableName: "Feed",
+            bundle: .module,
+            comment: "Title for the film feed view")
+    }
+
 }
 
 struct GhibliListView_Previews: PreviewProvider {
@@ -84,11 +96,23 @@ struct GhibliListView_Previews: PreviewProvider {
             NavigationView {
                 ghibliListView(.list([.castleInTheSky, .kikisDeliveryService]))
             }
-            .previewDisplayName("List State: List")
+            .environment(\.locale, .en_US)
+            .previewDisplayName("en-US | List State: List")
+            
+            NavigationView {
+                ghibliListView(.list([.castleInTheSky, .kikisDeliveryService]))
+            }
+            .environment(\.locale, .ru_RU)
+            .previewDisplayName("ru-RU | List State: List")
             
             ghibliListView(.error(APIError()))
                 .previewDisplayName("List State: Error")
         }
         .preferredColorScheme(.dark)
     }
+}
+
+extension Locale {
+    static let en_US: Self = .init(identifier: "en-US")
+    static let ru_RU: Self = .init(identifier: "ru-RU")
 }

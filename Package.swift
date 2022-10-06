@@ -4,6 +4,7 @@ import PackageDescription
 
 let package = Package(
     name: "EssentialGhibli",
+    defaultLocalization: "en",
     platforms: [
         .macOS(.v12),
         .iOS(.v15)
