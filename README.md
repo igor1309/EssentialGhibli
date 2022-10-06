@@ -8,6 +8,10 @@ A project with modular architecture with decoupled components, with modularity e
 
 `Root Composition` is implemented in the `EssentialGhibliApp`.
 
+## CI
+
+For demo a simple `CI` with `GitHub actions` workflow is used: on push to the `main` branch.
+
 ## Film Feed Feature Specs
 
 ### Story: User wants to see the film feed
