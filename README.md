@@ -1,10 +1,11 @@
 # EssentialGhibli
 
-A demo app for the `Lead Essential Developer` course at the `Essential Developer Academy`.
+A demo app digesting [iOS Lead Essentials](https://iosacademy.essentialdeveloper.com/p/ios-lead-essentials/) program at the [Essential Developer Academy](https://www.essentialdeveloper.com).
 
-The app presents the feed of the Studio Ghibli films.
+The app presents the feed of the [Studio Ghibli](https://en.wikipedia.org/wiki/Studio_Ghibli) films.
 
 A project with modular architecture with decoupled components, with modularity enforced by placing modules into separate targets in the `EssentialGhibli` Swift Package.
+
 `Root Composition` is implemented in the `EssentialGhibliApp`.
 
 ## Film Feed Feature Specs
@@ -218,7 +219,7 @@ Given the customer doesn't have connectivity
 
 ## Model Specs
 
-### Feed Image
+### Feed Film
 
 | Property      | Type     |
 |---------------|----------|
