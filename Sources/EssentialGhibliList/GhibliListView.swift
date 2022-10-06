@@ -34,11 +34,13 @@ public struct GhibliListView<Row: View>: View {
     }
     
     private func loadingView() -> some View {
-        ProgressView("Loading...")
+        ProgressView {
+            Text("LOADING", tableName: "Feed", bundle: .module)
+        }
     }
     
     private func emptyListView() -> some View {
-        Text("List is empty.")
+        Text("EMPTY_LIST_MESSAGE", tableName: "Feed", bundle: .module)
             .foregroundColor(.secondary)
     }
     
@@ -55,19 +57,8 @@ public struct GhibliListView<Row: View>: View {
             ForEach(items, content: itemRow)
         }
         .listStyle(.plain)
-        .navigationTitle(Self.title)
+        .navigationTitle(Text("FEED_VIEW_TITLE", tableName: "Feed", bundle: .module))
     }
-}
-
-extension GhibliListView {
-    public static var title: String {
-        NSLocalizedString(
-            "FEED_VIEW_TITLE",
-            tableName: "Feed",
-            bundle: .module,
-            comment: "Title for the film feed view")
-    }
-
 }
 
 struct GhibliListView_Previews: PreviewProvider {
@@ -88,31 +79,31 @@ struct GhibliListView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ghibliListView(.loading)
-                .previewDisplayName("List State: Loading")
+                .previewDisplayName("Loading List State")
             
             ghibliListView(.empty)
-                .previewDisplayName("List State: Empty ")
+                .previewDisplayName("Empty List State")
             
             NavigationView {
                 ghibliListView(.list([.castleInTheSky, .kikisDeliveryService]))
             }
+            .previewDisplayName("en-US | List State")
             .environment(\.locale, .en_US)
-            .previewDisplayName("en-US | List State: List")
             
             NavigationView {
                 ghibliListView(.list([.castleInTheSky, .kikisDeliveryService]))
             }
-            .environment(\.locale, .ru_RU)
-            .previewDisplayName("ru-RU | List State: List")
+            .previewDisplayName("ru-RU | List State")
             
             ghibliListView(.error(APIError()))
-                .previewDisplayName("List State: Error")
+                .previewDisplayName("Error List State")
         }
+        .environment(\.locale, .ru_RU)
         .preferredColorScheme(.dark)
     }
 }
 
-extension Locale {
+public extension Locale {
     static let en_US: Self = .init(identifier: "en-US")
     static let ru_RU: Self = .init(identifier: "ru-RU")
 }

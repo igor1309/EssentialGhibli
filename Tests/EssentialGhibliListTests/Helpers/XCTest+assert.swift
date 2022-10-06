@@ -13,12 +13,15 @@ extension XCTest {
     func assert<V: View>(
         snapshot view: V,
         as strategies: [Snapshotting<UIViewController, UIImage>] = [.iPhone13Pro_light, .iPhone13Pro_dark],
+        locale: Locale,
         record: Bool,
         file: StaticString = #file,
         testName: String = #function,
         line: UInt = #line
     ) {
-        let controller = UIHostingController(rootView: view)
+        let root = view
+            .environment(\.locale, locale)
+        let controller = UIHostingController(rootView: root)
         
         assertSnapshots(
             matching: controller,

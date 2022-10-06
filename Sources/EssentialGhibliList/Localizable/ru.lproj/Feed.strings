@@ -1,2 +1,4 @@
 
 "FEED_VIEW_TITLE" = "Фильмы";
+"EMPTY_LIST_MESSAGE" = "Пустой список.";
+"LOADING" = "Загрузка...";

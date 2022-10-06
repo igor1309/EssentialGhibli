@@ -15,32 +15,38 @@ final class EssentialGhibliListTests: XCTestCase {
     func test_snapshotGhibliListView_loading() {
         let view = ghibliListView(.loading)
         
-        assert(snapshot: view, record: record)
+        assert(snapshot: view, locale: .en_US, record: record)
+        assert(snapshot: view, locale: .ru_RU, record: record)
     }
     
     func test_snapshotGhibliListView_empty() {
         let view = ghibliListView(.empty)
         
-        assert(snapshot: view, record: record)
+        assert(snapshot: view, locale: .en_US, record: record)
+        assert(snapshot: view, locale: .ru_RU, record: record)
     }
     
     func test_snapshotGhibliListView_list() {
         let view = ghibliListView(.list([.castleInTheSky, .kikisDeliveryService]))
         
-        assert(snapshot: view, record: record)
+        assert(snapshot: view, locale: .en_US, record: record)
+        assert(snapshot: view, locale: .ru_RU, record: record)
     }
     
     func test_snapshotGhibliListView_error() {
         let view = ghibliListView(.error(APIError()))
         
-        assert(snapshot: view, record: record)
+        assert(snapshot: view, locale: .en_US, record: record)
+        assert(snapshot: view, locale: .ru_RU, record: record)
     }
     
     // MARK: - Helpers
     
     let ghibliListView = { listState in
-        GhibliListView(listState: listState) {
-            Text($0.title)
+        NavigationView {
+            GhibliListView(listState: listState) {
+                Text($0.title)
+            }
         }
     }
 }
