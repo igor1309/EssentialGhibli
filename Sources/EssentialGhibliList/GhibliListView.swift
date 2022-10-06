@@ -83,8 +83,8 @@ struct GhibliListView_Previews: PreviewProvider {
             
             NavigationView {
                 ghibliListView(.list([.castleInTheSky, .kikisDeliveryService]))
-                    .previewDisplayName("List State: List")
             }
+            .previewDisplayName("List State: List")
             
             ghibliListView(.error(APIError()))
                 .previewDisplayName("List State: Error")
