@@ -9,13 +9,22 @@ let package = Package(
         .iOS(.v15)
     ],
     products: [
-        .library(name: "EssentialGhibli", targets: ["EssentialGhibli"]),
+        .library(name: "EssentialGhibliList", targets: ["EssentialGhibliList"]),
+    ],
+    dependencies: [
+        .package(
+            url: "https://github.com/pointfreeco/swift-snapshot-testing",
+            from: .init(1, 10, 0)
+        ),
     ],
     targets: [
-        .target(name: "EssentialGhibli"),
+        .target(name: "EssentialGhibliList"),
         .testTarget(
-            name: "EssentialGhibliTests",
-            dependencies: ["EssentialGhibli"]
+            name: "EssentialGhibliListTests",
+            dependencies: [
+                "EssentialGhibliList",
+                .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
+            ]
         ),
     ]
 )
