@@ -7,10 +7,14 @@
 
 import SwiftUI
 
-struct GhibliListItemRow: View {
-    let item: GhibliListItem
+public struct GhibliListItemRow: View {
+    private let item: GhibliListItem
     
-    var body: some View {
+    public init(item: GhibliListItem) {
+        self.item = item
+    }
+    
+    public var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text(item.title)
                 .font(.headline)

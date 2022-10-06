@@ -10,6 +10,7 @@ let package = Package(
     ],
     products: [
         .library(name: "EssentialGhibliList", targets: ["EssentialGhibliList"]),
+        .library(name: "EssentialGhibliListRow", targets: ["EssentialGhibliListRow"]),
     ],
     dependencies: [
         .package(
@@ -23,6 +24,14 @@ let package = Package(
             name: "EssentialGhibliListTests",
             dependencies: [
                 "EssentialGhibliList",
+                .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
+            ]
+        ),
+        .target(name: "EssentialGhibliListRow"),
+        .testTarget(
+            name: "EssentialGhibliListRowTests",
+            dependencies: [
+                "EssentialGhibliListRow",
                 .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
             ]
         ),
