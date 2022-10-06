@@ -7,11 +7,17 @@
 
 import SwiftUI
 
-public struct GhibliListView: View {
+public struct GhibliListView<Row: View>: View {
     private let listState: ListState<GhibliListItem, Error>
     
-    public init(listState: ListState<GhibliListItem, Error>) {
+    private let itemRow: (GhibliListItem) -> Row
+    
+    public init(
+        listState: ListState<GhibliListItem, Error>,
+        itemRow: @escaping (GhibliListItem) -> Row
+    ) {
         self.listState = listState
+        self.itemRow = itemRow
     }
     
     public var body: some View {
@@ -44,7 +50,7 @@ public struct GhibliListView: View {
     
     private func list(items: [GhibliListItem]) -> some View {
         List {
-            ForEach(items, content: GhibliListItemRow.init)
+            ForEach(items, content: itemRow)
         }
         .listStyle(.plain)
     }
@@ -53,12 +59,20 @@ public struct GhibliListView: View {
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            GhibliListView(listState: .loading)
-            GhibliListView(listState: .empty)
-            GhibliListView(listState: .list([.castleInTheSky, .kikisDeliveryService]))
-            GhibliListView(listState: .error(APIError()))
+            GhibliListView(listState: .loading) {
+                Text($0.title)
+            }
+            GhibliListView(listState: .empty) {
+                Text($0.title)
+            }
+            GhibliListView(listState: .list([.castleInTheSky, .kikisDeliveryService])) {
+                Text($0.title)
+            }
+            GhibliListView(listState: .error(APIError())) {
+                Text($0.title)
+            }
         }
-            .preferredColorScheme(.dark)
+        .preferredColorScheme(.dark)
     }
 }
 
