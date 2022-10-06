@@ -227,6 +227,7 @@ Given the customer doesn't have connectivity
 | `title`       | `String` |
 | `description` | `String` |
 | `image`       | `URL`    |
+| `url`         | `URL`    |
 
 ### Payload contract
 
@@ -241,6 +242,7 @@ GET /feed
         "title": "a tile",
         "description": "a description",
         "image": "https://a-image.url",
+        "url": "https://film.url"
     },
     ...
 ]
