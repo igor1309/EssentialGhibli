@@ -27,8 +27,13 @@ public struct GhibliListItemRow: View {
 }
 
 struct GhibliListItemRow_Previews: PreviewProvider {
+    static let items = [GhibliListItem.castleInTheSky, .kikisDeliveryService]
+    
     static var previews: some View {
-        GhibliListItemRow(item: .castleInTheSky)
-            .preferredColorScheme(.dark)
+        List(items) {
+            GhibliListItemRow(item: $0)
+        }
+        .listStyle(.plain)
+        .preferredColorScheme(.dark)
     }
 }
