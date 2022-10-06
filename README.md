@@ -8,9 +8,15 @@ A project with modular architecture with decoupled components, with modularity e
 
 `Root Composition` is implemented in the `EssentialGhibliApp`.
 
+## UI
+
+UI Components are implemented with `SwiftUI` and tested using snapshots [SnapshotTesting](https://github.com/pointfreeco/swift-snapshot-testing). Snapshot testing covers light/dark modes and localization.
+
+Localization with tests.
+
 ## CI
 
-For demo a simple `CI` with `GitHub actions` workflow is used: on push to the `main` branch.
+For demo a simple `CI` with `GitHub actions` workflow is used: build and tests with scheme `CI_iOS` run on push to the `main` branch.
 
 ## Film Feed Feature Specs
 
@@ -71,6 +77,7 @@ Given the customer doesn't have connectivity
 - URL
 
 #### Primary course (happy path):
+
 1. Execute "Load Film Feed" command with above data.
 2. System downloads data from the URL.
 3. System validates downloaded data.
@@ -78,9 +85,11 @@ Given the customer doesn't have connectivity
 5. System delivers film feed.
 
 #### Invalid data – error course (sad path):
+
 1. System delivers invalid data error.
 
 #### No connectivity – error course (sad path):
+
 1. System delivers connectivity error.
 
 ---
@@ -88,6 +97,7 @@ Given the customer doesn't have connectivity
 ### Load Feed Image Data From Remote Use Case
 
 #### Data:
+
 - URL
 
 #### Primary course (happy path):
