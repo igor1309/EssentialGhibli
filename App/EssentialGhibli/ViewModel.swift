@@ -9,8 +9,7 @@ import Combine
 import GhibliAPI
 import GhibliHTTPClient
 import GhibliListFeature
-import GhibliRowFeature
-import SwiftUI
+import Foundation
 
 final class ViewModel: ObservableObject {
     @Published private(set) var listState: ListState<GhibliListFilm, Error> = .list(.samples)

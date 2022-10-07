@@ -5,10 +5,7 @@
 //  Created by Igor Malyarov on 06.10.2022.
 //
 
-import Combine
-import GhibliAPI
 import GhibliDetailFeature
-import GhibliHTTPClient
 import GhibliListFeature
 import GhibliRowFeature
 import SwiftUI
