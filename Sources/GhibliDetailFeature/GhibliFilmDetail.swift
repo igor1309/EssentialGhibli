@@ -10,24 +10,13 @@ import SwiftUI
 public struct GhibliFilmDetail: View {
     public typealias FilmDetail = DetailState<GhibliDetailFilm, Error>
     
-    private let filmTitle: String
     private let detailState: FilmDetail
     
-    public init(
-        filmTitle: String,
-        detailState: FilmDetail
-    ) {
-        self.filmTitle = filmTitle
+    public init(detailState: FilmDetail) {
         self.detailState = detailState
     }
     
     public var body: some View {
-        stateView(detailState)
-            .navigationTitle(filmTitle)
-    }
-    
-    @ViewBuilder
-    private func stateView(_ detailState: FilmDetail) -> some View {
         switch detailState {
         case .loading:
             loadingView()
@@ -76,26 +65,17 @@ struct GhibliFilmDetail_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             NavigationView {
-                GhibliFilmDetail(
-                    filmTitle: "Castle in the Sky",
-                    detailState: .loading
-                )
+                GhibliFilmDetail(detailState: .loading)
             }
             .previewDisplayName("Loading")
             
             NavigationView {
-                GhibliFilmDetail(
-                    filmTitle: "Castle in the Sky",
-                    detailState: .detail(.castleInTheSky)
-                )
+                GhibliFilmDetail(detailState: .detail(.castleInTheSky))
             }
             .previewDisplayName("Film Detail")
             
             NavigationView {
-                GhibliFilmDetail(
-                    filmTitle: "Castle in the Sky",
-                    detailState: .error(APIError())
-                )
+                GhibliFilmDetail(detailState: .error(APIError()))
             }
             .previewDisplayName("Error")
         }

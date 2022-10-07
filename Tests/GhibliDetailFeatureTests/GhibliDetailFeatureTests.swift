@@ -13,35 +13,24 @@ final class GhibliDetailFeatureTests: XCTestCase {
     let record = false
     
     func test_snapshotGhibliListView_loading() {
-        let view = ghibliFilmDetail(.loading)
+        let view = GhibliFilmDetail(detailState: .loading)
         
         assert(snapshot: view, locale: .en_US, record: record)
         assert(snapshot: view, locale: .ru_RU, record: record)
     }
     
     func test_snapshotGhibliListView_detail() {
-        let view = ghibliFilmDetail(.detail(.castleInTheSky))
+        let view = GhibliFilmDetail(detailState: .detail(.castleInTheSky))
         
         assert(snapshot: view, locale: .en_US, record: record)
         assert(snapshot: view, locale: .ru_RU, record: record)
     }
     
     func test_snapshotGhibliListView_error() {
-        let view = ghibliFilmDetail(.error(APIError()))
+        let view = GhibliFilmDetail(detailState: .error(APIError()))
         
         assert(snapshot: view, locale: .en_US, record: record)
         assert(snapshot: view, locale: .ru_RU, record: record)
-    }
-    
-    // MARK: - Helpers
-    
-    let ghibliFilmDetail = { detailState in
-        NavigationView {
-            GhibliFilmDetail(
-                filmTitle: "Castle in the Sky",
-                detailState: detailState
-            )
-        }
     }
 }
 

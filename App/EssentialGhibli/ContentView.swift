@@ -27,10 +27,8 @@ struct ContentView: View {
     #warning("NavigationLink destination is fixed to static value")
     private func itemRow(listItem: GhibliListFilm) -> some View {
         NavigationLink {
-            GhibliFilmDetail(
-                filmTitle: "Castle in the Sky",
-                detailState: .detail(.castleInTheSky)
-            )
+            GhibliFilmDetail(detailState: .detail(.castleInTheSky))
+                .navigationTitle(listItem.title)
         } label: {
             GhibliFilmRow(item: listItem.rowItem)
         }
