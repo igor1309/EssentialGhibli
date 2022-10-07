@@ -36,7 +36,7 @@ where ResourceView: View {
     
     private func loadingView() -> some View {
         ProgressView {
-            Text("LOADING", tableName: "Detail", bundle: .module)
+            Text("LOADING", tableName: "Localizable", bundle: .module)
         }
     }
     
