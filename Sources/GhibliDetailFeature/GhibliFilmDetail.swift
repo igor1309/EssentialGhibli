@@ -8,41 +8,53 @@
 import SwiftUI
 
 public struct GhibliFilmDetail: View {
-    let film: GhibliDetailFilm
+    public typealias FilmDetail = DetailState<GhibliDetailFilm, Error>
     
-    public init(film: GhibliDetailFilm) {
-        self.film = film
+    private let filmTitle: String
+    private let detailState: FilmDetail
+    
+    public init(
+        filmTitle: String,
+        detailState: FilmDetail
+    ) {
+        self.filmTitle = filmTitle
+        self.detailState = detailState
     }
     
     public var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 6) {
-                Text(verbatim: film.originalTitle)
-                    .font(.headline)
-                
-                Text(verbatim: film.originalTitleRomanized)
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-                
-                #warning("Image here")
-                Color.red
-                    .aspectRatio(1, contentMode: .fit)
-                    .cornerRadius(24)
-                    .padding(.vertical, 6)
-                
-                VStack {
-                    executive("director", film.director)
-                    executive("producer", film.producer)
-                }
-                
-                Text(verbatim: film.description)
-                    .font(.body)
-                    .foregroundStyle(.secondary)
-            }
-            .padding(.horizontal)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        stateView(detailState)
+            .navigationTitle(filmTitle)
+    }
+    
+    @ViewBuilder
+    private func stateView(_ detailState: FilmDetail) -> some View {
+        switch detailState {
+        case .loading:
+            loadingView()
+            
+        case let .detail(film):
+            detail(film: film)
+            
+        case let .error(error):
+            errorView(error)
         }
-        .navigationTitle(film.title)
+    }
+    
+    private func loadingView() -> some View {
+        ProgressView("LOADING")
+    }
+    
+    private func detail(film: GhibliDetailFilm) -> some View {
+        DetailView(film: film)
+    }
+    
+    private func errorView(_ error: Error) -> some View {
+        Text(error.localizedDescription)
+            .foregroundColor(.white)
+            .padding()
+            .background(.red)
+            .cornerRadius(24)
+            .padding()
     }
     
     private func executive(_ title: String, _ name: String) -> some View {
@@ -60,9 +72,35 @@ public struct GhibliFilmDetail: View {
 
 struct GhibliFilmDetail_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            GhibliFilmDetail(film: .castleInTheSky)
+        Group {
+            NavigationView {
+                GhibliFilmDetail(
+                    filmTitle: "Castle in the Sky",
+                    detailState: .loading
+                )
+            }
+            .previewDisplayName("Loading")
+            
+            NavigationView {
+                GhibliFilmDetail(
+                    filmTitle: "Castle in the Sky",
+                    detailState: .detail(.castleInTheSky)
+                )
+            }
+            .previewDisplayName("Film Detail")
+            
+            NavigationView {
+                GhibliFilmDetail(
+                    filmTitle: "Castle in the Sky",
+                    detailState: .error(APIError())
+                )
+            }
+            .previewDisplayName("Error")
         }
         .preferredColorScheme(.dark)
     }
 }
+
+#if DEBUG
+private struct APIError: Error {}
+#endif

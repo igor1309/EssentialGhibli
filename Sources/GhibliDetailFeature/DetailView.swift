@@ -1,0 +1,64 @@
+//
+//  DetailView.swift
+//  
+//
+//  Created by Igor Malyarov on 07.10.2022.
+//
+
+import SwiftUI
+
+struct DetailView: View {
+    let film: GhibliDetailFilm
+    
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 6) {
+                Text(verbatim: film.originalTitle)
+                    .font(.headline)
+                
+                Text(verbatim: film.originalTitleRomanized)
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                
+                #warning("Image here")
+                Color.red
+                    .aspectRatio(1, contentMode: .fit)
+                    .cornerRadius(24)
+                    .padding(.vertical, 6)
+                
+                VStack {
+                    executive("director", film.director)
+                    executive("producer", film.producer)
+                }
+                
+                Text(verbatim: film.description)
+                    .font(.body)
+                    .foregroundStyle(.secondary)
+            }
+            .padding(.horizontal)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        }
+        .navigationTitle(film.title)
+    }
+    
+    private func executive(_ title: String, _ name: String) -> some View {
+        HStack(alignment: .firstTextBaseline) {
+            Text(title.uppercased())
+                .foregroundStyle(.secondary)
+                .font(.caption)
+            
+            Spacer()
+            
+            Text(verbatim: name)
+        }
+    }
+}
+
+struct DetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView {
+            DetailView(film: .castleInTheSky)
+        }
+        .preferredColorScheme(.dark)
+    }
+}
