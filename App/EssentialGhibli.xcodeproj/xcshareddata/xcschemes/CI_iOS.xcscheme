@@ -28,6 +28,34 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EssentialGhibliHTTPClient"
+               BuildableName = "EssentialGhibliHTTPClient"
+               BlueprintName = "EssentialGhibliHTTPClient"
+               ReferencedContainer = "container:..">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EssentialGhibliHTTPClientTests"
+               BuildableName = "EssentialGhibliHTTPClientTests"
+               BlueprintName = "EssentialGhibliHTTPClientTests"
+               ReferencedContainer = "container:..">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "EssentialGhibliList"
                BuildableName = "EssentialGhibliList"
                BlueprintName = "EssentialGhibliList"
@@ -77,6 +105,18 @@
                BlueprintIdentifier = "EssentialGhibliListRowTests"
                BuildableName = "EssentialGhibliListRowTests"
                BlueprintName = "EssentialGhibliListRowTests"
+               ReferencedContainer = "container:..">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EssentialGhibliHTTPClientTests"
+               BuildableName = "EssentialGhibliHTTPClientTests"
+               BlueprintName = "EssentialGhibliHTTPClientTests"
                ReferencedContainer = "container:..">
             </BuildableReference>
          </TestableReference>
