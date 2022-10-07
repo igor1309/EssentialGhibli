@@ -70,9 +70,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EssentialGhibliListRow"
-               BuildableName = "EssentialGhibliListRow"
-               BlueprintName = "EssentialGhibliListRow"
+               BlueprintIdentifier = "GhibliRow"
+               BuildableName = "GhibliRow"
+               BlueprintName = "GhibliRow"
                ReferencedContainer = "container:..">
             </BuildableReference>
          </BuildActionEntry>
@@ -115,9 +115,9 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EssentialGhibliListRowTests"
-               BuildableName = "EssentialGhibliListRowTests"
-               BlueprintName = "EssentialGhibliListRowTests"
+               BlueprintIdentifier = "GhibliListTests"
+               BuildableName = "GhibliListTests"
+               BlueprintName = "GhibliListTests"
                ReferencedContainer = "container:..">
             </BuildableReference>
          </TestableReference>
@@ -127,9 +127,9 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "GhibliListTests"
-               BuildableName = "GhibliListTests"
-               BlueprintName = "GhibliListTests"
+               BlueprintIdentifier = "GhibliRowTests"
+               BuildableName = "GhibliRowTests"
+               BlueprintName = "GhibliRowTests"
                ReferencedContainer = "container:..">
             </BuildableReference>
          </TestableReference>

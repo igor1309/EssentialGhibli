@@ -13,7 +13,7 @@ let package = Package(
         .library(name: "GhibliAPI", targets: ["GhibliAPI"]),
         .library(name: "GhibliHTTPClient", targets: ["GhibliHTTPClient"]),
         .library(name: "GhibliList", targets: ["GhibliList"]),
-        .library(name: "EssentialGhibliListRow", targets: ["EssentialGhibliListRow"]),
+        .library(name: "GhibliRow", targets: ["GhibliRow"]),
     ],
     dependencies: [
         .package(
@@ -40,11 +40,11 @@ let package = Package(
                 .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
             ]
         ),
-        .target(name: "EssentialGhibliListRow"),
+        .target(name: "GhibliRow"),
         .testTarget(
-            name: "EssentialGhibliListRowTests",
+            name: "GhibliRowTests",
             dependencies: [
-                "EssentialGhibliListRow",
+                "GhibliRow",
                 .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
             ]
         ),

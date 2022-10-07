@@ -6,11 +6,11 @@
 //
 
 import GhibliList
-import EssentialGhibliListRow
+import GhibliRow
 import SwiftUI
 
 typealias ListItem = GhibliList.GhibliListItem
-typealias RowItem = EssentialGhibliListRow.GhibliListItem
+typealias RowItem = GhibliRow.GhibliListItem
 
 struct ContentView: View {
     let items = [ListItem.castleInTheSky, .kikisDeliveryService]

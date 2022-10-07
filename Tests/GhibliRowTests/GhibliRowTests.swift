@@ -1,18 +1,18 @@
 //
-//  EssentialGhibliListRowTests.swift
+//  GhibliRowTests.swift
 //  
 //
 //  Created by Igor Malyarov on 07.10.2022.
 //
 
-import EssentialGhibliListRow
+import GhibliRow
 import SwiftUI
 import XCTest
 
-final class EssentialGhibliListTests: XCTestCase {
+final class GhibliRowTests: XCTestCase {
     let record = false
     
-    func test_snapshotEssentialGhibliListRow() {
+    func test_snapshotGhibliRow() {
         let items = [GhibliListItem.castleInTheSky, .kikisDeliveryService]
         let view = List {
             ForEach(items, content: GhibliListItemRow.init)
