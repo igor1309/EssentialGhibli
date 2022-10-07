@@ -17,6 +17,7 @@ extension Array where Element == GhibliListItem {
 }
 
 struct ContentView: View {
+    @State private var isLoading = false
     @State private var listState: ListState<GhibliListItem, Error> = .list(.samples)
     @State private var cancellable: AnyCancellable?
     
@@ -42,9 +43,16 @@ struct ContentView: View {
     
     private func toolbar() -> some ToolbarContent {
         ToolbarItem {
-            Button(action: loadFilms) {
-                Label("Load items", systemImage: "square.and.arrow.down")
-            }
+            Button(action: loadFilms, label: loadButtonLabel)
+        }
+    }
+    
+    @ViewBuilder
+    private func loadButtonLabel() -> some View {
+        if isLoading {
+            ProgressView()
+        } else {
+            Label("Load items", systemImage: "square.and.arrow.down")
         }
     }
     
@@ -52,9 +60,13 @@ struct ContentView: View {
         let httpClient = URLSessionHTTPClient(session: .shared)
         let baseURL = URL(string: "https://ghibliapi.herokuapp.com")!
         let url = FeedEndpoint.films.url(baseURL: baseURL)
+        isLoading = true
         
         cancellable = httpClient
             .getPublisher(url: url)
+            .handleOutput { _ in
+                self.isLoading = false
+            }
             .tryMap(FeedMapper.map)
             .sink { completion in
                 switch completion {
@@ -107,5 +119,12 @@ struct ContentView_Previews: PreviewProvider {
 extension GhibliListItem {
     var rowItem: GhibliRowItem {
         .init(id: id, title: title, description: description, imageURL: imageURL, filmURL: filmURL)
+    }
+}
+
+extension Publisher {
+    func handleOutput(action: @escaping (Output) -> Void) -> AnyPublisher<Output, Failure> {
+        handleEvents(receiveOutput: action)
+            .eraseToAnyPublisher()
     }
 }
