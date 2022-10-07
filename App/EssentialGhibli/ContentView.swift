@@ -14,17 +14,17 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var isLoading = false
-    @State private var listState: ListState<GhibliListItem, Error> = .list(.samples)
+    @State private var listState: ListState<GhibliListFilm, Error> = .list(.samples)
     @State private var cancellable: AnyCancellable?
     
     var body: some View {
         NavigationView {
-            GhibliListView(listState: listState, itemRow: itemRow)
+            GhibliFilmListView(listState: listState, itemRow: itemRow)
                 .toolbar(content: toolbar)
         }
     }
     
-    private func itemRow(listItem: GhibliListItem) -> some View {
+    private func itemRow(listItem: GhibliListFilm) -> some View {
         NavigationLink {
             VStack {
                 Text("TBD: \(listItem.title) Film Details")
@@ -80,7 +80,7 @@ struct ContentView: View {
 }
 
 extension GhibliFilm {
-    var item: GhibliListItem {
+    var item: GhibliListFilm {
         .init(id: id, title: title, description: description, imageURL: imageURL, filmURL: filmURL)
     }
 }
@@ -112,7 +112,7 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-extension GhibliListItem {
+extension GhibliListFilm {
     var rowItem: GhibliRowFilm {
         .init(id: id, title: title, description: description, imageURL: imageURL, filmURL: filmURL)
     }

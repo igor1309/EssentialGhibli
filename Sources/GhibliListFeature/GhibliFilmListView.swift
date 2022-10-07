@@ -1,5 +1,5 @@
 //
-//  GhibliListView.swift
+//  GhibliFilmListView.swift
 //  
 //
 //  Created by Igor Malyarov on 06.10.2022.
@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-public struct GhibliListView<Row: View>: View {
-    private let listState: ListState<GhibliListItem, Error>
+public struct GhibliFilmListView<Row: View>: View {
+    private let listState: ListState<GhibliListFilm, Error>
     
-    private let itemRow: (GhibliListItem) -> Row
+    private let itemRow: (GhibliListFilm) -> Row
     
     public init(
-        listState: ListState<GhibliListItem, Error>,
-        itemRow: @escaping (GhibliListItem) -> Row
+        listState: ListState<GhibliListFilm, Error>,
+        itemRow: @escaping (GhibliListFilm) -> Row
     ) {
         self.listState = listState
         self.itemRow = itemRow
@@ -52,7 +52,7 @@ public struct GhibliListView<Row: View>: View {
             .cornerRadius(24)
     }
     
-    private func list(items: [GhibliListItem]) -> some View {
+    private func list(items: [GhibliListFilm]) -> some View {
         List {
             ForEach(items, content: itemRow)
         }
@@ -64,9 +64,9 @@ public struct GhibliListView<Row: View>: View {
 struct GhibliListView_Previews: PreviewProvider {
     
     static func ghibliListView(
-        _ listState: ListState<GhibliListItem, Error>
+        _ listState: ListState<GhibliListFilm, Error>
     ) -> some View {
-        GhibliListView(listState: listState) { item in
+        GhibliFilmListView(listState: listState) { item in
             NavigationLink {
                 Text("TBD: item detail")
             } label: {
