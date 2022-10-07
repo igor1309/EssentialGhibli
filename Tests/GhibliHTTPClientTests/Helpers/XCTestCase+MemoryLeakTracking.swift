@@ -1,7 +1,3 @@
-//
-// Copyright © Essential Developer. All rights reserved.
-//
-
 import XCTest
 
 extension XCTestCase {
