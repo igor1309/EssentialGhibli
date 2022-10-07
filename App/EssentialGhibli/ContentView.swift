@@ -5,31 +5,86 @@
 //  Created by Igor Malyarov on 06.10.2022.
 //
 
+import Combine
+import GhibliAPI
+import GhibliHTTPClient
 import GhibliList
 import GhibliRow
 import SwiftUI
 
-typealias ListItem = GhibliList.GhibliListItem
-typealias RowItem = GhibliRow.GhibliListItem
+extension Array where Element == GhibliListItem {
+    static let samples: Self = [.castleInTheSky, .kikisDeliveryService]
+}
 
 struct ContentView: View {
-    let items = [ListItem.castleInTheSky, .kikisDeliveryService]
+    @State private var listState: ListState<GhibliListItem, Error> = .list(.samples)
+    @State private var cancellable: AnyCancellable?
     
     var body: some View {
         NavigationView {
-            GhibliListView(listState: .list(items)) { item in
-                NavigationLink {
-                    VStack {
-                        Text("TBD: \(item.title) Film Details")
-                            .font(.headline)
-                        
-                        Spacer()
-                    }
-                } label: {
-                    GhibliListItemRow(item: item.rowItem)
-                }
+            GhibliListView(listState: listState, itemRow: itemRow)
+                .toolbar(content: toolbar)
+        }
+    }
+    
+    private func itemRow(listItem: GhibliListItem) -> some View {
+        NavigationLink {
+            VStack {
+                Text("TBD: \(listItem.title) Film Details")
+                    .font(.headline)
+                
+                Spacer()
+            }
+        } label: {
+            GhibliItemRow(item: listItem.rowItem)
+        }
+    }
+    
+    private func toolbar() -> some ToolbarContent {
+        ToolbarItem {
+            Button(action: loadFilms) {
+                Label("Load items", systemImage: "square.and.arrow.down")
             }
         }
+    }
+    
+    private func loadFilms() {
+        let httpClient = URLSessionHTTPClient(session: .shared)
+        let baseURL = URL(string: "https://ghibliapi.herokuapp.com")!
+        let url = FeedEndpoint.films.url(baseURL: baseURL)
+        
+        cancellable = httpClient
+            .getPublisher(url: url)
+            .tryMap(FeedMapper.map)
+            .sink { completion in
+                switch completion {
+                case let .failure(error):
+                    self.listState = .error(error)
+                    
+                case .finished:
+                    break
+                }
+            } receiveValue: { films in
+                let items = films.map(\.item)
+                self.listState = .list(items)
+            }
+    }
+}
+
+extension GhibliFilm {
+    var item: GhibliListItem {
+        .init(id: id, title: title, description: description, imageURL: imageURL, filmURL: filmURL)
+    }
+}
+
+extension HTTPClient {
+    func getPublisher(url: URL) -> AnyPublisher<(Data, HTTPURLResponse), Error> {
+        Deferred {
+            Future { completion in
+                get(from: url, completion: completion)
+            }
+        }
+        .eraseToAnyPublisher()
     }
 }
 
@@ -49,8 +104,8 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-extension ListItem {
-    var rowItem: RowItem {
-        .init(id: id, title: title, description: description, image: image, film: film)
+extension GhibliListItem {
+    var rowItem: GhibliRowItem {
+        .init(id: id, title: title, description: description, imageURL: imageURL, filmURL: filmURL)
     }
 }
