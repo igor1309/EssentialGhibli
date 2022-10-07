@@ -17,7 +17,7 @@ public struct GhibliFilmRow: View {
     public var body: some View {
         HStack(spacing: 16) {
             Color.red
-                .aspectRatio(contentMode: .fit)
+                .aspectRatio(1, contentMode: .fit)
                 .cornerRadius(12)
                 .frame(height: 88)
             
