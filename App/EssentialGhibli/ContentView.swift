@@ -9,7 +9,7 @@ import Combine
 import GhibliAPI
 import GhibliHTTPClient
 import GhibliList
-import GhibliRow
+import GhibliRowFeature
 import SwiftUI
 
 struct ContentView: View {

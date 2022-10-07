@@ -12,9 +12,9 @@
 		2A51FA7828EF0646003D3EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A51FA7728EF0646003D3EA1 /* Assets.xcassets */; };
 		2A51FA7B28EF0646003D3EA1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A51FA7A28EF0646003D3EA1 /* Preview Assets.xcassets */; };
 		2AB6D24B28F02E94006C8855 /* GhibliList in Frameworks */ = {isa = PBXBuildFile; productRef = 2AB6D24A28F02E94006C8855 /* GhibliList */; };
-		2AB6D24D28F03111006C8855 /* GhibliRow in Frameworks */ = {isa = PBXBuildFile; productRef = 2AB6D24C28F03111006C8855 /* GhibliRow */; };
 		2AB6D24F28F032D4006C8855 /* GhibliAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 2AB6D24E28F032D4006C8855 /* GhibliAPI */; };
 		2AB6D25128F032D4006C8855 /* GhibliHTTPClient in Frameworks */ = {isa = PBXBuildFile; productRef = 2AB6D25028F032D4006C8855 /* GhibliHTTPClient */; };
+		2AB6D25328F0540D006C8855 /* GhibliRowFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2AB6D25228F0540D006C8855 /* GhibliRowFeature */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,10 +31,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2AB6D24D28F03111006C8855 /* GhibliRow in Frameworks */,
 				2AB6D24B28F02E94006C8855 /* GhibliList in Frameworks */,
 				2AB6D25128F032D4006C8855 /* GhibliHTTPClient in Frameworks */,
 				2AB6D24F28F032D4006C8855 /* GhibliAPI in Frameworks */,
+				2AB6D25328F0540D006C8855 /* GhibliRowFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,9 +103,9 @@
 			name = EssentialGhibli;
 			packageProductDependencies = (
 				2AB6D24A28F02E94006C8855 /* GhibliList */,
-				2AB6D24C28F03111006C8855 /* GhibliRow */,
 				2AB6D24E28F032D4006C8855 /* GhibliAPI */,
 				2AB6D25028F032D4006C8855 /* GhibliHTTPClient */,
+				2AB6D25228F0540D006C8855 /* GhibliRowFeature */,
 			);
 			productName = EssentialGhibli;
 			productReference = 2A51FA7028EF0644003D3EA1 /* EssentialGhibli.app */;
@@ -372,10 +372,6 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = GhibliList;
 		};
-		2AB6D24C28F03111006C8855 /* GhibliRow */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = GhibliRow;
-		};
 		2AB6D24E28F032D4006C8855 /* GhibliAPI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GhibliAPI;
@@ -383,6 +379,10 @@
 		2AB6D25028F032D4006C8855 /* GhibliHTTPClient */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GhibliHTTPClient;
+		};
+		2AB6D25228F0540D006C8855 /* GhibliRowFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GhibliRowFeature;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
