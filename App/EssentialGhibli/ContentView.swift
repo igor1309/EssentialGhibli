@@ -7,6 +7,7 @@
 
 import Combine
 import GhibliAPI
+import GhibliDetailFeature
 import GhibliHTTPClient
 import GhibliListFeature
 import GhibliRowFeature
@@ -26,14 +27,10 @@ struct ContentView: View {
         }
     }
     
+    #warning("NavigationLink destination is fixed to static value")
     private func itemRow(listItem: GhibliListFilm) -> some View {
         NavigationLink {
-            VStack {
-                Text("TBD: \(listItem.title) Film Details")
-                    .font(.headline)
-                
-                Spacer()
-            }
+            GhibliFilmDetail(film: .castleInTheSky)
         } label: {
             GhibliFilmRow(item: listItem.rowItem)
         }

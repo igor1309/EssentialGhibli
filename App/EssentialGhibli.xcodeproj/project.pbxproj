@@ -16,6 +16,7 @@
 		2AB6D25328F0540D006C8855 /* GhibliRowFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2AB6D25228F0540D006C8855 /* GhibliRowFeature */; };
 		2AB6D25528F054D8006C8855 /* GhibliListFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2AB6D25428F054D8006C8855 /* GhibliListFeature */; };
 		2AB6D25728F057AE006C8855 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB6D25628F057AE006C8855 /* ViewModel.swift */; };
+		2AC0164C28F06234002CA97C /* GhibliDetailFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2AC0164B28F06234002CA97C /* GhibliDetailFeature */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AC0164C28F06234002CA97C /* GhibliDetailFeature in Frameworks */,
 				2AB6D25528F054D8006C8855 /* GhibliListFeature in Frameworks */,
 				2AB6D25128F032D4006C8855 /* GhibliHTTPClient in Frameworks */,
 				2AB6D24F28F032D4006C8855 /* GhibliAPI in Frameworks */,
@@ -109,6 +111,7 @@
 				2AB6D25028F032D4006C8855 /* GhibliHTTPClient */,
 				2AB6D25228F0540D006C8855 /* GhibliRowFeature */,
 				2AB6D25428F054D8006C8855 /* GhibliListFeature */,
+				2AC0164B28F06234002CA97C /* GhibliDetailFeature */,
 			);
 			productName = EssentialGhibli;
 			productReference = 2A51FA7028EF0644003D3EA1 /* EssentialGhibli.app */;
@@ -387,6 +390,10 @@
 		2AB6D25428F054D8006C8855 /* GhibliListFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GhibliListFeature;
+		};
+		2AC0164B28F06234002CA97C /* GhibliDetailFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GhibliDetailFeature;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
