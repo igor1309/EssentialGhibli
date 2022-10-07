@@ -11,6 +11,7 @@ let package = Package(
     ],
     products: [
         .library(name: "GhibliAPI", targets: ["GhibliAPI"]),
+        .library(name: "GhibliDetailFeature", targets: ["GhibliDetailFeature"]),
         .library(name: "GhibliHTTPClient", targets: ["GhibliHTTPClient"]),
         .library(name: "GhibliListFeature", targets: ["GhibliListFeature"]),
         .library(name: "GhibliRowFeature", targets: ["GhibliRowFeature"]),
@@ -26,6 +27,11 @@ let package = Package(
         .testTarget(
             name: "GhibliAPITests",
             dependencies: ["GhibliAPI"]
+        ),
+        .target(name: "GhibliDetailFeature"),
+        .testTarget(
+            name: "GhibliDetailFeatureTests",
+            dependencies: ["GhibliDetailFeature"]
         ),
         .target(name: "GhibliHTTPClient"),
         .testTarget(

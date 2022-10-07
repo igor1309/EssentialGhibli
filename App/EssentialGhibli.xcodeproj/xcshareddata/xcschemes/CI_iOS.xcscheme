@@ -42,6 +42,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "GhibliDetailFeature"
+               BuildableName = "GhibliDetailFeature"
+               BlueprintName = "GhibliDetailFeature"
+               ReferencedContainer = "container:..">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "GhibliHTTPClient"
                BuildableName = "GhibliHTTPClient"
                BlueprintName = "GhibliHTTPClient"
@@ -94,6 +108,18 @@
                BlueprintIdentifier = "GhibliAPITests"
                BuildableName = "GhibliAPITests"
                BlueprintName = "GhibliAPITests"
+               ReferencedContainer = "container:..">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "GhibliDetailFeatureTests"
+               BuildableName = "GhibliDetailFeatureTests"
+               BlueprintName = "GhibliDetailFeatureTests"
                ReferencedContainer = "container:..">
             </BuildableReference>
          </TestableReference>
