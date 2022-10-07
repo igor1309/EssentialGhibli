@@ -44,12 +44,13 @@ public struct GhibliFilmListView<Row: View>: View {
             .foregroundColor(.secondary)
     }
     
-    private func errorView(_ stateError: Error) -> some View {
-        Text(stateError.localizedDescription)
+    private func errorView(_ error: Error) -> some View {
+        Text(error.localizedDescription)
             .foregroundColor(.white)
             .padding()
             .background(.red)
             .cornerRadius(24)
+            .padding()
     }
     
     private func list(items: [GhibliListFilm]) -> some View {
