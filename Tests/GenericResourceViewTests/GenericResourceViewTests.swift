@@ -20,18 +20,19 @@ final class GenericResourceViewTests: XCTestCase {
         assert(snapshot: view, locale: .ru_RU, record: record)
     }
     
-//    func test_snapshotLoadableResourceView_list() {
-//        let view = ghibliListView(.list([.castleInTheSky, .kikisDeliveryService]))
-//        
-//        assert(snapshot: view, locale: .en_US, record: record)
-//        assert(snapshot: view, locale: .ru_RU, record: record)
-//    }
-    
     func test_snapshotLoadableResourceView_error() {
         let view = loadableResourceView(.error(anyError()))
         
         assert(snapshot: view, locale: .en_US, record: record)
         assert(snapshot: view, locale: .ru_RU, record: record)
+    }
+    
+    func test_snapshotLoadableResourceView_resource() {
+        let view = loadableResourceView(.resource("This is a real value."))
+
+        // no localization for this  resource state -
+        // it's the responsibility of the caller
+        assert(snapshot: view, locale: .en_US, record: record)
     }
     
     // MARK: - Helpers

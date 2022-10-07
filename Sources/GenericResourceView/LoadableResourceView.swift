@@ -26,7 +26,7 @@ where ResourceView: View {
         case .loading:
             loadingView()
             
-        case let .detail(resource):
+        case let .resource(resource):
             resourceView(resource)
             
         case let .error(error):

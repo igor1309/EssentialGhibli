@@ -9,7 +9,7 @@ import Foundation
 
 public enum ResourceState<Resource, StateError> {
     case loading
-    case detail(Resource)
+    case resource(Resource)
     case error(StateError)
 }
 
