@@ -5,7 +5,7 @@
 //  Created by Igor Malyarov on 06.10.2022.
 //
 
-import GhibliList
+import GhibliListFeature
 import SwiftUI
 import XCTest
 

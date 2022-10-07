@@ -85,13 +85,13 @@ struct GhibliListView_Previews: PreviewProvider {
                 .previewDisplayName("Empty List State")
             
             NavigationView {
-                ghibliListView(.list([.castleInTheSky, .kikisDeliveryService]))
+                ghibliListView(.list(.samples))
             }
             .previewDisplayName("en-US | List State")
             .environment(\.locale, .en_US)
             
             NavigationView {
-                ghibliListView(.list([.castleInTheSky, .kikisDeliveryService]))
+                ghibliListView(.list(.samples))
             }
             .previewDisplayName("ru-RU | List State")
             

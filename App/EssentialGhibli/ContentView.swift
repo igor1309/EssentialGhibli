@@ -8,7 +8,7 @@
 import Combine
 import GhibliAPI
 import GhibliHTTPClient
-import GhibliList
+import GhibliListFeature
 import GhibliRowFeature
 import SwiftUI
 
