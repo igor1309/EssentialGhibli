@@ -41,7 +41,9 @@ public struct GhibliFilmDetail: View {
     }
     
     private func loadingView() -> some View {
-        ProgressView("LOADING")
+        ProgressView {
+            Text("LOADING", tableName: "Detail", bundle: .module)
+        }
     }
     
     private func detail(film: GhibliDetailFilm) -> some View {
@@ -101,6 +103,6 @@ struct GhibliFilmDetail_Previews: PreviewProvider {
     }
 }
 
-#if DEBUG
-private struct APIError: Error {}
-#endif
+public struct APIError: Error {
+    public init() {}
+}

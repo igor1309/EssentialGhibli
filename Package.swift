@@ -31,7 +31,10 @@ let package = Package(
         .target(name: "GhibliDetailFeature"),
         .testTarget(
             name: "GhibliDetailFeatureTests",
-            dependencies: ["GhibliDetailFeature"]
+            dependencies: [
+                "GhibliDetailFeature",
+                .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
+            ]
         ),
         .target(name: "GhibliHTTPClient"),
         .testTarget(
