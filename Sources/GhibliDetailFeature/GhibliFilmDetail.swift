@@ -47,18 +47,6 @@ public struct GhibliFilmDetail: View {
             .cornerRadius(24)
             .padding()
     }
-    
-    private func executive(_ title: String, _ name: String) -> some View {
-        HStack(alignment: .firstTextBaseline) {
-            Text(title.uppercased())
-                .foregroundStyle(.secondary)
-                .font(.caption)
-            
-            Spacer()
-            
-            Text(verbatim: name)
-        }
-    }
 }
 
 struct GhibliFilmDetail_Previews: PreviewProvider {
