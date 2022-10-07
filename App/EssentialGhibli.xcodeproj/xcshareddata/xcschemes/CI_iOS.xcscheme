@@ -105,6 +105,18 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2AC0165A28F0A062002CA97C"
+               BuildableName = "EssentialGhibliTests.xctest"
+               BlueprintName = "EssentialGhibliTests"
+               ReferencedContainer = "container:EssentialGhibli.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "GhibliAPITests"
                BuildableName = "GhibliAPITests"
                BlueprintName = "GhibliAPITests"

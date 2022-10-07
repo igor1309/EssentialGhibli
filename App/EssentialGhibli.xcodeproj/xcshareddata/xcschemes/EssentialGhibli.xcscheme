@@ -26,8 +26,21 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2AC0165A28F0A062002CA97C"
+               BuildableName = "EssentialGhibliTests.xctest"
+               BlueprintName = "EssentialGhibliTests"
+               ReferencedContainer = "container:EssentialGhibli.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

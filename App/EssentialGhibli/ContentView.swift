@@ -20,6 +20,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             GhibliFilmListView(listState: viewModel.listState, itemRow: itemRow)
+                .navigationTitle(Text("FEED_VIEW_TITLE", tableName: "Localizable", bundle: .main))
                 .toolbar(content: toolbar)
         }
     }

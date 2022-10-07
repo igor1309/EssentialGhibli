@@ -58,7 +58,6 @@ public struct GhibliFilmListView<Row: View>: View {
             ForEach(items, content: itemRow)
         }
         .listStyle(.plain)
-        .navigationTitle(Text("FEED_VIEW_TITLE", tableName: "Feed", bundle: .module))
     }
 }
 
