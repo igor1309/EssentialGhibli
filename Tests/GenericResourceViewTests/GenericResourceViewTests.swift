@@ -40,7 +40,7 @@ final class GenericResourceViewTests: XCTestCase {
     
     let loadableResourceView = { (stringState: StringState) in
         NavigationView {
-            LoadableResourceView(resourceState: stringState) {
+            ResourceStateView(resourceState: stringState) {
                 Text($0)
             }
         }
