@@ -13,7 +13,6 @@ final class GhibliListLocalizationTests: XCTestCase {
     func test_localizedStrings_haveKeysAndValuesForAllSupportedLocalizations() {
         let table = "Feed"
         let bundle: Bundle = .module
-        print("bundle", bundle)
         
         let localizationBundles = allLocalizationBundles(in: bundle)
         let localizedStringKeys = allLocalizedStringKeys(in: localizationBundles, table: table)
@@ -43,8 +42,6 @@ final class GhibliListLocalizationTests: XCTestCase {
         XCTAssertEqual(bundle.localizations, ["en", "ru"])
         
         return bundle.localizations.compactMap { localization in
-            print("localization", bundle.path(forResource: localization, ofType: "lproj") ?? "n/a")
-          
             guard
                 let path = bundle.path(forResource: localization, ofType: "lproj"),
                 let localizedBundle = Bundle(path: path)
