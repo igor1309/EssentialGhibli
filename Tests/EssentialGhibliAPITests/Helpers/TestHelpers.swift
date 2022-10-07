@@ -11,9 +11,8 @@ func anyURL() -> URL {
     return URL(string: "http://any-url.com")!
 }
 
-func makeItemsJSON(_ items: [[String: Any]]) -> Data {
-    let json = ["items": items]
-    return try! JSONSerialization.data(withJSONObject: json)
+func makeFilmsJSON(_ films: [[String: Any]]) -> Data {
+    return try! JSONSerialization.data(withJSONObject: films)
 }
 
 extension HTTPURLResponse {
