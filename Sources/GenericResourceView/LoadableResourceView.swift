@@ -49,3 +49,38 @@ where ResourceView: View {
             .padding()
     }
 }
+
+struct Previews_LoadableResourceView_Previews: PreviewProvider {
+    static func loadableResourceView(
+        _ resourceState: ResourceState<String, Error>
+    ) -> some View {
+        LoadableResourceView(resourceState: resourceState) {
+            Text($0)
+        }
+    }
+    static var previews: some View {
+        Group {
+            loadableResourceView(.loading)
+                .environment(\.locale, .en_US)
+                .previewDisplayName("en | Loading")
+         
+            loadableResourceView(.loading)
+                .environment(\.locale, .ru_RU)
+                .previewDisplayName("ru | Loading")
+         
+            loadableResourceView(.resource("This is a real value."))
+                .previewDisplayName("Value")
+          
+            loadableResourceView(.error(APIError()))
+                .previewDisplayName("Error")
+        }
+        .preferredColorScheme(.dark)
+    }
+}
+
+private struct APIError: Error {}
+
+private extension Locale {
+    static let en_US: Self = .init(identifier: "en-US")
+    static let ru_RU: Self = .init(identifier: "ru-RU")
+}
