@@ -13,9 +13,9 @@ final class GhibliRowTests: XCTestCase {
     let record = false
     
     func test_snapshotGhibliRow() {
-        let items = [GhibliListItem.castleInTheSky, .kikisDeliveryService]
+        let items = [GhibliRowItem.castleInTheSky, .kikisDeliveryService]
         let view = List {
-            ForEach(items, content: GhibliListItemRow.init)
+            ForEach(items, content: GhibliItemRow.init)
         }.listStyle(.plain)
         
         assert(snapshot: view, record: record)

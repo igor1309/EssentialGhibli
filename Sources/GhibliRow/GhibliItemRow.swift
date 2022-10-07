@@ -1,5 +1,5 @@
 //
-//  GhibliListItemRow.swift
+//  GhibliItemRow.swift
 //  
 //
 //  Created by Igor Malyarov on 06.10.2022.
@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-public struct GhibliListItemRow: View {
-    private let item: GhibliListItem
+public struct GhibliItemRow: View {
+    private let item: GhibliRowItem
     
-    public init(item: GhibliListItem) {
+    public init(item: GhibliRowItem) {
         self.item = item
     }
     
@@ -27,11 +27,11 @@ public struct GhibliListItemRow: View {
 }
 
 struct GhibliListItemRow_Previews: PreviewProvider {
-    static let items = [GhibliListItem.castleInTheSky, .kikisDeliveryService]
+    static let items = [GhibliRowItem.castleInTheSky, .kikisDeliveryService]
     
     static var previews: some View {
         List(items) {
-            GhibliListItemRow(item: $0)
+            GhibliItemRow(item: $0)
         }
         .listStyle(.plain)
         .preferredColorScheme(.dark)
