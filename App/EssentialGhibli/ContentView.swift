@@ -12,10 +12,6 @@ import GhibliList
 import GhibliRow
 import SwiftUI
 
-extension Array where Element == GhibliListItem {
-    static let samples: Self = [.castleInTheSky, .kikisDeliveryService]
-}
-
 struct ContentView: View {
     @State private var isLoading = false
     @State private var listState: ListState<GhibliListItem, Error> = .list(.samples)
@@ -37,7 +33,7 @@ struct ContentView: View {
                 Spacer()
             }
         } label: {
-            GhibliItemRow(item: listItem.rowItem)
+            GhibliFilmRow(item: listItem.rowItem)
         }
     }
     
@@ -117,7 +113,7 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 extension GhibliListItem {
-    var rowItem: GhibliRowItem {
+    var rowItem: GhibliRowFilm {
         .init(id: id, title: title, description: description, imageURL: imageURL, filmURL: filmURL)
     }
 }
