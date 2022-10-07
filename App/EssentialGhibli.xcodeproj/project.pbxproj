@@ -15,6 +15,7 @@
 		2AB6D25128F032D4006C8855 /* GhibliHTTPClient in Frameworks */ = {isa = PBXBuildFile; productRef = 2AB6D25028F032D4006C8855 /* GhibliHTTPClient */; };
 		2AB6D25328F0540D006C8855 /* GhibliRowFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2AB6D25228F0540D006C8855 /* GhibliRowFeature */; };
 		2AB6D25528F054D8006C8855 /* GhibliListFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2AB6D25428F054D8006C8855 /* GhibliListFeature */; };
+		2AB6D25728F057AE006C8855 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB6D25628F057AE006C8855 /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		2A51FA7728EF0646003D3EA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A51FA7A28EF0646003D3EA1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2A51FA8128EF0698003D3EA1 /* EssentialGhibli */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = EssentialGhibli; path = ..; sourceTree = "<group>"; };
+		2AB6D25628F057AE006C8855 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 			children = (
 				2A51FA7328EF0644003D3EA1 /* EssentialGhibliApp.swift */,
 				2A51FA7528EF0644003D3EA1 /* ContentView.swift */,
+				2AB6D25628F057AE006C8855 /* ViewModel.swift */,
 				2A51FA7728EF0646003D3EA1 /* Assets.xcassets */,
 				2A51FA7928EF0646003D3EA1 /* Preview Content */,
 			);
@@ -163,6 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A51FA7628EF0644003D3EA1 /* ContentView.swift in Sources */,
+				2AB6D25728F057AE006C8855 /* ViewModel.swift in Sources */,
 				2A51FA7428EF0644003D3EA1 /* EssentialGhibliApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

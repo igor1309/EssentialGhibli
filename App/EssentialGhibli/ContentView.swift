@@ -13,13 +13,15 @@ import GhibliRowFeature
 import SwiftUI
 
 struct ContentView: View {
-    @State private var isLoading = false
-    @State private var listState: ListState<GhibliListFilm, Error> = .list(.samples)
-    @State private var cancellable: AnyCancellable?
+    @ObservedObject private var viewModel: ViewModel
+    
+    init(viewModel: ViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         NavigationView {
-            GhibliFilmListView(listState: listState, itemRow: itemRow)
+            GhibliFilmListView(listState: viewModel.listState, itemRow: itemRow)
                 .toolbar(content: toolbar)
         }
     }
@@ -39,88 +41,38 @@ struct ContentView: View {
     
     private func toolbar() -> some ToolbarContent {
         ToolbarItem {
-            Button(action: loadFilms, label: loadButtonLabel)
+            Button(action: viewModel.loadFilms, label: loadButtonLabel)
         }
     }
     
     @ViewBuilder
     private func loadButtonLabel() -> some View {
-        if isLoading {
+        if viewModel.isLoading {
             ProgressView()
         } else {
             Label("Load items", systemImage: "square.and.arrow.down")
         }
     }
-    
-    private func loadFilms() {
-        let httpClient = URLSessionHTTPClient(session: .shared)
-        let baseURL = URL(string: "https://ghibliapi.herokuapp.com")!
-        let url = FeedEndpoint.films.url(baseURL: baseURL)
-        isLoading = true
-        
-        cancellable = httpClient
-            .getPublisher(url: url)
-            .handleOutput { _ in
-                self.isLoading = false
-            }
-            .tryMap(FeedMapper.map)
-            .sink { completion in
-                switch completion {
-                case let .failure(error):
-                    self.listState = .error(error)
-                    
-                case .finished:
-                    break
-                }
-            } receiveValue: { films in
-                let items = films.map(\.item)
-                self.listState = .list(items)
-            }
-    }
 }
 
-extension GhibliFilm {
-    var item: GhibliListFilm {
+private extension GhibliListFilm {
+    var rowItem: GhibliRowFilm {
         .init(id: id, title: title, description: description, imageURL: imageURL, filmURL: filmURL)
-    }
-}
-
-extension HTTPClient {
-    func getPublisher(url: URL) -> AnyPublisher<(Data, HTTPURLResponse), Error> {
-        Deferred {
-            Future { completion in
-                get(from: url, completion: completion)
-            }
-        }
-        .eraseToAnyPublisher()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ContentView()
+            ContentView(viewModel: .init())
                 .environment(\.locale, .en_US)
                 .previewDisplayName("en-US")
             
-            ContentView()
+            ContentView(viewModel: .init())
                 .environment(\.locale, .ru_RU)
                 .previewDisplayName("ru-RU")
             
         }
         .preferredColorScheme(.dark)
-    }
-}
-
-extension GhibliListFilm {
-    var rowItem: GhibliRowFilm {
-        .init(id: id, title: title, description: description, imageURL: imageURL, filmURL: filmURL)
-    }
-}
-
-extension Publisher {
-    func handleOutput(action: @escaping (Output) -> Void) -> AnyPublisher<Output, Failure> {
-        handleEvents(receiveOutput: action)
-            .eraseToAnyPublisher()
     }
 }
