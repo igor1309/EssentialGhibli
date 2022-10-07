@@ -9,7 +9,7 @@ import GhibliListFeature
 import SwiftUI
 import XCTest
 
-final class GhibliListTests: XCTestCase {
+final class GhibliListFeatureTests: XCTestCase {
     let record = false
     
     func test_snapshotGhibliListView_loading() {

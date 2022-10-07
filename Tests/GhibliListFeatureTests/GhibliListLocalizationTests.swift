@@ -6,7 +6,6 @@
 //
 
 @testable import GhibliListFeature
-import SwiftUI
 import XCTest
 
 final class GhibliListLocalizationTests: XCTestCase {
