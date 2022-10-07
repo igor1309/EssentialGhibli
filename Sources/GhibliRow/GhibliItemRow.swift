@@ -15,13 +15,21 @@ public struct GhibliItemRow: View {
     }
     
     public var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text(item.title)
-                .font(.headline)
+        HStack(spacing: 16) {
+            Color.red
+                .aspectRatio(contentMode: .fit)
+                .cornerRadius(12)
+                .frame(height: 88)
             
-            Text(item.description)
-                .foregroundStyle(.secondary)
-                .font(.subheadline)
+            VStack(alignment: .leading, spacing: 16) {
+                Text(item.title)
+                    .font(.headline)
+                
+                Text(item.description)
+                    .foregroundStyle(.secondary)
+                    .font(.subheadline)
+                    .lineLimit(3)
+            }
         }
     }
 }
