@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EssentialGhibliAPI"
-               BuildableName = "EssentialGhibliAPI"
-               BlueprintName = "EssentialGhibliAPI"
+               BlueprintIdentifier = "GhibliAPI"
+               BuildableName = "GhibliAPI"
+               BlueprintName = "GhibliAPI"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -35,9 +35,9 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EssentialGhibliAPITests"
-               BuildableName = "EssentialGhibliAPITests"
-               BlueprintName = "EssentialGhibliAPITests"
+               BlueprintIdentifier = "GhibliAPITests"
+               BuildableName = "GhibliAPITests"
+               BlueprintName = "GhibliAPITests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
@@ -63,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EssentialGhibliAPI"
-            BuildableName = "EssentialGhibliAPI"
-            BlueprintName = "EssentialGhibliAPI"
+            BlueprintIdentifier = "GhibliAPI"
+            BuildableName = "GhibliAPI"
+            BlueprintName = "GhibliAPI"
             ReferencedContainer = "container:">
          </BuildableReference>
       </MacroExpansion>

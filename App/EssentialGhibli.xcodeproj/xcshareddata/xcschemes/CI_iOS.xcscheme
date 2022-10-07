@@ -28,9 +28,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EssentialGhibliAPI"
-               BuildableName = "EssentialGhibliAPI"
-               BlueprintName = "EssentialGhibliAPI"
+               BlueprintIdentifier = "GhibliAPI"
+               BuildableName = "GhibliAPI"
+               BlueprintName = "GhibliAPI"
                ReferencedContainer = "container:..">
             </BuildableReference>
          </BuildActionEntry>
@@ -96,7 +96,8 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
             skipped = "NO"
@@ -104,9 +105,9 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EssentialGhibliAPITests"
-               BuildableName = "EssentialGhibliAPITests"
-               BlueprintName = "EssentialGhibliAPITests"
+               BlueprintIdentifier = "GhibliAPITests"
+               BuildableName = "GhibliAPITests"
+               BlueprintName = "GhibliAPITests"
                ReferencedContainer = "container:..">
             </BuildableReference>
          </TestableReference>

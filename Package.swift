@@ -10,7 +10,7 @@ let package = Package(
         .iOS(.v15)
     ],
     products: [
-        .library(name: "EssentialGhibliAPI", targets: ["EssentialGhibliAPI"]),
+        .library(name: "GhibliAPI", targets: ["GhibliAPI"]),
         .library(name: "EssentialGhibliHTTPClient", targets: ["EssentialGhibliHTTPClient"]),
         .library(name: "EssentialGhibliList", targets: ["EssentialGhibliList"]),
         .library(name: "EssentialGhibliListRow", targets: ["EssentialGhibliListRow"]),
@@ -22,10 +22,10 @@ let package = Package(
         ),
     ],
     targets: [
-        .target(name: "EssentialGhibliAPI"),
+        .target(name: "GhibliAPI"),
         .testTarget(
-            name: "EssentialGhibliAPITests",
-            dependencies: ["EssentialGhibliAPI"]
+            name: "GhibliAPITests",
+            dependencies: ["GhibliAPI"]
         ),
         .target(name: "EssentialGhibliHTTPClient"),
         .testTarget(
