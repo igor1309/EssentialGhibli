@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public struct LoadableResourceView<Resource, ResourceView>: View
+public struct ResourceStateView<Resource, ResourceView>: View
 where ResourceView: View {
     
     private let resourceState: ResourceState<Resource, Error>
@@ -50,11 +50,11 @@ where ResourceView: View {
     }
 }
 
-struct Previews_LoadableResourceView_Previews: PreviewProvider {
+struct ResourceStateView_Previews: PreviewProvider {
     static func loadableResourceView(
         _ resourceState: ResourceState<String, Error>
     ) -> some View {
-        LoadableResourceView(resourceState: resourceState) {
+        ResourceStateView(resourceState: resourceState) {
             Text($0)
         }
     }
