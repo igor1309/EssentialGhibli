@@ -5,11 +5,11 @@
 //  Created by Igor Malyarov on 06.10.2022.
 //
 
-import EssentialGhibliList
+import GhibliList
 import EssentialGhibliListRow
 import SwiftUI
 
-typealias ListItem = EssentialGhibliList.GhibliListItem
+typealias ListItem = GhibliList.GhibliListItem
 typealias RowItem = EssentialGhibliListRow.GhibliListItem
 
 struct ContentView: View {

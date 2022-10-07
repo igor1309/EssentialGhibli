@@ -11,8 +11,8 @@
 		2A51FA7628EF0644003D3EA1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A51FA7528EF0644003D3EA1 /* ContentView.swift */; };
 		2A51FA7828EF0646003D3EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A51FA7728EF0646003D3EA1 /* Assets.xcassets */; };
 		2A51FA7B28EF0646003D3EA1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A51FA7A28EF0646003D3EA1 /* Preview Assets.xcassets */; };
-		2A55D11E28EF8EF300DF8B76 /* EssentialGhibliList in Frameworks */ = {isa = PBXBuildFile; productRef = 2A55D11D28EF8EF300DF8B76 /* EssentialGhibliList */; };
 		2A55D12028EF9B9F00DF8B76 /* EssentialGhibliListRow in Frameworks */ = {isa = PBXBuildFile; productRef = 2A55D11F28EF9B9F00DF8B76 /* EssentialGhibliListRow */; };
+		2AB6D24B28F02E94006C8855 /* GhibliList in Frameworks */ = {isa = PBXBuildFile; productRef = 2AB6D24A28F02E94006C8855 /* GhibliList */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,8 +29,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A55D11E28EF8EF300DF8B76 /* EssentialGhibliList in Frameworks */,
 				2A55D12028EF9B9F00DF8B76 /* EssentialGhibliListRow in Frameworks */,
+				2AB6D24B28F02E94006C8855 /* GhibliList in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,8 +98,8 @@
 			);
 			name = EssentialGhibli;
 			packageProductDependencies = (
-				2A55D11D28EF8EF300DF8B76 /* EssentialGhibliList */,
 				2A55D11F28EF9B9F00DF8B76 /* EssentialGhibliListRow */,
+				2AB6D24A28F02E94006C8855 /* GhibliList */,
 			);
 			productName = EssentialGhibli;
 			productReference = 2A51FA7028EF0644003D3EA1 /* EssentialGhibli.app */;
@@ -362,13 +362,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2A55D11D28EF8EF300DF8B76 /* EssentialGhibliList */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = EssentialGhibliList;
-		};
 		2A55D11F28EF9B9F00DF8B76 /* EssentialGhibliListRow */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = EssentialGhibliListRow;
+		};
+		2AB6D24A28F02E94006C8855 /* GhibliList */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GhibliList;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -1,15 +1,15 @@
 //
-//  EssentialGhibliListLocalizationTests.swift
+//  GhibliListLocalizationTests.swift
 //  
 //
 //  Created by Igor Malyarov on 07.10.2022.
 //
 
-@testable import EssentialGhibliList
+@testable import GhibliList
 import SwiftUI
 import XCTest
 
-final class EssentialGhibliListLocalizationTests: XCTestCase {
+final class GhibliListLocalizationTests: XCTestCase {
     func test_localizedStrings_haveKeysAndValuesForAllSupportedLocalizations() {
         let table = "Feed"
         let bundle: Bundle = .module

@@ -1,15 +1,15 @@
 //
-//  EssentialGhibliListTests.swift
+//  GhibliListTests.swift
 //  
 //
 //  Created by Igor Malyarov on 06.10.2022.
 //
 
-import EssentialGhibliList
+import GhibliList
 import SwiftUI
 import XCTest
 
-final class EssentialGhibliListTests: XCTestCase {
+final class GhibliListTests: XCTestCase {
     let record = false
     
     func test_snapshotGhibliListView_loading() {
