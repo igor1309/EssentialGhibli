@@ -13,6 +13,7 @@ public protocol FeedStore {
     associatedtype Item
     
     func retrieve() throws -> CachedFeed<Item>
+    func deleteCachedFeed() throws
 }
 
 public final class FeedLoader<Item, Store>
@@ -38,5 +39,17 @@ where Store: FeedStore,
         let cached = try store.retrieve()
 
         return validate(.now, cached.timestamp) ? cached.feed : []
+    }
+    
+    public func validateCache() throws {
+        do {
+            let cached = try store.retrieve()
+            if !validate(.now, cached.timestamp) {
+                try store.deleteCachedFeed()
+            }
+        } catch {
+            try store.deleteCachedFeed()
+            throw error
+        }
     }
 }
