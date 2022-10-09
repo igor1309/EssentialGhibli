@@ -8,17 +8,22 @@
 import XCTest
 
 protocol FeedStore {
-    func retrieve() throws
+    associatedtype Item
+    
+    func retrieve() throws -> [Item]
 }
 
-final class FeedLoader {
-    private let store: FeedStore
+final class FeedLoader<Item, Store>
+where Store: FeedStore,
+      Store.Item == Item {
     
-    init(store: FeedStore) {
+    private let store: Store
+    
+    init(store: Store) {
         self.store = store
     }
     
-    func load() throws {
+    func load() throws -> [Item]{
         try store.retrieve()
     }
 }
@@ -33,7 +38,7 @@ final class FeedLoaderTests: XCTestCase {
     func test_load_shouldRequestCacheRetrieval() throws {
         let (sut, store) = makeSUT()
         
-        try sut.load()
+        _ = try sut.load()
         
         XCTAssertEqual(store.messages, [.retrieve])
     }
@@ -45,7 +50,7 @@ final class FeedLoaderTests: XCTestCase {
         store.completeRetrieval(with: anyError)
         
         do {
-            try sut.load()
+            _ = try sut.load()
             XCTFail("Expected error.")
         } catch let error as AnyError {
             XCTAssertEqual(error, anyError)
@@ -54,14 +59,25 @@ final class FeedLoaderTests: XCTestCase {
         }
     }
     
+    func test_load_shouldDeliverNoItemsOnEmptyCache() throws {
+        let (sut, store) = makeSUT()
+        store.completeRetrieval(with: [])
+        let items = try sut.load()
+        
+        XCTAssertEqual(items, [])
+    }
+    
+    
     // MARK: - Helpers
+    
+    struct TestItem: Equatable {}
     
     private func makeSUT(
         file: StaticString = #file,
         line: UInt = #line
-    ) -> (sut: FeedLoader, store: StoreSpy) {
-        let store = StoreSpy()
-        let sut = FeedLoader(store: store)
+    ) -> (sut: FeedLoader<TestItem, StoreSpy<TestItem>>, store: StoreSpy<TestItem>) {
+        let store = StoreSpy<TestItem>()
+        let sut = FeedLoader<TestItem, StoreSpy>(store: store)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(store, file: file, line: line)
@@ -69,18 +85,23 @@ final class FeedLoaderTests: XCTestCase {
         return (sut, store)
     }
     
-    private class StoreSpy: FeedStore {
+    private class StoreSpy<Item>: FeedStore {
         private(set) var messages = [Message]()
         
-        private var retrievalResults = [Result<Void, Error>]()
+        private var retrievalResults = [Result<[Item], Error>]()
 
-        func retrieve() throws {
+        func retrieve() throws -> [Item] {
             messages.append(.retrieve)
-            try retrievalResults.last?.get()
+            #warning("I do not like the logic here! spy should just collect messages and reply with stubbed completions")
+            return try retrievalResults.last?.get() ?? []
         }
         
         func completeRetrieval(with error: Error) {
             retrievalResults.append(.failure(error))
+        }
+        
+        func completeRetrieval(with items: [Item]) {
+            retrievalResults.append(.success(items))
         }
         
         enum Message {
