@@ -8,7 +8,7 @@
 import FeedLoader
 import Foundation
 
-typealias CachedItems = CachedFeed<TestItem>
+typealias CachedItems = CachedFeed<CachedItem>
 
 struct TestItem: Equatable {
     let id: UUID
@@ -20,8 +20,28 @@ extension TestItem: CustomStringConvertible {
     }
 }
 
-func uniqueItemFeed() -> [TestItem] {
-    (0...9).map { _ in TestItem(id: .init()) }
+struct CachedItem: Equatable {
+    let id: UUID
+}
+
+extension CachedItem: CustomStringConvertible {
+    var description: String {
+        return "CachedItem(\(id.uuidString.prefix(3))...)"
+    }
+}
+
+func uniqueItemFeed() -> (local: [TestItem], cached: [CachedItem]) {
+    let testItems = (0...9).map { _ in TestItem(id: .init()) }
+    return (testItems, testItems.map(toCached))
+}
+
+
+func toCached(_ testItem: TestItem) -> CachedItem {
+    .init(id: testItem.id)
+}
+
+func fromCached(_ cachedItem: CachedItem) -> TestItem {
+    .init(id: cachedItem.id)
 }
 
 func anyError() -> Error {

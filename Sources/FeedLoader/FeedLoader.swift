@@ -18,36 +18,45 @@ public protocol FeedStore {
 }
 
 public final class FeedLoader<Item, Store>
-where Store: FeedStore,
-      Store.Item == Item {
+where Store: FeedStore {
     
     public typealias Validate = (Date, Date) -> Bool
     
     private let store: Store
+    private let toCached: (Item) -> Store.Item
+    private let fromCached: (Store.Item) -> Item
     private let validate: Validate
-    
-    public init(store: Store, validate: @escaping Validate) {
-        self.store = store
-        self.validate = validate
-    }
     
     public init(
         store: Store,
-        feedCachePolicy: FeedCachePolicy = .sevenDays
+        toCached: @escaping (Item) -> Store.Item,
+        fromCached: @escaping (Store.Item) -> Item,
+        validate: @escaping Validate
     ) {
         self.store = store
-        self.validate = feedCachePolicy.validate
+        self.toCached = toCached
+        self.fromCached = fromCached
+        self.validate = validate
+    }
+    
+    public convenience init(
+        store: Store,
+        toCached: @escaping (Item) -> Store.Item,
+        fromCached: @escaping (Store.Item) -> Item,
+        feedCachePolicy: FeedCachePolicy = .sevenDays
+    ) {
+        self.init(store: store, toCached: toCached, fromCached: fromCached, validate: feedCachePolicy.validate)
     }
     
     public func save(feed: [Item], timestamp: Date) throws {
         try store.deleteCachedFeed()
-        try store.insert(feed, timestamp: timestamp)
+        try store.insert(feed.map(toCached), timestamp: timestamp)
     }
 
     public func load() throws -> [Item] {
         let cached = try store.retrieve()
 
-        return validate(.now, cached.timestamp) ? cached.feed : []
+        return validate(.now, cached.timestamp) ? cached.feed.map(fromCached) : []
     }
     
     public func validateCache() throws {

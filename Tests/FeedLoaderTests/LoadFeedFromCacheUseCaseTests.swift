@@ -51,19 +51,19 @@ final class LoadFeedFromCacheUseCaseTests: XCTestCase {
     func test_load_shouldDeliverCachedItemsOnNonExpiredCache() throws {
         let (sut, store) = makeSUT { _, _ in true }
         
-        let uniqueItems = uniqueItemFeed()
-        store.stubRetrieval(with: uniqueItems)
+        let feed = uniqueItemFeed()
+        store.stubRetrieval(with: feed.cached)
         let items = try sut.load()
         
-        XCTAssertEqual(items, uniqueItems)
+        XCTAssertEqual(items, feed.local)
         XCTAssertEqual(items.count, 10)
     }
     
     func test_load_shouldDeliverNoItemsOnExpiredCache() throws {
         let (sut, store) = makeSUT { _, _ in false }
         
-        let uniqueItems = uniqueItemFeed()
-        store.stubRetrieval(with: uniqueItems)
+        let feed = uniqueItemFeed()
+        store.stubRetrieval(with: feed.cached)
         let items = try sut.load()
         
         XCTAssertEqual(items, [])
@@ -71,44 +71,44 @@ final class LoadFeedFromCacheUseCaseTests: XCTestCase {
     
     func test_load_shouldHaveNoSideEffectsOnRetrievalError() throws {
         let (sut, store) = makeSUT(retrieveError: anyError())
-
+        
         _ = try? sut.load()
         
         XCTAssertEqual(store.messages, [.retrieve])
     }
-
+    
     func test_load_shouldHaveNoSideEffectsOnEmptyCache() throws {
         let (sut, store) = makeSUT()
-
+        
         _ = try sut.load()
-
+        
         XCTAssertEqual(store.messages, [.retrieve])
     }
-
+    
     func test_load_shouldHaveNoSideEffectsOnNonExpiredCache() throws {
         let feed = uniqueItemFeed()
         let fixedCurrentDate = Date()
         let nonExpiredTimestamp = fixedCurrentDate.minus(maxAgeInDays: FeedCachePolicy.sevenDays.maxCacheAgeInDays).adding(seconds: 1)
         let (sut, store) = makeSUT() { _, _ in true }
-
-        store.stubRetrieval(with: feed, timestamp: nonExpiredTimestamp)
+        
+        store.stubRetrieval(with: feed.cached, timestamp: nonExpiredTimestamp)
         _ = try sut.load()
-
+        
         XCTAssertEqual(store.messages, [.retrieve])
     }
-
+    
     func test_load_shouldHaveNoSideEffectsOnExpiredCache() throws {
         let feed = uniqueItemFeed()
         let fixedCurrentDate = Date()
         let expiredTimestamp = fixedCurrentDate.minus(maxAgeInDays: FeedCachePolicy.sevenDays.maxCacheAgeInDays).adding(seconds: -1)
         let (sut, store) = makeSUT() { _, _ in false }
-
-        store.stubRetrieval(with: feed, timestamp: expiredTimestamp)
+        
+        store.stubRetrieval(with: feed.cached, timestamp: expiredTimestamp)
         _ = try sut.load()
-
+        
         XCTAssertEqual(store.messages, [.retrieve])
     }
-
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -117,8 +117,8 @@ final class LoadFeedFromCacheUseCaseTests: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) -> (
-        sut: FeedLoader<TestItem, StoreStubSpy<TestItem>>,
-        store: StoreStubSpy<TestItem>
+        sut: FeedLoader<TestItem, StoreStubSpy<CachedItem>>,
+        store: StoreStubSpy<CachedItem>
     ) {
         makeSUT(validate: validate, retrievalResult: .success(retrieveFeed), file: file, line: line)
     }
@@ -129,8 +129,8 @@ final class LoadFeedFromCacheUseCaseTests: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) -> (
-        sut: FeedLoader<TestItem, StoreStubSpy<TestItem>>,
-        store: StoreStubSpy<TestItem>
+        sut: FeedLoader<TestItem, StoreStubSpy<CachedItem>>,
+        store: StoreStubSpy<CachedItem>
     ) {
         makeSUT(validate: validate, retrievalResult: .failure(retrieveError), file: file, line: line)
     }
@@ -141,12 +141,14 @@ final class LoadFeedFromCacheUseCaseTests: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) -> (
-        sut: FeedLoader<TestItem, StoreStubSpy<TestItem>>,
-        store: StoreStubSpy<TestItem>
+        sut: FeedLoader<TestItem, StoreStubSpy<CachedItem>>,
+        store: StoreStubSpy<CachedItem>
     ) {
-        let store = StoreStubSpy(retrievalResult: retrievalResult)
+        let store = StoreStubSpy<CachedItem>(retrievalResult: retrievalResult)
+        
         let validate = validate ?? FeedCachePolicy.sevenDays.validate
-        let sut = FeedLoader(store: store, validate: validate)
+        
+        let sut = FeedLoader(store: store, toCached: toCached, fromCached: fromCached, validate: validate)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(store, file: file, line: line)
