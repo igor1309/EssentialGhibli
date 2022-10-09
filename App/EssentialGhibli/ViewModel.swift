@@ -6,8 +6,10 @@
 //
 
 import Combine
+import Domain
 import GhibliAPI
-import GhibliHTTPClient
+import SharedAPI
+import SharedAPIInfra
 import GhibliListFeature
 import Foundation
 

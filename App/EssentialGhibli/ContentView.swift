@@ -5,6 +5,7 @@
 //  Created by Igor Malyarov on 06.10.2022.
 //
 
+import GenericResourceView
 import GhibliDetailFeature
 import GhibliListFeature
 import GhibliRowFeature
@@ -28,10 +29,12 @@ struct ContentView: View {
     #warning("NavigationLink destination is fixed to static value")
     private func itemRow(listItem: GhibliListFilm) -> some View {
         NavigationLink {
-            GhibliFilmDetail(detailState: .detail(.castleInTheSky))
-                .navigationTitle(listItem.title)
+            ResourceStateView(resourceState: .loading) {
+                GhibliFilmDetailView(film: .castleInTheSky)
+                    .navigationTitle(listItem.title)
+            }
         } label: {
-            GhibliFilmRow(item: listItem.rowItem)
+            GhibliFilmRowView(item: listItem.rowItem)
         }
     }
     
