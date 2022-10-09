@@ -272,6 +272,20 @@
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "GhibliCacheInfra"
+               BuildableName = "GhibliCacheInfra"
+               BlueprintName = "GhibliCacheInfra"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -362,6 +376,16 @@
                BlueprintIdentifier = "SharedAPIInfraTests"
                BuildableName = "SharedAPIInfraTests"
                BlueprintName = "SharedAPIInfraTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "GhibliCacheInfraTests"
+               BuildableName = "GhibliCacheInfraTests"
+               BlueprintName = "GhibliCacheInfraTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
