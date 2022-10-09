@@ -8,40 +8,6 @@
 import FeedLoader
 import XCTest
 
-typealias CachedFeed<Item> = (feed: [Item], timestamp: Date)
-
-protocol FeedStore {
-    associatedtype Item
-    
-    func retrieve() throws -> CachedFeed<Item>
-}
-
-final class FeedLoader<Item, Store>
-where Store: FeedStore,
-      Store.Item == Item {
-    
-    typealias Validate = (Date, Date) -> Bool
-    
-    private let store: Store
-    private let validate: Validate
-    
-    init(store: Store, validate: @escaping Validate) {
-        self.store = store
-        self.validate = validate
-    }
-    
-    init(store: Store, feedCachePolicy: FeedCachePolicy = .sevenDays) {
-        self.store = store
-        self.validate = feedCachePolicy.validate
-    }
-
-    func load() throws -> [Item] {
-        let cached = try store.retrieve()
-
-        return validate(.now, cached.timestamp) ? cached.feed : []
-    }
-}
-
 final class LoadFeedFromCacheUseCaseTests: XCTestCase {
     func test_feedLoader_shouldNotMessageStoreOnInit() {
         let (_, store) = makeSUT()
@@ -196,42 +162,4 @@ final class LoadFeedFromCacheUseCaseTests: XCTestCase {
     private func uniqueItemFeed() -> [TestItem] {
         (0...9).map { _ in TestItem(id: .init()) }
     }
-    
-    private class StoreStubSpy<Item>: FeedStore {
-        typealias CachedItems = CachedFeed<Item>
-        
-        private(set) var messages = [Message]()
-        private var retrievalResult: Result<CachedItems, Error>
-        
-        init(retrievalResult: Result<CachedItems, Error>) {
-            self.retrievalResult = retrievalResult
-        }
-        
-        // Retrieve
-        
-        func retrieve() throws -> CachedItems {
-            messages.append(.retrieve)
-            return try retrievalResult.get()
-        }
-        
-        func stubRetrieval(with error: Error) {
-            retrievalResult = .failure(error)
-        }
-        
-        func stubRetrieval(with items: [Item], timestamp: Date = .now) {
-            retrievalResult = .success((feed: items, timestamp: timestamp))
-        }
-        
-        //
-        
-        enum Message {
-            case retrieve
-        }
-    }
 }
-
-private func anyError() -> Error {
-    AnyError()
-}
-
-private struct AnyError: Error, Equatable {}
