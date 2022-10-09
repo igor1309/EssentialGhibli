@@ -7,15 +7,35 @@
 
 import XCTest
 
+protocol FeedStore {
+    func retrieve()
+}
+
 final class FeedLoader {
+    private let store: FeedStore
     
+    init(store: FeedStore) {
+        self.store = store
+    }
+    
+    func load() {
+        store.retrieve()
+    }
 }
 
 final class FeedLoaderTests: XCTestCase {
     func test_feedLoader_shouldNotMessageStoreOnInit() {
         let (_, store) = makeSUT()
-                
+        
         XCTAssert(store.messages.isEmpty)
+    }
+    
+    func test_load_shouldRequestCacheRetrieval() {
+        let (sut, store) = makeSUT()
+        
+        sut.load()
+        
+        XCTAssertEqual(store.messages, [.retrieve])
     }
     
     // MARK: - Helpers
@@ -24,8 +44,8 @@ final class FeedLoaderTests: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) -> (sut: FeedLoader, store: StoreSpy) {
-        let sut = FeedLoader()
         let store = StoreSpy()
+        let sut = FeedLoader(store: store)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(store, file: file, line: line)
@@ -33,11 +53,15 @@ final class FeedLoaderTests: XCTestCase {
         return (sut, store)
     }
     
-    private class StoreSpy {
-        enum Message {
-            
+    private class StoreSpy: FeedStore {
+        private(set) var messages = [Message]()
+
+        func retrieve() {
+            messages.append(.retrieve)
         }
         
-        private(set) var messages = [Message]()
+        enum Message {
+            case retrieve
+        }
     }
 }
