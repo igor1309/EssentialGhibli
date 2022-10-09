@@ -5,8 +5,6 @@
 //  Created by Igor Malyarov on 07.10.2022.
 //
 
-import Foundation
-
 public enum ResourceState<Resource, StateError> {
     case loading
     case resource(Resource)

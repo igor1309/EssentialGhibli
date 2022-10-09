@@ -16,6 +16,7 @@ let package = Package(
         .library(name: "GhibliHTTPClient", targets: ["GhibliHTTPClient"]),
         .library(name: "GhibliListFeature", targets: ["GhibliListFeature"]),
         .library(name: "GhibliRowFeature", targets: ["GhibliRowFeature"]),
+        .library(name: "Presentation", targets: ["Presentation"])
     ],
     dependencies: [
         .package(
@@ -29,6 +30,7 @@ let package = Package(
             name: "GenericResourceViewTests",
             dependencies: [
                 "GenericResourceView",
+                "Presentation",
                 .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
             ]
         ),
@@ -66,5 +68,6 @@ let package = Package(
                 .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
             ]
         ),
+        .target(name: "Presentation"),
     ]
 )
