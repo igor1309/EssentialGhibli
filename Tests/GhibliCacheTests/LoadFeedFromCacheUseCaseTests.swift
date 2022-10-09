@@ -5,7 +5,7 @@
 //  Created by Igor Malyarov on 09.10.2022.
 //
 
-import FeedLoader
+import GhibliCache
 import XCTest
 
 final class LoadFeedFromCacheUseCaseTests: XCTestCase {
@@ -117,7 +117,7 @@ final class LoadFeedFromCacheUseCaseTests: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) -> (
-        sut: FeedLoader<TestItem, StoreStubSpy<CachedItem>>,
+        sut: LocalFeedLoader<TestItem, StoreStubSpy<CachedItem>>,
         store: StoreStubSpy<CachedItem>
     ) {
         makeSUT(validate: validate, retrievalResult: .success(retrieveFeed), file: file, line: line)
@@ -129,7 +129,7 @@ final class LoadFeedFromCacheUseCaseTests: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) -> (
-        sut: FeedLoader<TestItem, StoreStubSpy<CachedItem>>,
+        sut: LocalFeedLoader<TestItem, StoreStubSpy<CachedItem>>,
         store: StoreStubSpy<CachedItem>
     ) {
         makeSUT(validate: validate, retrievalResult: .failure(retrieveError), file: file, line: line)
@@ -141,14 +141,14 @@ final class LoadFeedFromCacheUseCaseTests: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) -> (
-        sut: FeedLoader<TestItem, StoreStubSpy<CachedItem>>,
+        sut: LocalFeedLoader<TestItem, StoreStubSpy<CachedItem>>,
         store: StoreStubSpy<CachedItem>
     ) {
         let store = StoreStubSpy<CachedItem>(retrievalResult: retrievalResult)
         
         let validate = validate ?? FeedCachePolicy.sevenDays.validate
         
-        let sut = FeedLoader(store: store, toCached: toCached, fromCached: fromCached, validate: validate)
+        let sut = LocalFeedLoader(store: store, toCached: toCached, fromCached: fromCached, validate: validate)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(store, file: file, line: line)

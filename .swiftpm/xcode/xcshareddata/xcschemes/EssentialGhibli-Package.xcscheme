@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2A51FA6F28EF0644003D3EA1"
-               BuildableName = "EssentialGhibli.app"
-               BlueprintName = "EssentialGhibli"
-               ReferencedContainer = "container:EssentialGhibli.xcodeproj">
+               BlueprintIdentifier = "EssentialGhibli_GhibliListFeature"
+               BuildableName = "EssentialGhibli_GhibliListFeature"
+               BlueprintName = "EssentialGhibli_GhibliListFeature"
+               ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -28,94 +28,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "GenericResourceView"
-               BuildableName = "GenericResourceView"
-               BlueprintName = "GenericResourceView"
-               ReferencedContainer = "container:..">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "GhibliAPI"
-               BuildableName = "GhibliAPI"
-               BlueprintName = "GhibliAPI"
-               ReferencedContainer = "container:..">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "GhibliCache"
-               BuildableName = "GhibliCache"
-               BlueprintName = "GhibliCache"
-               ReferencedContainer = "container:..">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "GhibliDetailFeature"
-               BuildableName = "GhibliDetailFeature"
-               BlueprintName = "GhibliDetailFeature"
-               ReferencedContainer = "container:..">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "GhibliListFeature"
-               BuildableName = "GhibliListFeature"
-               BlueprintName = "GhibliListFeature"
-               ReferencedContainer = "container:..">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "GhibliRowFeature"
-               BuildableName = "GhibliRowFeature"
-               BlueprintName = "GhibliRowFeature"
-               ReferencedContainer = "container:..">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Presentation"
-               BuildableName = "Presentation"
-               BlueprintName = "Presentation"
-               ReferencedContainer = "container:..">
+               BlueprintIdentifier = "EssentialGhibli_GenericResourceView"
+               BuildableName = "EssentialGhibli_GenericResourceView"
+               BlueprintName = "EssentialGhibli_GenericResourceView"
+               ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -129,7 +45,7 @@
                BlueprintIdentifier = "Domain"
                BuildableName = "Domain"
                BlueprintName = "Domain"
-               ReferencedContainer = "container:..">
+               ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -140,10 +56,94 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "SharedAPIInfra"
-               BuildableName = "SharedAPIInfra"
-               BlueprintName = "SharedAPIInfra"
-               ReferencedContainer = "container:..">
+               BlueprintIdentifier = "GenericResourceView"
+               BuildableName = "GenericResourceView"
+               BlueprintName = "GenericResourceView"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "GhibliAPI"
+               BuildableName = "GhibliAPI"
+               BlueprintName = "GhibliAPI"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "GhibliCache"
+               BuildableName = "GhibliCache"
+               BlueprintName = "GhibliCache"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "GhibliDetailFeature"
+               BuildableName = "GhibliDetailFeature"
+               BlueprintName = "GhibliDetailFeature"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "GhibliListFeature"
+               BuildableName = "GhibliListFeature"
+               BlueprintName = "GhibliListFeature"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "GhibliRowFeature"
+               BuildableName = "GhibliRowFeature"
+               BlueprintName = "GhibliRowFeature"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Presentation"
+               BuildableName = "Presentation"
+               BlueprintName = "Presentation"
+               ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -157,7 +157,119 @@
                BlueprintIdentifier = "SharedAPI"
                BuildableName = "SharedAPI"
                BlueprintName = "SharedAPI"
-               ReferencedContainer = "container:..">
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SharedAPIInfra"
+               BuildableName = "SharedAPIInfra"
+               BlueprintName = "SharedAPIInfra"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "GenericResourceViewTests"
+               BuildableName = "GenericResourceViewTests"
+               BlueprintName = "GenericResourceViewTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "GhibliAPITests"
+               BuildableName = "GhibliAPITests"
+               BlueprintName = "GhibliAPITests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "GhibliCacheTests"
+               BuildableName = "GhibliCacheTests"
+               BlueprintName = "GhibliCacheTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "GhibliDetailFeatureTests"
+               BuildableName = "GhibliDetailFeatureTests"
+               BlueprintName = "GhibliDetailFeatureTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "GhibliListFeatureTests"
+               BuildableName = "GhibliListFeatureTests"
+               BlueprintName = "GhibliListFeatureTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "GhibliRowFeatureTests"
+               BuildableName = "GhibliRowFeatureTests"
+               BlueprintName = "GhibliRowFeatureTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SharedAPIInfraTests"
+               BuildableName = "SharedAPIInfraTests"
+               BlueprintName = "SharedAPIInfraTests"
+               ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -166,103 +278,76 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
-            skipped = "NO"
-            parallelizable = "YES"
-            testExecutionOrdering = "random">
+            skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "GenericResourceViewTests"
                BuildableName = "GenericResourceViewTests"
                BlueprintName = "GenericResourceViewTests"
-               ReferencedContainer = "container:..">
+               ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
          <TestableReference
-            skipped = "NO"
-            parallelizable = "YES"
-            testExecutionOrdering = "random">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2AC0165A28F0A062002CA97C"
-               BuildableName = "EssentialGhibliTests.xctest"
-               BlueprintName = "EssentialGhibliTests"
-               ReferencedContainer = "container:EssentialGhibli.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES"
-            testExecutionOrdering = "random">
+            skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "GhibliAPITests"
                BuildableName = "GhibliAPITests"
                BlueprintName = "GhibliAPITests"
-               ReferencedContainer = "container:..">
+               ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
          <TestableReference
-            skipped = "NO"
-            parallelizable = "YES"
-            testExecutionOrdering = "random">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "GhibliDetailFeatureTests"
-               BuildableName = "GhibliDetailFeatureTests"
-               BlueprintName = "GhibliDetailFeatureTests"
-               ReferencedContainer = "container:..">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES"
-            testExecutionOrdering = "random">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "GhibliListFeatureTests"
-               BuildableName = "GhibliListFeatureTests"
-               BlueprintName = "GhibliListFeatureTests"
-               ReferencedContainer = "container:..">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES"
-            testExecutionOrdering = "random">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "GhibliRowFeatureTests"
-               BuildableName = "GhibliRowFeatureTests"
-               BlueprintName = "GhibliRowFeatureTests"
-               ReferencedContainer = "container:..">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES"
-            testExecutionOrdering = "random">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "SharedAPIInfraTests"
-               BuildableName = "SharedAPIInfraTests"
-               BlueprintName = "SharedAPIInfraTests"
-               ReferencedContainer = "container:..">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES"
-            testExecutionOrdering = "random">
+            skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "GhibliCacheTests"
                BuildableName = "GhibliCacheTests"
                BlueprintName = "GhibliCacheTests"
-               ReferencedContainer = "container:..">
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "GhibliDetailFeatureTests"
+               BuildableName = "GhibliDetailFeatureTests"
+               BlueprintName = "GhibliDetailFeatureTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "GhibliListFeatureTests"
+               BuildableName = "GhibliListFeatureTests"
+               BlueprintName = "GhibliListFeatureTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "GhibliRowFeatureTests"
+               BuildableName = "GhibliRowFeatureTests"
+               BlueprintName = "GhibliRowFeatureTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SharedAPIInfraTests"
+               BuildableName = "SharedAPIInfraTests"
+               BlueprintName = "SharedAPIInfraTests"
+               ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -277,16 +362,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2A51FA6F28EF0644003D3EA1"
-            BuildableName = "EssentialGhibli.app"
-            BlueprintName = "EssentialGhibli"
-            ReferencedContainer = "container:EssentialGhibli.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -294,16 +369,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2A51FA6F28EF0644003D3EA1"
-            BuildableName = "EssentialGhibli.app"
-            BlueprintName = "EssentialGhibli"
-            ReferencedContainer = "container:EssentialGhibli.xcodeproj">
+            BlueprintIdentifier = "EssentialGhibli_GhibliListFeature"
+            BuildableName = "EssentialGhibli_GhibliListFeature"
+            BlueprintName = "EssentialGhibli_GhibliListFeature"
+            ReferencedContainer = "container:">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

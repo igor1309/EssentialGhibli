@@ -5,7 +5,7 @@
 //  Created by Igor Malyarov on 09.10.2022.
 //
 
-import FeedLoader
+import GhibliCache
 import Foundation
 
 typealias CachedItems = CachedFeed<CachedItem>

@@ -1,5 +1,5 @@
 //
-//  FeedLoader.swift
+//  LocalFeedLoader.swift
 //  
 //
 //  Created by Igor Malyarov on 09.10.2022.
@@ -17,7 +17,7 @@ public protocol FeedStore {
     func retrieve() throws -> CachedFeed<Item>
 }
 
-public final class FeedLoader<Item, Store>
+public final class LocalFeedLoader<Item, Store>
 where Store: FeedStore {
     
     public typealias Validate = (Date, Date) -> Bool

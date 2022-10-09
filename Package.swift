@@ -11,9 +11,9 @@ let package = Package(
     ],
     products: [
         .library(name: "Domain", targets: ["Domain"]),
-        .library(name: "FeedLoader", targets: ["FeedLoader"]),
         .library(name: "GenericResourceView", targets: ["GenericResourceView"]),
         .library(name: "GhibliAPI", targets: ["GhibliAPI"]),
+        .library(name: "GhibliCache", targets: ["GhibliCache"]),
         .library(name: "GhibliDetailFeature", targets: ["GhibliDetailFeature"]),
         .library(name: "GhibliListFeature", targets: ["GhibliListFeature"]),
         .library(name: "GhibliRowFeature", targets: ["GhibliRowFeature"]),
@@ -29,11 +29,6 @@ let package = Package(
     ],
     targets: [
         .target(name: "Domain"),
-        .target(name: "FeedLoader"),
-        .testTarget(
-            name: "FeedLoaderTests",
-            dependencies: ["FeedLoader"]
-        ),
         .target(
             name: "GenericResourceView",
             dependencies: ["Presentation"]
@@ -53,6 +48,11 @@ let package = Package(
         .testTarget(
             name: "GhibliAPITests",
             dependencies: ["GhibliAPI"]
+        ),
+        .target(name: "GhibliCache"),
+        .testTarget(
+            name: "GhibliCacheTests",
+            dependencies: ["GhibliCache"]
         ),
         .target(name: "GhibliDetailFeature"),
         .testTarget(
