@@ -12,8 +12,9 @@ public typealias CachedFeed<Item> = (feed: [Item], timestamp: Date)
 public protocol FeedStore {
     associatedtype Item
     
-    func retrieve() throws -> CachedFeed<Item>
     func deleteCachedFeed() throws
+    func insert(_ feed: [Item], timestamp: Date) throws
+    func retrieve() throws -> CachedFeed<Item>
 }
 
 public final class FeedLoader<Item, Store>
@@ -30,9 +31,17 @@ where Store: FeedStore,
         self.validate = validate
     }
     
-    public init(store: Store, feedCachePolicy: FeedCachePolicy = .sevenDays) {
+    public init(
+        store: Store,
+        feedCachePolicy: FeedCachePolicy = .sevenDays
+    ) {
         self.store = store
         self.validate = feedCachePolicy.validate
+    }
+    
+    public func save(feed: [Item], timestamp: Date) throws {
+        try store.deleteCachedFeed()
+        try store.insert(feed, timestamp: timestamp)
     }
 
     public func load() throws -> [Item] {

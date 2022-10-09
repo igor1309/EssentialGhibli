@@ -14,6 +14,12 @@ struct TestItem: Equatable {
     let id: UUID
 }
 
+extension TestItem: CustomStringConvertible {
+    var description: String {
+        return "TestItem(\(id.uuidString.prefix(3))...)"
+    }
+}
+
 func uniqueItemFeed() -> [TestItem] {
     (0...9).map { _ in TestItem(id: .init()) }
 }
