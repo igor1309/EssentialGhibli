@@ -8,7 +8,7 @@
 import XCTest
 
 protocol FeedStore {
-    func retrieve()
+    func retrieve() throws
 }
 
 final class FeedLoader {
@@ -18,8 +18,8 @@ final class FeedLoader {
         self.store = store
     }
     
-    func load() {
-        store.retrieve()
+    func load() throws {
+        try store.retrieve()
     }
 }
 
@@ -30,12 +30,28 @@ final class FeedLoaderTests: XCTestCase {
         XCTAssert(store.messages.isEmpty)
     }
     
-    func test_load_shouldRequestCacheRetrieval() {
+    func test_load_shouldRequestCacheRetrieval() throws {
         let (sut, store) = makeSUT()
         
-        sut.load()
+        try sut.load()
         
         XCTAssertEqual(store.messages, [.retrieve])
+    }
+    
+    func test_load_shouldFailOnRetrievalFailure() throws {
+        let (sut, store) = makeSUT()
+        let anyError = AnyError()
+        
+        store.completeRetrieval(with: anyError)
+        
+        do {
+            try sut.load()
+            XCTFail("Expected error.")
+        } catch let error as AnyError {
+            XCTAssertEqual(error, anyError)
+        } catch {
+            XCTFail("Expected \(error) got \(error).")
+        }
     }
     
     // MARK: - Helpers
@@ -55,9 +71,16 @@ final class FeedLoaderTests: XCTestCase {
     
     private class StoreSpy: FeedStore {
         private(set) var messages = [Message]()
+        
+        private var retrievalResults = [Result<Void, Error>]()
 
-        func retrieve() {
+        func retrieve() throws {
             messages.append(.retrieve)
+            try retrievalResults.last?.get()
+        }
+        
+        func completeRetrieval(with error: Error) {
+            retrievalResults.append(.failure(error))
         }
         
         enum Message {
@@ -65,3 +88,9 @@ final class FeedLoaderTests: XCTestCase {
         }
     }
 }
+
+private func anyError() -> Error {
+    AnyError()
+}
+
+private struct AnyError: Error, Equatable {}
