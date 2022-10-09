@@ -32,11 +32,8 @@ where Store: FeedStore,
     
     func load() throws -> [Item] {
         let cached = try store.retrieve()
-        if validate(.now, cached.timestamp) {
-            return cached.feed
-        } else {
-            return []
-        }
+
+        return validate(.now, cached.timestamp) ? cached.feed : []
     }
 }
 
@@ -83,7 +80,7 @@ final class FeedLoaderTests: XCTestCase {
     func test_load_shouldDeliverCachedItemsOnNonExpiredCache() throws {
         let (sut, store) = makeSUT { _, _ in true }
         
-        let uniqueItems = makeItems()
+        let uniqueItems = uniqueItemFeed()
         store.stubRetrieval(with: uniqueItems)
         let items = try sut.load()
         
@@ -94,13 +91,53 @@ final class FeedLoaderTests: XCTestCase {
     func test_load_shouldDeliverNoItemsOnExpiredCache() throws {
         let (sut, store) = makeSUT { _, _ in false }
         
-        let uniqueItems = makeItems()
+        let uniqueItems = uniqueItemFeed()
         store.stubRetrieval(with: uniqueItems)
         let items = try sut.load()
         
         XCTAssertEqual(items, [])
     }
     
+    func test_load_shouldHaveNoSideEffectsOnRetrievalError() throws {
+        let (sut, store) = makeSUT(retrieveError: anyError())
+
+        _ = try? sut.load()
+        
+        XCTAssertEqual(store.messages, [.retrieve])
+    }
+
+    func test_load_shouldHaveNoSideEffectsOnEmptyCache() throws {
+        let (sut, store) = makeSUT()
+
+        _ = try sut.load()
+
+        XCTAssertEqual(store.messages, [.retrieve])
+    }
+
+    func test_load_shouldHaveNoSideEffectsOnNonExpiredCache() throws {
+        let feed = uniqueItemFeed()
+        let fixedCurrentDate = Date()
+        let nonExpiredTimestamp = fixedCurrentDate.minus(maxAgeInDays: FeedCachePolicy.sevenDays.maxCacheAgeInDays).adding(seconds: 1)
+        let (sut, store) = makeSUT() { _, _ in true }
+
+        store.stubRetrieval(with: feed, timestamp: nonExpiredTimestamp)
+        _ = try sut.load()
+
+        XCTAssertEqual(store.messages, [.retrieve])
+    }
+
+    func test_load_shouldHaveNoSideEffectsOnExpiredCache() throws {
+        let feed = uniqueItemFeed()
+        let fixedCurrentDate = Date()
+        let expiredTimestamp = fixedCurrentDate.minus(maxAgeInDays: FeedCachePolicy.sevenDays.maxCacheAgeInDays).adding(seconds: -1)
+        let (sut, store) = makeSUT() { _, _ in false }
+
+        store.stubRetrieval(with: feed, timestamp: expiredTimestamp)
+        _ = try sut.load()
+
+        XCTAssertEqual(store.messages, [.retrieve])
+    }
+
     // MARK: - Helpers
     
     typealias CachedItems = CachedFeed<TestItem>
@@ -151,7 +188,7 @@ final class FeedLoaderTests: XCTestCase {
         return (sut, store)
     }
     
-    private func makeItems() -> [TestItem] {
+    private func uniqueItemFeed() -> [TestItem] {
         (0...9).map { _ in TestItem(id: .init()) }
     }
     
