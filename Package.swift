@@ -14,10 +14,11 @@ let package = Package(
         .library(name: "GenericResourceView", targets: ["GenericResourceView"]),
         .library(name: "GhibliAPI", targets: ["GhibliAPI"]),
         .library(name: "GhibliDetailFeature", targets: ["GhibliDetailFeature"]),
-        .library(name: "GhibliHTTPClient", targets: ["GhibliHTTPClient"]),
         .library(name: "GhibliListFeature", targets: ["GhibliListFeature"]),
         .library(name: "GhibliRowFeature", targets: ["GhibliRowFeature"]),
-        .library(name: "Presentation", targets: ["Presentation"])
+        .library(name: "Presentation", targets: ["Presentation"]),
+        .library(name: "SharedAPI", targets: ["SharedAPI"]),
+        .library(name: "SharedAPIInfra", targets: ["SharedAPIInfra"])
     ],
     dependencies: [
         .package(
@@ -55,11 +56,6 @@ let package = Package(
                 .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
             ]
         ),
-        .target(name: "GhibliHTTPClient"),
-        .testTarget(
-            name: "GhibliHTTPClientTests",
-            dependencies: ["GhibliHTTPClient"]
-        ),
         .target(name: "GhibliListFeature"),
         .testTarget(
             name: "GhibliListFeatureTests",
@@ -77,5 +73,14 @@ let package = Package(
             ]
         ),
         .target(name: "Presentation"),
+        .target(name: "SharedAPI"),
+        .target(
+            name: "SharedAPIInfra",
+            dependencies: ["SharedAPI"]
+        ),
+        .testTarget(
+            name: "SharedAPIInfraTests",
+            dependencies: ["SharedAPIInfra"]
+        ),
     ]
 )

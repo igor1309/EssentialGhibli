@@ -5,7 +5,8 @@
 //  Created by Igor Malyarov on 07.10.2022.
 //
 
-import GhibliHTTPClient
+import SharedAPI
+import SharedAPIInfra
 import XCTest
 
 final class URLSessionHTTPClientTests: XCTestCase {

@@ -70,20 +70,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "GhibliHTTPClient"
-               BuildableName = "GhibliHTTPClient"
-               BlueprintName = "GhibliHTTPClient"
-               ReferencedContainer = "container:..">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "GhibliListFeature"
                BuildableName = "GhibliListFeature"
                BlueprintName = "GhibliListFeature"
@@ -129,6 +115,20 @@
                BlueprintIdentifier = "Domain"
                BuildableName = "Domain"
                BlueprintName = "Domain"
+               ReferencedContainer = "container:..">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SharedAPIInfra"
+               BuildableName = "SharedAPIInfra"
+               BlueprintName = "SharedAPIInfra"
                ReferencedContainer = "container:..">
             </BuildableReference>
          </BuildActionEntry>
@@ -195,18 +195,6 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "GhibliHTTPClientTests"
-               BuildableName = "GhibliHTTPClientTests"
-               BlueprintName = "GhibliHTTPClientTests"
-               ReferencedContainer = "container:..">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES"
-            testExecutionOrdering = "random">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "GhibliListFeatureTests"
                BuildableName = "GhibliListFeatureTests"
                BlueprintName = "GhibliListFeatureTests"
@@ -222,6 +210,18 @@
                BlueprintIdentifier = "GhibliRowFeatureTests"
                BuildableName = "GhibliRowFeatureTests"
                BlueprintName = "GhibliRowFeatureTests"
+               ReferencedContainer = "container:..">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SharedAPIInfraTests"
+               BuildableName = "SharedAPIInfraTests"
+               BlueprintName = "SharedAPIInfraTests"
                ReferencedContainer = "container:..">
             </BuildableReference>
          </TestableReference>

@@ -5,6 +5,7 @@
 //  Created by Igor Malyarov on 07.10.2022.
 //
 
+import SharedAPI
 import Foundation
 
 public final class URLSessionHTTPClient: HTTPClient {
