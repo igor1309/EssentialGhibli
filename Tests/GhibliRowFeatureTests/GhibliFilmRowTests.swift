@@ -15,7 +15,7 @@ final class GhibliFilmRowTests: XCTestCase {
     func test_snapshotGhibliRow() {
         let items = [GhibliRowFilm.castleInTheSky, .kikisDeliveryService]
         let view = List {
-            ForEach(items, content: GhibliFilmRow.init)
+            ForEach(items, content: GhibliFilmRowView.init)
         }.listStyle(.plain)
         
         assert(snapshot: view, record: record)

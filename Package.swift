@@ -11,6 +11,7 @@ let package = Package(
     ],
     products: [
         .library(name: "Domain", targets: ["Domain"]),
+        .library(name: "FeedLoader", targets: ["FeedLoader"]),
         .library(name: "GenericResourceView", targets: ["GenericResourceView"]),
         .library(name: "GhibliAPI", targets: ["GhibliAPI"]),
         .library(name: "GhibliDetailFeature", targets: ["GhibliDetailFeature"]),
@@ -28,6 +29,11 @@ let package = Package(
     ],
     targets: [
         .target(name: "Domain"),
+        .target(name: "FeedLoader"),
+        .testTarget(
+            name: "FeedLoaderTests",
+            dependencies: ["FeedLoader"]
+        ),
         .target(
             name: "GenericResourceView",
             dependencies: ["Presentation"]
