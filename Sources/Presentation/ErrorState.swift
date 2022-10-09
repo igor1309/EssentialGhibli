@@ -1,11 +1,11 @@
 //
-//  ErrorViewState.swift
+//  ErrorState.swift
 //  
 //
 //  Created by Igor Malyarov on 09.10.2022.
 //
 
-public enum ErrorViewState {
+public enum ErrorState {
     case noError
     case error(message: String)
 }

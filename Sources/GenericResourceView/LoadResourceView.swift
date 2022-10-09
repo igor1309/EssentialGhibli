@@ -11,7 +11,7 @@ import SwiftUI
 
 final class LoadResourceViewModel<Resource, ResourceViewModel>: ObservableObject {
     
-    @Published private(set) var errorViewState: ErrorViewState
+    @Published private(set) var errorState: ErrorState
     @Published private(set) var loadingState: LoadingState
     @Published private(set) var resourceViewModel: ResourceViewModel?
     
@@ -20,13 +20,13 @@ final class LoadResourceViewModel<Resource, ResourceViewModel>: ObservableObject
     private var cancellable: Cancellable?
 
     init(
-        errorViewState: ErrorViewState,
+        errorState: ErrorState,
         loadingState: LoadingState,
         resourceViewModel: ResourceViewModel? = nil,
         loader: @escaping () -> AnyPublisher<Resource, Error>,
         mapper: @escaping (Resource) -> ResourceViewModel
     ) {
-        self.errorViewState = errorViewState
+        self.errorState = errorState
         self.loadingState = loadingState
         self.resourceViewModel = resourceViewModel
         self.loader = loader
@@ -53,7 +53,7 @@ final class LoadResourceViewModel<Resource, ResourceViewModel>: ObservableObject
     }
     
     private func didStartLoading() {
-        errorViewState = .noError
+        errorState = .noError
         loadingState = .init(isLoading: true)
     }
     
@@ -68,7 +68,7 @@ final class LoadResourceViewModel<Resource, ResourceViewModel>: ObservableObject
     
     private func didFinishLoading(with error: Error) {
         // or map to another error
-        errorViewState = .error(message: error.localizedDescription)
+        errorState = .error(message: error.localizedDescription)
         loadingState = .init(isLoading: false)
     }
 }
@@ -89,13 +89,13 @@ where ResourceView: View,
     
     private let resourceView: (ResourceViewModel?) -> ResourceView
     private let loadingView: (LoadingState) -> ResourceLoadingView
-    private let errorView: (ErrorViewState) -> ResourceErrorView
+    private let errorView: (ErrorState) -> ResourceErrorView
     
     init(
         viewModel: ViewModel,
         resourceView: @escaping (ResourceViewModel?) -> ResourceView,
         loadingView: @escaping (LoadingState) -> ResourceLoadingView,
-        errorView: @escaping (ErrorViewState) -> ResourceErrorView
+        errorView: @escaping (ErrorState) -> ResourceErrorView
     ) {
         self.viewModel = viewModel
         self.resourceView = resourceView
@@ -105,7 +105,7 @@ where ResourceView: View,
     
     var body: some View {
         VStack {
-            errorView(viewModel.errorViewState)
+            errorView(viewModel.errorState)
             loadingView(viewModel.loadingState)
             resourceView(viewModel.resourceViewModel)
         }
@@ -133,7 +133,7 @@ struct LoadResourceView_Demo: View {
         }
     
         let viewModel = LoadResourceViewModel(
-            errorViewState: .noError,
+            errorState: .noError,
             loadingState: .init(isLoading: false),
             resourceViewModel: nil,//"initial state",
             loader: isFailing ? failingLoader : loader,
@@ -156,7 +156,7 @@ struct LoadResourceView_Demo: View {
         }
         
         @ViewBuilder
-        func errorView(state: ErrorViewState) -> some View {
+        func errorView(state: ErrorState) -> some View {
             switch state {
             case .noError:
                 EmptyView()
