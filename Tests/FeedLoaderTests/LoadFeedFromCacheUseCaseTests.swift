@@ -111,12 +111,6 @@ final class LoadFeedFromCacheUseCaseTests: XCTestCase {
 
     // MARK: - Helpers
     
-    typealias CachedItems = CachedFeed<TestItem>
-    
-    struct TestItem: Equatable {
-        let id: UUID
-    }
-    
     private func makeSUT(
         validate: ((Date, Date) -> Bool)? = nil,
         retrieveFeed: CachedItems = (feed: [], timestamp: Date()),
@@ -158,9 +152,5 @@ final class LoadFeedFromCacheUseCaseTests: XCTestCase {
         trackForMemoryLeaks(store, file: file, line: line)
         
         return (sut, store)
-    }
-    
-    private func uniqueItemFeed() -> [TestItem] {
-        (0...9).map { _ in TestItem(id: .init()) }
     }
 }
