@@ -45,9 +45,9 @@ final class FeedLoaderTests: XCTestCase {
     
     func test_load_shouldFailOnRetrievalFailure() throws {
         let (sut, store) = makeSUT()
-        let anyError = AnyError()
         
-        store.completeRetrieval(with: anyError)
+        let anyError = AnyError()
+        store.stubRetrieval(with: anyError)
         
         do {
             _ = try sut.load()
@@ -61,23 +61,62 @@ final class FeedLoaderTests: XCTestCase {
     
     func test_load_shouldDeliverNoItemsOnEmptyCache() throws {
         let (sut, store) = makeSUT()
-        store.completeRetrieval(with: [])
+        
+        store.stubRetrieval(with: [])
         let items = try sut.load()
         
         XCTAssertEqual(items, [])
     }
     
+    func test_load_shouldDeliverCachedItemsOnNonExpiredCache() throws {
+        let (sut, store) = makeSUT()
+        
+        let uniqueItems = makeItems()
+        store.stubRetrieval(with: uniqueItems)
+        let items = try sut.load()
+        
+        XCTAssertEqual(items, uniqueItems)
+        XCTAssertEqual(items.count, 10)
+    }
     
     // MARK: - Helpers
     
-    struct TestItem: Equatable {}
+    struct TestItem: Equatable {
+        let id: UUID
+    }
     
     private func makeSUT(
+        retrieveItems: [TestItem] = [],
         file: StaticString = #file,
         line: UInt = #line
-    ) -> (sut: FeedLoader<TestItem, StoreSpy<TestItem>>, store: StoreSpy<TestItem>) {
-        let store = StoreSpy<TestItem>()
-        let sut = FeedLoader<TestItem, StoreSpy>(store: store)
+    ) -> (
+        sut: FeedLoader<TestItem, StoreStubSpy<TestItem>>,
+        store: StoreStubSpy<TestItem>
+    ) {
+        makeSUT(retrievalResult: .success(retrieveItems), file: file, line: line)
+    }
+    
+    private func makeSUT(
+        retrieveError: Error,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) -> (
+        sut: FeedLoader<TestItem, StoreStubSpy<TestItem>>,
+        store: StoreStubSpy<TestItem>
+    ) {
+        makeSUT(retrievalResult: .failure(retrieveError), file: file, line: line)
+    }
+    
+    private func makeSUT(
+        retrievalResult: Result<[TestItem], Error>,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) -> (
+        sut: FeedLoader<TestItem, StoreStubSpy<TestItem>>,
+        store: StoreStubSpy<TestItem>
+    ) {
+        let store = StoreStubSpy<TestItem>(retrievalResult: retrievalResult)
+        let sut = FeedLoader(store: store)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(store, file: file, line: line)
@@ -85,24 +124,34 @@ final class FeedLoaderTests: XCTestCase {
         return (sut, store)
     }
     
-    private class StoreSpy<Item>: FeedStore {
+    private func makeItems() -> [TestItem] {
+        (0...9).map { _ in TestItem(id: .init()) }
+    }
+    
+    private class StoreStubSpy<Item>: FeedStore {
         private(set) var messages = [Message]()
+        private var retrievalResult: Result<[Item], Error>
         
-        private var retrievalResults = [Result<[Item], Error>]()
-
+        init(retrievalResult: Result<[Item], Error>) {
+            self.retrievalResult = retrievalResult
+        }
+        
+        // Retrieve
+        
         func retrieve() throws -> [Item] {
             messages.append(.retrieve)
-            #warning("I do not like the logic here! spy should just collect messages and reply with stubbed completions")
-            return try retrievalResults.last?.get() ?? []
+            return try retrievalResult.get()
         }
         
-        func completeRetrieval(with error: Error) {
-            retrievalResults.append(.failure(error))
+        func stubRetrieval(with error: Error) {
+            retrievalResult = .failure(error)
         }
         
-        func completeRetrieval(with items: [Item]) {
-            retrievalResults.append(.success(items))
+        func stubRetrieval(with items: [Item]) {
+            retrievalResult = .success(items)
         }
+        
+        //
         
         enum Message {
             case retrieve
