@@ -7,24 +7,35 @@
 
 import XCTest
 
+typealias CachedFeed<Item> = (feed: [Item], timestamp: Date)
+
 protocol FeedStore {
     associatedtype Item
     
-    func retrieve() throws -> [Item]
+    func retrieve() throws -> CachedFeed<Item>
 }
 
 final class FeedLoader<Item, Store>
 where Store: FeedStore,
       Store.Item == Item {
     
-    private let store: Store
+    typealias Validate = (Date, Date) -> Bool
     
-    init(store: Store) {
+    private let store: Store
+    private let validate: Validate
+    
+    init(store: Store, validate: @escaping Validate) {
         self.store = store
+        self.validate = validate
     }
     
-    func load() throws -> [Item]{
-        try store.retrieve()
+    func load() throws -> [Item] {
+        let cached = try store.retrieve()
+        if validate(.now, cached.timestamp) {
+            return cached.feed
+        } else {
+            return []
+        }
     }
 }
 
@@ -69,7 +80,7 @@ final class FeedLoaderTests: XCTestCase {
     }
     
     func test_load_shouldDeliverCachedItemsOnNonExpiredCache() throws {
-        let (sut, store) = makeSUT()
+        let (sut, store) = makeSUT { _, _ in true }
         
         let uniqueItems = makeItems()
         store.stubRetrieval(with: uniqueItems)
@@ -79,24 +90,38 @@ final class FeedLoaderTests: XCTestCase {
         XCTAssertEqual(items.count, 10)
     }
     
+    func test_load_shouldDeliverNoItemsOnExpiredCache() throws {
+        let (sut, store) = makeSUT { _, _ in false }
+        
+        let uniqueItems = makeItems()
+        store.stubRetrieval(with: uniqueItems)
+        let items = try sut.load()
+        
+        XCTAssertEqual(items, [])
+    }
+    
     // MARK: - Helpers
+    
+    typealias CachedItems = CachedFeed<TestItem>
     
     struct TestItem: Equatable {
         let id: UUID
     }
     
     private func makeSUT(
-        retrieveItems: [TestItem] = [],
+        validate: @escaping FeedLoader.Validate = { _, _ in true },
+        retrieveFeed: CachedItems = (feed: [], timestamp: Date()),
         file: StaticString = #file,
         line: UInt = #line
     ) -> (
         sut: FeedLoader<TestItem, StoreStubSpy<TestItem>>,
         store: StoreStubSpy<TestItem>
     ) {
-        makeSUT(retrievalResult: .success(retrieveItems), file: file, line: line)
+        makeSUT(validate: validate, retrievalResult: .success(retrieveFeed), file: file, line: line)
     }
     
     private func makeSUT(
+        validate: @escaping FeedLoader.Validate = { _, _ in true },
         retrieveError: Error,
         file: StaticString = #file,
         line: UInt = #line
@@ -104,11 +129,12 @@ final class FeedLoaderTests: XCTestCase {
         sut: FeedLoader<TestItem, StoreStubSpy<TestItem>>,
         store: StoreStubSpy<TestItem>
     ) {
-        makeSUT(retrievalResult: .failure(retrieveError), file: file, line: line)
+        makeSUT(validate: validate, retrievalResult: .failure(retrieveError), file: file, line: line)
     }
     
     private func makeSUT(
-        retrievalResult: Result<[TestItem], Error>,
+        validate: @escaping FeedLoader.Validate = { _, _ in true },
+        retrievalResult: Result<CachedItems, Error>,
         file: StaticString = #file,
         line: UInt = #line
     ) -> (
@@ -116,7 +142,7 @@ final class FeedLoaderTests: XCTestCase {
         store: StoreStubSpy<TestItem>
     ) {
         let store = StoreStubSpy<TestItem>(retrievalResult: retrievalResult)
-        let sut = FeedLoader(store: store)
+        let sut = FeedLoader(store: store, validate: validate)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(store, file: file, line: line)
@@ -129,16 +155,18 @@ final class FeedLoaderTests: XCTestCase {
     }
     
     private class StoreStubSpy<Item>: FeedStore {
-        private(set) var messages = [Message]()
-        private var retrievalResult: Result<[Item], Error>
+        typealias CachedItems = CachedFeed<Item>
         
-        init(retrievalResult: Result<[Item], Error>) {
+        private(set) var messages = [Message]()
+        private var retrievalResult: Result<CachedItems, Error>
+        
+        init(retrievalResult: Result<CachedItems, Error>) {
             self.retrievalResult = retrievalResult
         }
         
         // Retrieve
         
-        func retrieve() throws -> [Item] {
+        func retrieve() throws -> CachedItems {
             messages.append(.retrieve)
             return try retrievalResult.get()
         }
@@ -147,8 +175,8 @@ final class FeedLoaderTests: XCTestCase {
             retrievalResult = .failure(error)
         }
         
-        func stubRetrieval(with items: [Item]) {
-            retrievalResult = .success(items)
+        func stubRetrieval(with items: [Item], timestamp: Date = .now) {
+            retrievalResult = .success((feed: items, timestamp: timestamp))
         }
         
         //
