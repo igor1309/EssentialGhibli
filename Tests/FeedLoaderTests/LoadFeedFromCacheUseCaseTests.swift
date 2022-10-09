@@ -1,5 +1,5 @@
 //
-//  FeedLoaderTests.swift
+//  LoadFeedFromCacheUseCaseTests.swift
 //  
 //
 //  Created by Igor Malyarov on 09.10.2022.
@@ -30,6 +30,11 @@ where Store: FeedStore,
         self.validate = validate
     }
     
+    init(store: Store, feedCachePolicy: FeedCachePolicy = .sevenDays) {
+        self.store = store
+        self.validate = feedCachePolicy.validate
+    }
+
     func load() throws -> [Item] {
         let cached = try store.retrieve()
 
@@ -37,7 +42,7 @@ where Store: FeedStore,
     }
 }
 
-final class FeedLoaderTests: XCTestCase {
+final class LoadFeedFromCacheUseCaseTests: XCTestCase {
     func test_feedLoader_shouldNotMessageStoreOnInit() {
         let (_, store) = makeSUT()
         
