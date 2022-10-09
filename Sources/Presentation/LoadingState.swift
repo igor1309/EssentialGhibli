@@ -1,11 +1,11 @@
 //
-//  LoadingViewState.swift
+//  LoadingState.swift
 //  
 //
 //  Created by Igor Malyarov on 09.10.2022.
 //
 
-public struct LoadingViewState {
+public struct LoadingState {
     public let isLoading: Bool
     
     public init(isLoading: Bool) {
