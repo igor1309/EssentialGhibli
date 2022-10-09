@@ -115,7 +115,7 @@ final class ValidateFeedCacheUseCaseTests: XCTestCase {
     }
     
     private func makeSUT(
-        validate: @escaping FeedLoader.Validate = FeedCachePolicy.sevenDays.validate,
+        validate: ((Date, Date) -> Bool)? = nil,
         retrieveFeed: CachedItems = (feed: [], timestamp: Date()),
         file: StaticString = #file,
         line: UInt = #line
@@ -127,7 +127,7 @@ final class ValidateFeedCacheUseCaseTests: XCTestCase {
     }
     
     private func makeSUT(
-        validate: @escaping FeedLoader.Validate = FeedCachePolicy.sevenDays.validate,
+        validate: ((Date, Date) -> Bool)? = nil,
         retrieveError: Error,
         file: StaticString = #file,
         line: UInt = #line
@@ -139,7 +139,7 @@ final class ValidateFeedCacheUseCaseTests: XCTestCase {
     }
     
     private func makeSUT(
-        validate: @escaping FeedLoader.Validate,
+        validate: ((Date, Date) -> Bool)? = nil,
         retrievalResult: Result<CachedItems, Error>,
         file: StaticString = #file,
         line: UInt = #line
@@ -147,7 +147,8 @@ final class ValidateFeedCacheUseCaseTests: XCTestCase {
         sut: FeedLoader<TestItem, StoreStubSpy<TestItem>>,
         store: StoreStubSpy<TestItem>
     ) {
-        let store = StoreStubSpy<TestItem>(retrievalResult: retrievalResult)
+        let store = StoreStubSpy(retrievalResult: retrievalResult)
+        let validate = validate ?? FeedCachePolicy.sevenDays.validate
         let sut = FeedLoader(store: store, validate: validate)
         
         trackForMemoryLeaks(sut, file: file, line: line)
