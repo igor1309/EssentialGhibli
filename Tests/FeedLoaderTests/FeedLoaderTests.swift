@@ -5,6 +5,7 @@
 //  Created by Igor Malyarov on 09.10.2022.
 //
 
+import FeedLoader
 import XCTest
 
 typealias CachedFeed<Item> = (feed: [Item], timestamp: Date)
@@ -109,7 +110,7 @@ final class FeedLoaderTests: XCTestCase {
     }
     
     private func makeSUT(
-        validate: @escaping FeedLoader.Validate = { _, _ in true },
+        validate: @escaping FeedLoader.Validate = FeedCachePolicy.sevenDays.validate,
         retrieveFeed: CachedItems = (feed: [], timestamp: Date()),
         file: StaticString = #file,
         line: UInt = #line
@@ -121,7 +122,7 @@ final class FeedLoaderTests: XCTestCase {
     }
     
     private func makeSUT(
-        validate: @escaping FeedLoader.Validate = { _, _ in true },
+        validate: @escaping FeedLoader.Validate = FeedCachePolicy.sevenDays.validate,
         retrieveError: Error,
         file: StaticString = #file,
         line: UInt = #line
@@ -133,7 +134,7 @@ final class FeedLoaderTests: XCTestCase {
     }
     
     private func makeSUT(
-        validate: @escaping FeedLoader.Validate = { _, _ in true },
+        validate: @escaping FeedLoader.Validate,
         retrievalResult: Result<CachedItems, Error>,
         file: StaticString = #file,
         line: UInt = #line

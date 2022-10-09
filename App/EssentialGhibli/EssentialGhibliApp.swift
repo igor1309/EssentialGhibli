@@ -11,7 +11,10 @@ import SwiftUI
 struct EssentialGhibliApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView(viewModel: .init())
+             ContentView(viewModel: .init())
+//             UpdatableResourceStateView_Demo()
+            // LoadResourceStateView_Demo(isFailing: true)
+           // LoadResourceView_Demo(isFailing: false)
         }
     }
 }

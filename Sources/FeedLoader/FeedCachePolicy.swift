@@ -34,4 +34,3 @@ public final class FeedCachePolicy {
 public extension Calendar {
     static let gregorian: Self = .init(identifier: .gregorian)
 }
-
