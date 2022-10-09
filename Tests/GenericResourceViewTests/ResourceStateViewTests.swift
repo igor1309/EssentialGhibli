@@ -6,11 +6,12 @@
 //
 
 import GenericResourceView
+import Presentation
 import SnapshotTesting
 import SwiftUI
 import XCTest
 
-final class GenericResourceViewTests: XCTestCase {
+final class ResourceStateViewTests: XCTestCase {
     let record = false
     
     func test_snapshotLoadableResourceView_loading() {
@@ -45,17 +46,4 @@ final class GenericResourceViewTests: XCTestCase {
             }
         }
     }
-}
-
-extension Locale {
-    static let en_US: Self = .init(identifier: "en-US")
-    static let ru_RU: Self = .init(identifier: "ru-RU")
-}
-
-func anyError(message: String = "any error") -> AnyError {
-    .init(message: message)
-}
-
-struct AnyError: Error {
-    let message: String
 }

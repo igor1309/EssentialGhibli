@@ -8,7 +8,7 @@
 @testable import GenericResourceView
 import XCTest
 
-final class GenericResourceViewLocalizationTests: XCTestCase {
+final class LocalizationTests: XCTestCase {
     func test_localizedStrings_haveKeysAndValuesForAllSupportedLocalizations() {
         let table = "Localizable"
         let bundle: Bundle = .module

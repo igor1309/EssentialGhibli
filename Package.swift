@@ -25,7 +25,10 @@ let package = Package(
         ),
     ],
     targets: [
-        .target(name: "GenericResourceView"),
+        .target(
+            name: "GenericResourceView",
+            dependencies: ["Presentation"]
+        ),
         .testTarget(
             name: "GenericResourceViewTests",
             dependencies: [
