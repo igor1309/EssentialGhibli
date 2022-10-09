@@ -10,6 +10,7 @@ let package = Package(
         .iOS(.v15)
     ],
     products: [
+        .library(name: "Domain", targets: ["Domain"]),
         .library(name: "GenericResourceView", targets: ["GenericResourceView"]),
         .library(name: "GhibliAPI", targets: ["GhibliAPI"]),
         .library(name: "GhibliDetailFeature", targets: ["GhibliDetailFeature"]),
@@ -25,6 +26,7 @@ let package = Package(
         ),
     ],
     targets: [
+        .target(name: "Domain"),
         .target(
             name: "GenericResourceView",
             dependencies: ["Presentation"]
@@ -37,7 +39,10 @@ let package = Package(
                 .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
             ]
         ),
-        .target(name: "GhibliAPI"),
+        .target(
+            name: "GhibliAPI",
+            dependencies: ["Domain"]
+        ),
         .testTarget(
             name: "GhibliAPITests",
             dependencies: ["GhibliAPI"]
