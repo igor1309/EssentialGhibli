@@ -75,23 +75,27 @@ final class CodableFeedStoreTests: XCTestCase {
         }
     }
     
-    func test_retrieve_shouldFailOnRetrievalError() throws {
+    func test_retrieve_shouldFailOnRetrievalError() {
         let storeURL = testStoreURL()
         let sut = makeSUT(storeURL: storeURL)
         
-        try "invalid data".write(to: storeURL, atomically: true, encoding: .utf8)
-        
-        XCTAssertThrowsError(_ = try sut.retrieve())
+        XCTAssertNoThrow {
+            try "invalid data".write(to: storeURL, atomically: true, encoding: .utf8)
+            
+            XCTAssertThrowsError(_ = try sut.retrieve())
+        }
     }
 
-    func test_retrieve_shouldHaveNoSideEffectsOnRetrievalError() throws {
+    func test_retrieve_shouldHaveNoSideEffectsOnRetrievalError() {
         let storeURL = testStoreURL()
         let sut = makeSUT(storeURL: storeURL)
         
-        try "invalid data".write(to: storeURL, atomically: true, encoding: .utf8)
-        
-        XCTAssertThrowsError(_ = try sut.retrieve())
-        XCTAssertThrowsError(_ = try sut.retrieve())
+        XCTAssertNoThrow {
+            try "invalid data".write(to: storeURL, atomically: true, encoding: .utf8)
+            
+            XCTAssertThrowsError(_ = try sut.retrieve())
+            XCTAssertThrowsError(_ = try sut.retrieve())
+        }
     }
 
     func test_retrieve_shouldOverridePreviouslyInsertedCache() {
