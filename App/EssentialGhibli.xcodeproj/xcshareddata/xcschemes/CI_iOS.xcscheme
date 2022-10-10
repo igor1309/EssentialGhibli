@@ -126,20 +126,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Domain"
-               BuildableName = "Domain"
-               BlueprintName = "Domain"
-               ReferencedContainer = "container:..">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "SharedAPIInfra"
                BuildableName = "SharedAPIInfra"
                BlueprintName = "SharedAPIInfra"
@@ -171,6 +157,20 @@
                BlueprintIdentifier = "GhibliCacheInfra"
                BuildableName = "GhibliCacheInfra"
                BlueprintName = "GhibliCacheInfra"
+               ReferencedContainer = "container:..">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "GhibliDomain"
+               BuildableName = "GhibliDomain"
+               BlueprintName = "GhibliDomain"
                ReferencedContainer = "container:..">
             </BuildableReference>
          </BuildActionEntry>
@@ -288,6 +288,18 @@
                BlueprintIdentifier = "GhibliCacheInfraTests"
                BuildableName = "GhibliCacheInfraTests"
                BlueprintName = "GhibliCacheInfraTests"
+               ReferencedContainer = "container:..">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "GhibliCacheIntegrationTests"
+               BuildableName = "GhibliCacheIntegrationTests"
+               BlueprintName = "GhibliCacheIntegrationTests"
                ReferencedContainer = "container:..">
             </BuildableReference>
          </TestableReference>
