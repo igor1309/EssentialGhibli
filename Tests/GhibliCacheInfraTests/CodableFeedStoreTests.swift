@@ -135,6 +135,13 @@ final class CodableFeedStoreTests: XCTestCase {
         XCTAssertThrowsError(try sut.insert([], timestamp: .now))
     }
     
+    func test_insert_shouldHaveNoSideEffectsOnInsertionError() {
+        let invalidStoreURL = URL(string: "invalid://store-url")!
+        let sut = makeSUT(storeURL: invalidStoreURL)
+        
+        XCTAssertThrowsError(try sut.insert([], timestamp: .now))
+    }
+    
     func test_delete_shouldHaveNoSideEffectsOnEmptyCache() {
         let sut = makeSUT()
         
@@ -156,6 +163,13 @@ final class CodableFeedStoreTests: XCTestCase {
     }
     
     func test_delete_shouldDeliverErrorOnDeletionFailure() {
+        let invalidStoreURL = URL(string: "invalid://store-url")!
+        let sut = makeSUT(storeURL: invalidStoreURL)
+        
+        XCTAssertThrowsError(try sut.deleteCachedFeed())
+    }
+    
+    func test_delete_shouldHaveNoSideEffectsOnDeletionError() {
         let invalidStoreURL = URL(string: "invalid://store-url")!
         let sut = makeSUT(storeURL: invalidStoreURL)
         
