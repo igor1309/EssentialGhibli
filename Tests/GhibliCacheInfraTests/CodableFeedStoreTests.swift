@@ -17,7 +17,7 @@ struct LocalFilm: Equatable {
     let filmURL: URL
 }
 
-final class CodableFeedStore {
+final class CodableFeedStore: FeedStore {
     private let storeURL: URL
     
     init(storeURL: URL) {
