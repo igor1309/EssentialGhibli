@@ -65,7 +65,7 @@ final class CodableFeedStore {
     }
     
     func deleteCachedFeed() throws {
-        
+        try FileManager.default.removeItem(at: storeURL)
     }
     
     func insert(_ feed: [LocalFilm], timestamp: Date) throws {
@@ -190,7 +190,7 @@ final class CodableFeedStoreTests: XCTestCase {
     }
     
     func test_insert_shouldDeliverErrorOnInsertionFailure() {
-        let sut = makeSUT(storeURL: .init(string: "invalid-url")!)
+        let sut = makeSUT(storeURL: .init(string: "invalid://store-url")!)
         
         XCTAssertThrowsError(try sut.insert([], timestamp: .now))
     }
@@ -213,6 +213,11 @@ final class CodableFeedStoreTests: XCTestCase {
             try sut.deleteCachedFeed()
             XCTAssertNil(try sut.retrieve())
         }
+    }
+    
+    func test_delete_shouldDeliverErrorOnDeletionError() {
+        let sut = makeSUT(storeURL: .init(string: "invalid://store-url")!)
+        XCTAssertThrowsError(try sut.deleteCachedFeed())
     }
 
     // MARK: - Helpers
