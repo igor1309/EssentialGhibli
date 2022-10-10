@@ -20,9 +20,8 @@ struct LocalFilm: Equatable {
 final class CodableFeedStore {
     private let storeURL: URL
     
-    init(storeURL: URL? = nil) {
-        self.storeURL = storeURL ?? FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            .appendingPathComponent("film-feed.store")
+    init(storeURL: URL) {
+        self.storeURL = storeURL
     }
     
     private struct Cache: Codable {
@@ -96,9 +95,7 @@ final class CodableFeedStoreTests: XCTestCase {
     }
     
     private func clearArtifacts() {
-        let storeURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            .appendingPathComponent("film-feed.store")
-        try? FileManager.default.removeItem(at: storeURL)
+        try? FileManager.default.removeItem(at: testStoreURL())
     }
     
     func test_shouldDeliverEmptyCacheOnEmptyCache() throws {
@@ -137,11 +134,16 @@ final class CodableFeedStoreTests: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) -> CodableFeedStore {
-        let sut = CodableFeedStore()
+        let sut = CodableFeedStore(storeURL: testStoreURL())
         
         trackForMemoryLeaks(sut, file: file, line: line)
         
         return sut
+    }
+    
+    private func testStoreURL() -> URL {
+        FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
+            .appendingPathComponent("\(type(of: self)).store")
     }
 }
 
