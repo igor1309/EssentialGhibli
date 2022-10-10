@@ -94,51 +94,59 @@ final class CodableFeedStoreTests: XCTestCase {
         undoStoreSideEffects()
     }
     
-    func test_retrieve_shouldDeliverEmptyCacheOnEmptyCache() throws {
+    func test_retrieve_shouldDeliverEmptyCacheOnEmptyCache() {
         let sut = makeSUT()
         
-        let feed = try sut.retrieve()
-        
-        XCTAssertNil(feed, "Expected retrieving from empty cache to deliver empty result.")
+        XCTAssertNoThrow {
+            let feed = try sut.retrieve()
+            
+            XCTAssertNil(feed, "Expected retrieving from empty cache to deliver empty result.")
+        }
     }
     
-    func test_retrieve_shouldHaveNoSideEffectsOnEmptyCache() throws {
+    func test_retrieve_shouldHaveNoSideEffectsOnEmptyCache() {
         let sut = makeSUT()
         
-        let feed = try sut.retrieve()
-        XCTAssertNil(feed)
-        
-        let feed2 = try sut.retrieve()
-        XCTAssertNil(feed2, "Expected retrieving twice from empty cache to deliver same empty result.")
+        XCTAssertNoThrow {
+            let feed = try sut.retrieve()
+            XCTAssertNil(feed)
+            
+            let feed2 = try sut.retrieve()
+            XCTAssertNil(feed2, "Expected retrieving twice from empty cache to deliver same empty result.")
+        }
     }
     
-    func test_retrieve_shouldDeliverInsertedValues() throws {
+    func test_retrieve_shouldDeliverInsertedValues() {
         let sut = makeSUT()
         let feed = uniqueFilmFeed()
         let timestamp = Date()
         
-        try sut.insert(feed, timestamp: timestamp)
-        let retrieved = try sut.retrieve()
-        
-        XCTAssertEqual(feed, retrieved?.feed)
-        XCTAssertEqual(timestamp, retrieved?.timestamp)
+        XCTAssertNoThrow {
+            try sut.insert(feed, timestamp: timestamp)
+            let retrieved = try sut.retrieve()
+            
+            XCTAssertEqual(feed, retrieved?.feed)
+            XCTAssertEqual(timestamp, retrieved?.timestamp)
+        }
     }
     
-    func test_retrieve_shouldHaveNoSideEffectsOnNonEmptyCache() throws {
+    func test_retrieve_shouldHaveNoSideEffectsOnNonEmptyCache() {
         let sut = makeSUT()
         let feed = uniqueFilmFeed()
         let timestamp = Date()
         
-        try sut.insert(feed, timestamp: timestamp)
-        let retrieved = try sut.retrieve()
-        
-        XCTAssertEqual(feed, retrieved?.feed)
-        XCTAssertEqual(timestamp, retrieved?.timestamp)
-
-        let retrieved2 = try sut.retrieve()
-        
-        XCTAssertEqual(feed, retrieved2?.feed, "Expected retrieving twice from non empty cache to deliver same result.")
-        XCTAssertEqual(timestamp, retrieved2?.timestamp, "Expected retrieving twice from non empty cache to deliver same result.")
+        XCTAssertNoThrow {
+            try sut.insert(feed, timestamp: timestamp)
+            let retrieved = try sut.retrieve()
+            
+            XCTAssertEqual(feed, retrieved?.feed)
+            XCTAssertEqual(timestamp, retrieved?.timestamp)
+            
+            let retrieved2 = try XCTUnwrap(try sut.retrieve())
+            
+            XCTAssertEqual(feed, retrieved2.feed, "Expected retrieving twice from non empty cache to deliver same result.")
+            XCTAssertEqual(timestamp, retrieved2.timestamp, "Expected retrieving twice from non empty cache to deliver same result.")
+        }
     }
     
     func test_retrieve_shouldFailOnRetrievalError() throws {
@@ -158,6 +166,23 @@ final class CodableFeedStoreTests: XCTestCase {
         
         XCTAssertThrowsError(_ = try sut.retrieve())
         XCTAssertThrowsError(_ = try sut.retrieve())
+    }
+
+    func test_retrieve_shouldOverridePreviouslyInsertedCache() {
+        let sut = makeSUT()
+        
+        XCTAssertNoThrow {
+            try sut.insert([makeLocalFilm()], timestamp: Date())
+            
+            let feed = uniqueFilmFeed()
+            let timestamp = Date()
+            
+            try sut.insert(feed, timestamp: timestamp)
+            let retrieved = try XCTUnwrap(try sut.retrieve())
+            
+            XCTAssertEqual(feed, retrieved.feed)
+            XCTAssertEqual(timestamp, retrieved.timestamp)
+        }
     }
 
     // MARK: - Helpers
