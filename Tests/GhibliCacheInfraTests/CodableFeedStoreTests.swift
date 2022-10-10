@@ -5,7 +5,6 @@
 //  Created by Igor Malyarov on 10.10.2022.
 //
 
-import GhibliDomain
 import GhibliCache
 import GhibliCacheInfra
 import XCTest
