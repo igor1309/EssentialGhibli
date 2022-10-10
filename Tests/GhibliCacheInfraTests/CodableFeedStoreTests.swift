@@ -184,6 +184,12 @@ final class CodableFeedStoreTests: XCTestCase {
             XCTAssertEqual(latestTimestamp, retrieved.timestamp)
         }
     }
+    
+    func test_insert_shouldDeliverErrorOnInsertionFailure() {
+        let sut = makeSUT(storeURL: .init(string: "invalid-url")!)
+        
+        XCTAssertThrowsError(try sut.insert([], timestamp: .now))
+    }
 
     // MARK: - Helpers
     
