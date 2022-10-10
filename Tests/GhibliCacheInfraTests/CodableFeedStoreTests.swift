@@ -112,7 +112,7 @@ final class CodableFeedStoreTests: XCTestCase {
         XCTAssertNil(feed2, "Expected retrieving twice from empty cache to deliver same empty result.")
     }
     
-    func test_retrieve_afterInsertingShouldDeliverInsertedValues() throws {
+    func test_retrieve_shouldDeliverInsertedValues() throws {
         let sut = makeSUT()
         let feed = uniqueFilmFeed()
         let timestamp = Date()
