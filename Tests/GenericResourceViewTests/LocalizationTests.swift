@@ -35,7 +35,7 @@ final class LocalizationTests: XCTestCase {
 
     private func allLocalizationBundles(
         in bundle: Bundle,
-        file: StaticString = #filePath,
+        file: StaticString = #file,
         line: UInt = #line
     ) -> [LocalizedBundle] {
         XCTAssertEqual(bundle.localizations, ["en", "ru"])
@@ -56,7 +56,7 @@ final class LocalizationTests: XCTestCase {
     private func allLocalizedStringKeys(
         in bundles: [LocalizedBundle],
         table: String,
-        file: StaticString = #filePath,
+        file: StaticString = #file,
         line: UInt = #line
     ) -> Set<String> {
         return bundles.reduce([]) { (acc, current) in
