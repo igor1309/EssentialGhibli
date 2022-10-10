@@ -94,7 +94,7 @@ final class CodableFeedStoreTests: XCTestCase {
         undoStoreSideEffects()
     }
     
-    func test_shouldDeliverEmptyCacheOnEmptyCache() throws {
+    func test_retrieve_shouldDeliverEmptyCacheOnEmptyCache() throws {
         let sut = makeSUT()
         
         let feed = try sut.retrieve()
@@ -102,7 +102,7 @@ final class CodableFeedStoreTests: XCTestCase {
         XCTAssertNil(feed, "Expected retrieving from empty cache to deliver empty result.")
     }
     
-    func test_shouldHaveNoSideEffectsOnEmptyCache() throws {
+    func test_retrieve_shouldHaveNoSideEffectsOnEmptyCache() throws {
         let sut = makeSUT()
         
         let feed = try sut.retrieve()
@@ -112,7 +112,7 @@ final class CodableFeedStoreTests: XCTestCase {
         XCTAssertNil(feed2, "Expected retrieving twice from empty cache to deliver same empty result.")
     }
     
-    func test_retrieveAfterInsertingShouldDeliverInsertedValues() throws {
+    func test_retrieve_afterInsertingShouldDeliverInsertedValues() throws {
         let sut = makeSUT()
         let feed = uniqueFilmFeed()
         let timestamp = Date()
