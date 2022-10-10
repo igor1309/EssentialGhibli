@@ -27,7 +27,17 @@ final class CodableFeedStoreTests: XCTestCase {
 
         let feed = try sut.retrieve()
         
+        XCTAssertNil(feed, "Expected retrieving from empty cache to deliver empty result.")
+    }
+    
+    func test_shouldHaveNoSideEffectsOnEmptyCache() throws {
+        let sut = makeSUT()
+
+        let feed = try sut.retrieve()
         XCTAssertNil(feed)
+        
+        let feed2 = try sut.retrieve()
+        XCTAssertNil(feed2, "Expected retrieving twice from empty cache to deliver same empty result.")
     }
     
     // MRK: - Helpers
