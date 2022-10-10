@@ -64,6 +64,10 @@ final class CodableFeedStore {
         }
     }
     
+    func deleteCachedFeed() throws {
+        
+    }
+    
     func insert(_ feed: [LocalFilm], timestamp: Date) throws {
         let encoder = JSONEncoder()
         let cache = Cache(local: feed, timestamp: timestamp)
@@ -189,6 +193,14 @@ final class CodableFeedStoreTests: XCTestCase {
         let sut = makeSUT(storeURL: .init(string: "invalid-url")!)
         
         XCTAssertThrowsError(try sut.insert([], timestamp: .now))
+    }
+    
+    func test_deleteShouldHaveNoSideEffectsOnEmptyCache() {
+        let sut = makeSUT()
+        
+        XCTAssertNil(try sut.retrieve())
+        XCTAssertNoThrow { try sut.deleteCachedFeed() }
+        XCTAssertNil(try sut.retrieve())
     }
 
     // MARK: - Helpers
