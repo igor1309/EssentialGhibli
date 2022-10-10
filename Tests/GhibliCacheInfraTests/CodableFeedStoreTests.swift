@@ -5,86 +5,8 @@
 //  Created by Igor Malyarov on 10.10.2022.
 //
 
-import GhibliCache
 import GhibliCacheInfra
 import XCTest
-
-struct LocalFilm: Equatable {
-    let id: UUID
-    let title: String
-    let description: String
-    let imageURL: URL
-    let filmURL: URL
-}
-
-final class CodableFeedStore: FeedStore {
-    private let storeURL: URL
-    
-    init(storeURL: URL) {
-        self.storeURL = storeURL
-    }
-    
-    private struct Cache: Codable {
-        private let feed: [CachedFilm]
-        private let timestamp: Date
-        
-        init(local: [LocalFilm], timestamp: Date) {
-            self.feed = local.map(CachedFilm.init)
-            self.timestamp = timestamp
-        }
-        
-        var localFeed: (feed: [LocalFilm], timestamp: Date) {
-            (feed.map(\.local), timestamp)
-        }
-        
-        private struct CachedFilm: Codable {
-            private let id: UUID
-            private let title: String
-            private let description: String
-            private let imageURL: URL
-            private let filmURL: URL
-            
-            init(local: LocalFilm) {
-                self.id = local.id
-                self.title = local.title
-                self.description = local.description
-                self.imageURL = local.imageURL
-                self.filmURL = local.filmURL
-            }
-            
-            var local: LocalFilm {
-                .init(
-                    id: id,
-                    title: title,
-                    description: description,
-                    imageURL: imageURL,
-                    filmURL: filmURL
-                )
-            }
-        }
-    }
-    
-    func deleteCachedFeed() throws {
-        try FileManager.default.removeItem(at: storeURL)
-    }
-    
-    func insert(_ feed: [LocalFilm], timestamp: Date) throws {
-        let encoder = JSONEncoder()
-        let cache = Cache(local: feed, timestamp: timestamp)
-        let encoded = try encoder.encode(cache)
-        try encoded.write(to: storeURL)
-    }
-    
-    func retrieve() throws -> CachedFeed<LocalFilm>? {
-        guard let data = try? Data(contentsOf: storeURL)
-        else { return nil }
-        
-        let decoder = JSONDecoder()
-        let cache = try decoder.decode(Cache.self, from: data)
-        
-        return cache.localFeed
-    }
-}
 
 final class CodableFeedStoreTests: XCTestCase {
     

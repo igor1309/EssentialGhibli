@@ -54,7 +54,10 @@ let package = Package(
             name: "GhibliCacheTests",
             dependencies: ["GhibliCache"]
         ),
-        .target(name: "GhibliCacheInfra"),
+        .target(
+            name: "GhibliCacheInfra",
+            dependencies: ["GhibliCache"]
+        ),
         .testTarget(
             name: "GhibliCacheInfraTests",
             dependencies: [
