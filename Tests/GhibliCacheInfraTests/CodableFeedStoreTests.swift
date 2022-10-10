@@ -202,6 +202,18 @@ final class CodableFeedStoreTests: XCTestCase {
         XCTAssertNoThrow { try sut.deleteCachedFeed() }
         XCTAssertNil(try sut.retrieve())
     }
+    
+    func test_delete_shouldEmptyPreviouslyInsertedCache() {
+        let sut = makeSUT()
+        let feed = uniqueFilmFeed()
+        let timestamp = Date()
+        
+        XCTAssertNoThrow {
+            try sut.insert(feed, timestamp: timestamp)
+            try sut.deleteCachedFeed()
+            XCTAssertNil(try sut.retrieve())
+        }
+    }
 
     // MARK: - Helpers
     
