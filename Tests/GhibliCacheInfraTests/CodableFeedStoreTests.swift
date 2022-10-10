@@ -26,56 +26,60 @@ final class CodableFeedStore {
     }
     
     private struct Cache: Codable {
-        let feed: [CachedFilm]
-        let timestamp: Date
+        private let feed: [CachedFilm]
+        private let timestamp: Date
         
-        struct CachedFilm: Codable {
-            let id: UUID
-            let title: String
-            let description: String
-            let imageURL: URL
-            let filmURL: URL
+        init(local: [LocalFilm], timestamp: Date) {
+            self.feed = local.map(CachedFilm.init)
+            self.timestamp = timestamp
         }
-    }
-    
-    private func toCachedFilm(local: LocalFilm) -> Cache.CachedFilm {
-        .init(
-            id: local.id,
-            title: local.title,
-            description: local.description,
-            imageURL: local.imageURL,
-            filmURL: local.filmURL
-        )
-    }
-    
-    private func toLocal(cached: Cache.CachedFilm) -> LocalFilm {
-        .init(
-            id: cached.id,
-            title: cached.title,
-            description: cached.description,
-            imageURL: cached.imageURL,
-            filmURL: cached.filmURL
-        )
+        
+        var localFeed: (feed: [LocalFilm], timestamp: Date) {
+            (feed.map(\.local), timestamp)
+        }
+        
+        private struct CachedFilm: Codable {
+            private let id: UUID
+            private let title: String
+            private let description: String
+            private let imageURL: URL
+            private let filmURL: URL
+            
+            init(local: LocalFilm) {
+                self.id = local.id
+                self.title = local.title
+                self.description = local.description
+                self.imageURL = local.imageURL
+                self.filmURL = local.filmURL
+            }
+            
+            var local: LocalFilm {
+                .init(
+                    id: id,
+                    title: title,
+                    description: description,
+                    imageURL: imageURL,
+                    filmURL: filmURL
+                )
+            }
+        }
     }
     
     func insert(_ feed: [LocalFilm], timestamp: Date) throws {
         let encoder = JSONEncoder()
-        let cached: [Cache.CachedFilm] = feed.map(toCachedFilm)
-        let cache = Cache(feed: cached, timestamp: timestamp)
+        let cache = Cache(local: feed, timestamp: timestamp)
         let encoded = try encoder.encode(cache)
         try encoded.write(to: storeURL)
     }
     
     func retrieve() throws -> CachedFeed<LocalFilm>? {
         guard let data = try? Data(contentsOf: storeURL)
-        else {
-            return nil
-        }
+        else { return nil }
         
         let decoder = JSONDecoder()
         let cache = try decoder.decode(Cache.self, from: data)
         
-        return (cache.feed.map(toLocal), cache.timestamp)
+        return cache.localFeed
     }
 }
 
