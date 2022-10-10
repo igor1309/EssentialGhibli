@@ -22,7 +22,7 @@ final class GhibliCacheCodableStoreIntegrationTests: XCTestCase {
         undoStoreSideEffects()
     }
     
-    func test_load_deliversNoItemsOnEmptyCache() {
+    func test_load_shouldDeliverNoItemsOnEmptyCache() {
         let sut = makeSUT()
         
         expect(sut, toLoad: [])
