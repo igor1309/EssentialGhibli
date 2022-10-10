@@ -78,7 +78,8 @@ let package = Package(
             name: "GhibliCacheIntegrationTests",
             dependencies: [
                 "GhibliCache",
-                "GhibliCacheInfra"
+                "GhibliCacheInfra",
+                "GhibliDomain"
             ]
         ),
         .target(name: "GhibliListFeature"),

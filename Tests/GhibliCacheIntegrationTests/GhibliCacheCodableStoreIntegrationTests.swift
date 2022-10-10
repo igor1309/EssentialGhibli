@@ -5,6 +5,7 @@
 //  Created by Igor Malyarov on 11.10.2022.
 //
 
+import GhibliDomain
 import GhibliCache
 import GhibliCacheInfra
 import XCTest
@@ -21,15 +22,45 @@ final class GhibliCacheCodableStoreIntegrationTests: XCTestCase {
         undoStoreSideEffects()
     }
     
+    func test_load_deliversNoItemsOnEmptyCache() {
+        let sut = makeSUT()
+        
+        expect(sut, toLoad: [])
+    }
+    
     // MARK: - Helpers
+    
+    typealias LocalLoader = LocalFeedLoader<GhibliFilm, CodableFeedStore>
     
     private func makeSUT(
         file: StaticString = #file,
         line: UInt = #line
-    ) -> CodableFeedStore {
-        let sut = CodableFeedStore(storeURL: testStoreURL())
+    ) -> LocalLoader {
+        let store = CodableFeedStore(storeURL: testStoreURL())
+        let sut = LocalFeedLoader(
+            store: store,
+            toLocal: LocalFilm.init(film:),
+            fromLocal: GhibliFilm.init(local:)
+        ) { _, _ in true }
+        
+        trackForMemoryLeaks(store, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
+        
         return sut
+    }
+    
+    private func expect(
+        _ sut: LocalLoader,
+        toLoad expectedFeed: [GhibliFilm],
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        do {
+            let feed = try sut.load()
+            XCTAssertEqual(feed, expectedFeed)
+        } catch {
+            XCTFail(error.localizedDescription, file: file, line: line)
+        }
     }
     
     private func testStoreURL() -> URL {
@@ -48,5 +79,4 @@ final class GhibliCacheCodableStoreIntegrationTests: XCTestCase {
     private func clearArtifacts() {
         try? FileManager.default.removeItem(at: testStoreURL())
     }
-
 }
