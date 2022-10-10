@@ -141,6 +141,14 @@ final class CodableFeedStoreTests: XCTestCase {
         XCTAssertEqual(timestamp, retrieved2?.timestamp, "Expected retrieving twice from non empty cache to deliver same result.")
     }
     
+    func test_retrieve_shouldFailOnRetrievalError() throws {
+        let sut = makeSUT()
+        
+        try "invalid data".write(to: testStoreURL(), atomically: true, encoding: .utf8)
+        
+        XCTAssertThrowsError(_ = try sut.retrieve())
+    }
+
     // MARK: - Helpers
     
     private func makeSUT(
