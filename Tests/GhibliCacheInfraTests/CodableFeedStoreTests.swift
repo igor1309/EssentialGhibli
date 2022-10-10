@@ -20,7 +20,7 @@ final class CodableFeedStoreTests: XCTestCase {
         undoStoreSideEffects()
     }
     
-    func test_retrieve_shouldDeliverEmptyCacheOnEmptyCache() {
+    func test_retrieve_shouldDeliverEmptyOnEmptyCache() {
         let sut = makeSUT()
         
         XCTAssertNoThrow {
@@ -75,7 +75,7 @@ final class CodableFeedStoreTests: XCTestCase {
         }
     }
     
-    func test_retrieve_shouldFailOnRetrievalError() {
+    func test_retrieve_shouldDeliverErrorOnRetrievalFailure() {
         let storeURL = testStoreURL()
         let sut = makeSUT(storeURL: storeURL)
         
@@ -85,8 +85,8 @@ final class CodableFeedStoreTests: XCTestCase {
             XCTAssertThrowsError(_ = try sut.retrieve())
         }
     }
-
-    func test_retrieve_shouldHaveNoSideEffectsOnRetrievalError() {
+    
+    func test_retrieve_shouldHaveNoSideEffectsOnRetrievalFailure() {
         let storeURL = testStoreURL()
         let sut = makeSUT(storeURL: storeURL)
         
@@ -97,8 +97,8 @@ final class CodableFeedStoreTests: XCTestCase {
             XCTAssertThrowsError(_ = try sut.retrieve())
         }
     }
-
-    func test_retrieve_shouldOverridePreviouslyInsertedCache() {
+    
+    func test_insert_shouldOverridePreviouslyInsertedCache() {
         let sut = makeSUT()
         
         XCTAssertNoThrow {
@@ -121,7 +121,7 @@ final class CodableFeedStoreTests: XCTestCase {
         XCTAssertThrowsError(try sut.insert([], timestamp: .now))
     }
     
-    func test_deleteShouldHaveNoSideEffectsOnEmptyCache() {
+    func test_delete_shouldHaveNoSideEffectsOnEmptyCache() {
         let sut = makeSUT()
         
         XCTAssertNil(try sut.retrieve())
@@ -141,11 +141,11 @@ final class CodableFeedStoreTests: XCTestCase {
         }
     }
     
-    func test_delete_shouldDeliverErrorOnDeletionError() {
+    func test_delete_shouldDeliverErrorOnDeletionFailure() {
         let sut = makeSUT(storeURL: .init(string: "invalid://store-url")!)
         XCTAssertThrowsError(try sut.deleteCachedFeed())
     }
-
+    
     // MARK: - Helpers
     
     private func makeSUT(
