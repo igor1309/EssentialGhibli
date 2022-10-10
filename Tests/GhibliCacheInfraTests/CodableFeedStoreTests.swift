@@ -174,14 +174,14 @@ final class CodableFeedStoreTests: XCTestCase {
         XCTAssertNoThrow {
             try sut.insert([makeLocalFilm()], timestamp: Date())
             
-            let feed = uniqueFilmFeed()
-            let timestamp = Date()
+            let latestFeed = uniqueFilmFeed()
+            let latestTimestamp = Date()
             
-            try sut.insert(feed, timestamp: timestamp)
+            try sut.insert(latestFeed, timestamp: latestTimestamp)
             let retrieved = try XCTUnwrap(try sut.retrieve())
             
-            XCTAssertEqual(feed, retrieved.feed)
-            XCTAssertEqual(timestamp, retrieved.timestamp)
+            XCTAssertEqual(latestFeed, retrieved.feed)
+            XCTAssertEqual(latestTimestamp, retrieved.timestamp)
         }
     }
 
