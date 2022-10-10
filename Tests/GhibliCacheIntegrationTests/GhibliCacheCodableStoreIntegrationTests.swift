@@ -63,11 +63,6 @@ final class GhibliCacheCodableStoreIntegrationTests: XCTestCase {
         }
     }
     
-    private func testStoreURL() -> URL {
-        FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
-            .appendingPathComponent("\(type(of: self)).store")
-    }
-    
     private func setupEmptyStoreState() {
         clearArtifacts()
     }
@@ -78,5 +73,14 @@ final class GhibliCacheCodableStoreIntegrationTests: XCTestCase {
     
     private func clearArtifacts() {
         try? FileManager.default.removeItem(at: testStoreURL())
+        
+    }
+    
+    private func testStoreURL() -> URL {
+        cachesDirectory().appendingPathComponent("\(type(of: self)).store")
+    }
+    
+    private func cachesDirectory() -> URL {
+        return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
     }
 }
