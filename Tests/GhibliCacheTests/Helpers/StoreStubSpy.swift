@@ -9,8 +9,8 @@ import GhibliCache
 import XCTest
 
 extension XCTestCase {
-    class StoreStubSpy<Item: Equatable>: FeedStore {
-        typealias CachedItems = CachedFeed<Item>
+    class StoreStubSpy<LocalItem: Equatable>: FeedStore {
+        typealias CachedItems = CachedFeed<LocalItem>
         
         private(set) var messages = [Message]()
         private var retrievalResult: Result<CachedItems?, Error>
@@ -42,7 +42,7 @@ extension XCTestCase {
             retrievalResult = .failure(error)
         }
         
-        func stubRetrieval(with items: [Item], timestamp: Date = .now) {
+        func stubRetrieval(with items: [LocalItem], timestamp: Date = .now) {
             retrievalResult = .success((feed: items, timestamp: timestamp))
         }
         
@@ -63,7 +63,7 @@ extension XCTestCase {
         
         // Save
         
-        func insert(_ feed: [Item], timestamp: Date) throws {
+        func insert(_ feed: [LocalItem], timestamp: Date) throws {
             messages.append(.insert(feed: feed, timestamp: timestamp))
             try insertionResult.get()
         }
@@ -77,7 +77,7 @@ extension XCTestCase {
         enum Message: Equatable {
             case retrieve
             case deleteCachedFeed
-            case insert(feed: [Item], timestamp: Date)
+            case insert(feed: [LocalItem], timestamp: Date)
         }
     }
 }

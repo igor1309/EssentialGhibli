@@ -11,16 +11,18 @@
 		2A51FA7628EF0644003D3EA1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A51FA7528EF0644003D3EA1 /* ContentView.swift */; };
 		2A51FA7828EF0646003D3EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A51FA7728EF0646003D3EA1 /* Assets.xcassets */; };
 		2A51FA7B28EF0646003D3EA1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A51FA7A28EF0646003D3EA1 /* Preview Assets.xcassets */; };
-		2A62DC9828F3839A00AF5560 /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DC9728F3839A00AF5560 /* Domain */; };
-		2A62DC9A28F3839A00AF5560 /* GenericResourceView in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DC9928F3839A00AF5560 /* GenericResourceView */; };
-		2A62DC9C28F3839A00AF5560 /* GhibliAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DC9B28F3839A00AF5560 /* GhibliAPI */; };
-		2A62DC9E28F3839A00AF5560 /* GhibliCache in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DC9D28F3839A00AF5560 /* GhibliCache */; };
-		2A62DCA028F3839A00AF5560 /* GhibliDetailFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DC9F28F3839A00AF5560 /* GhibliDetailFeature */; };
-		2A62DCA228F3839B00AF5560 /* GhibliListFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DCA128F3839B00AF5560 /* GhibliListFeature */; };
-		2A62DCA428F3839B00AF5560 /* GhibliRowFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DCA328F3839B00AF5560 /* GhibliRowFeature */; };
-		2A62DCA628F3839B00AF5560 /* Presentation in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DCA528F3839B00AF5560 /* Presentation */; };
-		2A62DCA828F3839B00AF5560 /* SharedAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DCA728F3839B00AF5560 /* SharedAPI */; };
-		2A62DCAA28F3839B00AF5560 /* SharedAPIInfra in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DCA928F3839B00AF5560 /* SharedAPIInfra */; };
+		2A62DCAC28F44A2800AF5560 /* GenericResourceView in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DCAB28F44A2800AF5560 /* GenericResourceView */; };
+		2A62DCAE28F44A2800AF5560 /* GhibliAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DCAD28F44A2800AF5560 /* GhibliAPI */; };
+		2A62DCB028F44A2800AF5560 /* GhibliCache in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DCAF28F44A2800AF5560 /* GhibliCache */; };
+		2A62DCB228F44A2800AF5560 /* GhibliCacheInfra in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DCB128F44A2800AF5560 /* GhibliCacheInfra */; };
+		2A62DCB428F44A2800AF5560 /* GhibliDetailFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DCB328F44A2800AF5560 /* GhibliDetailFeature */; };
+		2A62DCB628F44A2800AF5560 /* GhibliDomain in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DCB528F44A2800AF5560 /* GhibliDomain */; };
+		2A62DCB828F44A2800AF5560 /* GhibliListFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DCB728F44A2800AF5560 /* GhibliListFeature */; };
+		2A62DCBA28F44A2900AF5560 /* GhibliRowFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DCB928F44A2900AF5560 /* GhibliRowFeature */; };
+		2A62DCBC28F44A2900AF5560 /* Presentation in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DCBB28F44A2900AF5560 /* Presentation */; };
+		2A62DCBE28F44A2900AF5560 /* SharedAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DCBD28F44A2900AF5560 /* SharedAPI */; };
+		2A62DCC028F44A2900AF5560 /* SharedAPIInfra in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DCBF28F44A2900AF5560 /* SharedAPIInfra */; };
+		2A62DCC228F44A3F00AF5560 /* composeLocalFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A62DCC128F44A3F00AF5560 /* composeLocalFeedLoader.swift */; };
 		2AB6D25728F057AE006C8855 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB6D25628F057AE006C8855 /* ViewModel.swift */; };
 		2AC0165028F09DA9002CA97C /* NavigationComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC0164F28F09DA9002CA97C /* NavigationComposer.swift */; };
 		2AC0165328F09FFF002CA97C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AC0165528F09FFF002CA97C /* Localizable.strings */; };
@@ -46,6 +48,7 @@
 		2A51FA7728EF0646003D3EA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A51FA7A28EF0646003D3EA1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2A51FA8128EF0698003D3EA1 /* EssentialGhibli */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = EssentialGhibli; path = ..; sourceTree = "<group>"; };
+		2A62DCC128F44A3F00AF5560 /* composeLocalFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = composeLocalFeedLoader.swift; sourceTree = "<group>"; };
 		2AB6D25628F057AE006C8855 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		2AC0164F28F09DA9002CA97C /* NavigationComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationComposer.swift; sourceTree = "<group>"; };
 		2AC0165428F09FFF002CA97C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -60,16 +63,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A62DCA628F3839B00AF5560 /* Presentation in Frameworks */,
-				2A62DCA028F3839A00AF5560 /* GhibliDetailFeature in Frameworks */,
-				2A62DC9828F3839A00AF5560 /* Domain in Frameworks */,
-				2A62DC9A28F3839A00AF5560 /* GenericResourceView in Frameworks */,
-				2A62DC9E28F3839A00AF5560 /* GhibliCache in Frameworks */,
-				2A62DCA228F3839B00AF5560 /* GhibliListFeature in Frameworks */,
-				2A62DCA428F3839B00AF5560 /* GhibliRowFeature in Frameworks */,
-				2A62DCAA28F3839B00AF5560 /* SharedAPIInfra in Frameworks */,
-				2A62DC9C28F3839A00AF5560 /* GhibliAPI in Frameworks */,
-				2A62DCA828F3839B00AF5560 /* SharedAPI in Frameworks */,
+				2A62DCB428F44A2800AF5560 /* GhibliDetailFeature in Frameworks */,
+				2A62DCB828F44A2800AF5560 /* GhibliListFeature in Frameworks */,
+				2A62DCAE28F44A2800AF5560 /* GhibliAPI in Frameworks */,
+				2A62DCC028F44A2900AF5560 /* SharedAPIInfra in Frameworks */,
+				2A62DCBA28F44A2900AF5560 /* GhibliRowFeature in Frameworks */,
+				2A62DCAC28F44A2800AF5560 /* GenericResourceView in Frameworks */,
+				2A62DCB628F44A2800AF5560 /* GhibliDomain in Frameworks */,
+				2A62DCBE28F44A2900AF5560 /* SharedAPI in Frameworks */,
+				2A62DCB028F44A2800AF5560 /* GhibliCache in Frameworks */,
+				2A62DCBC28F44A2900AF5560 /* Presentation in Frameworks */,
+				2A62DCB228F44A2800AF5560 /* GhibliCacheInfra in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +115,7 @@
 				2A51FA7528EF0644003D3EA1 /* ContentView.swift */,
 				2AC0165528F09FFF002CA97C /* Localizable.strings */,
 				2AC0164F28F09DA9002CA97C /* NavigationComposer.swift */,
+				2A62DCC128F44A3F00AF5560 /* composeLocalFeedLoader.swift */,
 				2AB6D25628F057AE006C8855 /* ViewModel.swift */,
 				2A51FA7728EF0646003D3EA1 /* Assets.xcassets */,
 				2A51FA7928EF0646003D3EA1 /* Preview Content */,
@@ -159,16 +164,17 @@
 			);
 			name = EssentialGhibli;
 			packageProductDependencies = (
-				2A62DC9728F3839A00AF5560 /* Domain */,
-				2A62DC9928F3839A00AF5560 /* GenericResourceView */,
-				2A62DC9B28F3839A00AF5560 /* GhibliAPI */,
-				2A62DC9D28F3839A00AF5560 /* GhibliCache */,
-				2A62DC9F28F3839A00AF5560 /* GhibliDetailFeature */,
-				2A62DCA128F3839B00AF5560 /* GhibliListFeature */,
-				2A62DCA328F3839B00AF5560 /* GhibliRowFeature */,
-				2A62DCA528F3839B00AF5560 /* Presentation */,
-				2A62DCA728F3839B00AF5560 /* SharedAPI */,
-				2A62DCA928F3839B00AF5560 /* SharedAPIInfra */,
+				2A62DCAB28F44A2800AF5560 /* GenericResourceView */,
+				2A62DCAD28F44A2800AF5560 /* GhibliAPI */,
+				2A62DCAF28F44A2800AF5560 /* GhibliCache */,
+				2A62DCB128F44A2800AF5560 /* GhibliCacheInfra */,
+				2A62DCB328F44A2800AF5560 /* GhibliDetailFeature */,
+				2A62DCB528F44A2800AF5560 /* GhibliDomain */,
+				2A62DCB728F44A2800AF5560 /* GhibliListFeature */,
+				2A62DCB928F44A2900AF5560 /* GhibliRowFeature */,
+				2A62DCBB28F44A2900AF5560 /* Presentation */,
+				2A62DCBD28F44A2900AF5560 /* SharedAPI */,
+				2A62DCBF28F44A2900AF5560 /* SharedAPIInfra */,
 			);
 			productName = EssentialGhibli;
 			productReference = 2A51FA7028EF0644003D3EA1 /* EssentialGhibli.app */;
@@ -257,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AC0165028F09DA9002CA97C /* NavigationComposer.swift in Sources */,
+				2A62DCC228F44A3F00AF5560 /* composeLocalFeedLoader.swift in Sources */,
 				2A51FA7628EF0644003D3EA1 /* ContentView.swift in Sources */,
 				2AB6D25728F057AE006C8855 /* ViewModel.swift in Sources */,
 				2A51FA7428EF0644003D3EA1 /* EssentialGhibliApp.swift in Sources */,
@@ -538,43 +545,47 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2A62DC9728F3839A00AF5560 /* Domain */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Domain;
-		};
-		2A62DC9928F3839A00AF5560 /* GenericResourceView */ = {
+		2A62DCAB28F44A2800AF5560 /* GenericResourceView */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GenericResourceView;
 		};
-		2A62DC9B28F3839A00AF5560 /* GhibliAPI */ = {
+		2A62DCAD28F44A2800AF5560 /* GhibliAPI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GhibliAPI;
 		};
-		2A62DC9D28F3839A00AF5560 /* GhibliCache */ = {
+		2A62DCAF28F44A2800AF5560 /* GhibliCache */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GhibliCache;
 		};
-		2A62DC9F28F3839A00AF5560 /* GhibliDetailFeature */ = {
+		2A62DCB128F44A2800AF5560 /* GhibliCacheInfra */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GhibliCacheInfra;
+		};
+		2A62DCB328F44A2800AF5560 /* GhibliDetailFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GhibliDetailFeature;
 		};
-		2A62DCA128F3839B00AF5560 /* GhibliListFeature */ = {
+		2A62DCB528F44A2800AF5560 /* GhibliDomain */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GhibliDomain;
+		};
+		2A62DCB728F44A2800AF5560 /* GhibliListFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GhibliListFeature;
 		};
-		2A62DCA328F3839B00AF5560 /* GhibliRowFeature */ = {
+		2A62DCB928F44A2900AF5560 /* GhibliRowFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GhibliRowFeature;
 		};
-		2A62DCA528F3839B00AF5560 /* Presentation */ = {
+		2A62DCBB28F44A2900AF5560 /* Presentation */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Presentation;
 		};
-		2A62DCA728F3839B00AF5560 /* SharedAPI */ = {
+		2A62DCBD28F44A2900AF5560 /* SharedAPI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SharedAPI;
 		};
-		2A62DCA928F3839B00AF5560 /* SharedAPIInfra */ = {
+		2A62DCBF28F44A2900AF5560 /* SharedAPIInfra */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SharedAPIInfra;
 		};

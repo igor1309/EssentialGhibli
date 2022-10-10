@@ -21,9 +21,9 @@ final class CacheFeedUseCaseTests: XCTestCase {
         let timestamp = Date.distantPast
         let (sut, store) = makeSUT()
         
-        try sut.save(feed: feed.local, timestamp: timestamp)
+        try sut.save(feed: feed.testItems, timestamp: timestamp)
         
-        XCTAssertEqual(store.messages, [.deleteCachedFeed, .insert(feed: feed.cached, timestamp: timestamp)])
+        XCTAssertEqual(store.messages, [.deleteCachedFeed, .insert(feed: feed.local, timestamp: timestamp)])
     }
     
     func test_save_shouldNotRequestCacheInsertionOnDeletionError() throws {
@@ -31,7 +31,7 @@ final class CacheFeedUseCaseTests: XCTestCase {
         let (sut, store) = makeSUT()
         
         store.stubDeletion(with: anyError())
-        try? sut.save(feed: feed.local, timestamp: .now)
+        try? sut.save(feed: feed.testItems, timestamp: .now)
         
         XCTAssertEqual(store.messages, [.deleteCachedFeed])
     }
@@ -41,10 +41,10 @@ final class CacheFeedUseCaseTests: XCTestCase {
         let timestamp = Date.distantPast
         let (sut, store) = makeSUT()
         
-        store.stubRetrieval(with: feed.cached, timestamp: timestamp)
-        try sut.save(feed: feed.local, timestamp: timestamp)
+        store.stubRetrieval(with: feed.local, timestamp: timestamp)
+        try sut.save(feed: feed.testItems, timestamp: timestamp)
         
-        XCTAssertEqual(store.messages, [.deleteCachedFeed, .insert(feed: feed.cached, timestamp: timestamp)])
+        XCTAssertEqual(store.messages, [.deleteCachedFeed, .insert(feed: feed.local, timestamp: timestamp)])
     }
     
     func test_save_shouldFailOnDeletionError() throws {
@@ -91,8 +91,8 @@ final class CacheFeedUseCaseTests: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) -> (
-        sut: LocalFeedLoader<TestItem, StoreStubSpy<CachedItem>>,
-        store: StoreStubSpy<CachedItem>
+        sut: LocalFeedLoader<TestItem, StoreStubSpy<LocalItem>>,
+        store: StoreStubSpy<LocalItem>
     ) {
         makeSUT(validate: validate, retrievalResult: .success(retrieveFeed), file: file, line: line)
     }
@@ -103,8 +103,8 @@ final class CacheFeedUseCaseTests: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) -> (
-        sut: LocalFeedLoader<TestItem, StoreStubSpy<CachedItem>>,
-        store: StoreStubSpy<CachedItem>
+        sut: LocalFeedLoader<TestItem, StoreStubSpy<LocalItem>>,
+        store: StoreStubSpy<LocalItem>
     ) {
         makeSUT(validate: validate, retrievalResult: .failure(retrieveError), file: file, line: line)
     }
@@ -115,14 +115,14 @@ final class CacheFeedUseCaseTests: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) -> (
-        sut: LocalFeedLoader<TestItem, StoreStubSpy<CachedItem>>,
-        store: StoreStubSpy<CachedItem>
+        sut: LocalFeedLoader<TestItem, StoreStubSpy<LocalItem>>,
+        store: StoreStubSpy<LocalItem>
     ) {
-        let store = StoreStubSpy<CachedItem>(retrievalResult: retrievalResult)
+        let store = StoreStubSpy<LocalItem>(retrievalResult: retrievalResult)
         
         let validate = validate ?? FeedCachePolicy.sevenDays.validate
         
-        let sut = LocalFeedLoader(store: store, toCached: toCached, fromCached: fromCached, validate: validate)
+        let sut = LocalFeedLoader(store: store, toLocal: toLocal, fromLocal: fromLocal, validate: validate)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(store, file: file, line: line)

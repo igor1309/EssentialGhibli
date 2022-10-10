@@ -20,37 +20,38 @@ public protocol FeedStore {
 public final class LocalFeedLoader<Item, Store>
 where Store: FeedStore {
     
+    public typealias LocalItem = Store.Item
     public typealias Validate = (Date, Date) -> Bool
     
     private let store: Store
-    private let toCached: (Item) -> Store.Item
-    private let fromCached: (Store.Item) -> Item
+    private let toLocal: (Item) -> LocalItem
+    private let fromLocal: (LocalItem) -> Item
     private let validate: Validate
     
     public init(
         store: Store,
-        toCached: @escaping (Item) -> Store.Item,
-        fromCached: @escaping (Store.Item) -> Item,
+        toLocal: @escaping (Item) -> LocalItem,
+        fromLocal: @escaping (LocalItem) -> Item,
         validate: @escaping Validate
     ) {
         self.store = store
-        self.toCached = toCached
-        self.fromCached = fromCached
+        self.toLocal = toLocal
+        self.fromLocal = fromLocal
         self.validate = validate
     }
     
     public convenience init(
         store: Store,
-        toCached: @escaping (Item) -> Store.Item,
-        fromCached: @escaping (Store.Item) -> Item,
+        toLocal: @escaping (Item) -> LocalItem,
+        fromLocal: @escaping (LocalItem) -> Item,
         feedCachePolicy: FeedCachePolicy = .sevenDays
     ) {
-        self.init(store: store, toCached: toCached, fromCached: fromCached, validate: feedCachePolicy.validate)
+        self.init(store: store, toLocal: toLocal, fromLocal: fromLocal, validate: feedCachePolicy.validate)
     }
     
     public func save(feed: [Item], timestamp: Date) throws {
         try store.deleteCachedFeed()
-        try store.insert(feed.map(toCached), timestamp: timestamp)
+        try store.insert(feed.map(toLocal), timestamp: timestamp)
     }
 
     public func load() throws -> [Item] {
@@ -58,7 +59,7 @@ where Store: FeedStore {
             return []
         }
 
-        return validate(.now, cached.timestamp) ? cached.feed.map(fromCached) : []
+        return validate(.now, cached.timestamp) ? cached.feed.map(fromLocal) : []
     }
     
     public func validateCache() throws {

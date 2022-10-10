@@ -8,7 +8,7 @@
 import GhibliCache
 import Foundation
 
-typealias CachedItems = CachedFeed<CachedItem>
+typealias CachedItems = CachedFeed<LocalItem>
 
 struct TestItem: Equatable {
     let id: UUID
@@ -20,27 +20,27 @@ extension TestItem: CustomStringConvertible {
     }
 }
 
-struct CachedItem: Equatable {
+struct LocalItem: Equatable {
     let id: UUID
 }
 
-extension CachedItem: CustomStringConvertible {
+extension LocalItem: CustomStringConvertible {
     var description: String {
-        return "CachedItem(\(id.uuidString.prefix(3))...)"
+        return "LocalItem(\(id.uuidString.prefix(3))...)"
     }
 }
 
-func uniqueItemFeed() -> (local: [TestItem], cached: [CachedItem]) {
+func uniqueItemFeed() -> (testItems: [TestItem], local: [LocalItem]) {
     let testItems = (0...9).map { _ in TestItem(id: .init()) }
-    return (testItems, testItems.map(toCached))
+    return (testItems, testItems.map(toLocal))
 }
 
-func toCached(_ testItem: TestItem) -> CachedItem {
+func toLocal(_ testItem: TestItem) -> LocalItem {
     .init(id: testItem.id)
 }
 
-func fromCached(_ cachedItem: CachedItem) -> TestItem {
-    .init(id: cachedItem.id)
+func fromLocal(_ local: LocalItem) -> TestItem {
+    .init(id: local.id)
 }
 
 func anyError() -> Error {

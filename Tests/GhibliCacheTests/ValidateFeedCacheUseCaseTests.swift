@@ -117,8 +117,8 @@ final class ValidateFeedCacheUseCaseTests: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) -> (
-        sut: LocalFeedLoader<TestItem, StoreStubSpy<CachedItem>>,
-        store: StoreStubSpy<CachedItem>
+        sut: LocalFeedLoader<TestItem, StoreStubSpy<LocalItem>>,
+        store: StoreStubSpy<LocalItem>
     ) {
         makeSUT(validate: validate, retrievalResult: .success(retrieveFeed), file: file, line: line)
     }
@@ -129,8 +129,8 @@ final class ValidateFeedCacheUseCaseTests: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) -> (
-        sut: LocalFeedLoader<TestItem, StoreStubSpy<CachedItem>>,
-        store: StoreStubSpy<CachedItem>
+        sut: LocalFeedLoader<TestItem, StoreStubSpy<LocalItem>>,
+        store: StoreStubSpy<LocalItem>
     ) {
         makeSUT(validate: validate, retrievalResult: .failure(retrieveError), file: file, line: line)
     }
@@ -141,14 +141,14 @@ final class ValidateFeedCacheUseCaseTests: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) -> (
-        sut: LocalFeedLoader<TestItem, StoreStubSpy<CachedItem>>,
-        store: StoreStubSpy<CachedItem>
+        sut: LocalFeedLoader<TestItem, StoreStubSpy<LocalItem>>,
+        store: StoreStubSpy<LocalItem>
     ) {
         let store = StoreStubSpy(retrievalResult: retrievalResult)
         
         let validate = validate ?? FeedCachePolicy.sevenDays.validate
         
-        let sut = LocalFeedLoader(store: store, toCached: toCached, fromCached: fromCached, validate: validate)
+        let sut = LocalFeedLoader(store: store, toLocal: toLocal, fromLocal: fromLocal, validate: validate)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(store, file: file, line: line)
