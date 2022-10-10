@@ -98,6 +98,12 @@ final class CodableFeedStoreTests: XCTestCase {
         }
     }
     
+    func test_insert_shouldDeliverNoErrorOnEmptyCache() {
+        let sut = makeSUT()
+        
+        XCTAssertNoThrow(try sut.insert(uniqueFilmFeed(), timestamp: .now))
+    }
+    
     func test_insert_shouldOverridePreviouslyInsertedCache() {
         let sut = makeSUT()
         
