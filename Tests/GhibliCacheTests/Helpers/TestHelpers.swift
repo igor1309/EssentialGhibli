@@ -35,7 +35,6 @@ func uniqueItemFeed() -> (local: [TestItem], cached: [CachedItem]) {
     return (testItems, testItems.map(toCached))
 }
 
-
 func toCached(_ testItem: TestItem) -> CachedItem {
     .init(id: testItem.id)
 }
