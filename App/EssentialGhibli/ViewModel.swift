@@ -6,7 +6,7 @@
 //
 
 import Combine
-import Domain
+import GhibliDomain
 import GhibliAPI
 import SharedAPI
 import SharedAPIInfra
