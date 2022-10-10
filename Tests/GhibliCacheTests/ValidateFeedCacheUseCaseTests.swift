@@ -27,6 +27,7 @@ final class ValidateFeedCacheUseCaseTests: XCTestCase {
     func test_validateCache_shouldNotDeleteCacheOnEmptyCache() throws {
         let (sut, store) = makeSUT()
         
+        store.stubEmptyRetrieval()
         try sut.validateCache()
         
         XCTAssertEqual(store.messages, [.retrieve])
@@ -72,8 +73,10 @@ final class ValidateFeedCacheUseCaseTests: XCTestCase {
     }
     
     func test_validateCache_shouldSucceedOnEmptyCache() {
-        let (sut, _) = makeSUT()
-        
+        let (sut, store) = makeSUT()
+
+        store.stubEmptyRetrieval()
+
         XCTAssertNoThrow(try sut.validateCache())
     }
     
@@ -110,7 +113,7 @@ final class ValidateFeedCacheUseCaseTests: XCTestCase {
     
     private func makeSUT(
         validate: ((Date, Date) -> Bool)? = nil,
-        retrieveFeed: CachedItems = (feed: [], timestamp: Date()),
+        retrieveFeed: CachedItems? = (feed: [], timestamp: Date()),
         file: StaticString = #file,
         line: UInt = #line
     ) -> (
@@ -134,7 +137,7 @@ final class ValidateFeedCacheUseCaseTests: XCTestCase {
     
     private func makeSUT(
         validate: ((Date, Date) -> Bool)? = nil,
-        retrievalResult: Result<CachedItems, Error>,
+        retrievalResult: Result<CachedItems?, Error>,
         file: StaticString = #file,
         line: UInt = #line
     ) -> (

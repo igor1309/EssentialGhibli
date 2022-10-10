@@ -87,7 +87,7 @@ final class CacheFeedUseCaseTests: XCTestCase {
     
     private func makeSUT(
         validate: ((Date, Date) -> Bool)? = nil,
-        retrieveFeed: CachedItems = (feed: [], timestamp: Date()),
+        retrieveFeed: CachedItems? = (feed: [], timestamp: Date()),
         file: StaticString = #file,
         line: UInt = #line
     ) -> (
@@ -111,7 +111,7 @@ final class CacheFeedUseCaseTests: XCTestCase {
     
     private func makeSUT(
         validate: ((Date, Date) -> Bool)? = nil,
-        retrievalResult: Result<CachedItems, Error>,
+        retrievalResult: Result<CachedItems?, Error>,
         file: StaticString = #file,
         line: UInt = #line
     ) -> (

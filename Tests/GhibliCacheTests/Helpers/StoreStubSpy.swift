@@ -13,12 +13,12 @@ extension XCTestCase {
         typealias CachedItems = CachedFeed<Item>
         
         private(set) var messages = [Message]()
-        private var retrievalResult: Result<CachedItems, Error>
+        private var retrievalResult: Result<CachedItems?, Error>
         private var deletionResult: Result<Void, Error>
         private var insertionResult: Result<Void, Error>
         
         init(
-            retrievalResult: Result<CachedItems, Error>,
+            retrievalResult: Result<CachedItems?, Error>,
             deletionResult: Result<Void, Error> = .success(()),
             insertionResult: Result<Void, Error> = .success(())
         ) {
@@ -29,9 +29,13 @@ extension XCTestCase {
         
         // Retrieve
         
-        func retrieve() throws -> CachedItems {
+        func retrieve() throws -> CachedItems? {
             messages.append(.retrieve)
             return try retrievalResult.get()
+        }
+        
+        func stubEmptyRetrieval() {
+            retrievalResult = .success(nil)
         }
         
         func stubRetrieval(with error: Error) {

@@ -14,7 +14,7 @@ public protocol FeedStore {
     
     func deleteCachedFeed() throws
     func insert(_ feed: [Item], timestamp: Date) throws
-    func retrieve() throws -> CachedFeed<Item>
+    func retrieve() throws -> CachedFeed<Item>?
 }
 
 public final class LocalFeedLoader<Item, Store>
@@ -54,14 +54,19 @@ where Store: FeedStore {
     }
 
     public func load() throws -> [Item] {
-        let cached = try store.retrieve()
+        guard let cached = try store.retrieve() else {
+            return []
+        }
 
         return validate(.now, cached.timestamp) ? cached.feed.map(fromCached) : []
     }
     
     public func validateCache() throws {
         do {
-            let cached = try store.retrieve()
+            guard let cached = try store.retrieve() else {
+                return
+            }
+            
             if !validate(.now, cached.timestamp) {
                 try store.deleteCachedFeed()
             }

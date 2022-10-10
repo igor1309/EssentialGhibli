@@ -42,7 +42,7 @@ final class LoadFeedFromCacheUseCaseTests: XCTestCase {
     func test_load_shouldDeliverNoItemsOnEmptyCache() throws {
         let (sut, store) = makeSUT()
         
-        store.stubRetrieval(with: [])
+        store.stubEmptyRetrieval()
         let items = try sut.load()
         
         XCTAssertEqual(items, [])
@@ -80,6 +80,7 @@ final class LoadFeedFromCacheUseCaseTests: XCTestCase {
     func test_load_shouldHaveNoSideEffectsOnEmptyCache() throws {
         let (sut, store) = makeSUT()
         
+        store.stubEmptyRetrieval()
         _ = try sut.load()
         
         XCTAssertEqual(store.messages, [.retrieve])
@@ -113,7 +114,7 @@ final class LoadFeedFromCacheUseCaseTests: XCTestCase {
     
     private func makeSUT(
         validate: ((Date, Date) -> Bool)? = nil,
-        retrieveFeed: CachedItems = (feed: [], timestamp: Date()),
+        retrieveFeed: CachedItems? = (feed: [], timestamp: Date()),
         file: StaticString = #file,
         line: UInt = #line
     ) -> (
@@ -137,7 +138,7 @@ final class LoadFeedFromCacheUseCaseTests: XCTestCase {
     
     private func makeSUT(
         validate: ((Date, Date) -> Bool)? = nil,
-        retrievalResult: Result<CachedItems, Error>,
+        retrievalResult: Result<CachedItems?, Error>,
         file: StaticString = #file,
         line: UInt = #line
     ) -> (
