@@ -6,6 +6,21 @@
 //
 
 import Foundation
+import GhibliCacheInfra
+
+func uniqueFilmFeed() -> [LocalFilm] {
+    [makeLocalFilm(), makeLocalFilm()]
+}
+
+func makeLocalFilm() -> LocalFilm {
+    .init(
+        id: UUID(),
+        title: "a title",
+        description: "a description",
+        imageURL: URL(string: "any-url")!,
+        filmURL: URL(string: "any-url")!
+    )
+}
 
 struct AnyError: Error, Equatable {}
 
