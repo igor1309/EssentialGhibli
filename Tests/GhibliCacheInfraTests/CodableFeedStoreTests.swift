@@ -124,7 +124,24 @@ final class CodableFeedStoreTests: XCTestCase {
         XCTAssertEqual(timestamp, retrieved?.timestamp)
     }
     
-    // MRK: - Helpers
+    func test_retrieve_shouldHaveNoSideEffectsOnNonEmptyCache() throws {
+        let sut = makeSUT()
+        let feed = uniqueFilmFeed()
+        let timestamp = Date()
+        
+        try sut.insert(feed, timestamp: timestamp)
+        let retrieved = try sut.retrieve()
+        
+        XCTAssertEqual(feed, retrieved?.feed)
+        XCTAssertEqual(timestamp, retrieved?.timestamp)
+
+        let retrieved2 = try sut.retrieve()
+        
+        XCTAssertEqual(feed, retrieved2?.feed, "Expected retrieving twice from non empty cache to deliver same result.")
+        XCTAssertEqual(timestamp, retrieved2?.timestamp, "Expected retrieving twice from non empty cache to deliver same result.")
+    }
+    
+    // MARK: - Helpers
     
     private func makeSUT(
         file: StaticString = #file,
