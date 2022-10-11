@@ -51,28 +51,14 @@ final class FilmImageDataCacheTests: XCTestCase {
         let (sut, store) = makeSUT()
         store.completeRetrieval(with: .failure(anyError()))
 
-        do {
-            _ = try sut.load()
-            XCTFail("Expected error")
-        } catch let error as AnyError {
-            XCTAssertEqual(error, AnyError())
-        } catch {
-            XCTFail("Expected AnyError, got \(error.localizedDescription)")
-        }
+        expect(sut, toLoad: .failure(anyError()))
     }
     
     func test_load_shouldDeliverEmptyOnEmptyRetrieval() throws {
         let (sut, store) = makeSUT()
         store.completeRetrieval(with: .success(.none))
 
-        do {
-            let image = try sut.load()
-            XCTAssertEqual(image, nil)
-        } catch let error as AnyError {
-            XCTAssertEqual(error, AnyError())
-        } catch {
-            XCTFail("Expected AnyError, got \(error.localizedDescription)")
-        }
+        expect(sut, toLoad: .success(.none))
     }
     
     func test_load_shouldDeliverImageOnDataRetrieval() throws {
@@ -81,19 +67,36 @@ final class FilmImageDataCacheTests: XCTestCase {
         let imageData = expectedImage.data(using: .utf8)
         store.completeRetrieval(with: .success(imageData))
 
-        do {
-            let image = try sut.load()
-            XCTAssertEqual(image, expectedImage)
-        } catch let error as AnyError {
-            XCTAssertEqual(error, AnyError())
-        } catch {
-            XCTFail("Expected AnyError, got \(error.localizedDescription)")
-        }
+        expect(sut, toLoad: .success(expectedImage))
     }
     
     // MARK: - Helpers
     
-    typealias DataCache = FilmImageDataCache<String>
+    typealias Image = String
+    typealias ImageResult = Result<Image?, Error>
+    typealias RetrievalResult = Result<Data?, Error>
+    
+    private func expect(
+        _ sut: DataCache,
+        toLoad expectedResult: ImageResult,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        let retrievedResult = Result { try sut.load() }
+        
+        switch (expectedResult, retrievedResult) {
+        case let (.success(expected), .success(retrieved)):
+            XCTAssertEqual(expected, retrieved, file: file, line: line)
+            
+        case (.failure, .failure):
+            break
+            
+        default:
+            XCTFail("Expected \(expectedResult), got \(retrievedResult) instead.", file: file, line: line)
+        }
+    }
+    
+    typealias DataCache = FilmImageDataCache<Image>
     
     private func makeSUT(
         file: StaticString = #file,
@@ -109,8 +112,6 @@ final class FilmImageDataCacheTests: XCTestCase {
     }
     
     private final class StoreStub: FilmDataStore {
-        typealias RetrievalResult = Result<Data?, Error>
-        
         private var retrievalResult: RetrievalResult?
         private(set) var messages = [Message]()
         
