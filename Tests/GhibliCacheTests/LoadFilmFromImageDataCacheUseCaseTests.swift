@@ -1,5 +1,5 @@
 //
-//  FilmImageDataCacheTests.swift
+//  LoadFilmFromImageDataCacheUseCaseTests.swift
 //  
 //
 //  Created by Igor Malyarov on 11.10.2022.
@@ -31,7 +31,7 @@ final class FilmImageDataCache<Image> {
     }
 }
 
-final class FilmImageDataCacheTests: XCTestCase {
+final class LoadFilmFromImageDataCacheUseCaseTests: XCTestCase {
     
     func test_init_shouldNotMessageStoreOnInit() throws {
         let (_, store) = makeSUT()
@@ -158,7 +158,7 @@ final class FilmImageDataCacheTests: XCTestCase {
     }
 }
 
-extension FilmImageDataCacheTests.RetrievalResult {
+extension LoadFilmFromImageDataCacheUseCaseTests.RetrievalResult {
     static let error: Self = .failure(anyError())
     static let none: Self = .success(.none)
     static let someData: Self = .success("some data".data(using: .utf8))
