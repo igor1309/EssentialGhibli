@@ -177,5 +177,6 @@ extension CodableFeedStoreTests: FailableDeleteFeedStoreSpecs {
         let sut = makeSUT(storeURL: noDeletePermissionURL())
         
         XCTAssertThrowsError(try sut.deleteCachedFeed(), "Expected cache deletion to fail")
+        expect(sut, toRetrieve: .success(.none))
     }
 }
