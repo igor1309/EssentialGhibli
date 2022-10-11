@@ -20,7 +20,7 @@ final class StoreStub: FilmImageDataStore {
         self.retrievalResults[url] = result
     }
     
-    func retrieve(from url: URL) throws -> Data? {
+    func retrieve(dataForURL url: URL) throws -> Data? {
         messages.append(.retrieve(url))
         return try retrievalResults[url]?.get()
     }

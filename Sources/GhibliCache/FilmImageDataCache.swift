@@ -18,7 +18,7 @@ public final class FilmImageDataCache {
 
 extension FilmImageDataCache: FilmImageDataLoader {
     public func loadImageData(from url: URL) throws -> Data {
-        let result = Result { try store.retrieve(from: url) }
+        let result = Result { try store.retrieve(dataForURL: url) }
         
         switch result {
         case let .success(data):
