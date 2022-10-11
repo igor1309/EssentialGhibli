@@ -10,20 +10,20 @@ import Foundation
 final class StoreStub: FilmDataStore {
     typealias RetrievalResult = Result<Data?, Error>
 
-    private var retrievalResult: RetrievalResult?
+    private var retrievalResults = [URL: RetrievalResult]()
     private(set) var messages = [Message]()
     
-    func completeRetrieval(with result: RetrievalResult) {
-        self.retrievalResult = result
+    func completeRetrieval(with result: RetrievalResult, for url: URL) {
+        self.retrievalResults[url] = result
     }
     
-    func retrieve() throws -> Data? {
-        messages.append(.retrieve)
-        return try retrievalResult?.get()
+    func retrieve(from url: URL) throws -> Data? {
+        messages.append(.retrieve(url))
+        return try retrievalResults[url]?.get()
     }
     
-    enum Message {
-        case retrieve
+    enum Message: Equatable {
+        case retrieve(URL)
     }
 }
 

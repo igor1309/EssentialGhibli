@@ -15,63 +15,65 @@ final class LoadFilmFromImageDataCacheUseCaseTests: XCTestCase, ImageDataCacheUs
         XCTAssert(store.messages.isEmpty)
     }
     
-    func test_load_shouldRequestStoreRetrieval() throws {
+    func test_loadImageDataFromURL_shouldRequestStoreRetrieval() throws {
         let (sut, store) = makeSUT()
         
-        _ = try sut.load()
+        _ = try sut.loadImageData(from: .anyURL)
         
-        XCTAssertEqual(store.messages, [.retrieve])
+        XCTAssertEqual(store.messages, [.retrieve(.anyURL)])
     }
     
-    func test_load_shouldDeliverErrorOnRetrievalFailure() throws {
+    func test_loadImageDataFromURL_shouldDeliverErrorOnRetrievalFailure() throws {
         let (sut, store) = makeSUT()
-        store.completeRetrieval(with: .error)
         
-        expect(sut, toLoad: .failure(anyError()))
+        store.completeRetrieval(with: .error, for: .anyURL)
+        
+        expect(sut, toLoad: .failure(anyError()), from: .anyURL)
     }
     
-    func test_load_shouldDeliverEmptyOnEmptyRetrieval() throws {
+    func test_loadImageDataFromURL_shouldDeliverEmptyOnEmptyRetrieval() throws {
         let (sut, store) = makeSUT()
-        store.completeRetrieval(with: .none)
+
+        store.completeRetrieval(with: .none, for: .anyURL)
         
-        expect(sut, toLoad: .success(.none))
+        expect(sut, toLoad: .success(.none), from: .anyURL)
     }
     
-    func test_load_shouldDeliverImageOnDataRetrieval() throws {
+    func test_loadImageDataFromURL_shouldDeliverImageOnDataRetrieval() throws {
         let (sut, store) = makeSUT()
         let expectedImage = "Some data here"
         let imageData = expectedImage.data(using: .utf8)
-        store.completeRetrieval(with: .success(imageData))
+        store.completeRetrieval(with: .success(imageData), for: .anyURL)
         
-        expect(sut, toLoad: .success(expectedImage))
+        expect(sut, toLoad: .success(expectedImage), from: .anyURL)
     }
     
-    func test_load_shouldHaveNoSideEffectsOnRetrievalFailure() throws {
+    func test_loadImageDataFromURL_shouldHaveNoSideEffectsOnRetrievalFailure() throws {
         let (sut, store) = makeSUT()
         
-        store.completeRetrieval(with: .error)
+        store.completeRetrieval(with: .error, for: .otherURL)
         do {
-            _ = try sut.load()
+            _ = try sut.loadImageData(from: .anyURL)
         } catch {}
         
-        XCTAssertEqual(store.messages, [.retrieve])
+        XCTAssertEqual(store.messages, [.retrieve(.anyURL)])
     }
     
-    func test_load_shouldHaveNoSideEffectsOnEmptyCache() throws {
+    func test_loadImageDataFromURL_shouldHaveNoSideEffectsOnEmptyCache() throws {
         let (sut, store) = makeSUT()
+
+        store.completeRetrieval(with: .none, for: .otherURL)
+        _ = try sut.loadImageData(from: .anyURL)
         
-        store.completeRetrieval(with: .none)
-        _ = try sut.load()
-        
-        XCTAssertEqual(store.messages, [.retrieve])
+        XCTAssertEqual(store.messages, [.retrieve(.anyURL)])
     }
     
-    func test_load_shouldHaveNoSideEffectsOnNonEmptyCache() throws {
+    func test_loadImageDataFromURL_shouldHaveNoSideEffectsOnNonEmptyCache() throws {
         let (sut, store) = makeSUT()
+
+        store.completeRetrieval(with: .someData, for: .otherURL)
+        _ = try sut.loadImageData(from: .anyURL)
         
-        store.completeRetrieval(with: .someData)
-        _ = try sut.load()
-        
-        XCTAssertEqual(store.messages, [.retrieve])
+        XCTAssertEqual(store.messages, [.retrieve(.anyURL)])
     }
 }

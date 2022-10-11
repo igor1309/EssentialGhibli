@@ -8,7 +8,7 @@
 import Foundation
 
 protocol FilmDataStore {
-    func retrieve() throws -> Data?
+    func retrieve(from url: URL) throws -> Data?
 }
 
 final class FilmImageDataCache<Image> {
@@ -25,8 +25,8 @@ final class FilmImageDataCache<Image> {
         self.makeImage = makeImage
     }
     
-    func load() throws -> Image? {
-        let data = try store.retrieve()
+    func loadImageData(from url: URL) throws -> Image? {
+        let data = try store.retrieve(from: url)
         return data.map(makeImage) ?? nil
     }
 }

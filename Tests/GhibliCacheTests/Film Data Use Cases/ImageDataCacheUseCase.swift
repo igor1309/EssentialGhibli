@@ -31,10 +31,11 @@ extension ImageDataCacheUseCase where Self: XCTestCase {
     func expect(
         _ sut: DataCache,
         toLoad expectedResult: ImageResult,
+        from url: URL,
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        let retrievedResult = Result { try sut.load() }
+        let retrievedResult = Result { try sut.loadImageData(from: url) }
         
         switch (expectedResult, retrievedResult) {
         case let (.success(expected), .success(retrieved)):
