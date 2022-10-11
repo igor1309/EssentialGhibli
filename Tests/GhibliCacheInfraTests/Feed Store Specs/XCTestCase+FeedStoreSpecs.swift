@@ -10,20 +10,17 @@ import GhibliCacheInfra
 import XCTest
 
 extension FeedStoreSpecs where Self: XCTestCase {
-    func assertThatRetrieveDeliversEmptyOnEmptyCache<Store>(on sut: Store, file: StaticString = #file, line: UInt = #line)
-    where Store: FeedStore, Store.Item == LocalFilm {
+    func assertThatRetrieveDeliversEmptyOnEmptyCache(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
         
         expect(sut, toRetrieve: .success(.none), file: file, line: line)
     }
     
-    func assertThatRetrieveHasNoSideEffectsOnEmptyCache<Store>(on sut: Store, file: StaticString = #file, line: UInt = #line)
-    where Store: FeedStore, Store.Item == LocalFilm {
+    func assertThatRetrieveHasNoSideEffectsOnEmptyCache(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
         
         expect(sut, toRetrieveTwice: .success(.none), file: file, line: line)
     }
     
-    func assertThatRetrieveDeliversFoundValuesOnNonEmptyCache<Store>(on sut: Store, file: StaticString = #file, line: UInt = #line)
-    where Store: FeedStore, Store.Item == LocalFilm {
+    func assertThatRetrieveDeliversFoundValuesOnNonEmptyCache(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
         
         do {
             let feed = uniqueFilmFeed()
@@ -36,8 +33,7 @@ extension FeedStoreSpecs where Self: XCTestCase {
         }
     }
     
-    func assertThatRetrieveHasNoSideEffectsOnNonEmptyCache<Store>(on sut: Store, file: StaticString = #file, line: UInt = #line)
-    where Store: FeedStore, Store.Item == LocalFilm {
+    func assertThatRetrieveHasNoSideEffectsOnNonEmptyCache(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
         
         do {
             let feed = uniqueFilmFeed()
@@ -50,22 +46,19 @@ extension FeedStoreSpecs where Self: XCTestCase {
         }
     }
     
-    func assertThatInsertDeliversNoErrorOnEmptyCache<Store>(on sut: Store, file: StaticString = #file, line: UInt = #line)
-    where Store: FeedStore, Store.Item == LocalFilm {
+    func assertThatInsertDeliversNoErrorOnEmptyCache(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
         
         XCTAssertNoThrow(try sut.insert(uniqueFilmFeed(), timestamp: .now), file: file, line: line)
         
     }
     
-    func assertThatInsertDeliversNoErrorOnNonEmptyCache<Store>(on sut: Store, file: StaticString = #file, line: UInt = #line)
-    where Store: FeedStore, Store.Item == LocalFilm {
+    func assertThatInsertDeliversNoErrorOnNonEmptyCache(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
         
         XCTAssertNoThrow(try sut.insert(uniqueFilmFeed(), timestamp: .now), file: file, line: line)
         XCTAssertNoThrow(try sut.insert(uniqueFilmFeed(), timestamp: .now), file: file, line: line)
     }
     
-    func assertThatInsertOverridesPreviouslyInsertedCacheValues<Store>(on sut: Store, file: StaticString = #file, line: UInt = #line)
-    where Store: FeedStore, Store.Item == LocalFilm {
+    func assertThatInsertOverridesPreviouslyInsertedCacheValues(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
         
         do {
             try sut.insert([makeLocalFilm()], timestamp: Date())
@@ -81,22 +74,19 @@ extension FeedStoreSpecs where Self: XCTestCase {
         }
     }
     
-    func assertThatDeleteDeliversNoErrorOnEmptyCache<Store>(on sut: Store, file: StaticString = #file, line: UInt = #line)
-    where Store: FeedStore, Store.Item == LocalFilm {
+    func assertThatDeleteDeliversNoErrorOnEmptyCache(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
         
         expect(sut, toRetrieve: .success(.none), file: file, line: line)
         XCTAssertNoThrow({ try sut.deleteCachedFeed() }, file: file, line: line)
     }
     
-    func assertThatDeleteHasNoSideEffectsOnEmptyCache<Store>(on sut: Store, file: StaticString = #file, line: UInt = #line)
-    where Store: FeedStore, Store.Item == LocalFilm {
+    func assertThatDeleteHasNoSideEffectsOnEmptyCache(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
         
         XCTAssertNoThrow({ try sut.deleteCachedFeed() }, file: file, line: line)
         expect(sut, toRetrieve: .success(.none), file: file, line: line)
     }
     
-    func assertThatDeleteDeliversNoErrorOnNonEmptyCache<Store>(on sut: Store, file: StaticString = #file, line: UInt = #line)
-    where Store: FeedStore, Store.Item == LocalFilm  {
+    func assertThatDeleteDeliversNoErrorOnNonEmptyCache(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
         
         let feed = uniqueFilmFeed()
         let timestamp = Date()
@@ -112,8 +102,7 @@ extension FeedStoreSpecs where Self: XCTestCase {
         }
     }
     
-    func assertThatDeleteEmptiesPreviouslyInsertedCache<Store>(on sut: Store, file: StaticString = #file, line: UInt = #line)
-    where Store: FeedStore, Store.Item == LocalFilm  {
+    func assertThatDeleteEmptiesPreviouslyInsertedCache(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
         
         let feed = uniqueFilmFeed()
         let timestamp = Date()
@@ -135,21 +124,18 @@ extension FeedStoreSpecs where Self: XCTestCase {
 extension FeedStoreSpecs where Self: XCTestCase {
     typealias RetrievalResult = Result<(feed: [LocalFilm], timestamp: Date)?, Error>
     
-    func expect<Store>(_ sut: Store, toRetrieveTwice expectedResult: RetrievalResult, file: StaticString = #file, line: UInt = #line)
-    where Store: FeedStore, Store.Item == LocalFilm{
+    func expect(_ sut: any FeedStore<LocalFilm>, toRetrieveTwice expectedResult: RetrievalResult, file: StaticString = #file, line: UInt = #line) {
         
         expect(sut, toRetrieve: expectedResult, file: file, line: line)
         expect(sut, toRetrieve: expectedResult, file: file, line: line)
     }
     
-    func expect<Store>(
-        _ sut: Store,
+    func expect(
+        _ sut: any FeedStore<LocalFilm>,
         toRetrieve expectedResult: RetrievalResult,
         file: StaticString = #file,
         line: UInt = #line
-    )
-    where Store: FeedStore, Store.Item == LocalFilm {
-        
+    ) {        
         let retrievedResult = Result { try sut.retrieve() }
         
         switch (expectedResult, retrievedResult) {

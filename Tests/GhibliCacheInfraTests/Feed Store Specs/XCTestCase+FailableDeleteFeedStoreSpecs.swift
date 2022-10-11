@@ -10,8 +10,7 @@ import GhibliCacheInfra
 import XCTest
 
 extension FailableDeleteFeedStoreSpecs where Self: XCTestCase {
-    func assertThatDeleteDeliversErrorOnDeletionError<Store>(on sut: Store, file: StaticString = #file, line: UInt = #line)
-    where Store: FeedStore, Store.Item == LocalFilm {
+    func assertThatDeleteDeliversErrorOnDeletionError(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
         
         XCTFail("Unimplemented")
 //        let deletionError = deleteCache(from: sut)
@@ -19,8 +18,7 @@ extension FailableDeleteFeedStoreSpecs where Self: XCTestCase {
 //        XCTAssertNotNil(deletionError, "Expected cache deletion to fail", file: file, line: line)
     }
 
-    func assertThatDeleteHasNoSideEffectsOnDeletionError<Store>(on sut: Store, file: StaticString = #file, line: UInt = #line)
-    where Store: FeedStore, Store.Item == LocalFilm {
+    func assertThatDeleteHasNoSideEffectsOnDeletionError(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
         
         XCTFail("Unimplemented")
 //        deleteCache(from: sut)

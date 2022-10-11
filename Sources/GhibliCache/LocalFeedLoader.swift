@@ -9,7 +9,7 @@ import Foundation
 
 public typealias CachedFeed<Item> = (feed: [Item], timestamp: Date)
 
-public protocol FeedStore {
+public protocol FeedStore<Item> {
     associatedtype Item
     
     func deleteCachedFeed() throws

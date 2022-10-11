@@ -10,8 +10,7 @@ import GhibliCacheInfra
 import XCTest
 
 extension FailableInsertFeedStoreSpecs where Self: XCTestCase {
-    func assertThatInsertDeliversErrorOnInsertionError<Store>(on sut: Store, file: StaticString = #file, line: UInt = #line)
-    where Store: FeedStore, Store.Item == LocalFilm {
+    func assertThatInsertDeliversErrorOnInsertionError(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
         
         XCTFail("Unimplemented")
 //        let insertionError = insert((uniqueImageFeed().local, Date()), to: sut)
@@ -19,8 +18,7 @@ extension FailableInsertFeedStoreSpecs where Self: XCTestCase {
 //        XCTAssertNotNil(insertionError, "Expected cache insertion to fail with an error", file: file, line: line)
     }
 
-    func assertThatInsertHasNoSideEffectsOnInsertionError<Store>(on sut: Store, file: StaticString = #file, line: UInt = #line)
-    where Store: FeedStore, Store.Item == LocalFilm {
+    func assertThatInsertHasNoSideEffectsOnInsertionError(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
         
         XCTFail("Unimplemented")
 //        insert((uniqueImageFeed().local, Date()), to: sut)
