@@ -8,18 +8,26 @@
 import XCTest
 
 protocol FilmDataStore {
-    func retrieve() throws
+    func retrieve() throws -> Data?
 }
 
-final class FilmImageDataCache {
-    private let store: FilmDataStore
+final class FilmImageDataCache<Image> {
+    typealias MakeImage = (Data) -> Image
     
-    init(store: FilmDataStore) {
+    private let store: FilmDataStore
+    private let makeImage: MakeImage
+    
+    init(
+        store: FilmDataStore,
+        makeImage: @escaping MakeImage
+    ) {
         self.store = store
+        self.makeImage = makeImage
     }
     
-    func load() throws {
-        try store.retrieve()
+    func load() throws -> Image? {
+        let data = try store.retrieve()
+        return data.map(makeImage)
     }
 }
 
@@ -34,7 +42,7 @@ final class FilmImageDataCacheTests: XCTestCase {
     func test_load_shouldRequestStoreRetrieval() throws {
         let (sut, store) = makeSUT()
         
-        try sut.load()
+        _ = try sut.load()
         
         XCTAssertEqual(store.messages, [.retrieve])
     }
@@ -44,8 +52,22 @@ final class FilmImageDataCacheTests: XCTestCase {
         store.completeRetrieval(with: .failure(anyError()))
 
         do {
-            try sut.load()
+            _ = try sut.load()
             XCTFail("Expected error")
+        } catch let error as AnyError {
+            XCTAssertEqual(error, AnyError())
+        } catch {
+            XCTFail("Expected AnyError, got \(error.localizedDescription)")
+        }
+    }
+    
+    func test_load_shouldDeliverEmptyOnEmptyRetrieval() throws {
+        let (sut, store) = makeSUT()
+        store.completeRetrieval(with: .success(.none))
+
+        do {
+            let image = try sut.load()
+            XCTAssertEqual(image, nil)
         } catch let error as AnyError {
             XCTAssertEqual(error, AnyError())
         } catch {
@@ -55,12 +77,14 @@ final class FilmImageDataCacheTests: XCTestCase {
     
     // MARK: - Helpers
     
+    typealias DataCache = FilmImageDataCache<Data>
+    
     private func makeSUT(
         file: StaticString = #file,
         line: UInt = #line
-    ) -> (sut: FilmImageDataCache, store: StoreStub) {
+    ) -> (sut: DataCache, store: StoreStub) {
         let store = StoreStub()
-        let sut = FilmImageDataCache(store: store)
+        let sut = DataCache(store: store) { $0 }
         
         trackForMemoryLeaks(store, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -69,7 +93,7 @@ final class FilmImageDataCacheTests: XCTestCase {
     }
     
     private final class StoreStub: FilmDataStore {
-        typealias RetrievalResult = Result<(), Error>
+        typealias RetrievalResult = Result<Data?, Error>
         
         private var retrievalResult: RetrievalResult?
         private(set) var messages = [Message]()
@@ -78,9 +102,9 @@ final class FilmImageDataCacheTests: XCTestCase {
             self.retrievalResult = result
         }
         
-        func retrieve() throws {
+        func retrieve() throws -> Data? {
             messages.append(.retrieve)
-            try retrievalResult?.get()
+            return try retrievalResult?.get()
         }
         
         enum Message {
