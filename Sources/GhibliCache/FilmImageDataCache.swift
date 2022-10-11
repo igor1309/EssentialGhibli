@@ -5,23 +5,24 @@
 //  Created by Igor Malyarov on 11.10.2022.
 //
 
+import GhibliDomain
 import Foundation
 
-protocol FilmDataStore {
+public protocol FilmDataStore {
     func retrieve(from url: URL) throws -> Data?
     func insert(_ data: Data, for url: URL) throws
 }
 
-final class FilmImageDataCache {
+public final class FilmImageDataCache {
     private let store: FilmDataStore
     
-    init(store: FilmDataStore) {
+    public init(store: FilmDataStore) {
         self.store = store
     }
 }
 
-extension FilmImageDataCache {
-    func loadImageData(from url: URL) throws -> Data {
+extension FilmImageDataCache: FilmImageDataLoader {
+    public func loadImageData(from url: URL) throws -> Data {
         let result = Result { try store.retrieve(from: url) }
         
         switch result {
@@ -43,8 +44,8 @@ extension FilmImageDataCache {
     }
 }
 
-extension FilmImageDataCache {
-    func saveImageData(_ data: Data, for url: URL) throws {
+extension FilmImageDataCache: FilmImageDataSaver {
+    public func saveImageData(_ data: Data, for url: URL) throws {
         do {
             try store.insert(data, for: url)
         } catch {
@@ -52,7 +53,7 @@ extension FilmImageDataCache {
         }
     }
     
-    enum SaveError: Error {
+    public enum SaveError: Error {
         case failed
     }
 }

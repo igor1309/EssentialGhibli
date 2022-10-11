@@ -49,7 +49,10 @@ let package = Package(
             name: "GhibliAPITests",
             dependencies: ["GhibliAPI"]
         ),
-        .target(name: "GhibliCache"),
+        .target(
+            name: "GhibliCache",
+            dependencies: ["GhibliDomain"]
+        ),
         .testTarget(
             name: "GhibliCacheTests",
             dependencies: ["GhibliCache"]
