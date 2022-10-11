@@ -29,7 +29,9 @@ where Store: FeedStore {
         self.fromLocal = fromLocal
         self.validate = validate
     }
-    
+}
+
+extension FeedCache {
     public convenience init(
         store: Store,
         toLocal: @escaping (Item) -> LocalItem,
@@ -38,20 +40,26 @@ where Store: FeedStore {
     ) {
         self.init(store: store, toLocal: toLocal, fromLocal: fromLocal, validate: feedCachePolicy.validate)
     }
-    
+}
+
+extension FeedCache: FeedSaver {
     public func save(feed: [Item], timestamp: Date) throws {
         try store.deleteCachedFeed()
         try store.insert(feed.map(toLocal), timestamp: timestamp)
     }
+}
 
+extension FeedCache {
     public func load() throws -> [Item] {
         guard let cached = try store.retrieve() else {
             return []
         }
-
+        
         return validate(.now, cached.timestamp) ? cached.feed.map(fromLocal) : []
     }
-    
+}
+
+extension FeedCache {
     public func validateCache() throws {
         do {
             guard let cached = try store.retrieve() else {
