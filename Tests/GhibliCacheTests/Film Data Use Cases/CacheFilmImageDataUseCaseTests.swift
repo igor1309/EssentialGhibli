@@ -40,7 +40,7 @@ final class CacheFilmImageDataUseCaseTests: XCTestCase, ImageDataCacheUseCase {
         }
     }
     
-    func test_saveImageDataFromURL_succeedsOnSuccessfulStoreInsertion() throws {
+    func test_saveImageDataFromURL_shouldSucceedOnSuccessfulStoreInsertion() throws {
         let (sut, store) = makeSUT()
         let data = "Some data here".data(using: .utf8)!
         store.stubInsert(for: .anyURL, with: .success(data))
