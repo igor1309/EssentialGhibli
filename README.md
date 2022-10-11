@@ -18,11 +18,17 @@ The `Root Composition` is implemented in the `EssentialGhibliApp`.
 
 ### UI
 
-UI Components are implemented with `SwiftUI` and are tested using snapshots with [SnapshotTesting](https://github.com/pointfreeco/swift-snapshot-testing). Snapshot testing covers light/dark modes and localization.
+UI Components are implemented with `SwiftUI`. Previews are designed to show rendering of different state values and are covered with snapshot tests - see [Tests](#tests).
 
-## Localization
+### Localization
 
 English and Russian localizations are tested.
+
+## Tests
+
+Extensive use of `TDD` and test `DSL` to decouple tests from implementation details.
+
+UI Components are tested using snapshots with [SnapshotTesting](https://github.com/pointfreeco/swift-snapshot-testing). This testing covers light/dark modes and localization.
 
 ## CI
 
