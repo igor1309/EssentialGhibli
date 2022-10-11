@@ -12,7 +12,7 @@ protocol FilmDataStore {
 }
 
 final class FilmImageDataCache<Image> {
-    typealias MakeImage = (Data) -> Image
+    typealias MakeImage = (Data) -> Image?
     
     private let store: FilmDataStore
     private let makeImage: MakeImage
@@ -27,7 +27,7 @@ final class FilmImageDataCache<Image> {
     
     func load() throws -> Image? {
         let data = try store.retrieve()
-        return data.map(makeImage)
+        return data.map(makeImage) ?? nil
     }
 }
 
@@ -75,16 +75,32 @@ final class FilmImageDataCacheTests: XCTestCase {
         }
     }
     
+    func test_load_shouldDeliverImageOnDataRetrieval() throws {
+        let (sut, store) = makeSUT()
+        let expectedImage = "Some data here"
+        let imageData = expectedImage.data(using: .utf8)
+        store.completeRetrieval(with: .success(imageData))
+
+        do {
+            let image = try sut.load()
+            XCTAssertEqual(image, expectedImage)
+        } catch let error as AnyError {
+            XCTAssertEqual(error, AnyError())
+        } catch {
+            XCTFail("Expected AnyError, got \(error.localizedDescription)")
+        }
+    }
+    
     // MARK: - Helpers
     
-    typealias DataCache = FilmImageDataCache<Data>
+    typealias DataCache = FilmImageDataCache<String>
     
     private func makeSUT(
         file: StaticString = #file,
         line: UInt = #line
     ) -> (sut: DataCache, store: StoreStub) {
         let store = StoreStub()
-        let sut = DataCache(store: store) { $0 }
+        let sut = DataCache(store: store) { .init(data: $0, encoding: .utf8) }
         
         trackForMemoryLeaks(store, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
