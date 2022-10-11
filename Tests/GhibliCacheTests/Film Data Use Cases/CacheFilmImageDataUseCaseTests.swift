@@ -29,7 +29,14 @@ final class CacheFilmImageDataUseCaseTests: XCTestCase, ImageDataCacheUseCase {
         let data = "Some data here".data(using: .utf8)!
         store.stubInsert(for: .anyURL, with: .failure(anyError()))
         
-        XCTAssertThrowsError(try sut.saveImageData(data, for: .anyURL))
+        do {
+            try sut.saveImageData(data, for: .anyURL)
+            XCTFail("Expected error.")
+        } catch let error as FilmImageDataCache.SaveError {
+            XCTAssertEqual(error, .failed)
+        } catch {
+            XCTFail("Expected \"SaveError\", got \(error.localizedDescription)")
+        }
     }
     
     func test_saveImageDataFromURL_succeedsOnSuccessfulStoreInsertion() throws {
