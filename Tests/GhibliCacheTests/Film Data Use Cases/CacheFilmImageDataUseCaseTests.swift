@@ -24,7 +24,7 @@ final class CacheFilmImageDataUseCaseTests: XCTestCase, ImageDataCacheUseCase {
         XCTAssertEqual(store.messages, [.save(data, .anyURL)])
     }
     
-    func test_saveImageDataFromURL_shouldDeliverErrorOnStoreInsertionError() throws {
+    func test_saveImageDataFromURL_shouldDeliverSaveErrorOnStoreInsertionError() throws {
         let (sut, store) = makeSUT()
         let data = "Some data here".data(using: .utf8)!
         store.stubInsert(for: .anyURL, with: .error)
