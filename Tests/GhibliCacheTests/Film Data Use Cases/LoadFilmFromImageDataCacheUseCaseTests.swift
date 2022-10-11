@@ -16,7 +16,7 @@ final class LoadFilmFromImageDataCacheUseCaseTests: XCTestCase, ImageDataCacheUs
         XCTAssert(store.messages.isEmpty)
     }
     
-    func test_loadImageDataFromURL_shouldRequestStoreRetrieval() throws {
+    func test_loadImageDataFromURL_shouldRequestStoreRetrievalForURL() throws {
         let (sut, store) = makeSUT()
         store.completeRetrieval(with: .someData, for: .anyURL)
         
