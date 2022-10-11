@@ -20,7 +20,11 @@ extension ImageDataCacheUseCase where Self: XCTestCase {
         line: UInt = #line
     ) -> (sut: DataCache, store: StoreStub) {
         let store = StoreStub()
-        let sut = DataCache(store: store) { .init(data: $0, encoding: .utf8) }
+        let sut = DataCache(
+            store: store,
+            makeImage: { .init(data: $0, encoding: .utf8) },
+            makeData: { $0.data(using: .utf8) }
+        )
         
         trackForMemoryLeaks(store, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)

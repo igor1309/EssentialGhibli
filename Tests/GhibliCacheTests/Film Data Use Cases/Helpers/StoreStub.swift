@@ -22,8 +22,13 @@ final class StoreStub: FilmDataStore {
         return try retrievalResults[url]?.get()
     }
     
+    func insert(_ data: Data, for url: URL) throws {
+        messages.append(.save(data, url))
+    }
+    
     enum Message: Equatable {
         case retrieve(URL)
+        case save(Data, URL)
     }
 }
 
