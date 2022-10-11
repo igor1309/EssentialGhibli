@@ -8,15 +8,10 @@
 import GhibliDomain
 import Foundation
 
-public protocol FilmDataStore {
-    func retrieve(from url: URL) throws -> Data?
-    func insert(_ data: Data, for url: URL) throws
-}
-
 public final class FilmImageDataCache {
-    private let store: FilmDataStore
+    private let store: FilmImageDataStore
     
-    public init(store: FilmDataStore) {
+    public init(store: FilmImageDataStore) {
         self.store = store
     }
 }

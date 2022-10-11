@@ -8,7 +8,7 @@
 import GhibliCache
 import Foundation
 
-final class StoreStub: FilmDataStore {
+final class StoreStub: FilmImageDataStore {
     typealias RetrievalResult = Result<Data?, Error>
     typealias InsertionResult = Result<Data?, Error>
 
