@@ -54,14 +54,14 @@ final class GhibliCacheCoreDataStoreIntegrationTests: XCTestCase {
     
     // MARK: - Helpers
     
-    typealias LocalLoader = LocalFeedLoader<GhibliFilm, CoreDataFeedStore>
+    typealias FilmFeedCache = FeedCache<GhibliFilm, CoreDataFeedStore>
     
     private func makeSUT(
         file: StaticString = #file,
         line: UInt = #line
-    ) throws -> LocalLoader {
+    ) throws -> FilmFeedCache {
         let store = try CoreDataFeedStore(storeURL: testStoreURL())
-        let sut = LocalFeedLoader(
+        let sut = FeedCache(
             store: store,
             toLocal: LocalFilm.init(film:),
             fromLocal: GhibliFilm.init(local:)
@@ -74,7 +74,7 @@ final class GhibliCacheCoreDataStoreIntegrationTests: XCTestCase {
     }
     
     private func expect(
-        _ sut: LocalLoader,
+        _ sut: FilmFeedCache,
         toLoad expectedFeed: [GhibliFilm],
         file: StaticString = #file,
         line: UInt = #line
@@ -89,7 +89,7 @@ final class GhibliCacheCoreDataStoreIntegrationTests: XCTestCase {
     
     private func save(
         _ feed: [GhibliFilm],
-        with sut: LocalLoader,
+        with sut: FilmFeedCache,
         file: StaticString = #file,
         line: UInt = #line
     ) {

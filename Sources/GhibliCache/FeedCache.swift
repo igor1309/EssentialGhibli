@@ -1,5 +1,5 @@
 //
-//  LocalFeedLoader.swift
+//  FeedCache.swift
 //  
 //
 //  Created by Igor Malyarov on 09.10.2022.
@@ -17,7 +17,7 @@ public protocol FeedStore<Item> {
     func retrieve() throws -> CachedFeed<Item>?
 }
 
-public final class LocalFeedLoader<Item, Store>
+public final class FeedCache<Item, Store>
 where Store: FeedStore {
     
     public typealias LocalItem = Store.Item

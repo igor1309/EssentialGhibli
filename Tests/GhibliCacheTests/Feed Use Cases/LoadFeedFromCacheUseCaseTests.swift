@@ -112,14 +112,17 @@ final class LoadFeedFromCacheUseCaseTests: XCTestCase {
     
     // MARK: - Helpers
     
+    typealias LocalStore = StoreStubSpy<LocalItem>
+    typealias FilmFeedCache = FeedCache<TestItem, LocalStore>
+
     private func makeSUT(
         validate: ((Date, Date) -> Bool)? = nil,
         retrieveFeed: CachedItems? = (feed: [], timestamp: Date()),
         file: StaticString = #file,
         line: UInt = #line
     ) -> (
-        sut: LocalFeedLoader<TestItem, StoreStubSpy<LocalItem>>,
-        store: StoreStubSpy<LocalItem>
+        sut: FilmFeedCache,
+        store: LocalStore
     ) {
         makeSUT(validate: validate, retrievalResult: .success(retrieveFeed), file: file, line: line)
     }
@@ -130,8 +133,8 @@ final class LoadFeedFromCacheUseCaseTests: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) -> (
-        sut: LocalFeedLoader<TestItem, StoreStubSpy<LocalItem>>,
-        store: StoreStubSpy<LocalItem>
+        sut: FilmFeedCache,
+        store: LocalStore
     ) {
         makeSUT(validate: validate, retrievalResult: .failure(retrieveError), file: file, line: line)
     }
@@ -142,14 +145,14 @@ final class LoadFeedFromCacheUseCaseTests: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) -> (
-        sut: LocalFeedLoader<TestItem, StoreStubSpy<LocalItem>>,
-        store: StoreStubSpy<LocalItem>
+        sut: FilmFeedCache,
+        store: LocalStore
     ) {
-        let store = StoreStubSpy<LocalItem>(retrievalResult: retrievalResult)
+        let store = LocalStore(retrievalResult: retrievalResult)
         
         let validate = validate ?? FeedCachePolicy.sevenDays.validate
         
-        let sut = LocalFeedLoader(store: store, toLocal: toLocal, fromLocal: fromLocal, validate: validate)
+        let sut = FeedCache(store: store, toLocal: toLocal, fromLocal: fromLocal, validate: validate)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(store, file: file, line: line)
