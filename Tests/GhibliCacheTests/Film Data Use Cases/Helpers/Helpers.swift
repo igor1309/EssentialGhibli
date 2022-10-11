@@ -8,6 +8,6 @@
 import Foundation
 
 extension URL {
-    static let anyURL: Self = .init(string: "any://url")!
-    static let otherURL: Self = .init(string: "any://other.url")!
+    static let anyURL: Self = .init(string: "https://any-url.com")!
+    static let otherURL: Self = .init(string: "https://other-url.com")!
 }
