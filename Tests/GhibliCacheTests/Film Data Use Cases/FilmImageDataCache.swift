@@ -18,11 +18,32 @@ final class FilmImageDataCache {
     init(store: FilmDataStore) {
         self.store = store
     }
-    
-    func loadImageData(from url: URL) throws -> Data? {
-        try store.retrieve(from: url)
+}
+
+extension FilmImageDataCache {
+    func loadImageData(from url: URL) throws -> Data {
+        let result = Result { try store.retrieve(from: url) }
+        
+        switch result {
+        case let .success(data):
+            if let data {
+                return data
+            } else {
+                throw LoadError.notFound
+            }
+            
+        case .failure:
+            throw LoadError.failed
+        }
     }
     
+    public enum LoadError: Error {
+        case failed
+        case notFound
+    }
+}
+
+extension FilmImageDataCache {
     func saveImageData(_ data: Data, for url: URL) throws {
         do {
             try store.insert(data, for: url)

@@ -17,43 +17,41 @@ final class LoadFilmFromImageDataCacheUseCaseTests: XCTestCase, ImageDataCacheUs
     
     func test_loadImageDataFromURL_shouldRequestStoreRetrieval() throws {
         let (sut, store) = makeSUT()
+        store.completeRetrieval(with: .someData, for: .anyURL)
         
         _ = try sut.loadImageData(from: .anyURL)
         
         XCTAssertEqual(store.messages, [.retrieve(.anyURL)])
     }
     
-    func test_loadImageDataFromURL_shouldDeliverErrorOnRetrievalFailure() throws {
+    func test_loadImageDataFromURL_shouldDeliverLoadErrorOnRetrievalFailure() throws {
         let (sut, store) = makeSUT()
         
         store.completeRetrieval(with: .error, for: .anyURL)
         
-        expect(sut, toLoad: .failure(anyError()), from: .anyURL)
+        expect(sut, toLoad: .failure(LoadError.failed), from: .anyURL)
     }
     
-    func test_loadImageDataFromURL_shouldDeliverEmptyOnEmptyRetrieval() throws {
+    func test_loadImageDataFromURL_shouldDeliverNotFoundErrorOnEmptyRetrieval() throws {
         let (sut, store) = makeSUT()
 
         store.completeRetrieval(with: .none, for: .anyURL)
         
-        expect(sut, toLoad: .success(.none), from: .anyURL)
+        expect(sut, toLoad: .failure(LoadError.notFound), from: .anyURL)
     }
     
-    func test_loadImageDataFromURL_shouldDeliverImageOnDataRetrieval() throws {
+    func test_loadImageDataFromURL_shouldDeliverDataOnDataRetrieval() throws {
         let (sut, store) = makeSUT()
-        let data = "Some data here".data(using: .utf8)
-        store.completeRetrieval(with: .success(data), for: .anyURL)
+        store.completeRetrieval(with: .someData, for: .anyURL)
         
-        expect(sut, toLoad: .success(data), from: .anyURL)
+        expect(sut, toLoad: .someData, from: .anyURL)
     }
     
     func test_loadImageDataFromURL_shouldHaveNoSideEffectsOnRetrievalFailure() throws {
         let (sut, store) = makeSUT()
         
         store.completeRetrieval(with: .error, for: .otherURL)
-        do {
-            _ = try sut.loadImageData(from: .anyURL)
-        } catch {}
+        _ = try? sut.loadImageData(from: .anyURL)
         
         XCTAssertEqual(store.messages, [.retrieve(.anyURL)])
     }
@@ -62,7 +60,7 @@ final class LoadFilmFromImageDataCacheUseCaseTests: XCTestCase, ImageDataCacheUs
         let (sut, store) = makeSUT()
 
         store.completeRetrieval(with: .none, for: .otherURL)
-        _ = try sut.loadImageData(from: .anyURL)
+        _ = try? sut.loadImageData(from: .anyURL)
         
         XCTAssertEqual(store.messages, [.retrieve(.anyURL)])
     }
@@ -70,7 +68,7 @@ final class LoadFilmFromImageDataCacheUseCaseTests: XCTestCase, ImageDataCacheUs
     func test_loadImageDataFromURL_shouldHaveNoSideEffectsOnNonEmptyCache() throws {
         let (sut, store) = makeSUT()
 
-        store.completeRetrieval(with: .someData, for: .otherURL)
+        store.completeRetrieval(with: .someData, for: .anyURL)
         _ = try sut.loadImageData(from: .anyURL)
         
         XCTAssertEqual(store.messages, [.retrieve(.anyURL)])

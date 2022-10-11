@@ -12,6 +12,7 @@ protocol ImageDataCacheUseCase: XCTestCase {}
 extension ImageDataCacheUseCase where Self: XCTestCase {
     
     typealias DataResult = Result<Data?, Error>
+    typealias LoadError = FilmImageDataCache.LoadError
     
     func makeSUT(
         file: StaticString = #file,
@@ -33,17 +34,24 @@ extension ImageDataCacheUseCase where Self: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        let retrievedResult = Result { try sut.loadImageData(from: url) }
+        let loadedResult = Result { try sut.loadImageData(from: url) }
         
-        switch (expectedResult, retrievedResult) {
-        case let (.success(expected), .success(retrieved)):
-            XCTAssertEqual(expected, retrieved, file: file, line: line)
+        switch (expectedResult, loadedResult) {
+        case let (.success(expected), .success(loaded)):
+            XCTAssertEqual(expected, loaded, file: file, line: line)
             
-        case (.failure, .failure):
-            break
+        case let (.failure(expected), .failure(loaded)):
+            switch (expected, loaded) {
+            case (LoadError.failed, LoadError.failed),
+                (LoadError.notFound, LoadError.notFound):
+                break
+                
+            default:
+                XCTFail("Expected \(expected.localizedDescription), got \(loaded.localizedDescription)", file: file, line: line)
+            }
             
         default:
-            XCTFail("Expected \(expectedResult), got \(retrievedResult) instead.", file: file, line: line)
+            XCTFail("Expected \(expectedResult), got \(loadedResult) instead.", file: file, line: line)
         }
     }
 }
