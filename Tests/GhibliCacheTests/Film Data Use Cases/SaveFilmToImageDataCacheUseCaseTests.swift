@@ -32,4 +32,11 @@ final class SaveFilmToImageDataCacheUseCaseTests: XCTestCase, ImageDataCacheUseC
         XCTAssertThrowsError(try sut.saveImageData(image, for: .anyURL))
     }
     
+    func test_saveImageDataFromURL_succeedsOnSuccessfulStoreInsertion() throws {
+        let (sut, store) = makeSUT()
+        let (image, data) = imageData()
+        store.stubInsert(for: .anyURL, with: .success(data))
+        
+        XCTAssertNoThrow(try sut.saveImageData(image, for: .anyURL))
+    }
 }
