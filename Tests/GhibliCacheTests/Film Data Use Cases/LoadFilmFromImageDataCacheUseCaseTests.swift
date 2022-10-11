@@ -41,11 +41,10 @@ final class LoadFilmFromImageDataCacheUseCaseTests: XCTestCase, ImageDataCacheUs
     
     func test_loadImageDataFromURL_shouldDeliverImageOnDataRetrieval() throws {
         let (sut, store) = makeSUT()
-        let expectedImage = "Some data here"
-        let imageData = expectedImage.data(using: .utf8)
-        store.completeRetrieval(with: .success(imageData), for: .anyURL)
+        let data = "Some data here".data(using: .utf8)
+        store.completeRetrieval(with: .success(data), for: .anyURL)
         
-        expect(sut, toLoad: .success(expectedImage), from: .anyURL)
+        expect(sut, toLoad: .success(data), from: .anyURL)
     }
     
     func test_loadImageDataFromURL_shouldHaveNoSideEffectsOnRetrievalFailure() throws {

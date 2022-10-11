@@ -17,26 +17,26 @@ final class CacheFilmImageDataUseCaseTests: XCTestCase, ImageDataCacheUseCase {
     
     func test_saveImageDataForURL_shouldRequestImageDataInsertionForURL() throws {
         let (sut, store) = makeSUT()
-        let (image, data) = imageData()
+        let data = "Some data here".data(using: .utf8)!
         
-        try sut.saveImageData(image, for: .anyURL)
+        try sut.saveImageData(data, for: .anyURL)
         
         XCTAssertEqual(store.messages, [.save(data, .anyURL)])
     }
     
     func test_saveImageDataFromURL_shouldDeliverErrorOnStoreInsertionError() throws {
         let (sut, store) = makeSUT()
-        let image = imageData().image
+        let data = "Some data here".data(using: .utf8)!
         store.stubInsert(for: .anyURL, with: .failure(anyError()))
         
-        XCTAssertThrowsError(try sut.saveImageData(image, for: .anyURL))
+        XCTAssertThrowsError(try sut.saveImageData(data, for: .anyURL))
     }
     
     func test_saveImageDataFromURL_succeedsOnSuccessfulStoreInsertion() throws {
         let (sut, store) = makeSUT()
-        let (image, data) = imageData()
+        let data = "Some data here".data(using: .utf8)!
         store.stubInsert(for: .anyURL, with: .success(data))
         
-        XCTAssertNoThrow(try sut.saveImageData(image, for: .anyURL))
+        XCTAssertNoThrow(try sut.saveImageData(data, for: .anyURL))
     }
 }
