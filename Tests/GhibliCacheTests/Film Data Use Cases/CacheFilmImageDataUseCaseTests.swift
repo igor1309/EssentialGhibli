@@ -27,7 +27,7 @@ final class CacheFilmImageDataUseCaseTests: XCTestCase, ImageDataCacheUseCase {
     func test_saveImageDataFromURL_shouldDeliverErrorOnStoreInsertionError() throws {
         let (sut, store) = makeSUT()
         let data = "Some data here".data(using: .utf8)!
-        store.stubInsert(for: .anyURL, with: .failure(anyError()))
+        store.stubInsert(for: .anyURL, with: .error)
         
         do {
             try sut.saveImageData(data, for: .anyURL)
