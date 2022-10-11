@@ -7,6 +7,7 @@
 
 import GhibliDomain
 import GhibliCacheInfra
+import Foundation
 
 extension GhibliFilm {
     init(local: LocalFilm) {
@@ -30,4 +31,25 @@ extension LocalFilm {
             filmURL: film.filmURL
         )
     }
+}
+
+func uniqueFilmFeed() -> (feed: [GhibliFilm], local: [LocalFilm]) {
+    let local = [makeLocalFilm(), makeLocalFilm()]
+    return (local.map(GhibliFilm.init(local:)), local)
+}
+
+func makeLocalFilm() -> LocalFilm {
+    .init(
+        id: UUID(),
+        title: "a title",
+        description: "a description",
+        imageURL: URL(string: "any-url")!,
+        filmURL: URL(string: "any-url")!
+    )
+}
+
+struct AnyError: Error, Equatable {}
+
+func anyError() -> Error {
+    AnyError()
 }
