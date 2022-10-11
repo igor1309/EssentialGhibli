@@ -4,15 +4,25 @@ A demo app digesting [iOS Lead Essentials](https://iosacademy.essentialdeveloper
 
 The app presents the feed of the [Studio Ghibli](https://en.wikipedia.org/wiki/Studio_Ghibli) films.
 
-A project with modular architecture with decoupled components, with modularity enforced by placing modules into separate targets in the `EssentialGhibli` Swift Package.
+Under the hood it is a project with hyper-modular architecture with decoupled components, with modularity enforced by placing modules into separate targets in the `EssentialGhibli` Swift Package.
 
-`Root Composition` is implemented in the `EssentialGhibliApp`.
+## Instructions
 
-## UI
+Open `App/EssentialGhibli.xcodeproj` and select `EssentialGhibli` scheme to run the app in the simulator. 
 
-UI Components are implemented with `SwiftUI` and tested using snapshots [SnapshotTesting](https://github.com/pointfreeco/swift-snapshot-testing). Snapshot testing covers light/dark modes and localization.
+## Modules
 
-Localization with tests.
+### Composition
+
+The `Root Composition` is implemented in the `EssentialGhibliApp`.
+
+### UI
+
+UI Components are implemented with `SwiftUI` and are tested using snapshots with [SnapshotTesting](https://github.com/pointfreeco/swift-snapshot-testing). Snapshot testing covers light/dark modes and localization.
+
+## Localization
+
+English and Russian localizations are tested.
 
 ## CI
 
@@ -263,10 +273,6 @@ GET /feed
 ```
 
 ---
-
-## Instructions
-
-Open `App/EssentialGhibli.xcodeproj` to run app in the simulator. 
 
 ## References
 
