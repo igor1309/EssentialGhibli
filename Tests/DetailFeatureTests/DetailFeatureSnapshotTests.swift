@@ -1,5 +1,5 @@
 //
-//  GhibliDetailFeatureTests.swift
+//  DetailFeatureSnapshotTests.swift
 //  
 //
 //  Created by Igor Malyarov on 06.10.2022.
@@ -9,7 +9,7 @@ import DetailFeature
 import SwiftUI
 import XCTest
 
-final class GhibliDetailFeatureTests: XCTestCase {
+final class DetailFeatureSnapshotTests: XCTestCase {
     let record = false
     
     func test_snapshotGhibliDetailView() {
