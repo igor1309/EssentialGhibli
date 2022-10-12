@@ -27,6 +27,13 @@ func assert(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: 
 
 ## Modules
 
+### Build time
+
+Hyper-modular architecture with decoupled components significantly reduced build time. This project is defiantly not huge, but it's clear that this approach allows to utilize Xcode parallel build system
+
+![Xcode project clean build timeline](./Docs/build_timeline.png)
+![Xcode project clean build timeline: center](./Docs/build_timeline_center.png)
+
 ### Composition
 
 The `Root Composition` is implemented in the `EssentialGhibliApp`.
