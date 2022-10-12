@@ -1,8 +1,8 @@
 # This is a manually triggered workflow to run Xcode with pre warm up, clean build and test using script
 
-name: CI - warm up using script
+name: CI using script
 
-# Controls when the action will run. 
+# Controls when the action will run. Manually trigger workflow.
 on:
   workflow_dispatch:
 
@@ -19,6 +19,6 @@ jobs:
 
     - name: Select Xcode
       run: sudo xcode-select -switch /Applications/Xcode_14.0.app
-      
-    - name: Run script
-      run: exec ./.github/scripts/warmup_clean_build_test.sh
+
+    - name: Build and Test (script)
+      run: exec ./.github/scripts/clean_build_test.sh
