@@ -1,0 +1,24 @@
+# This is a manually triggered workflow to run Xcode with pre warm up, clean build and test using script
+
+name: CI - clean build and test with warm up using script
+
+# Controls when the action will run. 
+on:
+  workflow_dispatch:
+
+jobs:
+  # This workflow contains a single job called "Build and Test"
+  build-and-test:
+    # The type of runner that the job will run on
+    runs-on: macos-12
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v3.1.0
+
+    - name: Select Xcode
+      run: sudo xcode-select -switch /Applications/Xcode_14.0.app
+      
+    - name: Run script
+      run: exec ./.github/scripts/warmup_clean_build_test.sh
