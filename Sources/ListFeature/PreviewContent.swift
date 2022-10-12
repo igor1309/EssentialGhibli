@@ -8,11 +8,11 @@
 import SwiftUI
 
 #if DEBUG
-public extension Array where Element == GhibliListFilm {
+public extension Array where Element == ListFilm {
     static let samples: Self = [.castleInTheSky, .kikisDeliveryService]
 }
 
-public extension GhibliListFilm {
+public extension ListFilm {
     static let castleInTheSky: Self = .init(
         id: UUID(uuidString: "2baf70d1-42bb-4437-b551-e5fed5a87abe")!,
         title: "Castle in the Sky",

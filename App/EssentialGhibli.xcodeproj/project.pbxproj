@@ -7,21 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A28385328F6BFF10013A761 /* API in Frameworks */ = {isa = PBXBuildFile; productRef = 2A28385228F6BFF10013A761 /* API */; };
+		2A28385528F6BFF10013A761 /* Cache in Frameworks */ = {isa = PBXBuildFile; productRef = 2A28385428F6BFF10013A761 /* Cache */; };
+		2A28385728F6BFF10013A761 /* CacheInfra in Frameworks */ = {isa = PBXBuildFile; productRef = 2A28385628F6BFF10013A761 /* CacheInfra */; };
+		2A28385928F6BFF10013A761 /* DetailFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2A28385828F6BFF10013A761 /* DetailFeature */; };
+		2A28385B28F6BFF10013A761 /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = 2A28385A28F6BFF10013A761 /* Domain */; };
+		2A28385D28F6BFF10013A761 /* GenericResourceView in Frameworks */ = {isa = PBXBuildFile; productRef = 2A28385C28F6BFF10013A761 /* GenericResourceView */; };
+		2A28385F28F6BFF20013A761 /* ListFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2A28385E28F6BFF10013A761 /* ListFeature */; };
+		2A28386128F6BFF20013A761 /* Presentation in Frameworks */ = {isa = PBXBuildFile; productRef = 2A28386028F6BFF20013A761 /* Presentation */; };
+		2A28386328F6BFF20013A761 /* RowFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2A28386228F6BFF20013A761 /* RowFeature */; };
+		2A28386528F6BFF20013A761 /* SharedAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 2A28386428F6BFF20013A761 /* SharedAPI */; };
+		2A28386728F6BFF20013A761 /* SharedAPIInfra in Frameworks */ = {isa = PBXBuildFile; productRef = 2A28386628F6BFF20013A761 /* SharedAPIInfra */; };
 		2A51FA7428EF0644003D3EA1 /* EssentialGhibliApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A51FA7328EF0644003D3EA1 /* EssentialGhibliApp.swift */; };
 		2A51FA7628EF0644003D3EA1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A51FA7528EF0644003D3EA1 /* ContentView.swift */; };
 		2A51FA7828EF0646003D3EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A51FA7728EF0646003D3EA1 /* Assets.xcassets */; };
 		2A51FA7B28EF0646003D3EA1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A51FA7A28EF0646003D3EA1 /* Preview Assets.xcassets */; };
-		2A62DCAC28F44A2800AF5560 /* GenericResourceView in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DCAB28F44A2800AF5560 /* GenericResourceView */; };
-		2A62DCAE28F44A2800AF5560 /* GhibliAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DCAD28F44A2800AF5560 /* GhibliAPI */; };
-		2A62DCB028F44A2800AF5560 /* GhibliCache in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DCAF28F44A2800AF5560 /* GhibliCache */; };
-		2A62DCB228F44A2800AF5560 /* GhibliCacheInfra in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DCB128F44A2800AF5560 /* GhibliCacheInfra */; };
-		2A62DCB428F44A2800AF5560 /* GhibliDetailFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DCB328F44A2800AF5560 /* GhibliDetailFeature */; };
-		2A62DCB628F44A2800AF5560 /* GhibliDomain in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DCB528F44A2800AF5560 /* GhibliDomain */; };
-		2A62DCB828F44A2800AF5560 /* GhibliListFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DCB728F44A2800AF5560 /* GhibliListFeature */; };
-		2A62DCBA28F44A2900AF5560 /* GhibliRowFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DCB928F44A2900AF5560 /* GhibliRowFeature */; };
-		2A62DCBC28F44A2900AF5560 /* Presentation in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DCBB28F44A2900AF5560 /* Presentation */; };
-		2A62DCBE28F44A2900AF5560 /* SharedAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DCBD28F44A2900AF5560 /* SharedAPI */; };
-		2A62DCC028F44A2900AF5560 /* SharedAPIInfra in Frameworks */ = {isa = PBXBuildFile; productRef = 2A62DCBF28F44A2900AF5560 /* SharedAPIInfra */; };
 		2A62DCC228F44A3F00AF5560 /* composeLocalFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A62DCC128F44A3F00AF5560 /* composeLocalFeedLoader.swift */; };
 		2AB6D25728F057AE006C8855 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB6D25628F057AE006C8855 /* ViewModel.swift */; };
 		2AC0165028F09DA9002CA97C /* NavigationComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC0164F28F09DA9002CA97C /* NavigationComposer.swift */; };
@@ -63,17 +63,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A62DCB428F44A2800AF5560 /* GhibliDetailFeature in Frameworks */,
-				2A62DCB828F44A2800AF5560 /* GhibliListFeature in Frameworks */,
-				2A62DCAE28F44A2800AF5560 /* GhibliAPI in Frameworks */,
-				2A62DCC028F44A2900AF5560 /* SharedAPIInfra in Frameworks */,
-				2A62DCBA28F44A2900AF5560 /* GhibliRowFeature in Frameworks */,
-				2A62DCAC28F44A2800AF5560 /* GenericResourceView in Frameworks */,
-				2A62DCB628F44A2800AF5560 /* GhibliDomain in Frameworks */,
-				2A62DCBE28F44A2900AF5560 /* SharedAPI in Frameworks */,
-				2A62DCB028F44A2800AF5560 /* GhibliCache in Frameworks */,
-				2A62DCBC28F44A2900AF5560 /* Presentation in Frameworks */,
-				2A62DCB228F44A2800AF5560 /* GhibliCacheInfra in Frameworks */,
+				2A28386128F6BFF20013A761 /* Presentation in Frameworks */,
+				2A28385B28F6BFF10013A761 /* Domain in Frameworks */,
+				2A28385F28F6BFF20013A761 /* ListFeature in Frameworks */,
+				2A28386728F6BFF20013A761 /* SharedAPIInfra in Frameworks */,
+				2A28385928F6BFF10013A761 /* DetailFeature in Frameworks */,
+				2A28385328F6BFF10013A761 /* API in Frameworks */,
+				2A28385D28F6BFF10013A761 /* GenericResourceView in Frameworks */,
+				2A28386528F6BFF20013A761 /* SharedAPI in Frameworks */,
+				2A28385728F6BFF10013A761 /* CacheInfra in Frameworks */,
+				2A28385528F6BFF10013A761 /* Cache in Frameworks */,
+				2A28386328F6BFF20013A761 /* RowFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,17 +164,17 @@
 			);
 			name = EssentialGhibli;
 			packageProductDependencies = (
-				2A62DCAB28F44A2800AF5560 /* GenericResourceView */,
-				2A62DCAD28F44A2800AF5560 /* GhibliAPI */,
-				2A62DCAF28F44A2800AF5560 /* GhibliCache */,
-				2A62DCB128F44A2800AF5560 /* GhibliCacheInfra */,
-				2A62DCB328F44A2800AF5560 /* GhibliDetailFeature */,
-				2A62DCB528F44A2800AF5560 /* GhibliDomain */,
-				2A62DCB728F44A2800AF5560 /* GhibliListFeature */,
-				2A62DCB928F44A2900AF5560 /* GhibliRowFeature */,
-				2A62DCBB28F44A2900AF5560 /* Presentation */,
-				2A62DCBD28F44A2900AF5560 /* SharedAPI */,
-				2A62DCBF28F44A2900AF5560 /* SharedAPIInfra */,
+				2A28385228F6BFF10013A761 /* API */,
+				2A28385428F6BFF10013A761 /* Cache */,
+				2A28385628F6BFF10013A761 /* CacheInfra */,
+				2A28385828F6BFF10013A761 /* DetailFeature */,
+				2A28385A28F6BFF10013A761 /* Domain */,
+				2A28385C28F6BFF10013A761 /* GenericResourceView */,
+				2A28385E28F6BFF10013A761 /* ListFeature */,
+				2A28386028F6BFF20013A761 /* Presentation */,
+				2A28386228F6BFF20013A761 /* RowFeature */,
+				2A28386428F6BFF20013A761 /* SharedAPI */,
+				2A28386628F6BFF20013A761 /* SharedAPIInfra */,
 			);
 			productName = EssentialGhibli;
 			productReference = 2A51FA7028EF0644003D3EA1 /* EssentialGhibli.app */;
@@ -545,47 +545,47 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2A62DCAB28F44A2800AF5560 /* GenericResourceView */ = {
+		2A28385228F6BFF10013A761 /* API */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = API;
+		};
+		2A28385428F6BFF10013A761 /* Cache */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Cache;
+		};
+		2A28385628F6BFF10013A761 /* CacheInfra */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CacheInfra;
+		};
+		2A28385828F6BFF10013A761 /* DetailFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DetailFeature;
+		};
+		2A28385A28F6BFF10013A761 /* Domain */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Domain;
+		};
+		2A28385C28F6BFF10013A761 /* GenericResourceView */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GenericResourceView;
 		};
-		2A62DCAD28F44A2800AF5560 /* GhibliAPI */ = {
+		2A28385E28F6BFF10013A761 /* ListFeature */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = GhibliAPI;
+			productName = ListFeature;
 		};
-		2A62DCAF28F44A2800AF5560 /* GhibliCache */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = GhibliCache;
-		};
-		2A62DCB128F44A2800AF5560 /* GhibliCacheInfra */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = GhibliCacheInfra;
-		};
-		2A62DCB328F44A2800AF5560 /* GhibliDetailFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = GhibliDetailFeature;
-		};
-		2A62DCB528F44A2800AF5560 /* GhibliDomain */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = GhibliDomain;
-		};
-		2A62DCB728F44A2800AF5560 /* GhibliListFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = GhibliListFeature;
-		};
-		2A62DCB928F44A2900AF5560 /* GhibliRowFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = GhibliRowFeature;
-		};
-		2A62DCBB28F44A2900AF5560 /* Presentation */ = {
+		2A28386028F6BFF20013A761 /* Presentation */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Presentation;
 		};
-		2A62DCBD28F44A2900AF5560 /* SharedAPI */ = {
+		2A28386228F6BFF20013A761 /* RowFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RowFeature;
+		};
+		2A28386428F6BFF20013A761 /* SharedAPI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SharedAPI;
 		};
-		2A62DCBF28F44A2900AF5560 /* SharedAPIInfra */ = {
+		2A28386628F6BFF20013A761 /* SharedAPIInfra */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SharedAPIInfra;
 		};

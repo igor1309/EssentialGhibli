@@ -44,7 +44,7 @@ final class GhibliListFeatureTests: XCTestCase {
     
     let ghibliListView = { listState in
         NavigationView {
-            GhibliFilmListView(listState: listState) {
+            FilmListView(listState: listState) {
                 Text($0.title)
             }
         }

@@ -33,7 +33,7 @@ import SwiftUI
 //            )
 //            .navigationTitle(listItem.title)
 //        } label: {
-//            GhibliFilmRowView(item: listItem.rowItem)
+//            FilmRowView(item: listItem.rowItem)
 //        }
 //    }
 //}

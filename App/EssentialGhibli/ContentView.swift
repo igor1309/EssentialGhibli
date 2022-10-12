@@ -5,10 +5,10 @@
 //  Created by Igor Malyarov on 06.10.2022.
 //
 
+import DetailFeature
 import GenericResourceView
-import GhibliDetailFeature
-import GhibliListFeature
-import GhibliRowFeature
+import ListFeature
+import RowFeature
 import SwiftUI
 
 struct ContentView: View {
@@ -20,21 +20,21 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            GhibliFilmListView(listState: viewModel.listState, itemRow: itemRow)
+            FilmListView(listState: viewModel.listState, itemRow: itemRow)
                 .navigationTitle(Text("FEED_VIEW_TITLE", tableName: "Localizable", bundle: .main))
                 .toolbar(content: toolbar)
         }
     }
     
     #warning("NavigationLink destination is fixed to static value")
-    private func itemRow(listItem: GhibliListFilm) -> some View {
+    private func itemRow(listItem: ListFilm) -> some View {
         NavigationLink {
             ResourceStateView(resourceState: .loading) {
-                GhibliFilmDetailView(film: .castleInTheSky)
+                FilmDetailView(film: .castleInTheSky)
                     .navigationTitle(listItem.title)
             }
         } label: {
-            GhibliFilmRowView(item: listItem.rowItem)
+            FilmRowView(item: listItem.rowItem)
         }
     }
     
@@ -54,8 +54,8 @@ struct ContentView: View {
     }
 }
 
-private extension GhibliListFilm {
-    var rowItem: GhibliRowFilm {
+private extension ListFilm {
+    var rowItem: RowFilm {
         .init(id: id, title: title, description: description, imageURL: imageURL, filmURL: filmURL)
     }
 }

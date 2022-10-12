@@ -1,5 +1,5 @@
 //
-//  GhibliDetailFilm.swift
+//  DetailFilm.swift
 //  
 //
 //  Created by Igor Malyarov on 07.10.2022.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct GhibliDetailFilm: Identifiable, Hashable {
+public struct DetailFilm: Identifiable, Hashable {
     public let id: UUID
     public let title: String
     public let originalTitle: String

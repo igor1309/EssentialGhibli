@@ -1,5 +1,5 @@
 //
-//  GhibliFilmRowView.swift
+//  FilmRowView.swift
 //  
 //
 //  Created by Igor Malyarov on 06.10.2022.
@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-public struct GhibliFilmRowView: View {
-    private let item: GhibliRowFilm
+public struct FilmRowView: View {
+    private let item: RowFilm
     
-    public init(item: GhibliRowFilm) {
+    public init(item: RowFilm) {
         self.item = item
     }
     
@@ -36,8 +36,8 @@ public struct GhibliFilmRowView: View {
 
 struct GhibliFilmRow_Previews: PreviewProvider {
     static var previews: some View {
-        List([GhibliRowFilm].samples) {
-            GhibliFilmRowView(item: $0)
+        List([RowFilm].samples) {
+            FilmRowView(item: $0)
         }
         .listStyle(.plain)
         .preferredColorScheme(.dark)

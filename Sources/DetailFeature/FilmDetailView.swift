@@ -1,5 +1,5 @@
 //
-//  GhibliFilmDetailView.swift
+//  FilmDetailView.swift
 //  
 //
 //  Created by Igor Malyarov on 07.10.2022.
@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-public struct GhibliFilmDetailView: View {
-    let film: GhibliDetailFilm
+public struct FilmDetailView: View {
+    let film: DetailFilm
     
-    public init(film: GhibliDetailFilm) {
+    public init(film: DetailFilm) {
         self.film = film
     }
     
@@ -61,7 +61,7 @@ public struct GhibliFilmDetailView: View {
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            GhibliFilmDetailView(film: .castleInTheSky)
+            FilmDetailView(film: .castleInTheSky)
         }
         .preferredColorScheme(.dark)
     }

@@ -13,7 +13,7 @@ final class GhibliDetailFeatureTests: XCTestCase {
     let record = false
     
     func test_snapshotGhibliDetailView() {
-        let view = GhibliFilmDetailView(film: .castleInTheSky)
+        let view = FilmDetailView(film: .castleInTheSky)
         
         assert(snapshot: view, locale: .en_US, record: record)
     }

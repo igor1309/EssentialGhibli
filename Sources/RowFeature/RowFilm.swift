@@ -1,5 +1,5 @@
 //
-//  GhibliRowFilm.swift
+//  RowFilm.swift
 //  
 //
 //  Created by Igor Malyarov on 06.10.2022.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct GhibliRowFilm: Identifiable, Hashable {
+public struct RowFilm: Identifiable, Hashable {
     public let id: UUID
     public let title: String
     public let description: String

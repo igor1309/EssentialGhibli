@@ -5,16 +5,16 @@
 //  Created by Igor Malyarov on 07.10.2022.
 //
 
+import API
 import Combine
-import GhibliDomain
-import GhibliAPI
+import Domain
+import Foundation
+import ListFeature
 import SharedAPI
 import SharedAPIInfra
-import GhibliListFeature
-import Foundation
 
 final class ViewModel: ObservableObject {
-    @Published private(set) var listState: ListState<GhibliListFilm, Error> = .list(.samples)
+    @Published private(set) var listState: ListState<ListFilm, Error> = .list(.samples)
     @Published private(set) var cancellable: AnyCancellable?
     
     var isLoading: Bool {
@@ -80,7 +80,7 @@ private extension Publisher {
 }
 
 private extension GhibliFilm {
-    var item: GhibliListFilm {
+    var item: ListFilm {
         .init(id: id, title: title, description: description, imageURL: imageURL, filmURL: filmURL)
     }
 }

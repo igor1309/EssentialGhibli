@@ -8,7 +8,7 @@
 import SwiftUI
 
 #if DEBUG
-public extension GhibliDetailFilm {
+public extension DetailFilm {
     static let castleInTheSky: Self = .init(
         id: UUID(uuidString: "2baf70d1-42bb-4437-b551-e5fed5a87abe")!,
         title: "Castle in the Sky",
