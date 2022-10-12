@@ -13,7 +13,7 @@
 set -eo pipefail
 
 # WARNINIG: replace with command line argument
-scheme="CI_iOS"
+scheme="CI_iOS_with_snapshots"
 name="iPhone 13 Pro"
 version="16.0"
 destination="platform=iOS Simulator,name=$name,OS=$version"
