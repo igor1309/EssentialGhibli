@@ -42,13 +42,13 @@ UI Components are implemented with `SwiftUI`. Previews are designed to show rend
 
 English and Russian localizations are tested.
 
-![Modules: top-level view](./Docs/loading_empty_list_localized.png)
-
 ## Tests
 
 Extensive use of `TDD` and test `DSL` to decouple tests from implementation details.
 
 UI Components are tested using snapshots with [SnapshotTesting](https://github.com/pointfreeco/swift-snapshot-testing). This testing covers light/dark modes and localization.
+
+![Modules: top-level view](./Docs/loading_empty_list_localized.png)
 
 ## CI
 
