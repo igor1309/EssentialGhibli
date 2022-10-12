@@ -8,31 +8,25 @@ Under the hood it is a project with hyper-modular architecture with decoupled co
 
 ## Instructions
 
-Open `App/EssentialGhibli.xcodeproj` with Xcode 14.x and select `EssentialGhibli` scheme to run the app in the simulator.
-
-### Swift 5.7
-
-Primary associated type feature of Swift 5.7 is used to simplify func signatures in test assertions (`Feed Store Specs` in `CacheInfraTests`):
-
-before:
-```swift
-func assert<Store>(on sut: Store, file: StaticString = #file, line: UInt = #line) where Store: FeedStore, Store.Item == LocalFilm {
-```
-
-after:
-
-```swift
-func assert(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
-```
+Open `App/EssentialGhibli.xcodeproj` with Xcode 14.x and select `EssentialGhibli` scheme to run the app in the simulator. See [Swift 5.7 notes](#swift-5.7) for details.
 
 ## Modules
 
+Hyper-modular architecture with decoupled components.
+
+![Modules: top-level view](./Docs/modules.png)
+
+![Components](./Docs/components.png)
+
 ### Build time
 
-Hyper-modular architecture with decoupled components significantly reduced build time. This project is defiantly not huge, but it's clear that this approach allows to utilize Xcode parallel build system
+Modules dependency done right significantly reduces build time. This project is defiantly not huge, but it's clear that this approach allows to utilize Xcode parallel build system:
 
 ![Xcode project clean build timeline](./Docs/build_timeline.png)
+
 ![Xcode project clean build timeline: center](./Docs/build_timeline_center.png)
+
+![CPU](./Docs/cpu.png)
 
 ### Composition
 
@@ -55,6 +49,29 @@ UI Components are tested using snapshots with [SnapshotTesting](https://github.c
 ## CI
 
 For demo a simple `CI` with `GitHub actions` workflow is used: build and tests with scheme `CI_iOS` run on push to the `main` branch.
+
+## Swift 5.7
+
+Primary associated type feature of Swift 5.7 is used to simplify func signatures in test assertions (`Feed Store Specs` in `CacheInfraTests`):
+
+before:
+```swift
+func assert<Store>(
+    on sut: Store,
+    file: StaticString = #file, 
+    line: UInt = #line
+) where Store: FeedStore, Store.Item == LocalFilm
+```
+
+after:
+
+```swift
+func assert(
+    on sut: any FeedStore<LocalFilm>, 
+    file: StaticString = #file, 
+    line: UInt = #line
+)
+```
 
 ## Film Feed Feature Specs
 
