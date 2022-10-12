@@ -7,7 +7,6 @@
 
 import GenericResourceView
 import Presentation
-import SnapshotTesting
 import SwiftUI
 import XCTest
 
