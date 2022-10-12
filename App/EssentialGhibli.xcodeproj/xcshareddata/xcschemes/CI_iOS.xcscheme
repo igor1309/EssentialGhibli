@@ -256,6 +256,11 @@
                BlueprintName = "DetailFeatureTests"
                ReferencedContainer = "container:..">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "DetailFeatureSnapshotTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
          <TestableReference
             skipped = "NO"
@@ -268,6 +273,20 @@
                BlueprintName = "GenericResourceViewTests"
                ReferencedContainer = "container:..">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "LoadResourceStateViewSnapshotTests">
+               </Test>
+               <Test
+                  Identifier = "LoadResourceViewSnapshotTests">
+               </Test>
+               <Test
+                  Identifier = "ResourceStateViewSnapshotTests">
+               </Test>
+               <Test
+                  Identifier = "ResourceStateViewTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
          <TestableReference
             skipped = "NO"
@@ -280,6 +299,11 @@
                BlueprintName = "ListFeatureTests"
                ReferencedContainer = "container:..">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "ListFeatureSnapshotTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
          <TestableReference
             skipped = "NO"
@@ -304,6 +328,11 @@
                BlueprintName = "RowFeatureTests"
                ReferencedContainer = "container:..">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "RowFeatureSnapshotTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
          <TestableReference
             skipped = "NO"
