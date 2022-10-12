@@ -35,11 +35,11 @@ DESTINATION="platform=iOS Simulator,id=$NEW_DEVICE_ID,OS=$VERSION"
 echo $DESTINATION
 
 # Boot a simulator
-xcrun simctl boot "$NEW_DEVICE_ID"
+#xcrun simctl boot "$NEW_DEVICE_ID"
 # open -a Simulator.app --args -CurrentDeviceUDID "$NEW_DEVICE_ID"
 
 # wait for boot to finish
-sleep 60
+#sleep 60
 
 # clean build test
 xcodebuild clean build test \
