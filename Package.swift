@@ -13,9 +13,9 @@ let package = Package(
         .library(name: "API", targets: ["API"]),
         .library(name: "Cache", targets: ["Cache"]),
         .library(name: "CacheInfra", targets: ["CacheInfra"]),
+        .library(name: "DetailFeature", targets: ["DetailFeature"]),
         .library(name: "Domain", targets: ["Domain"]),
         .library(name: "GenericResourceView", targets: ["GenericResourceView"]),
-        .library(name: "GhibliDetailFeature", targets: ["GhibliDetailFeature"]),
         .library(name: "GhibliListFeature", targets: ["GhibliListFeature"]),
         .library(name: "GhibliRowFeature", targets: ["GhibliRowFeature"]),
         .library(name: "Presentation", targets: ["Presentation"]),
@@ -56,6 +56,14 @@ let package = Package(
                 "CacheInfra"
             ]
         ),
+        .target(name: "DetailFeature"),
+        .testTarget(
+            name: "DetailFeatureTests",
+            dependencies: [
+                "DetailFeature",
+                .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
+            ]
+        ),
         .target(name: "Domain"),
         .target(
             name: "GenericResourceView",
@@ -66,14 +74,6 @@ let package = Package(
             dependencies: [
                 "GenericResourceView",
                 "Presentation",
-                .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
-            ]
-        ),
-        .target(name: "GhibliDetailFeature"),
-        .testTarget(
-            name: "GhibliDetailFeatureTests",
-            dependencies: [
-                "GhibliDetailFeature",
                 .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
             ]
         ),

@@ -56,20 +56,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "GhibliDetailFeature"
-               BuildableName = "GhibliDetailFeature"
-               BlueprintName = "GhibliDetailFeature"
-               ReferencedContainer = "container:">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "GhibliListFeature"
                BuildableName = "GhibliListFeature"
                BlueprintName = "GhibliListFeature"
@@ -143,20 +129,6 @@
                BlueprintIdentifier = "GenericResourceViewTests"
                BuildableName = "GenericResourceViewTests"
                BlueprintName = "GenericResourceViewTests"
-               ReferencedContainer = "container:">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "GhibliDetailFeatureTests"
-               BuildableName = "GhibliDetailFeatureTests"
-               BlueprintName = "GhibliDetailFeatureTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -272,6 +244,20 @@
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DetailFeature"
+               BuildableName = "DetailFeature"
+               BlueprintName = "DetailFeature"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -290,18 +276,6 @@
                BlueprintIdentifier = "GenericResourceViewTests"
                BuildableName = "GenericResourceViewTests"
                BlueprintName = "GenericResourceViewTests"
-               ReferencedContainer = "container:">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES"
-            testExecutionOrdering = "random">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "GhibliDetailFeatureTests"
-               BuildableName = "GhibliDetailFeatureTests"
-               BlueprintName = "GhibliDetailFeatureTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
@@ -398,6 +372,18 @@
                BlueprintIdentifier = "APITests"
                BuildableName = "APITests"
                BlueprintName = "APITests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DetailFeatureTests"
+               BuildableName = "DetailFeatureTests"
+               BlueprintName = "DetailFeatureTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
