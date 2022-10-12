@@ -1,5 +1,5 @@
 //
-//  ManagedCache+CoreDataClass.swift
+//  ManagedCache.swift
 //  EssentialGhibli
 //
 //  Created by Igor Malyarov on 10.10.2022.
@@ -9,7 +9,7 @@
 import CoreData
 
 @objc(ManagedCache)
-internal class ManagedCache: NSManagedObject {
+class ManagedCache: NSManagedObject {
     @NSManaged internal var timestamp: Date
     @NSManaged internal var feed: NSOrderedSet
 }
@@ -27,6 +27,6 @@ extension ManagedCache {
     }
     
     internal var localFeed: [LocalFilm] {
-        return feed.compactMap { ($0 as? ManagedFeedImage)?.local }
+        return feed.compactMap { ($0 as? ManagedFilmImage)?.local }
     }
 }
