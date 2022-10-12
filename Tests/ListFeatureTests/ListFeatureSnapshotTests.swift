@@ -34,7 +34,7 @@ final class ListFeatureSnapshotTests: XCTestCase {
     }
     
     func test_snapshotGhibliListView_error() {
-        let view = ghibliListView(.error(APIError()))
+        let view = ghibliListView(.error(anyError()))
         
         assert(snapshot: view, locale: .en_US, record: record)
         assert(snapshot: view, locale: .ru_RU, record: record)

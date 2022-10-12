@@ -19,3 +19,9 @@ func anyError(message: String = "any error") -> AnyError {
 struct AnyError: Error {
     let message: String
 }
+
+extension AnyError: LocalizedError {
+    var errorDescription: String? {
+        return message
+    }
+}
