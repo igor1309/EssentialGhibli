@@ -18,7 +18,7 @@ final class CacheFilmImageDataUseCaseTests: XCTestCase, ImageDataCacheUseCase {
     
     func test_saveImageDataForURL_shouldRequestImageDataInsertionForURL() throws {
         let (sut, store) = makeSUT()
-        let data = "Some data here".data(using: .utf8)!
+        let data = Data.anyData
         
         try sut.saveImageData(data, for: .anyURL)
         
@@ -27,11 +27,10 @@ final class CacheFilmImageDataUseCaseTests: XCTestCase, ImageDataCacheUseCase {
     
     func test_saveImageDataFromURL_shouldDeliverSaveErrorOnStoreInsertionError() throws {
         let (sut, store) = makeSUT()
-        let data = "Some data here".data(using: .utf8)!
         store.stubInsert(for: .anyURL, with: .error)
         
         do {
-            try sut.saveImageData(data, for: .anyURL)
+            try sut.saveImageData(.anyData, for: .anyURL)
             XCTFail("Expected error.")
         } catch let error as FilmImageDataCache.SaveError {
             XCTAssertEqual(error, .failed)
@@ -42,7 +41,7 @@ final class CacheFilmImageDataUseCaseTests: XCTestCase, ImageDataCacheUseCase {
     
     func test_saveImageDataFromURL_shouldSucceedOnSuccessfulStoreInsertion() throws {
         let (sut, store) = makeSUT()
-        let data = "Some data here".data(using: .utf8)!
+        let data = Data.anyData
         store.stubInsert(for: .anyURL, with: .success(data))
         
         XCTAssertNoThrow(try sut.saveImageData(data, for: .anyURL))

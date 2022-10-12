@@ -27,3 +27,7 @@ struct AnyError: Error, Equatable {}
 func anyError() -> Error {
     AnyError()
 }
+
+extension Data {
+    static let anyData = Data("any data".utf8)
+}
