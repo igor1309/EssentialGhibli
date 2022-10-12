@@ -20,13 +20,13 @@ destination="platform=iOS Simulator,name=$name,OS=$version"
 
 # warm up
 # - xcrun instruments -w 'iPhone 13 Pro (16.0)' || sleep 15
-- xcrun instruments -w '$name ($version)' || sleep 15
+#- xcrun instruments -w '$name ($version)' || sleep 15
 # create new device
 # NEW_DEVICE=$(xcrun simctl create "Test Phone" "iPhone XR" iOS13.0)
 # NEW_DEVICE=$(xcrun simctl create "Test iPhone" "$name" iOS$version)
 
 # Boot a simulator
-xcrun simctl boot "$NEW_DEVICE"
+#xcrun simctl boot "$NEW_DEVICE"
 
 # clean build test
 xcodebuild clean build test \
@@ -36,5 +36,5 @@ xcodebuild clean build test \
            -destination "$destination" \
            CODE_SIGN_IDENTITY="" \
            CODE_SIGNING_REQUIRED=NO \
-           ONLY_ACTIVE_ARCH=YES 
+           ONLY_ACTIVE_ARCH=YES \
            | xcpretty
