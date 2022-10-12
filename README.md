@@ -42,6 +42,8 @@ UI Components are implemented with `SwiftUI`. Previews are designed to show rend
 
 English and Russian localizations are tested.
 
+![Modules: top-level view](./Docs/loading_empty_list_localized.png)
+
 ## Tests
 
 Extensive use of `TDD` and test `DSL` to decouple tests from implementation details.
