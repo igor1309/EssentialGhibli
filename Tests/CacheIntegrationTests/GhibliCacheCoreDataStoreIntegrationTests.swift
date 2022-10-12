@@ -6,7 +6,7 @@
 //
 
 import CoreData
-import GhibliDomain
+import Domain
 import Cache
 import CacheInfra
 import XCTest

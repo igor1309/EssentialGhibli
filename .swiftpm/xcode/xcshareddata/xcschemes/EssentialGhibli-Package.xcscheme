@@ -238,20 +238,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "GhibliDomain"
-               BuildableName = "GhibliDomain"
-               BlueprintName = "GhibliDomain"
-               ReferencedContainer = "container:">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "EssentialGhibli_CacheInfra"
                BuildableName = "EssentialGhibli_CacheInfra"
                BlueprintName = "EssentialGhibli_CacheInfra"
@@ -283,6 +269,20 @@
                BlueprintIdentifier = "Cache"
                BuildableName = "Cache"
                BlueprintName = "Cache"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Domain"
+               BuildableName = "Domain"
+               BlueprintName = "Domain"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>

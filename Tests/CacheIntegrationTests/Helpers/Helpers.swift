@@ -5,7 +5,7 @@
 //  Created by Igor Malyarov on 11.10.2022.
 //
 
-import GhibliDomain
+import Domain
 import CacheInfra
 import Foundation
 
