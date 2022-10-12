@@ -12,9 +12,11 @@ Open `App/EssentialGhibli.xcodeproj` with Xcode 14.x and select `EssentialGhibli
 
 ## Modules
 
-Hyper-modular architecture with decoupled components.
+Hyper-modular architecture
 
-![Modules: top-level view](./Docs/modules.png)
+![Modules: top-level view](./Docs/structure.png)
+
+with decoupled components
 
 ![Components](./Docs/components.png)
 
