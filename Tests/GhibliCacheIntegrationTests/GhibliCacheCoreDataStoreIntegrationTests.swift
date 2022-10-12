@@ -8,7 +8,7 @@
 import CoreData
 import GhibliDomain
 import GhibliCache
-import GhibliCacheInfra
+import CacheInfra
 import XCTest
 
 final class GhibliCacheCoreDataStoreIntegrationTests: XCTestCase {

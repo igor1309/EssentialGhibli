@@ -6,7 +6,7 @@
 //
 
 import GhibliDomain
-import GhibliCacheInfra
+import CacheInfra
 import Foundation
 
 extension GhibliFilm {

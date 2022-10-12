@@ -6,7 +6,7 @@
 //
 
 import GhibliCache
-import GhibliCacheInfra
+import CacheInfra
 import XCTest
 
 final class CoreDataFilmImageDataStoreTests: XCTestCase {

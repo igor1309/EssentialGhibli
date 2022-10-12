@@ -6,7 +6,7 @@
 //
 
 import GhibliCache
-import GhibliCacheInfra
+import CacheInfra
 import XCTest
 
 extension FailableDeleteFeedStoreSpecs where Self: XCTestCase {

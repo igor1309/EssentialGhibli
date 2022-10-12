@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import GhibliCacheInfra
+import CacheInfra
 
 func uniqueFilmFeed() -> [LocalFilm] {
     [makeLocalFilm(), makeLocalFilm()]

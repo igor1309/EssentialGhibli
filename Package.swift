@@ -13,7 +13,7 @@ let package = Package(
         .library(name: "GenericResourceView", targets: ["GenericResourceView"]),
         .library(name: "GhibliAPI", targets: ["GhibliAPI"]),
         .library(name: "GhibliCache", targets: ["GhibliCache"]),
-        .library(name: "GhibliCacheInfra", targets: ["GhibliCacheInfra"]),
+        .library(name: "CacheInfra", targets: ["CacheInfra"]),
         .library(name: "GhibliDetailFeature", targets: ["GhibliDetailFeature"]),
         .library(name: "GhibliDomain", targets: ["GhibliDomain"]),
         .library(name: "GhibliListFeature", targets: ["GhibliListFeature"]),
@@ -58,14 +58,14 @@ let package = Package(
             dependencies: ["GhibliCache"]
         ),
         .target(
-            name: "GhibliCacheInfra",
+            name: "CacheInfra",
             dependencies: ["GhibliCache"]
         ),
         .testTarget(
-            name: "GhibliCacheInfraTests",
+            name: "CacheInfraTests",
             dependencies: [
                 "GhibliCache",
-                "GhibliCacheInfra"
+                "CacheInfra"
             ]
         ),
         .target(name: "GhibliDetailFeature"),
@@ -81,7 +81,7 @@ let package = Package(
             name: "GhibliCacheIntegrationTests",
             dependencies: [
                 "GhibliCache",
-                "GhibliCacheInfra",
+                "CacheInfra",
                 "GhibliDomain"
             ]
         ),
