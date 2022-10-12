@@ -8,7 +8,22 @@ Under the hood it is a project with hyper-modular architecture with decoupled co
 
 ## Instructions
 
-Open `App/EssentialGhibli.xcodeproj` and select `EssentialGhibli` scheme to run the app in the simulator. 
+Open `App/EssentialGhibli.xcodeproj` with Xcode 14.x and select `EssentialGhibli` scheme to run the app in the simulator.
+
+### Swift 5.7
+
+Primary associated type feature of Swift 5.7 is used to simplify func signatures in test assertions (`Feed Store Specs` in `CacheInfraTests`):
+
+before:
+```swift
+func assert<Store>(on sut: Store, file: StaticString = #file, line: UInt = #line) where Store: FeedStore, Store.Item == LocalFilm {
+```
+
+after:
+
+```swift
+func assert(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
+```
 
 ## Modules
 
