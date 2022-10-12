@@ -102,6 +102,10 @@ let package = Package(
             ]
         ),
         .target(name: "Presentation"),
+        .testTarget(
+            name: "PresentationTests",
+            dependencies: ["Presentation"]
+        ),
         .target(name: "SharedAPI"),
         .target(
             name: "SharedAPIInfra",
