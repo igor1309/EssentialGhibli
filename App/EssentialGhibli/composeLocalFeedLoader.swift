@@ -14,7 +14,7 @@ func composeLocalFeedLoader () {
     let storeURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
         .appendingPathComponent("feed-store.store")
     let store = CodableFeedStore(storeURL: storeURL)
-    let loader = LocalFeedLoader(
+    let loader = FeedCache(
         store: store,
         toLocal: LocalFilm.init(film:),
         fromLocal: GhibliFilm.init(local:)
