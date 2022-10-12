@@ -8,7 +8,7 @@ Under the hood it is a project with hyper-modular architecture with decoupled co
 
 ## Instructions
 
-Open `App/EssentialGhibli.xcodeproj` with Xcode 14.x and select `EssentialGhibli` scheme to run the app in the simulator. See [Swift 5.7 notes](#swift-5.7) for details.
+Open `App/EssentialGhibli.xcodeproj` with Xcode 14.x and select `EssentialGhibli` scheme to run the app in the simulator. See [Swift 5.7 notes](#swift-57) for details.
 
 ## Modules
 
