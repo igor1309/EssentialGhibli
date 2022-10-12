@@ -7,7 +7,7 @@
 
 import CoreData
 import GhibliDomain
-import GhibliCache
+import Cache
 import CacheInfra
 import XCTest
 

@@ -5,7 +5,7 @@
 //  Created by Igor Malyarov on 10.10.2022.
 //
 
-import GhibliCache
+import Cache
 import Foundation
 
 public final class CodableFeedStore: FeedStore {

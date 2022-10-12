@@ -5,7 +5,7 @@
 //  Created by Igor Malyarov on 12.10.2022.
 //
 
-import GhibliCache
+import Cache
 import CoreData
 
 extension CoreDataFeedStore: FilmImageDataStore {

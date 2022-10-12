@@ -5,7 +5,7 @@
 //  Created by Igor Malyarov on 11.10.2022.
 //
 
-import GhibliCache
+import Cache
 import XCTest
 
 final class CacheFilmImageDataUseCaseTests: XCTestCase, ImageDataCacheUseCase {

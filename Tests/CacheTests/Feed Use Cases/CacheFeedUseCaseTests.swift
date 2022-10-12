@@ -1,14 +1,14 @@
 //
-//  ValidateFeedCacheUseCaseTests.swift
+//  CacheFeedUseCaseTests.swift
 //  
 //
 //  Created by Igor Malyarov on 09.10.2022.
 //
 
-import GhibliCache
+import Cache
 import XCTest
 
-final class ValidateFeedCacheUseCaseTests: XCTestCase {
+final class CacheFeedUseCaseTests: XCTestCase {
     
     func test_init_shouldNotMessageStoreOnInit() throws {
         let (_, store) = makeSUT()
@@ -16,97 +16,71 @@ final class ValidateFeedCacheUseCaseTests: XCTestCase {
         XCTAssert(store.messages.isEmpty)
     }
     
-    func test_validateCache_shouldDeleteCacheOnRetrievalError() throws {
-        let (sut, store) = makeSUT(retrieveError: anyError())
-        
-        try? sut.validateCache()
-        
-        XCTAssertEqual(store.messages, [.retrieve, .deleteCachedFeed])
-    }
-    
-    func test_validateCache_shouldNotDeleteCacheOnEmptyCache() throws {
+    func test_save_shouldRequestCacheDeletion() throws {
+        let feed = uniqueItemFeed()
+        let timestamp = Date.distantPast
         let (sut, store) = makeSUT()
         
-        store.stubEmptyRetrieval()
-        try sut.validateCache()
+        try sut.save(feed: feed.testItems, timestamp: timestamp)
         
-        XCTAssertEqual(store.messages, [.retrieve])
+        XCTAssertEqual(store.messages, [.deleteCachedFeed, .insert(feed: feed.local, timestamp: timestamp)])
     }
     
-    func test_validateCache_shouldNotDeleteNonExpiredCache() throws {
-        let (sut, store) = makeSUT() { _, _ in true }
-        
-        try sut.validateCache()
-        
-        XCTAssertEqual(store.messages, [.retrieve])
-    }
-    
-    func test_validateCache_shouldDeleteExpiredCache() throws {
-        let (sut, store) = makeSUT() { _, _ in false }
-        
-        try sut.validateCache()
-        
-        XCTAssertEqual(store.messages, [.retrieve, .deleteCachedFeed])
-    }
-    
-    func test_validateCache_shouldFailOnDeletionErrorOfFailedRetrieval() throws {
-        let (sut, store) = makeSUT() { _, _ in false }
+    func test_save_shouldNotRequestCacheInsertionOnDeletionError() throws {
+        let feed = uniqueItemFeed()
+        let (sut, store) = makeSUT()
         
         store.stubDeletion(with: anyError())
+        try? sut.save(feed: feed.testItems, timestamp: .now)
+        
+        XCTAssertEqual(store.messages, [.deleteCachedFeed])
+    }
+    
+    func test_save_shouldRequestNewCacheInsertionWithTimestampOnSuccessfulDeletion() throws {
+        let feed = uniqueItemFeed()
+        let timestamp = Date.distantPast
+        let (sut, store) = makeSUT()
+        
+        store.stubRetrieval(with: feed.local, timestamp: timestamp)
+        try sut.save(feed: feed.testItems, timestamp: timestamp)
+        
+        XCTAssertEqual(store.messages, [.deleteCachedFeed, .insert(feed: feed.local, timestamp: timestamp)])
+    }
+    
+    func test_save_shouldFailOnDeletionError() throws {
+        let (sut, store) = makeSUT()
+        
+        store.stubDeletion(with: anyError())
+        
         do {
-            try sut.validateCache()
+            try sut.save(feed: [], timestamp: .now)
             XCTFail("Expected error.")
         } catch let error as AnyError {
             XCTAssertEqual(error, AnyError())
         } catch {
-            XCTFail("Expected \"AnyError\", got \(error).")
+            XCTFail("Expected AnyError, got \(error).")
         }
     }
     
-    func test_validateCache_shouldSucceedOnSuccessfulDeletionOfFailedRetrieval() throws {
-        let (sut, store) = makeSUT() { _, _ in false }
-        
-        store.stubDeletion(with: .success(()))
-        try sut.validateCache()
-        
-        XCTAssertEqual(store.messages, [.retrieve, .deleteCachedFeed])
-    }
-    
-    func test_validateCache_shouldSucceedOnEmptyCache() {
+    func test_save_shouldFailOnInsertionError() throws {
         let (sut, store) = makeSUT()
-
-        store.stubEmptyRetrieval()
-
-        XCTAssertNoThrow(try sut.validateCache())
+        
+        store.stubInsertion(with: .failure(anyError()))
+        
+        do {
+            try sut.save(feed: [], timestamp: .now)
+            XCTFail("Expected error.")
+        } catch let error as AnyError {
+            XCTAssertEqual(error, AnyError())
+        } catch {
+            XCTFail("Expected AnyError, got \(error).")
+        }
     }
     
-    func test_validateCache_shouldSucceedOnNonExpiredCache() {
+    func test_save_shouldSucceedOnSuccessfulCacheInsertion() throws {
         let (sut, _) = makeSUT()
         
-        XCTAssertNoThrow(try sut.validateCache())
-    }
-    
-    func test_validateCache_shouldFailOnDeletionErrorOfExpiredCache() throws {
-        let (sut, store) = makeSUT() { _, _ in false }
-        
-        store.stubDeletion(with: anyError())
-        
-        do {
-            try sut.validateCache()
-            XCTFail("Expected error.")
-        } catch let error as AnyError {
-            XCTAssertEqual(error, AnyError())
-        } catch {
-            XCTFail("Expected \"AnyError\", got \(error).")
-        }
-    }
-    
-    func test_validateCache_shouldSucceedOnSuccessfulDeletionOfExpiredCache() throws {
-        let (sut, store) = makeSUT() { _, _ in false }
-        
-        store.stubDeletion(with: .success(()))
-        
-        XCTAssertNoThrow(try sut.validateCache())
+        XCTAssertNoThrow(try sut.save(feed: [], timestamp: .now))
     }
     
     // MARK: - Helpers
