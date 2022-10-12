@@ -5,7 +5,7 @@
 //  Created by Igor Malyarov on 07.10.2022.
 //
 
-@testable import GhibliListFeature
+@testable import ListFeature
 import XCTest
 
 final class GhibliListLocalizationTests: XCTestCase {

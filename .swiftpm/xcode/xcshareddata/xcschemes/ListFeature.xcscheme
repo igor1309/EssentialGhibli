@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "GhibliListFeature"
-               BuildableName = "GhibliListFeature"
-               BlueprintName = "GhibliListFeature"
+               BlueprintIdentifier = "ListFeature"
+               BuildableName = "ListFeature"
+               BlueprintName = "ListFeature"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -24,8 +24,8 @@
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
-      selectedDebuggerIdentifier = ""
-      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       codeCoverageEnabled = "YES">
       <Testables>
@@ -35,9 +35,9 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "GhibliListFeatureTests"
-               BuildableName = "GhibliListFeatureTests"
-               BlueprintName = "GhibliListFeatureTests"
+               BlueprintIdentifier = "ListFeatureTests"
+               BuildableName = "ListFeatureTests"
+               BlueprintName = "ListFeatureTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
@@ -63,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "GhibliListFeature"
-            BuildableName = "GhibliListFeature"
-            BlueprintName = "GhibliListFeature"
+            BlueprintIdentifier = "ListFeature"
+            BuildableName = "ListFeature"
+            BlueprintName = "ListFeature"
             ReferencedContainer = "container:">
          </BuildableReference>
       </MacroExpansion>

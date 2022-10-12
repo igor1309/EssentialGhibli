@@ -16,7 +16,7 @@ let package = Package(
         .library(name: "DetailFeature", targets: ["DetailFeature"]),
         .library(name: "Domain", targets: ["Domain"]),
         .library(name: "GenericResourceView", targets: ["GenericResourceView"]),
-        .library(name: "GhibliListFeature", targets: ["GhibliListFeature"]),
+        .library(name: "ListFeature", targets: ["ListFeature"]),
         .library(name: "GhibliRowFeature", targets: ["GhibliRowFeature"]),
         .library(name: "Presentation", targets: ["Presentation"]),
         .library(name: "SharedAPI", targets: ["SharedAPI"]),
@@ -85,11 +85,11 @@ let package = Package(
                 "Domain"
             ]
         ),
-        .target(name: "GhibliListFeature"),
+        .target(name: "ListFeature"),
         .testTarget(
-            name: "GhibliListFeatureTests",
+            name: "ListFeatureTests",
             dependencies: [
-                "GhibliListFeature",
+                "ListFeature",
                 .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
             ]
         ),
