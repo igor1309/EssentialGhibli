@@ -15,7 +15,7 @@ extension CoreDataFeedStore: FilmImageDataStore {
     }
     
     public func insert(_ data: Data, for url: URL) throws {
-        fatalError("Unimplemented")
+        //fatalError("Unimplemented")
     }
 }
 
@@ -25,6 +25,16 @@ final class CoreDataFilmImageDataStoreTests: XCTestCase {
         let sut = makeSUT()
         
         expect(sut, toRetrieve: .notFound, for: .anyURL)
+    }
+    
+    func test_retrieveFilmImageData_shouldDeliverNotFoundWhenStoredDataURLDoesNotMatch() {
+        let url = URL.anyURL
+        let otherURL = URL.otherURL
+        let sut = makeSUT()
+        
+        insert(.anyData, for: url, into: sut)
+        
+        expect(sut, toRetrieve: .notFound, for: otherURL)
     }
     
     // MARK: - Helpers
@@ -59,6 +69,26 @@ final class CoreDataFilmImageDataStoreTests: XCTestCase {
         default:
             XCTFail("Expected \(expectedResult), got \(retrievedResult) instead.", file: file, line: line)
         }
+    }
+    
+    private func insert(
+        _ data: Data,
+        for url: URL,
+        into sut: CoreDataFeedStore,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        do {
+            let film = makeLocalFilm()
+            try sut.insert([film], timestamp: .now)
+            try sut.insert(data, for: url)
+        } catch {
+            XCTFail("Got \(error.localizedDescription) while inserting \(data).")
+        }
+    }
+    
+    private func makeLocalFilm() -> LocalFilm {
+        .init(id: .init(), title: "a title", description: "a description", imageURL: .anyURL, filmURL: .otherURL)
     }
 }
 
