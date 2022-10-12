@@ -78,7 +78,7 @@ let package = Package(
         ),
         .target(name: "GhibliDomain"),
         .testTarget(
-            name: "GhibliCacheIntegrationTests",
+            name: "CacheIntegrationTests",
             dependencies: [
                 "Cache",
                 "CacheInfra",

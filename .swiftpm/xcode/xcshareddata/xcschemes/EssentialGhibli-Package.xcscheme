@@ -373,18 +373,6 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "GhibliCacheIntegrationTests"
-               BuildableName = "GhibliCacheIntegrationTests"
-               BlueprintName = "GhibliCacheIntegrationTests"
-               ReferencedContainer = "container:">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES"
-            testExecutionOrdering = "random">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "PresentationTests"
                BuildableName = "PresentationTests"
                BlueprintName = "PresentationTests"
@@ -412,6 +400,18 @@
                BlueprintIdentifier = "CacheTests"
                BuildableName = "CacheTests"
                BlueprintName = "CacheTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CacheIntegrationTests"
+               BuildableName = "CacheIntegrationTests"
+               BlueprintName = "CacheIntegrationTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
