@@ -6,6 +6,7 @@
 //
 
 import Combine
+// keep @testable to get access to Localizable strings
 @testable import GenericResourceView
 import Presentation
 import SwiftUI

@@ -9,7 +9,7 @@ import Combine
 import Presentation
 import SwiftUI
 
-struct LoadResourceView<
+public struct LoadResourceView<
     Resource,
     ResourceViewModel,
     ResourceView,
@@ -19,7 +19,7 @@ where ResourceView: View,
       ResourceLoadingView: View,
       ResourceErrorView: View {
     
-    typealias ViewModel = LoadResourceViewModel<Resource, ResourceViewModel>
+    public typealias ViewModel = LoadResourceViewModel<Resource, ResourceViewModel>
     
     @ObservedObject private var viewModel: ViewModel
     
@@ -27,7 +27,7 @@ where ResourceView: View,
     private let loadingView: (LoadingState) -> ResourceLoadingView
     private let errorView: (ErrorState) -> ResourceErrorView
     
-    init(
+    public init(
         viewModel: ViewModel,
         resourceView: @escaping (ResourceViewModel?) -> ResourceView,
         loadingView: @escaping (LoadingState) -> ResourceLoadingView,
@@ -39,7 +39,7 @@ where ResourceView: View,
         self.errorView = errorView
     }
     
-    var body: some View {
+    public var body: some View {
         VStack {
             errorView(viewModel.errorState)
             loadingView(viewModel.loadingState)
@@ -48,7 +48,7 @@ where ResourceView: View,
     }
 }
 
-final class LoadResourceViewModel<Resource, ResourceViewModel>: ObservableObject {
+public final class LoadResourceViewModel<Resource, ResourceViewModel>: ObservableObject {
     
     @Published private(set) var errorState: ErrorState
     @Published private(set) var loadingState: LoadingState
@@ -58,7 +58,7 @@ final class LoadResourceViewModel<Resource, ResourceViewModel>: ObservableObject
     private let mapper: (Resource) throws -> ResourceViewModel
     private var cancellable: Cancellable?
     
-    init(
+    public init(
         errorState: ErrorState = .noError,
         loadingState: LoadingState = .init(isLoading: false),
         resourceViewModel: ResourceViewModel? = nil,
