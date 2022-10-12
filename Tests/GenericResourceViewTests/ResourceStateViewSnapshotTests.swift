@@ -1,5 +1,5 @@
 //
-//  GenericResourceViewTests.swift
+//  ResourceStateViewSnapshotTests.swift
 //  
 //
 //  Created by Igor Malyarov on 07.10.2022.
@@ -10,7 +10,7 @@ import Presentation
 import SwiftUI
 import XCTest
 
-final class ResourceStateViewTests: XCTestCase {
+final class ResourceStateViewSnapshotTests: XCTestCase {
     let record = false
     
     func test_snapshotLoadableResourceView_loading() {
