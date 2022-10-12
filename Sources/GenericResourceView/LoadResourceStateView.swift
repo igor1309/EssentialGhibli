@@ -9,14 +9,14 @@ import Combine
 import Presentation
 import SwiftUI
 
-struct LoadResourceStateView<Resource, ResourceView>: View
+public struct LoadResourceStateView<Resource, ResourceView>: View
 where ResourceView: View {
     
     @ObservedObject private var viewModel: ViewModel
     
     private let resourceView: (Resource) -> ResourceView
     
-    init(
+    public init(
         viewModel: ViewModel,
         resourceView: @escaping (Resource) -> ResourceView
     ) {
@@ -24,7 +24,7 @@ where ResourceView: View {
         self.resourceView = resourceView
     }
     
-    var body: some View {
+    public var body: some View {
         ResourceStateView(
             resourceState: viewModel.resourceState,
             resourceView: resourceView
@@ -34,13 +34,13 @@ where ResourceView: View {
 }
 
 extension LoadResourceStateView {
-    final class ViewModel: ObservableObject {
+    public final class ViewModel: ObservableObject {
         @Published private(set) var resourceState: ResourceState<Resource, Error>
         
         private let publisher: AnyPublisher<Resource, Error>
         private var cancellable: AnyCancellable?
         
-        init(
+        public init(
             initialResourceState: ResourceState<Resource, Error>,
             publisher: AnyPublisher<Resource, Error>
         ) {

@@ -6,7 +6,7 @@
 //
 
 import Combine
-@testable import GenericResourceView
+import GenericResourceView
 import SwiftUI
 import XCTest
 
