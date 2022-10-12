@@ -9,16 +9,6 @@ import GhibliCache
 import GhibliCacheInfra
 import XCTest
 
-extension CoreDataFeedStore: FilmImageDataStore {
-    public func retrieve(dataForURL url: URL) throws -> Data? {
-        nil
-    }
-    
-    public func insert(_ data: Data, for url: URL) throws {
-        //fatalError("Unimplemented")
-    }
-}
-
 final class CoreDataFilmImageDataStoreTests: XCTestCase {
     
     func test_retrieveFilmImageData_shouldDeliverNotFoundWhenEmpty() {
@@ -35,6 +25,28 @@ final class CoreDataFilmImageDataStoreTests: XCTestCase {
         insert(.anyData, for: url, into: sut)
         
         expect(sut, toRetrieve: .notFound, for: otherURL)
+    }
+    
+    func test_retrieveFilmImageData_shouldDeliverDataFromStoredImageDataOnMatchingURL() {
+        let url = URL.anyURL
+        let data = Data.anyData
+        let sut = makeSUT()
+        
+        insert(data, for: url, into: sut)
+        
+        expect(sut, toRetrieve: .found(data), for: url)
+    }
+    
+    func test_retrieveFilmImageData_shouldDeliverLastInsertedValue() {
+        let url = URL.anyURL
+        let firstData = Data.anyData
+        let lastData = Data.anotherData
+        let sut = makeSUT()
+        
+        insert(firstData, for: url, into: sut)
+        insert(lastData, for: url, into: sut)
+        
+        expect(sut, toRetrieve: .found(lastData), for: url)
     }
     
     // MARK: - Helpers
@@ -94,6 +106,7 @@ final class CoreDataFilmImageDataStoreTests: XCTestCase {
 
 private extension CoreDataFilmImageDataStoreTests.RetrieveResult {
     static let notFound: Self = .success(.none)
+    static func found(_ data: Data) -> Self { .success(data) }
 }
 
 private extension URL {

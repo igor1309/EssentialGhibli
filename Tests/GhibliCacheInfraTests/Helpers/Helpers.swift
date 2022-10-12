@@ -30,4 +30,5 @@ func anyError() -> Error {
 
 extension Data {
     static let anyData = Data("any data".utf8)
+    static let anotherData = Data("another data".utf8)
 }

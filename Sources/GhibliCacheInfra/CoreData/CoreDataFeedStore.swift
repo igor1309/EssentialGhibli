@@ -12,7 +12,7 @@ public final class CoreDataFeedStore {
     private static let model = NSManagedObjectModel.with(name: modelName, in: .module)
     
     private let container: NSPersistentContainer
-    let context: NSManagedObjectContext
+    private let context: NSManagedObjectContext
     
     enum StoreError: Error {
         case modelNotFound
@@ -36,6 +36,15 @@ public final class CoreDataFeedStore {
         }
     }
     
+    func performSync<T>(
+        action: (NSManagedObjectContext) -> Result<T, Error>
+    ) throws -> T {
+        let context = self.context
+        var result: Result<T, Error>!
+        context.performAndWait { result = action(context) }
+        return try result.get()
+    }
+    
     private func cleanUpReferencesToPersistentStores() {
         context.performAndWait {
             let coordinator = self.container.persistentStoreCoordinator
@@ -45,24 +54,6 @@ public final class CoreDataFeedStore {
     
     deinit {
         cleanUpReferencesToPersistentStores()
-    }
-}
-
-extension NSPersistentContainer {
-    static func load(
-        name: String,
-        model: NSManagedObjectModel,
-        url: URL
-    ) throws -> NSPersistentContainer {
-        let description = NSPersistentStoreDescription(url: url)
-        let container = NSPersistentContainer(name: name, managedObjectModel: model)
-        container.persistentStoreDescriptions = [description]
-        
-        var loadError: Swift.Error?
-        container.loadPersistentStores { loadError = $1 }
-        try loadError.map { throw $0 }
-        
-        return container
     }
 }
 
