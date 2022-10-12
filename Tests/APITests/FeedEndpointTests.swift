@@ -17,4 +17,14 @@ final class FeedEndpointTests: XCTestCase {
 
         XCTAssertEqual(received, expected)
     }
+    
+    func test_film_endpointURL() {
+        let baseURL = URL(string: "http://base-url.com")!
+
+        let filmID = "2baf70d1-42bb-4437-b551-e5fed5a87abe"
+        let received = FeedEndpoint.film(filmID: filmID).url(baseURL: baseURL)
+        let expected = URL(string: "http://base-url.com/films/2baf70d1-42bb-4437-b551-e5fed5a87abe")!
+
+        XCTAssertEqual(received, expected)
+    }
 }
