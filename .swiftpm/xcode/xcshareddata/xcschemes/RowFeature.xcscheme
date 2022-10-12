@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "GhibliRowFeature"
-               BuildableName = "GhibliRowFeature"
-               BlueprintName = "GhibliRowFeature"
+               BlueprintIdentifier = "RowFeature"
+               BuildableName = "RowFeature"
+               BlueprintName = "RowFeature"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -35,9 +35,9 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "GhibliRowFeatureTests"
-               BuildableName = "GhibliRowFeatureTests"
-               BlueprintName = "GhibliRowFeatureTests"
+               BlueprintIdentifier = "RowFeatureTests"
+               BuildableName = "RowFeatureTests"
+               BlueprintName = "RowFeatureTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
@@ -63,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "GhibliRowFeature"
-            BuildableName = "GhibliRowFeature"
-            BlueprintName = "GhibliRowFeature"
+            BlueprintIdentifier = "RowFeature"
+            BuildableName = "RowFeature"
+            BlueprintName = "RowFeature"
             ReferencedContainer = "container:">
          </BuildableReference>
       </MacroExpansion>

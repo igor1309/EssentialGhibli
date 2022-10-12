@@ -17,8 +17,8 @@ let package = Package(
         .library(name: "Domain", targets: ["Domain"]),
         .library(name: "GenericResourceView", targets: ["GenericResourceView"]),
         .library(name: "ListFeature", targets: ["ListFeature"]),
-        .library(name: "GhibliRowFeature", targets: ["GhibliRowFeature"]),
         .library(name: "Presentation", targets: ["Presentation"]),
+        .library(name: "RowFeature", targets: ["RowFeature"]),
         .library(name: "SharedAPI", targets: ["SharedAPI"]),
         .library(name: "SharedAPIInfra", targets: ["SharedAPIInfra"])
     ],
@@ -56,6 +56,14 @@ let package = Package(
                 "CacheInfra"
             ]
         ),
+        .testTarget(
+            name: "CacheIntegrationTests",
+            dependencies: [
+                "Cache",
+                "CacheInfra",
+                "Domain"
+            ]
+        ),
         .target(name: "DetailFeature"),
         .testTarget(
             name: "DetailFeatureTests",
@@ -77,14 +85,6 @@ let package = Package(
                 .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
             ]
         ),
-        .testTarget(
-            name: "CacheIntegrationTests",
-            dependencies: [
-                "Cache",
-                "CacheInfra",
-                "Domain"
-            ]
-        ),
         .target(name: "ListFeature"),
         .testTarget(
             name: "ListFeatureTests",
@@ -93,18 +93,18 @@ let package = Package(
                 .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
             ]
         ),
-        .target(name: "GhibliRowFeature"),
-        .testTarget(
-            name: "GhibliRowFeatureTests",
-            dependencies: [
-                "GhibliRowFeature",
-                .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
-            ]
-        ),
         .target(name: "Presentation"),
         .testTarget(
             name: "PresentationTests",
             dependencies: ["Presentation"]
+        ),
+        .target(name: "RowFeature"),
+        .testTarget(
+            name: "RowFeatureTests",
+            dependencies: [
+                "RowFeature",
+                .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
+            ]
         ),
         .target(name: "SharedAPI"),
         .target(

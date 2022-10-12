@@ -14,20 +14,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EssentialGhibli_GhibliListFeature"
-               BuildableName = "EssentialGhibli_GhibliListFeature"
-               BlueprintName = "EssentialGhibli_GhibliListFeature"
-               ReferencedContainer = "container:">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "EssentialGhibli_GenericResourceView"
                BuildableName = "EssentialGhibli_GenericResourceView"
                BlueprintName = "EssentialGhibli_GenericResourceView"
@@ -45,20 +31,6 @@
                BlueprintIdentifier = "GenericResourceView"
                BuildableName = "GenericResourceView"
                BlueprintName = "GenericResourceView"
-               ReferencedContainer = "container:">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "GhibliRowFeature"
-               BuildableName = "GhibliRowFeature"
-               BlueprintName = "GhibliRowFeature"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -115,20 +87,6 @@
                BlueprintIdentifier = "GenericResourceViewTests"
                BuildableName = "GenericResourceViewTests"
                BlueprintName = "GenericResourceViewTests"
-               ReferencedContainer = "container:">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "GhibliRowFeatureTests"
-               BuildableName = "GhibliRowFeatureTests"
-               BlueprintName = "GhibliRowFeatureTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -244,6 +202,20 @@
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "RowFeature"
+               BuildableName = "RowFeature"
+               BlueprintName = "RowFeature"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -262,18 +234,6 @@
                BlueprintIdentifier = "GenericResourceViewTests"
                BuildableName = "GenericResourceViewTests"
                BlueprintName = "GenericResourceViewTests"
-               ReferencedContainer = "container:">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES"
-            testExecutionOrdering = "random">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "GhibliRowFeatureTests"
-               BuildableName = "GhibliRowFeatureTests"
-               BlueprintName = "GhibliRowFeatureTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
@@ -373,6 +333,18 @@
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "RowFeatureTests"
+               BuildableName = "RowFeatureTests"
+               BlueprintName = "RowFeatureTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -392,15 +364,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EssentialGhibli_GhibliListFeature"
-            BuildableName = "EssentialGhibli_GhibliListFeature"
-            BlueprintName = "EssentialGhibli_GhibliListFeature"
-            ReferencedContainer = "container:">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
