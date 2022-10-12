@@ -5,7 +5,7 @@
 //  Created by Igor Malyarov on 07.10.2022.
 //
 
-import GhibliAPI
+import API
 import XCTest
 
 final class FeedEndpointTests: XCTestCase {

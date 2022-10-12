@@ -10,12 +10,12 @@ let package = Package(
         .iOS(.v15)
     ],
     products: [
-        .library(name: "GenericResourceView", targets: ["GenericResourceView"]),
-        .library(name: "GhibliAPI", targets: ["GhibliAPI"]),
+        .library(name: "API", targets: ["API"]),
         .library(name: "Cache", targets: ["Cache"]),
         .library(name: "CacheInfra", targets: ["CacheInfra"]),
-        .library(name: "GhibliDetailFeature", targets: ["GhibliDetailFeature"]),
         .library(name: "Domain", targets: ["Domain"]),
+        .library(name: "GenericResourceView", targets: ["GenericResourceView"]),
+        .library(name: "GhibliDetailFeature", targets: ["GhibliDetailFeature"]),
         .library(name: "GhibliListFeature", targets: ["GhibliListFeature"]),
         .library(name: "GhibliRowFeature", targets: ["GhibliRowFeature"]),
         .library(name: "Presentation", targets: ["Presentation"]),
@@ -30,24 +30,12 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "GenericResourceView",
-            dependencies: ["Presentation"]
-        ),
-        .testTarget(
-            name: "GenericResourceViewTests",
-            dependencies: [
-                "GenericResourceView",
-                "Presentation",
-                .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
-            ]
-        ),
-        .target(
-            name: "GhibliAPI",
+            name: "API",
             dependencies: ["Domain"]
         ),
         .testTarget(
-            name: "GhibliAPITests",
-            dependencies: ["GhibliAPI"]
+            name: "APITests",
+            dependencies: ["API"]
         ),
         .target(
             name: "Cache",
@@ -68,6 +56,19 @@ let package = Package(
                 "CacheInfra"
             ]
         ),
+        .target(name: "Domain"),
+        .target(
+            name: "GenericResourceView",
+            dependencies: ["Presentation"]
+        ),
+        .testTarget(
+            name: "GenericResourceViewTests",
+            dependencies: [
+                "GenericResourceView",
+                "Presentation",
+                .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
+            ]
+        ),
         .target(name: "GhibliDetailFeature"),
         .testTarget(
             name: "GhibliDetailFeatureTests",
@@ -76,7 +77,6 @@ let package = Package(
                 .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
             ]
         ),
-        .target(name: "Domain"),
         .testTarget(
             name: "CacheIntegrationTests",
             dependencies: [

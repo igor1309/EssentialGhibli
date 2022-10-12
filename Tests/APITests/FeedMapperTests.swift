@@ -6,7 +6,7 @@
 //
 
 import Domain
-import GhibliAPI
+import API
 import XCTest
 
 final class FeedMapperTests: XCTestCase {

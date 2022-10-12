@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "GhibliDomain"
-               BuildableName = "GhibliDomain"
-               BlueprintName = "GhibliDomain"
+               BlueprintIdentifier = "API"
+               BuildableName = "API"
+               BlueprintName = "API"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -24,10 +24,23 @@
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
-      selectedDebuggerIdentifier = ""
-      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "APITests"
+               BuildableName = "APITests"
+               BlueprintName = "APITests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -50,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "GhibliDomain"
-            BuildableName = "GhibliDomain"
-            BlueprintName = "GhibliDomain"
+            BlueprintIdentifier = "API"
+            BuildableName = "API"
+            BlueprintName = "API"
             ReferencedContainer = "container:">
          </BuildableReference>
       </MacroExpansion>
