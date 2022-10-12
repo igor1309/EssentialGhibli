@@ -112,28 +112,8 @@ final class LoadResourceViewSnapshotTests: XCTestCase {
     }
     
     let failingLoader: () -> AnyPublisher<Resource, Error> = {
-        Fail(error: APIError())
+        Fail(error: anyError())
             .delay(for: 0.02, scheduler: DispatchQueue.main)
             .eraseToAnyPublisher()
-    }
-    
-    private func pause(
-        for interval: TimeInterval = 0.02,
-        file: StaticString = #file,
-        line: UInt = #line
-    ) {
-        let exp = expectation(description: "Pause for \(interval)")
-        DispatchQueue.main.asyncAfter(deadline: .now() + interval) {
-            exp.fulfill()
-        }
-        wait(for: [exp], timeout: interval + 0.01)
-    }
-}
-
-private struct APIError: Error {}
-
-extension APIError: LocalizedError {
-    var errorDescription: String? {
-        "APIError: some unknown error occurred."
     }
 }
