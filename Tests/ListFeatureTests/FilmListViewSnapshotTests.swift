@@ -1,5 +1,5 @@
 //
-//  ListFeatureSnapshotTests.swift
+//  FilmListViewSnapshotTests.swift
 //  
 //
 //  Created by Igor Malyarov on 06.10.2022.
@@ -9,32 +9,32 @@ import ListFeature
 import SwiftUI
 import XCTest
 
-final class ListFeatureSnapshotTests: XCTestCase {
+final class FilmListViewSnapshotTests: XCTestCase {
     let record = false
     
-    func test_snapshotGhibliListView_loading() {
-        let view = ghibliListView(.loading)
+    func test_snapshot_FilmListView_loading() {
+        let view = filmListView(.loading)
         
         assert(snapshot: view, locale: .en_US, record: record)
         assert(snapshot: view, locale: .ru_RU, record: record)
     }
     
-    func test_snapshotGhibliListView_empty() {
-        let view = ghibliListView(.empty)
+    func test_snapshot_FilmListView_empty() {
+        let view = filmListView(.empty)
         
         assert(snapshot: view, locale: .en_US, record: record)
         assert(snapshot: view, locale: .ru_RU, record: record)
     }
     
-    func test_snapshotGhibliListView_list() {
-        let view = ghibliListView(.list([.castleInTheSky, .kikisDeliveryService]))
+    func test_snapshot_FilmListView_list() {
+        let view = filmListView(.list([.castleInTheSky, .kikisDeliveryService]))
         
         assert(snapshot: view, locale: .en_US, record: record)
         assert(snapshot: view, locale: .ru_RU, record: record)
     }
     
-    func test_snapshotGhibliListView_error() {
-        let view = ghibliListView(.error(anyError()))
+    func test_snapshot_FilmListView_error() {
+        let view = filmListView(.error(anyError()))
         
         assert(snapshot: view, locale: .en_US, record: record)
         assert(snapshot: view, locale: .ru_RU, record: record)
@@ -42,7 +42,7 @@ final class ListFeatureSnapshotTests: XCTestCase {
     
     // MARK: - Helpers
     
-    let ghibliListView = { listState in
+    let filmListView = { listState in
         NavigationView {
             FilmListView(listState: listState) {
                 Text($0.title)
