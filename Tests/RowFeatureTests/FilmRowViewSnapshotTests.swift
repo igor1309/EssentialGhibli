@@ -26,9 +26,12 @@ final class FilmRowViewSnapshotTests: XCTestCase {
     
     func test_snapshot_FilmRowView_triangle() {
         let sut = makeSUT {
-            Image(systemName: "exclamationmark.triangle")
-                .resizable()
-                .scaledToFit()
+            Color.cyan
+                .overlay {
+                    Image(systemName: "exclamationmark.triangle")
+                        .resizable()
+                        .scaledToFit()
+                }
         }
         
         assert(snapshot: sut, record: record)
@@ -41,7 +44,9 @@ final class FilmRowViewSnapshotTests: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) -> some View {
-        makeSUT(thumbnail: { color }, file: file, line:  line)
+        makeSUT(thumbnail: {
+            color.aspectRatio(1, contentMode: .fit)
+        }, file: file, line:  line)
     }
     
     private func makeSUT(

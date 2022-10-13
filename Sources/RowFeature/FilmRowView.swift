@@ -24,9 +24,8 @@ where Thumbnail: View {
     public var body: some View {
         HStack(spacing: 16) {
             thumbnail(item)
-                .aspectRatio(1, contentMode: .fit)
                 .cornerRadius(12)
-                .frame(height: 88)
+                .frame(width: 88, height: 88)
             
             VStack(alignment: .leading, spacing: 16) {
                 Text(item.title)
@@ -46,6 +45,16 @@ struct GhibliFilmRow_Previews: PreviewProvider {
         List([RowFilm].samples) {
             FilmRowView(item: $0) { _ in
                 Color.red
+                    .aspectRatio(1, contentMode: .fit)
+            }
+            
+            FilmRowView(item: $0) { _ in
+                Color.cyan
+                    .overlay {
+                        Image(systemName: "exclamationmark.triangle")
+                            .resizable()
+                            .scaledToFit()
+                    }
             }
         }
         .listStyle(.plain)
