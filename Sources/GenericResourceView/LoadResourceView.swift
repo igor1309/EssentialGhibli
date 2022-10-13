@@ -11,7 +11,6 @@ import SwiftUI
 
 public struct LoadResourceView<
     Resource,
-    ResourceViewModel,
     ResourceView,
     ResourceLoadingView,
     ResourceErrorView>: View
@@ -19,17 +18,17 @@ where ResourceView: View,
       ResourceLoadingView: View,
       ResourceErrorView: View {
     
-    public typealias ViewModel = LoadResourceViewModel<Resource, ResourceViewModel>
+    public typealias ViewModel = LoadResourceViewModel<Resource>
     
     @ObservedObject private var viewModel: ViewModel
     
-    private let resourceView: (ResourceViewModel?) -> ResourceView
+    private let resourceView: (Resource) -> ResourceView
     private let loadingView: (LoadingState) -> ResourceLoadingView
     private let errorView: (ErrorState) -> ResourceErrorView
     
     public init(
         viewModel: ViewModel,
-        resourceView: @escaping (ResourceViewModel?) -> ResourceView,
+        resourceView: @escaping (Resource) -> ResourceView,
         loadingView: @escaping (LoadingState) -> ResourceLoadingView,
         errorView: @escaping (ErrorState) -> ResourceErrorView
     ) {
@@ -43,33 +42,30 @@ where ResourceView: View,
         VStack {
             errorView(viewModel.errorState)
             loadingView(viewModel.loadingState)
-            resourceView(viewModel.resourceViewModel)
+            viewModel.resource.map(resourceView)
         }
     }
 }
 
-public final class LoadResourceViewModel<Resource, ResourceViewModel>: ObservableObject {
+public final class LoadResourceViewModel<Resource>: ObservableObject {
     
     @Published private(set) var errorState: ErrorState
     @Published private(set) var loadingState: LoadingState
-    @Published private(set) var resourceViewModel: ResourceViewModel?
+    @Published private(set) var resource: Resource?
     
     private let loader: () -> AnyPublisher<Resource, Error>
-    private let mapper: (Resource) throws -> ResourceViewModel
     private var cancellable: Cancellable?
     
     public init(
         errorState: ErrorState = .noError,
         loadingState: LoadingState = .init(isLoading: false),
-        resourceViewModel: ResourceViewModel? = nil,
-        loader: @escaping () -> AnyPublisher<Resource, Error>,
-        mapper: @escaping (Resource) throws -> ResourceViewModel
+        resource: Resource? = nil,
+        loader: @escaping () -> AnyPublisher<Resource, Error>
     ) {
         self.errorState = errorState
         self.loadingState = loadingState
-        self.resourceViewModel = resourceViewModel
+        self.resource = resource
         self.loader = loader
-        self.mapper = mapper
         
         loadResource()
     }
@@ -97,12 +93,8 @@ public final class LoadResourceViewModel<Resource, ResourceViewModel>: Observabl
     }
     
     private func didFinishLoading(with resource: Resource) {
-        do {
-            resourceViewModel = try mapper(resource)
-            loadingState = .init(isLoading: false)
-        } catch {
-            didFinishLoading(with: error)
-        }
+        self.resource = resource
+        loadingState = .init(isLoading: false)
     }
     
     private func didFinishLoading(with error: Error) {
@@ -114,11 +106,11 @@ public final class LoadResourceViewModel<Resource, ResourceViewModel>: Observabl
 
 #if DEBUG
 struct LoadResourceView_Demo: View {
-    
+
     typealias Resource = String
-    
+
     let isFailing: Bool
-    
+
     var body: some View {
         let loader = {
             Just("This is a final state.")
@@ -126,25 +118,22 @@ struct LoadResourceView_Demo: View {
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         }
-        
+
         let failingLoader: () -> AnyPublisher<Resource, Error> = {
             Fail(error: APIError())
                 .delay(for: 2, scheduler: DispatchQueue.main)
                 .eraseToAnyPublisher()
         }
-        
+
         let viewModel = LoadResourceViewModel(
-            resourceViewModel: nil,//"initial state",
-            loader: isFailing ? failingLoader : loader,
-            mapper: { $0 }
+            resource: nil,//"initial state",
+            loader: isFailing ? failingLoader : loader
         )
-        
+
         func resourceView(resource: Resource?) -> some View {
-            resource.map { resource in
-                Text.init(verbatim: resource)
-            }
+            resource.map(Text.init(verbatim:))
         }
-        
+
         @ViewBuilder
         func loadingView(state: LoadingState) -> some View {
             if state.isLoading {
@@ -155,13 +144,13 @@ struct LoadResourceView_Demo: View {
                 EmptyView()
             }
         }
-        
+
         @ViewBuilder
         func errorView(state: ErrorState) -> some View {
             switch state {
             case .noError:
                 EmptyView()
-                
+
             case let .error(message):
                 Text(message)
                     .foregroundColor(.white)
@@ -170,7 +159,7 @@ struct LoadResourceView_Demo: View {
                     .padding()
             }
         }
-        
+
         return LoadResourceView(
             viewModel: viewModel,
             resourceView: resourceView,
@@ -186,7 +175,7 @@ struct LoadResourceView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             LoadResourceView_Demo(isFailing: false)
-            
+
             LoadResourceView_Demo(isFailing: true)
                 .previewDisplayName("Failing Loader")
         }

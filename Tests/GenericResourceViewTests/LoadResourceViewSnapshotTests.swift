@@ -49,22 +49,18 @@ final class LoadResourceViewSnapshotTests: XCTestCase {
     
     typealias Resource = String
     typealias ResourceViewModel = String
-    typealias ViewModel = LoadResourceViewModel<Resource, ResourceViewModel>
+    typealias ViewModel = LoadResourceViewModel<Resource>
     
     private func makeSUT(
         loader: @escaping () -> AnyPublisher<Resource, Error>,
         file: StaticString = #file,
         line: UInt = #line
     ) -> some View {
-        let viewModel = ViewModel(
-            loader: loader,
-            mapper: { $0 }
-        )
+        let viewModel = ViewModel(loader: loader)
         
+        @ViewBuilder
         func resourceView(resource: Resource?) -> some View {
-            resource.map { resource in
-                Text.init(verbatim: resource)
-            }
+             resource.map(Text.init(verbatim:))
         }
         
         @ViewBuilder
