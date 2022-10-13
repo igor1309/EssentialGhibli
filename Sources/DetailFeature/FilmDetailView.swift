@@ -7,11 +7,18 @@
 
 import SwiftUI
 
-public struct FilmDetailView: View {
-    let film: DetailFilm
+public struct FilmDetailView<Poster>: View
+where Poster: View {
     
-    public init(film: DetailFilm) {
+    private let film: DetailFilm
+    private let poster: (DetailFilm) -> Poster
+    
+    public init(
+        film: DetailFilm,
+        poster: @escaping (DetailFilm) -> Poster
+    ) {
         self.film = film
+        self.poster = poster
     }
     
     public var body: some View {
@@ -24,9 +31,7 @@ public struct FilmDetailView: View {
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                 
-                #warning("Image here")
-                Color.red
-                    .aspectRatio(1, contentMode: .fit)
+                poster(film)
                     .cornerRadius(24)
                     .padding(.vertical, 6)
                 
@@ -60,8 +65,19 @@ public struct FilmDetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            FilmDetailView(film: .castleInTheSky)
+        Group {
+            NavigationView {
+                FilmDetailView(film: .castleInTheSky) { _ in Color.red }
+            }
+            
+            NavigationView {
+                FilmDetailView(film: .castleInTheSky) { _ in
+                    Image(systemName: "exclamationmark.triangle")
+                        .resizable()
+                        .scaledToFit()
+                        .border(.cyan)
+                }
+            }
         }
         .preferredColorScheme(.dark)
     }

@@ -13,7 +13,7 @@ final class FilmDetailViewSnapshotTests: XCTestCase {
     let record = false
     
     func test_snapshot_FilmDetailView() {
-        let view = FilmDetailView(film: .castleInTheSky)
+        let view = FilmDetailView(film: .castleInTheSky) { _ in Color.red }
         
         assert(snapshot: view, locale: .en_US, record: record)
     }
