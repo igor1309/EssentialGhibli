@@ -40,7 +40,10 @@ where ResourceView: View,
     
     public var body: some View {
         VStack {
-            errorView(viewModel.errorState)
+            Button(action: viewModel.loadResource) {
+                errorView(viewModel.errorState)
+            }
+            .disabled(viewModel.loadingState.isLoading)
             loadingView(viewModel.loadingState)
             viewModel.resource.map(resourceView)
         }
