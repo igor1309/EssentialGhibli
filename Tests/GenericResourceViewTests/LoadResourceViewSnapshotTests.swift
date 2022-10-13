@@ -15,14 +15,14 @@ import XCTest
 final class LoadResourceViewSnapshotTests: XCTestCase {
     let record = false
     
-    func test_snapshotLoadResourceStateView_notFailing() {
+    func test_snapshot_LoadResourceView_notFailing() {
         let view = makeSUT(loader: loader)
         
         assert(snapshot: view, locale: .en_US, record: record)
         assert(snapshot: view, locale: .ru_RU, record: record)
     }
     
-    func test_snapshotLoadResourceStateView_notFailingAfterPause() {
+    func test_snapshot_LoadResourceView_notFailingAfterPause() {
         let view = makeSUT(loader: loader)
 
         pause(for: 0.05)
@@ -30,14 +30,14 @@ final class LoadResourceViewSnapshotTests: XCTestCase {
         assert(snapshot: view, locale: .en_US, record: record)
     }
 
-    func test_snapshotLoadResourceStateView_failing() {
+    func test_snapshot_LoadResourceView_failing() {
         let view = makeSUT(loader: failingLoader)
         
         assert(snapshot: view, locale: .en_US, record: record)
         assert(snapshot: view, locale: .ru_RU, record: record)
     }
     
-    func test_snapshotLoadResourceStateView_failingAfterPause() {
+    func test_snapshot_LoadResourceView_failingAfterPause() {
         let view = makeSUT(loader: failingLoader)
 
         pause(for: 0.05)

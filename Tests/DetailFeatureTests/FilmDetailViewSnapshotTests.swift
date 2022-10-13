@@ -1,5 +1,5 @@
 //
-//  DetailFeatureSnapshotTests.swift
+//  FilmDetailViewSnapshotTests.swift
 //  
 //
 //  Created by Igor Malyarov on 06.10.2022.
@@ -9,10 +9,10 @@ import DetailFeature
 import SwiftUI
 import XCTest
 
-final class DetailFeatureSnapshotTests: XCTestCase {
+final class FilmDetailViewSnapshotTests: XCTestCase {
     let record = false
     
-    func test_snapshotGhibliDetailView() {
+    func test_snapshot_FilmDetailView() {
         let view = FilmDetailView(film: .castleInTheSky)
         
         assert(snapshot: view, locale: .en_US, record: record)

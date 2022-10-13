@@ -1,5 +1,5 @@
 //
-//  RowFeatureSnapshotTests.swift
+//  FilmRowViewSnapshotTests.swift
 //  
 //
 //  Created by Igor Malyarov on 07.10.2022.
@@ -9,7 +9,7 @@ import RowFeature
 import SwiftUI
 import XCTest
 
-final class RowFeatureSnapshotTests: XCTestCase {
+final class FilmRowViewSnapshotTests: XCTestCase {
     let record = false
     
     func test_snapshotGhibliRow() {
