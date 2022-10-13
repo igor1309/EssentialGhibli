@@ -12,20 +12,53 @@ import XCTest
 final class FilmRowViewSnapshotTests: XCTestCase {
     let record = false
     
-    func test_snapshotGhibliRow() {
+    func test_snapshot_FilmRowView_red() {
+        let sut = makeSUT()
+        
+        assert(snapshot: sut, record: record)
+    }
+    
+    func test_snapshot_FilmRowView_orange() {
+        let sut = makeSUT(color: .orange)
+        
+        assert(snapshot: sut, record: record)
+    }
+    
+    func test_snapshot_FilmRowView_triangle() {
+        let sut = makeSUT {
+            Image(systemName: "exclamationmark.triangle")
+                .resizable()
+                .scaledToFit()
+        }
+        
+        assert(snapshot: sut, record: record)
+    }
+    
+    // MARK: - Helpers
+    
+    private func makeSUT(
+        color: Color = .red,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) -> some View {
+        makeSUT(thumbnail: { color }, file: file, line:  line)
+    }
+    
+    private func makeSUT(
+        thumbnail: @escaping () -> some View,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) -> some View {
         let items = [RowFilm.castleInTheSky, .kikisDeliveryService]
         
-        func row(item: RowFilm) -> some View {
-            FilmRowView(item: item) { _ in
-                Color.red
-            }
+        func filmRowView(item: RowFilm) -> some View {
+            FilmRowView(item: item) { _ in thumbnail() }
         }
         
-        let view = List {
-            ForEach(items, content: row)
-        }
-            .listStyle(.plain)
+        let sut = List {
+            ForEach(items, content: filmRowView)
+        }.listStyle(.plain)
         
-        assert(snapshot: view, record: record)
+        return sut
     }
 }
