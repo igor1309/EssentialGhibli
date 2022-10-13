@@ -14,9 +14,17 @@ final class FilmRowViewSnapshotTests: XCTestCase {
     
     func test_snapshotGhibliRow() {
         let items = [RowFilm.castleInTheSky, .kikisDeliveryService]
+        
+        func row(item: RowFilm) -> some View {
+            FilmRowView(item: item) { _ in
+                Color.red
+            }
+        }
+        
         let view = List {
-            ForEach(items, content: FilmRowView.init)
-        }.listStyle(.plain)
+            ForEach(items, content: row)
+        }
+            .listStyle(.plain)
         
         assert(snapshot: view, record: record)
     }

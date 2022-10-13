@@ -7,16 +7,23 @@
 
 import SwiftUI
 
-public struct FilmRowView: View {
-    private let item: RowFilm
+public struct FilmRowView<Thumbnail>: View
+where Thumbnail: View {
     
-    public init(item: RowFilm) {
+    private let item: RowFilm
+    private let thumbnail: (RowFilm) -> Thumbnail
+    
+    public init(
+        item: RowFilm,
+        thumbnail: @escaping (RowFilm) -> Thumbnail
+    ) {
         self.item = item
+        self.thumbnail = thumbnail
     }
     
     public var body: some View {
         HStack(spacing: 16) {
-            Color.red
+            thumbnail(item)
                 .aspectRatio(1, contentMode: .fit)
                 .cornerRadius(12)
                 .frame(height: 88)
@@ -37,7 +44,9 @@ public struct FilmRowView: View {
 struct GhibliFilmRow_Previews: PreviewProvider {
     static var previews: some View {
         List([RowFilm].samples) {
-            FilmRowView(item: $0)
+            FilmRowView(item: $0) { _ in
+                Color.red
+            }
         }
         .listStyle(.plain)
         .preferredColorScheme(.dark)
