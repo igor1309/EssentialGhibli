@@ -14,7 +14,9 @@ Open the `App/EssentialGhibli.xcodeproj` with Xcode 14.x and select the `Essenti
 
 Hyper-modular architecture
 
-![Modules: top-level view](./Docs/structure.png)
+![File Structure](./Docs/structure.png)
+
+![Modules: top-level view](./Docs/modules-top.png)
 
 with decoupled components
 
