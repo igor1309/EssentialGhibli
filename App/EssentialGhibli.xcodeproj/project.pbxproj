@@ -23,11 +23,18 @@
 		2A51FA7828EF0646003D3EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A51FA7728EF0646003D3EA1 /* Assets.xcassets */; };
 		2A51FA7B28EF0646003D3EA1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A51FA7A28EF0646003D3EA1 /* Preview Assets.xcassets */; };
 		2A62DCC228F44A3F00AF5560 /* composeLocalFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A62DCC128F44A3F00AF5560 /* composeLocalFeedLoader.swift */; };
+		2AA1E73F28F8674600EC410C /* ImageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA1E73E28F8674600EC410C /* ImageMapper.swift */; };
+		2AA1E74128F881D700EC410C /* LoadingImageViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA1E74028F881D700EC410C /* LoadingImageViewSnapshotTests.swift */; };
+		2AA1E74428F882D100EC410C /* XCTest+assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA1E74328F882D100EC410C /* XCTest+assert.swift */; };
+		2AA1E74728F8832700EC410C /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 2AA1E74628F8832700EC410C /* SnapshotTesting */; };
+		2AA1E77C28F889B200EC410C /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA1E77A28F8898A00EC410C /* XCTestCase+MemoryLeakTracking.swift */; };
 		2AB6D25728F057AE006C8855 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB6D25628F057AE006C8855 /* ViewModel.swift */; };
 		2AC0165028F09DA9002CA97C /* NavigationComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC0164F28F09DA9002CA97C /* NavigationComposer.swift */; };
 		2AC0165328F09FFF002CA97C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AC0165528F09FFF002CA97C /* Localizable.strings */; };
 		2AC0165E28F0A062002CA97C /* EssentialGhibliTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC0165D28F0A062002CA97C /* EssentialGhibliTests.swift */; };
 		2AC0166528F0A08C002CA97C /* EssentialGhibliLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC0166428F0A08C002CA97C /* EssentialGhibliLocalizationTests.swift */; };
+		2AD17F9528F829FE0047B31A /* LoadingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD17F9428F829FE0047B31A /* LoadingImageView.swift */; };
+		2AD17F9728F82F8B0047B31A /* ImageErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD17F9628F82F8B0047B31A /* ImageErrorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +56,10 @@
 		2A51FA7A28EF0646003D3EA1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2A51FA8128EF0698003D3EA1 /* EssentialGhibli */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = EssentialGhibli; path = ..; sourceTree = "<group>"; };
 		2A62DCC128F44A3F00AF5560 /* composeLocalFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = composeLocalFeedLoader.swift; sourceTree = "<group>"; };
+		2AA1E73E28F8674600EC410C /* ImageMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMapper.swift; sourceTree = "<group>"; };
+		2AA1E74028F881D700EC410C /* LoadingImageViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingImageViewSnapshotTests.swift; sourceTree = "<group>"; };
+		2AA1E74328F882D100EC410C /* XCTest+assert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+assert.swift"; sourceTree = "<group>"; };
+		2AA1E77A28F8898A00EC410C /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "XCTestCase+MemoryLeakTracking.swift"; path = "../../../Tests/GenericResourceViewTests/Helpers/XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		2AB6D25628F057AE006C8855 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		2AC0164F28F09DA9002CA97C /* NavigationComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationComposer.swift; sourceTree = "<group>"; };
 		2AC0165428F09FFF002CA97C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -56,6 +67,8 @@
 		2AC0165B28F0A062002CA97C /* EssentialGhibliTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialGhibliTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AC0165D28F0A062002CA97C /* EssentialGhibliTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialGhibliTests.swift; sourceTree = "<group>"; };
 		2AC0166428F0A08C002CA97C /* EssentialGhibliLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialGhibliLocalizationTests.swift; sourceTree = "<group>"; };
+		2AD17F9428F829FE0047B31A /* LoadingImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingImageView.swift; sourceTree = "<group>"; };
+		2AD17F9628F82F8B0047B31A /* ImageErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageErrorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AA1E74728F8832700EC410C /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +129,9 @@
 				2A51FA7528EF0644003D3EA1 /* ContentView.swift */,
 				2AC0165528F09FFF002CA97C /* Localizable.strings */,
 				2AC0164F28F09DA9002CA97C /* NavigationComposer.swift */,
+				2AD17F9428F829FE0047B31A /* LoadingImageView.swift */,
+				2AA1E73E28F8674600EC410C /* ImageMapper.swift */,
+				2AD17F9628F82F8B0047B31A /* ImageErrorView.swift */,
 				2A62DCC128F44A3F00AF5560 /* composeLocalFeedLoader.swift */,
 				2AB6D25628F057AE006C8855 /* ViewModel.swift */,
 				2A51FA7728EF0646003D3EA1 /* Assets.xcassets */,
@@ -138,11 +155,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2AA1E74228F882B200EC410C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2AA1E77A28F8898A00EC410C /* XCTestCase+MemoryLeakTracking.swift */,
+				2AA1E74328F882D100EC410C /* XCTest+assert.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		2AC0165C28F0A062002CA97C /* EssentialGhibliTests */ = {
 			isa = PBXGroup;
 			children = (
+				2AA1E74228F882B200EC410C /* Helpers */,
 				2AC0165D28F0A062002CA97C /* EssentialGhibliTests.swift */,
 				2AC0166428F0A08C002CA97C /* EssentialGhibliLocalizationTests.swift */,
+				2AA1E74028F881D700EC410C /* LoadingImageViewSnapshotTests.swift */,
 			);
 			path = EssentialGhibliTests;
 			sourceTree = "<group>";
@@ -194,6 +222,9 @@
 				2AC0166028F0A062002CA97C /* PBXTargetDependency */,
 			);
 			name = EssentialGhibliTests;
+			packageProductDependencies = (
+				2AA1E74628F8832700EC410C /* SnapshotTesting */,
+			);
 			productName = EssentialGhibliTests;
 			productReference = 2AC0165B28F0A062002CA97C /* EssentialGhibliTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -227,6 +258,9 @@
 				ru,
 			);
 			mainGroup = 2A51FA6728EF0644003D3EA1;
+			packageReferences = (
+				2AA1E74528F8832700EC410C /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+			);
 			productRefGroup = 2A51FA7128EF0644003D3EA1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -266,7 +300,10 @@
 				2A62DCC228F44A3F00AF5560 /* composeLocalFeedLoader.swift in Sources */,
 				2A51FA7628EF0644003D3EA1 /* ContentView.swift in Sources */,
 				2AB6D25728F057AE006C8855 /* ViewModel.swift in Sources */,
+				2AA1E73F28F8674600EC410C /* ImageMapper.swift in Sources */,
 				2A51FA7428EF0644003D3EA1 /* EssentialGhibliApp.swift in Sources */,
+				2AD17F9728F82F8B0047B31A /* ImageErrorView.swift in Sources */,
+				2AD17F9528F829FE0047B31A /* LoadingImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +313,9 @@
 			files = (
 				2AC0166528F0A08C002CA97C /* EssentialGhibliLocalizationTests.swift in Sources */,
 				2AC0165E28F0A062002CA97C /* EssentialGhibliTests.swift in Sources */,
+				2AA1E74428F882D100EC410C /* XCTest+assert.swift in Sources */,
+				2AA1E74128F881D700EC410C /* LoadingImageViewSnapshotTests.swift in Sources */,
+				2AA1E77C28F889B200EC410C /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,6 +584,17 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		2AA1E74528F8832700EC410C /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		2A28385228F6BFF10013A761 /* API */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -588,6 +639,11 @@
 		2A28386628F6BFF20013A761 /* SharedAPIInfra */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SharedAPIInfra;
+		};
+		2AA1E74628F8832700EC410C /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2AA1E74528F8832700EC410C /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
