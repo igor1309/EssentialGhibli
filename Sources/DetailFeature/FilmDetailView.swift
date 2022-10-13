@@ -67,15 +67,20 @@ struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             NavigationView {
-                FilmDetailView(film: .castleInTheSky) { _ in Color.red }
+                FilmDetailView(film: .castleInTheSky) { _ in
+                    Color.red.aspectRatio(1, contentMode: .fit)
+                }
             }
             
             NavigationView {
                 FilmDetailView(film: .castleInTheSky) { _ in
-                    Image(systemName: "exclamationmark.triangle")
-                        .resizable()
-                        .scaledToFit()
-                        .border(.cyan)
+                    Color.cyan
+                        .aspectRatio(1, contentMode: .fit)
+                        .overlay {
+                            Image(systemName: "exclamationmark.triangle")
+                                .resizable()
+                                .scaledToFit()
+                        }
                 }
             }
         }

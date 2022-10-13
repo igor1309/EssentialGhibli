@@ -14,21 +14,25 @@ final class FilmDetailViewSnapshotTests: XCTestCase {
     
     func test_snapshot_FilmDetailView_red() {
         let sut = makeSUT()
-
+        
         assert(snapshot: sut, locale: .en_US, record: record)
     }
     
     func test_snapshot_FilmDetailView_orange() {
         let sut = makeSUT(color: .orange)
-
+        
         assert(snapshot: sut, locale: .en_US, record: record)
     }
     
     func test_snapshot_FilmDetailView_triangle() {
         let sut = makeSUT {
-            Image(systemName: "exclamationmark.triangle")
-                .resizable()
-                .scaledToFit()
+            Color.cyan
+                .aspectRatio(1, contentMode: .fit)
+                .overlay {
+                    Image(systemName: "exclamationmark.triangle")
+                        .resizable()
+                        .scaledToFit()
+                }
         }
         
         assert(snapshot: sut, locale: .en_US, record: record)
