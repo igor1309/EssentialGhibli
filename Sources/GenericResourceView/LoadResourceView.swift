@@ -63,7 +63,7 @@ public final class LoadResourceViewModel<Resource, ResourceViewModel>: Observabl
         loadingState: LoadingState = .init(isLoading: false),
         resourceViewModel: ResourceViewModel? = nil,
         loader: @escaping () -> AnyPublisher<Resource, Error>,
-        mapper: @escaping (Resource) -> ResourceViewModel
+        mapper: @escaping (Resource) throws -> ResourceViewModel
     ) {
         self.errorState = errorState
         self.loadingState = loadingState
