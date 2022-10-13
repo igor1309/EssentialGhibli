@@ -1,14 +1,14 @@
 # EssentialGhibli
 
-A demo app digesting [iOS Lead Essentials](https://iosacademy.essentialdeveloper.com/p/ios-lead-essentials/) program at the [Essential Developer Academy](https://www.essentialdeveloper.com).
+This is a demo app digesting the [iOS Lead Essentials](https://iosacademy.essentialdeveloper.com/p/ios-lead-essentials/) program at the [Essential Developer Academy](https://www.essentialdeveloper.com).
 
-The app presents the feed of the [Studio Ghibli](https://en.wikipedia.org/wiki/Studio_Ghibli) films.
+The app presents the feed of [Studio Ghibli](https://en.wikipedia.org/wiki/Studio_Ghibli) films.
 
-Under the hood it is a project with hyper-modular architecture with decoupled components, with modularity enforced by placing modules into separate targets in the `EssentialGhibli` Swift Package.
+Under the hood, it is a project with hyper-modular architecture with decoupled components, with modularity enforced by placing modules into separate targets in the `EssentialGhibli` Swift Package.
 
 ## Instructions
 
-Open `App/EssentialGhibli.xcodeproj` with Xcode 14.x and select `EssentialGhibli` scheme to run the app in the simulator. See [Swift 5.7 notes](#swift-57) for details.
+Open the `App/EssentialGhibli.xcodeproj` with Xcode 14.x and select the `EssentialGhibli` scheme to run the app on the simulator. See [Swift 5.7 notes](#swift-57) for details.
 
 ## Modules
 
@@ -22,7 +22,7 @@ with decoupled components
 
 ### Build time
 
-Modules dependency done right significantly reduces build time. This project is defiantly not huge, but it's clear that this approach allows to utilize Xcode parallel build system:
+Modules dependency done right significantly reduces build time. This project is defiantly not huge, but it's clear that this approach allows utilizing Xcode parallel build system:
 
 ![Xcode project clean build timeline](./Docs/build_timeline.png)
 
@@ -36,7 +36,7 @@ The `Root Composition` is implemented in the `EssentialGhibliApp`.
 
 ### UI
 
-UI Components are implemented with `SwiftUI`. Previews are designed to show rendering of different state values and are covered with snapshot tests - see [Tests](#tests).
+UI Components are implemented with `SwiftUI`. Previews are designed to show the rendering of different state values and are covered with snapshot tests - see [Tests](#tests).
 
 ### Localization
 
@@ -52,13 +52,14 @@ UI Components are tested using snapshots with [SnapshotTesting](https://github.c
 
 ## CI
 
-For demo a simple `CI` with `GitHub actions` workflow is used: build and tests with scheme `CI_iOS` run on push to the `main` branch.
+For the demo, a simple `CI` with `GitHub actions` workflow is used: build and run all tests with scheme `CI_iOS` run on push to the `main` branch. Another workflow with the same functionality could be triggered manually. Both `YAML` scripts call `clean_build_test.sh` shell script.
 
 ## Swift 5.7
 
-Primary associated type feature of Swift 5.7 is used to simplify func signatures in test assertions (`Feed Store Specs` in `CacheInfraTests`):
+The `primary associated type` feature of Swift 5.7 is used to simplify function signatures in test assertions, like `Feed Store Specs` in `CacheInfraTests`:
 
 before:
+
 ```swift
 func assert<Store>(
     on sut: Store,
