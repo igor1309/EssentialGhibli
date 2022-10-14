@@ -14,7 +14,7 @@ import ListFeature
 import SharedAPI
 import XCTest
 
-final class LoaderComposer<Store: FeedStore> {
+final class LoaderComposer<Store: FeedStore<ListFilm>> {
     private lazy var baseURL: URL = {
         URL(string: "https://ghibliapi.herokuapp.com")!
     }()
@@ -28,8 +28,8 @@ final class LoaderComposer<Store: FeedStore> {
         self.store = store
         self.feedCache = FeedCache(
             store: store,
-            toLocal: { _ in fatalError() },
-            fromLocal: { _ in fatalError() },
+            toLocal: { $0 },
+            fromLocal: { $0 },
             feedCachePolicy: .sevenDays
         )
     }
@@ -38,9 +38,9 @@ final class LoaderComposer<Store: FeedStore> {
 extension LoaderComposer {
     func filmsLoader() -> AnyPublisher<[ListFilm], Error> {
         makeRemoteFeedLoader()
-        // .caching(to: feedCache)
+            .caching(to: feedCache)
             .fallback(to: feedCache.loadPublisher)
-            .subscribe(on: DispatchQueue.global())
+//            .subscribe(on: DispatchQueue.global())
             .eraseToAnyPublisher()
     }
     
@@ -102,13 +102,22 @@ private extension FeedSaver {
     }
 }
 
-
 final class LoaderComposerTests: XCTestCase {
     
     func test_shouldDeliverEmptyFilmListIfOfflineAndEmptyCache() {
         let sut = makeSUT(.offline, .empty)
         
         expect(sut, toDeliver: .empty)
+    }
+    
+    func test_shouldDeliverCachedFilmListIfOfflineAndNonEmptyCache() {
+        let store = InMemoryFeedStore.empty
+        
+        let online = makeSUT(.online, store)
+        expect(online, toDeliver: .samples)
+        
+        let offline = makeSUT(.offline, store)
+        expect(offline, toDeliver: .samples)
     }
     
     // MARK: - Helpers
@@ -190,6 +199,7 @@ final class LoaderComposerTests: XCTestCase {
     
     private final class HTTPClientStub: HTTPClient {
         static let offline = HTTPClientStub(result: .error)
+        static let online = HTTPClientStub(result: .listFilmSamples)
         
         private let result: HTTPResult
         
@@ -213,7 +223,7 @@ final class LoaderComposerTests: XCTestCase {
         typealias Item = ListFilm
         
         static let empty = InMemoryFeedStore(cached: nil)
-        // static let nonExpired = InMemoryFeedStore(cached: (.samples, .now))
+        static let nonExpired = InMemoryFeedStore(cached: (.samples, .now))
         // static let expired = InMemoryFeedStore(cached: (.samples, .distantPast))
         
         private var cached: CachedFeed<ListFilm>?
@@ -239,6 +249,23 @@ final class LoaderComposerTests: XCTestCase {
 
 extension HTTPClient.HTTPResult {
     static let error: Self = .failure(anyError(message: "offline"))
+    static let listFilmSamples: Self = .success((.listFilmSamples, .any200))
+}
+
+extension Data {
+    static let listFilmSamples: Self = try! JSONSerialization.data(withJSONObject: [
+        makeJSON_castleInTheSky(),
+        makeJSON_kikisDeliveryService()
+    ])
+}
+
+extension HTTPURLResponse {
+    static let any200: HTTPURLResponse = .init(url: .anyURL, statusCode: 200, httpVersion: nil, headerFields: nil)!
+    static let any400: HTTPURLResponse = .init(url: .anyURL, statusCode: 400, httpVersion: nil, headerFields: nil)!
+}
+
+private extension URL {
+    static let anyURL: URL = .init(string: "https://any-url.com")!
 }
 
 extension LoaderComposerTests.ListFilmResult {

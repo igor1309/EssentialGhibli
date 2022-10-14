@@ -10,7 +10,7 @@ import DetailFeature
 import XCTest
 
 final class DetailFilmMapperTests: XCTestCase {
-    func test_map_throwsErrorOnNon200HTTPResponse() throws {
+    func test_map_shouldThrowErrorOnNon200HTTPResponse() throws {
         let json = makeFilmsJSON([:])
         let codes = [199, 201, 300, 400, 500]
 
@@ -21,7 +21,7 @@ final class DetailFilmMapperTests: XCTestCase {
         }
     }
     
-    func test_map_throwsErrorOn200HTTPResponseWithInvalidJSON() {
+    func test_map_shouldThrowErrorOn200HTTPResponseWithInvalidJSON() {
         let invalidJSON = Data("invalid json".utf8)
 
         XCTAssertThrowsError(
@@ -31,7 +31,7 @@ final class DetailFilmMapperTests: XCTestCase {
         }
     }
 
-    func test_map_deliversDetailFilmOn200HTTPResponseWithJSON() throws {
+    func test_map_shouldDeliverDetailFilmOn200HTTPResponseWithJSON() throws {
         let film = makeDetailFilm(
             id: UUID(),
             title: "a title",

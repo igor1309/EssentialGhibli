@@ -10,7 +10,7 @@ import Domain
 import XCTest
 
 final class FeedMapperTests: XCTestCase {
-    func test_map_throwsErrorOnNon200HTTPResponse() throws {
+    func test_map_shouldThrowErrorOnNon200HTTPResponse() throws {
         let json = makeFilmsJSON([])
         let samples = [199, 201, 300, 400, 500]
 
@@ -21,7 +21,7 @@ final class FeedMapperTests: XCTestCase {
         }
     }
     
-    func test_map_throwsErrorOn200HTTPResponseWithInvalidJSON() {
+    func test_map_shouldThrowErrorOn200HTTPResponseWithInvalidJSON() {
         let invalidJSON = Data("invalid json".utf8)
 
         XCTAssertThrowsError(
@@ -31,7 +31,7 @@ final class FeedMapperTests: XCTestCase {
         }
     }
 
-    func test_map_deliversNoItemsOn200HTTPResponseWithEmptyJSONList() throws {
+    func test_map_shouldDeliverNoItemsOn200HTTPResponseWithEmptyJSONList() throws {
         let emptyListJSON = makeFilmsJSON([])
 
         let result = try FeedMapper.map(emptyListJSON, from: HTTPURLResponse(statusCode: 200))
@@ -39,7 +39,7 @@ final class FeedMapperTests: XCTestCase {
         XCTAssertEqual(result, [])
     }
 
-    func test_map_deliversItemsOn200HTTPResponseWithJSONItems() throws {
+    func test_map_shouldDeliverItemsOn200HTTPResponseWithJSONItems() throws {
         let item1 = makeFilm(
             id: UUID(),
             title: "title 1",

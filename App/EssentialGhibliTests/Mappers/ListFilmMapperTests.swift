@@ -10,7 +10,7 @@ import ListFeature
 import XCTest
 
 final class ListFilmMapperTests: XCTestCase {
-    func test_map_throwsErrorOnNon200HTTPResponse() throws {
+    func test_map_shouldThrowErrorOnNon200HTTPResponse() throws {
         let json = makeListFilmsJSON([])
         let samples = [199, 201, 300, 400, 500]
 
@@ -21,7 +21,7 @@ final class ListFilmMapperTests: XCTestCase {
         }
     }
     
-    func test_map_throwsErrorOn200HTTPResponseWithInvalidJSON() {
+    func test_map_shouldThrowErrorOn200HTTPResponseWithInvalidJSON() {
         let invalidJSON = Data("invalid json".utf8)
 
         XCTAssertThrowsError(
@@ -31,7 +31,7 @@ final class ListFilmMapperTests: XCTestCase {
         }
     }
 
-    func test_map_deliversNoItemsOn200HTTPResponseWithEmptyJSONList() throws {
+    func test_map_shouldDeliverNoItemsOn200HTTPResponseWithEmptyJSONList() throws {
         let emptyListJSON = makeListFilmsJSON([])
 
         let result = try ListFilmMapper.map(dataResponse: (emptyListJSON, .statusCode200))
@@ -39,7 +39,7 @@ final class ListFilmMapperTests: XCTestCase {
         XCTAssertEqual(result, [])
     }
 
-    func test_map_deliversItemsOn200HTTPResponseWithJSONItems() throws {
+    func test_map_shouldDeliverItemsOn200HTTPResponseWithJSONItems() throws {
         let film1 = makeListFilm(
             id: UUID(),
             title: "title 1",
@@ -61,6 +61,14 @@ final class ListFilmMapperTests: XCTestCase {
         let result = try ListFilmMapper.map(dataResponse: (json, .statusCode200))
 
         XCTAssertEqual(result, [film1.model, film2.model])
+    }
+    
+    func test_map_shouldDeliver() throws {
+        let json = [makeJSON_castleInTheSky(), makeJSON_kikisDeliveryService()]
+        let data = try JSONSerialization.data(withJSONObject: json)
+        
+        let result = try ListFilmMapper.map(dataResponse: (data, .statusCode200))
+        XCTAssertEqual(result, [.castleInTheSky, .kikisDeliveryService])
     }
     
     // MARK: - Helpers

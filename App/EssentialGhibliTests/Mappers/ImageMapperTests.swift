@@ -12,7 +12,7 @@ import XCTest
 final class ImageMapperTests: XCTestCase {
     let record = false
     
-    func test_map_throwsErrorOnNon200HTTPResponse() throws {
+    func test_map_shouldThrowErrorOnNon200HTTPResponse() throws {
         let json = Data.greenImage(width: 1, height: 2)
         let codes = [199, 201, 300, 400, 500]
         
@@ -23,7 +23,7 @@ final class ImageMapperTests: XCTestCase {
         }
     }
     
-    func test_map_throwsErrorOn200HTTPResponseWithInvalidJSON() {
+    func test_map_shouldThrowErrorOn200HTTPResponseWithInvalidJSON() {
         let invalidJSON = Data("invalid json".utf8)
         
         XCTAssertThrowsError(
@@ -33,7 +33,7 @@ final class ImageMapperTests: XCTestCase {
         }
     }
     
-    func test_map_deliversImageOn200HTTPResponseWithJSON() throws {
+    func test_map_shouldDeliverImageOn200HTTPResponseWithJSON() throws {
         let data = Data.uiImageData(withColor: .orange, width: 20, height: 30)
         
         let result = try ImageMapper.map(dataResponse: (data, .statusCode200))

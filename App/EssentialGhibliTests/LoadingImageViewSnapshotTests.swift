@@ -101,11 +101,6 @@ private extension Data {
     }
 }
 
-private extension HTTPURLResponse {
-    static let any200: HTTPURLResponse = .init(url: .anyURL, statusCode: 200, httpVersion: nil, headerFields: nil)!
-    static let any400: HTTPURLResponse = .init(url: .anyURL, statusCode: 400, httpVersion: nil, headerFields: nil)!
-}
-
 private extension URL {
     static let anyURL: URL = .init(string: "https://any-url.com")!
 }
