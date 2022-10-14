@@ -5,8 +5,8 @@
 //  Created by Igor Malyarov on 07.10.2022.
 //
 
-import Domain
 import API
+import Domain
 import XCTest
 
 final class FeedMapperTests: XCTestCase {
@@ -26,7 +26,9 @@ final class FeedMapperTests: XCTestCase {
 
         XCTAssertThrowsError(
             try FeedMapper.map(invalidJSON, from: HTTPURLResponse(statusCode: 200))
-        )
+        ) {
+            XCTAssertEqual($0 as? FeedMapper.MappingError, .invalidData)
+        }
     }
 
     func test_map_deliversNoItemsOn200HTTPResponseWithEmptyJSONList() throws {

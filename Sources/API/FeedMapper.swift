@@ -9,6 +9,28 @@ import Domain
 import Foundation
 
 public enum FeedMapper {
+    public static func map(_ data: Data, from response: HTTPURLResponse) throws -> [GhibliFilm] {
+        guard isOK(response) else {
+            throw MappingError.invalidData
+        }
+        
+        let decoder = JSONDecoder()
+        do {
+            let films = try decoder.decode([Film].self, from: data)
+            return films.map(\.ghibliFilm)
+        } catch {
+            throw MappingError.invalidData
+        }
+    }
+    
+    private static func isOK(_ response: HTTPURLResponse) -> Bool {
+        response.statusCode == 200
+    }
+    
+    public enum MappingError: Error {
+        case invalidData
+    }
+    
     private struct Film: Decodable {
         let id: UUID
         let title: String
@@ -27,25 +49,9 @@ public enum FeedMapper {
         let locations: [String]
         let vehicles: [String]
         let url: URL
-                
+        
         var ghibliFilm: GhibliFilm {
             .init(id: id, title: title, description: description, imageURL: image, filmURL: url)
         }
-    }
-    
-    public static func map(_ data: Data, from response: HTTPURLResponse) throws -> [GhibliFilm] {
-        guard isOK(response) else {
-            throw MapError.invalidData
-        }
-        
-        let films = try JSONDecoder().decode([Film].self, from: data)
-        return films.map(\.ghibliFilm)
-    }
-    
-    private static func isOK(_ response: HTTPURLResponse) -> Bool {
-        response.statusCode == 200
-    }
-    public enum MapError: Error {
-        case invalidData
     }
 }
