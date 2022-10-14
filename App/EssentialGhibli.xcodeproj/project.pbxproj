@@ -37,6 +37,8 @@
 		2A2E935A28F9829900BA48BB /* DetailFilmMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2E935928F9829900BA48BB /* DetailFilmMapperTests.swift */; };
 		2A2E935C28F987DF00BA48BB /* ImageMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2E935B28F987DF00BA48BB /* ImageMapperTests.swift */; };
 		2A2E935E28F98CAC00BA48BB /* ListFilmMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2E935D28F98CAC00BA48BB /* ListFilmMapperTests.swift */; };
+		2A2E936028F99A3300BA48BB /* Loaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2E935F28F99A3300BA48BB /* Loaders.swift */; };
+		2A2E936228F99C5500BA48BB /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2E936128F99C5500BA48BB /* Helpers.swift */; };
 		2A51FA7428EF0644003D3EA1 /* EssentialGhibliApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A51FA7328EF0644003D3EA1 /* EssentialGhibliApp.swift */; };
 		2A51FA7628EF0644003D3EA1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A51FA7528EF0644003D3EA1 /* ContentView.swift */; };
 		2A51FA7828EF0646003D3EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A51FA7728EF0646003D3EA1 /* Assets.xcassets */; };
@@ -86,6 +88,8 @@
 		2A2E935928F9829900BA48BB /* DetailFilmMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFilmMapperTests.swift; sourceTree = "<group>"; };
 		2A2E935B28F987DF00BA48BB /* ImageMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMapperTests.swift; sourceTree = "<group>"; };
 		2A2E935D28F98CAC00BA48BB /* ListFilmMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilmMapperTests.swift; sourceTree = "<group>"; };
+		2A2E935F28F99A3300BA48BB /* Loaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loaders.swift; sourceTree = "<group>"; };
+		2A2E936128F99C5500BA48BB /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		2A51FA7028EF0644003D3EA1 /* EssentialGhibli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EssentialGhibli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A51FA7328EF0644003D3EA1 /* EssentialGhibliApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialGhibliApp.swift; sourceTree = "<group>"; };
 		2A51FA7528EF0644003D3EA1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -235,6 +239,8 @@
 			isa = PBXGroup;
 			children = (
 				2A51FA7A28EF0646003D3EA1 /* Preview Assets.xcassets */,
+				2A2E935F28F99A3300BA48BB /* Loaders.swift */,
+				2A2E936128F99C5500BA48BB /* Helpers.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -391,6 +397,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A0AD07D28F8EB1B001488C6 /* DetailNavigationComposer.swift in Sources */,
+				2A2E936228F99C5500BA48BB /* Helpers.swift in Sources */,
 				2A62DCC228F44A3F00AF5560 /* composeLocalFeedLoader.swift in Sources */,
 				2A2E934C28F9608800BA48BB /* UIComposer.swift in Sources */,
 				2A2E934828F9519100BA48BB /* ListState.swift in Sources */,
@@ -408,6 +415,7 @@
 				2A2E934A28F9586600BA48BB /* FilmListViewAdapter.swift in Sources */,
 				2AD17F9528F829FE0047B31A /* LoadingImageView.swift in Sources */,
 				2A0AD07428F8EA0A001488C6 /* FilmDetailViewAdapter.swift in Sources */,
+				2A2E936028F99A3300BA48BB /* Loaders.swift in Sources */,
 				2A0AD07B28F8EAC5001488C6 /* ErrorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

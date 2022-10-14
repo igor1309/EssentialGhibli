@@ -21,6 +21,7 @@ final class FilmListViewAdapterSnapshotTests: XCTestCase {
         let sut = filmListViewAdapter(emptyFilmsLoader)
         
         assert(snapshot: sut, locale: .en_US, record: record)
+        assert(snapshot: sut, locale: .ru_RU, record: record)
     }
     
     func test_snapshot_FilmListViewAdapter_loading() {

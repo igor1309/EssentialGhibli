@@ -8,7 +8,6 @@
 import Combine
 import DetailFeature
 import GenericResourceView
-import Presentation
 import ListFeature
 import SwiftUI
 
@@ -40,43 +39,6 @@ struct FilmDetailViewAdapter: View {
 }
 
 #if DEBUG
-let filmDetailmage = Image(systemName: "camera.macro")
-
-let filmDetailLoader: () -> AnyPublisher<DetailFilm, Error> = {
-    Just(.castleInTheSky)
-        .setFailureType(to: Error.self)
-        .eraseToAnyPublisher()
-}
-
-let filmDetailLongLoader: () -> AnyPublisher<DetailFilm, Error> = {
-    filmDetailLoader()
-        .delay(for: 10, scheduler: DispatchQueue.main)
-        .eraseToAnyPublisher()
-}
-
-let filmDetailLFailingLoader: () -> AnyPublisher<DetailFilm, Error> = {
-    Fail(outputType: DetailFilm.self, failure: anyError())
-        .eraseToAnyPublisher()
-}
-
-let filmDetailLImageLoader: (DetailFilm) -> ImagePublisher = { _ in
-    Just(filmDetailmage)
-        .setFailureType(to: Error.self)
-        .eraseToAnyPublisher()
-}
-
-let filmDetailLLongImageLoader: (DetailFilm) -> ImagePublisher = { _ in
-    Just(filmDetailmage)
-        .delay(for: 10, scheduler: DispatchQueue.main)
-        .setFailureType(to: Error.self)
-        .eraseToAnyPublisher()
-}
-
-let filmDetailLFailingImageLoader: (DetailFilm) -> ImagePublisher = { _ in
-    Fail(outputType: Image.self, failure: anyError())
-        .eraseToAnyPublisher()
-}
-
 func filmDetailViewAdapter(
     loader: @escaping () -> AnyPublisher<DetailFilm, Error>,
     imageLoader: @escaping (DetailFilm) -> ImagePublisher
@@ -100,7 +62,15 @@ struct FilmDetailViewAdapter_Previews: PreviewProvider {
                 loader: filmDetailLongLoader,
                 imageLoader: filmDetailLImageLoader
             )
-            .previewDisplayName("Long Loader")
+            .environment(\.locale, .en_US)
+            .previewDisplayName("en-US | Long Loader")
+            
+            filmDetailViewAdapter(
+                loader: filmDetailLongLoader,
+                imageLoader: filmDetailLImageLoader
+            )
+            .environment(\.locale, .ru_RU)
+            .previewDisplayName("ru-RU | Long Loader")
             
             filmDetailViewAdapter(
                 loader: filmDetailLFailingLoader,
@@ -123,15 +93,5 @@ struct FilmDetailViewAdapter_Previews: PreviewProvider {
         }
         .preferredColorScheme(.dark)
     }
-}
-
-private func anyError(message: String = "any error") -> Error {
-    AnyError(message: message)
-}
-
-private struct AnyError: Error, LocalizedError {
-    let message: String
-    
-    var errorDescription: String? { message }
 }
 #endif

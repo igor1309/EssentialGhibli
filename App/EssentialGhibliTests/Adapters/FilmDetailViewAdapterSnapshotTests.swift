@@ -27,6 +27,7 @@ final class FilmDetailViewAdapterSnapshotTests: XCTestCase {
         )
         
         assert(snapshot: sut, locale: .en_US, record: record)
+        assert(snapshot: sut, locale: .ru_RU, record: record)
     }
     
     func test_snapshot_FilmDetailViewAdapter_loaderFailed() {

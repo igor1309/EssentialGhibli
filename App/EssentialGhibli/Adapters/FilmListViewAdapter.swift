@@ -30,29 +30,6 @@ struct FilmListViewAdapter<Row: View>: View {
 }
 
 #if DEBUG
-let filmsLoader: () -> AnyPublisher<[ListFilm], Error> = {
-    Just(.samples)
-        .setFailureType(to: Error.self)
-        .eraseToAnyPublisher()
-}
-
-let emptyFilmsLoader: () -> AnyPublisher<[ListFilm], Error> = {
-    Just([])
-        .setFailureType(to: Error.self)
-        .eraseToAnyPublisher()
-}
-
-let longFilmsLoader: () -> AnyPublisher<[ListFilm], Error> = {
-    emptyFilmsLoader()
-        .delay(for: 10, scheduler: DispatchQueue.main)
-        .eraseToAnyPublisher()
-}
-
-let failingFilmsLoader: () -> AnyPublisher<[ListFilm], Error> = {
-    Fail(outputType: [ListFilm].self, failure: anyError())
-        .eraseToAnyPublisher()
-}
-
 func filmListViewAdapter(
     _ filmsLoader: @escaping () -> AnyPublisher<[ListFilm], Error>
 ) -> some View {
@@ -68,25 +45,25 @@ struct FilmListViewAdapter_Previews: PreviewProvider {
             filmListViewAdapter(filmsLoader)
             
             filmListViewAdapter(emptyFilmsLoader)
-                .previewDisplayName("Empty List Loader")
+                .environment(\.locale, .en_US)
+                .previewDisplayName("en-US | Empty List Loader")
             
             filmListViewAdapter(emptyFilmsLoader)
-                .previewDisplayName("Long List Loader")
+                .environment(\.locale, .ru_RU)
+                .previewDisplayName("ru-RU | Empty List Loader")
+            
+            filmListViewAdapter(longFilmsLoader)
+                .environment(\.locale, .en_US)
+                .previewDisplayName("en-US | Long List Loader")
+            
+            filmListViewAdapter(longFilmsLoader)
+                .environment(\.locale, .ru_RU)
+                .previewDisplayName("ru-RU Long List Loader")
             
             filmListViewAdapter(failingFilmsLoader)
                 .previewDisplayName("Failing List Loader")
         }
         .preferredColorScheme(.dark)
     }
-}
-
-private func anyError(message: String = "any error") -> Error {
-    AnyError(message: message)
-}
-
-private struct AnyError: Error, LocalizedError {
-    let message: String
-    
-    var errorDescription: String? { message }
 }
 #endif

@@ -30,25 +30,6 @@ private extension ListFilm {
 }
 
 #if DEBUG
-let filmRowImage = Image(systemName: "camera.macro")
-
-let filmRowImageLoader: (RowFilm) -> ImagePublisher = { _ in
-    Just(filmRowImage)
-        .setFailureType(to: Error.self)
-        .eraseToAnyPublisher()
-}
-
-let filmRowLongImageLoader: (RowFilm) -> ImagePublisher = {
-    filmRowImageLoader($0)
-        .delay(for: 10, scheduler: DispatchQueue.main)
-        .eraseToAnyPublisher()
-}
-
-let filmRowFailingImageLoader: (RowFilm) -> ImagePublisher = { _ in
-    Fail(outputType: Image.self, failure: anyError())
-        .eraseToAnyPublisher()
-}
-
 func filmRowViewAdapter(
     _ imageLoader: @escaping (RowFilm) -> ImagePublisher
 ) -> some View {
@@ -74,13 +55,5 @@ struct FilmRowViewAdapter_Previews: PreviewProvider {
         }
         .preferredColorScheme(.dark)
     }
-}
-
-private func anyError(message: String = "any error") -> Error {
-    AnyError(message: message)
-}
-
-private struct AnyError: Error {
-    let message: String
 }
 #endif
