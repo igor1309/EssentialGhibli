@@ -10,14 +10,14 @@ import SwiftUI
 public struct FilmListView<Row: View>: View {
     private let films: [ListFilm]
     
-    private let itemRow: (ListFilm) -> Row
+    private let filmRow: (ListFilm) -> Row
     
     public init(
         films: [ListFilm],
-        itemRow: @escaping (ListFilm) -> Row
+        filmRow: @escaping (ListFilm) -> Row
     ) {
         self.films = films
-        self.itemRow = itemRow
+        self.filmRow = filmRow
     }
     
     public var body: some View {
@@ -35,7 +35,7 @@ public struct FilmListView<Row: View>: View {
     
     private func list(films: [ListFilm]) -> some View {
         List {
-            ForEach(films, content: itemRow)
+            ForEach(films, content: filmRow)
         }
         .listStyle(.plain)
     }
