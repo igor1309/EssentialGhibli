@@ -9,7 +9,6 @@ import Foundation
 
 public enum ListState<Item, StateError: Error> {
     case loading
-    case empty
     case list([Item])
     case error(StateError)
 }

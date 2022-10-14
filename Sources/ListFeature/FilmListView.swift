@@ -8,34 +8,23 @@
 import SwiftUI
 
 public struct FilmListView<Row: View>: View {
-    private let listState: ListState<ListFilm, Error>
+    private let films: [ListFilm]
     
     private let itemRow: (ListFilm) -> Row
     
     public init(
-        listState: ListState<ListFilm, Error>,
+        films: [ListFilm],
         itemRow: @escaping (ListFilm) -> Row
     ) {
-        self.listState = listState
+        self.films = films
         self.itemRow = itemRow
     }
     
     public var body: some View {
-        switch listState {
-        case .loading:
-            loadingView()
-        case .empty:
+        if films.isEmpty {
             emptyListView()
-        case let .list(items):
-            list(items: items)
-        case let .error(stateError):
-            errorView(stateError)
-        }
-    }
-    
-    private func loadingView() -> some View {
-        ProgressView {
-            Text("LOADING", tableName: "Feed", bundle: .module)
+        } else {
+            list(films: films)
         }
     }
     
@@ -44,18 +33,9 @@ public struct FilmListView<Row: View>: View {
             .foregroundColor(.secondary)
     }
     
-    private func errorView(_ error: Error) -> some View {
-        Text(error.localizedDescription)
-            .foregroundColor(.white)
-            .padding()
-            .background(.red)
-            .cornerRadius(24)
-            .padding()
-    }
-    
-    private func list(items: [ListFilm]) -> some View {
+    private func list(films: [ListFilm]) -> some View {
         List {
-            ForEach(items, content: itemRow)
+            ForEach(films, content: itemRow)
         }
         .listStyle(.plain)
     }
@@ -63,14 +43,14 @@ public struct FilmListView<Row: View>: View {
 
 struct GhibliListView_Previews: PreviewProvider {
     
-    static func ghibliListView(
-        _ listState: ListState<ListFilm, Error>
+    static func filmListView(
+        _ films: [ListFilm]
     ) -> some View {
-        FilmListView(listState: listState) { item in
+        FilmListView(films: films) { films in
             NavigationLink {
-                Text("TBD: item detail")
+                Text("Item detail here")
             } label: {
-                Text(item.title)
+                Text(films.title)
             }
             
         }
@@ -78,32 +58,31 @@ struct GhibliListView_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
-            ghibliListView(.loading)
-                .previewDisplayName("Loading List State")
-            
-            ghibliListView(.empty)
-                .previewDisplayName("Empty List State")
-            
+            filmListView([])
+                .previewDisplayName("ru-RU | Empty List")
+                .environment(\.locale, .ru_RU)
+
+            filmListView([])
+                .previewDisplayName("en-US | Empty List")
+                .environment(\.locale, .en_US)
+
             NavigationView {
-                ghibliListView(.list(.samples))
+                filmListView(.samples)
             }
-            .previewDisplayName("en-US | List State")
+            .previewDisplayName("en-US | List")
             .environment(\.locale, .en_US)
             
             NavigationView {
-                ghibliListView(.list(.samples))
+                filmListView(.samples)
             }
-            .previewDisplayName("ru-RU | List State")
-            
-            ghibliListView(.error(APIError()))
-                .previewDisplayName("Error List State")
+            .previewDisplayName("ru-RU | List")
+            .environment(\.locale, .ru_RU)
         }
-        .environment(\.locale, .ru_RU)
         .preferredColorScheme(.dark)
     }
 }
 
-public extension Locale {
+private extension Locale {
     static let en_US: Self = .init(identifier: "en-US")
     static let ru_RU: Self = .init(identifier: "ru-RU")
 }
