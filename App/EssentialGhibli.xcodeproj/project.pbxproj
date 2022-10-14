@@ -51,6 +51,8 @@
 		2A8FA66628FA234100D0BE9C /* CombineHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FA66528FA234100D0BE9C /* CombineHelpers.swift */; };
 		2A8FA66928FA24C500D0BE9C /* Publisher+fallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FA66828FA24C500D0BE9C /* Publisher+fallback.swift */; };
 		2A8FA66B28FA254400D0BE9C /* LoaderComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FA66A28FA254400D0BE9C /* LoaderComposer.swift */; };
+		2A8FA66F28FA2BD000D0BE9C /* HTTPClientStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FA66E28FA2BD000D0BE9C /* HTTPClientStub.swift */; };
+		2A8FA67128FA2BF900D0BE9C /* InMemoryFeedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FA67028FA2BF900D0BE9C /* InMemoryFeedStore.swift */; };
 		2AA1E73F28F8674600EC410C /* ImageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA1E73E28F8674600EC410C /* ImageMapper.swift */; };
 		2AA1E74128F881D700EC410C /* LoadingImageViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA1E74028F881D700EC410C /* LoadingImageViewSnapshotTests.swift */; };
 		2AA1E74428F882D100EC410C /* XCTest+assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA1E74328F882D100EC410C /* XCTest+assert.swift */; };
@@ -110,6 +112,8 @@
 		2A8FA66528FA234100D0BE9C /* CombineHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineHelpers.swift; sourceTree = "<group>"; };
 		2A8FA66828FA24C500D0BE9C /* Publisher+fallback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+fallback.swift"; sourceTree = "<group>"; };
 		2A8FA66A28FA254400D0BE9C /* LoaderComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderComposer.swift; sourceTree = "<group>"; };
+		2A8FA66E28FA2BD000D0BE9C /* HTTPClientStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientStub.swift; sourceTree = "<group>"; };
+		2A8FA67028FA2BF900D0BE9C /* InMemoryFeedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryFeedStore.swift; sourceTree = "<group>"; };
 		2AA1E73E28F8674600EC410C /* ImageMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMapper.swift; sourceTree = "<group>"; };
 		2AA1E74028F881D700EC410C /* LoadingImageViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingImageViewSnapshotTests.swift; sourceTree = "<group>"; };
 		2AA1E74328F882D100EC410C /* XCTest+assert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+assert.swift"; sourceTree = "<group>"; };
@@ -277,6 +281,8 @@
 		2AA1E74228F882B200EC410C /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				2A8FA66E28FA2BD000D0BE9C /* HTTPClientStub.swift */,
+				2A8FA67028FA2BF900D0BE9C /* InMemoryFeedStore.swift */,
 				2AA1E77A28F8898A00EC410C /* XCTestCase+MemoryLeakTracking.swift */,
 				2A2E935128F96F6D00BA48BB /* TestHelpers.swift */,
 				2AA1E74328F882D100EC410C /* XCTest+assert.swift */,
@@ -291,9 +297,9 @@
 			children = (
 				2AA1E74228F882B200EC410C /* Helpers */,
 				2A8FA65B28F9D03A00D0BE9C /* LoaderComposerTests.swift */,
+				2A8FA66A28FA254400D0BE9C /* LoaderComposer.swift */,
 				2A8FA66728FA24B500D0BE9C /* CombineHelpers */,
 				2AC0166428F0A08C002CA97C /* EssentialGhibliLocalizationTests.swift */,
-				2A8FA66A28FA254400D0BE9C /* LoaderComposer.swift */,
 				2A2E935728F9824700BA48BB /* Adapters */,
 				2A2E935828F9825B00BA48BB /* Mappers */,
 				2AA1E74028F881D700EC410C /* LoadingImageViewSnapshotTests.swift */,
@@ -454,6 +460,7 @@
 				2A8FA65C28F9D03A00D0BE9C /* LoaderComposerTests.swift in Sources */,
 				2AC0166528F0A08C002CA97C /* EssentialGhibliLocalizationTests.swift in Sources */,
 				2A8FA66228FA027200D0BE9C /* json.swift in Sources */,
+				2A8FA67128FA2BF900D0BE9C /* InMemoryFeedStore.swift in Sources */,
 				2A8FA66428FA082D00D0BE9C /* XCTestCase+pause.swift in Sources */,
 				2A2E935C28F987DF00BA48BB /* ImageMapperTests.swift in Sources */,
 				2A2E935228F96F6D00BA48BB /* TestHelpers.swift in Sources */,
@@ -463,6 +470,7 @@
 				2A8FA66B28FA254400D0BE9C /* LoaderComposer.swift in Sources */,
 				2AA1E74428F882D100EC410C /* XCTest+assert.swift in Sources */,
 				2A2E935628F97AB100BA48BB /* FilmDetailViewAdapterSnapshotTests.swift in Sources */,
+				2A8FA66F28FA2BD000D0BE9C /* HTTPClientStub.swift in Sources */,
 				2A2E935428F975BA00BA48BB /* FilmListViewAdapterSnapshotTests.swift in Sources */,
 				2A8FA66928FA24C500D0BE9C /* Publisher+fallback.swift in Sources */,
 				2AA1E74128F881D700EC410C /* LoadingImageViewSnapshotTests.swift in Sources */,
