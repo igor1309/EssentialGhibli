@@ -57,7 +57,7 @@ final class FilmRowViewSnapshotTests: XCTestCase {
         let items = [RowFilm.castleInTheSky, .kikisDeliveryService]
         
         func filmRowView(item: RowFilm) -> some View {
-            FilmRowView(item: item) { _ in thumbnail() }
+            FilmRowView(rowFilm: item) { _ in thumbnail() }
         }
         
         let sut = List {
