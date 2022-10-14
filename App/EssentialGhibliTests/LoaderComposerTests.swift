@@ -40,7 +40,7 @@ extension LoaderComposer {
         makeRemoteFeedLoader()
             .caching(to: feedCache)
             .fallback(to: feedCache.loadPublisher)
-//            .subscribe(on: DispatchQueue.global())
+            .subscribe(on: DispatchQueue.global())
             .eraseToAnyPublisher()
     }
     
@@ -221,7 +221,7 @@ final class LoaderComposerTests: XCTestCase {
     
     private final class InMemoryFeedStore: FeedStore {
         typealias Item = ListFilm
-
+        
         private var cached: CachedFeed<ListFilm>?
         
         init(cached: CachedFeed<ListFilm>?) {
