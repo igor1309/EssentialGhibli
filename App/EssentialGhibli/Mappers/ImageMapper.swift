@@ -22,13 +22,3 @@ enum ImageMapper {
         return Image(uiImage: uiImage)
     }
 }
-
-enum MappingError: String, Error, LocalizedError {
-    case badResponse
-    case invalidData
-    
-    var errorDescription: String? {
-        rawValue
-    }
-}
-

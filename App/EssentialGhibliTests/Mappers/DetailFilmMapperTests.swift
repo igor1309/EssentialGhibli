@@ -27,7 +27,7 @@ final class DetailFilmMapperTests: XCTestCase {
         XCTAssertThrowsError(
             try DetailFilmMapper.map(dataResponse: (invalidJSON, .statusCode200))
         ) {
-            XCTAssertEqual($0 as? MappingError,.invalidData)
+            XCTAssertEqual($0 as? MappingError, .invalidData)
         }
     }
 
