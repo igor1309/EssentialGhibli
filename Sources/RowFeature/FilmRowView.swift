@@ -40,7 +40,7 @@ where Thumbnail: View {
     }
 }
 
-struct GhibliFilmRow_Previews: PreviewProvider {
+struct FilmRowView_Previews: PreviewProvider {
     static var previews: some View {
         List([RowFilm].samples) {
             FilmRowView(rowFilm: $0) { _ in

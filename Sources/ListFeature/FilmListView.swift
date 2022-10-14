@@ -41,7 +41,7 @@ public struct FilmListView<Row: View>: View {
     }
 }
 
-struct GhibliListView_Previews: PreviewProvider {
+struct FilmListView_Previews: PreviewProvider {
     
     static func filmListView(
         _ films: [ListFilm]

@@ -63,7 +63,7 @@ where Poster: View {
     }
 }
 
-struct DetailView_Previews: PreviewProvider {
+struct FilmDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             NavigationView {
