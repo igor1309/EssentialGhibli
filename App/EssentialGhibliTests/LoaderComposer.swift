@@ -13,14 +13,14 @@ import Foundation
 import ListFeature
 import SharedAPI
 
-final class LoaderComposer<Store: FeedStore<ListFilm>> {
+final class LoaderComposer<Item, Store: FeedStore<Item>> {
     private lazy var baseURL: URL = {
         URL(string: "https://ghibliapi.herokuapp.com")!
     }()
     
     private let httpClient: HTTPClient
     private let store: Store
-    private let feedCache: FeedCache<ListFilm, Store>
+    private let feedCache: FeedCache<Item, Store>
     
     init(httpClient: HTTPClient, store: Store) {
         self.httpClient = httpClient
@@ -34,7 +34,8 @@ final class LoaderComposer<Store: FeedStore<ListFilm>> {
     }
 }
 
-extension LoaderComposer {
+extension LoaderComposer where Item == ListFilm {
+    
     /// Remote feed loader with fallback to local feed cache
     func filmsLoader() -> AnyPublisher<[ListFilm], Error> {
         makeRemoteFeedLoader()

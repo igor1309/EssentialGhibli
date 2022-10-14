@@ -37,7 +37,7 @@ final class LoaderComposerTests: XCTestCase {
     typealias ListFilmResult = Result<[ListFilm], MappingError>
     
     private func expect<Store: FeedStore>(
-        _ sut: LoaderComposer<Store>,
+        _ sut: LoaderComposer<ListFilm, Store>,
         toDeliver expectedResult: ListFilmResult,
         inTime interval: TimeInterval = 1,
         file: StaticString = #file,
@@ -92,7 +92,7 @@ final class LoaderComposerTests: XCTestCase {
         _ store: InMemoryFeedStore,
         file: StaticString = #file,
         line: UInt = #line
-    ) -> LoaderComposer<InMemoryFeedStore> {
+    ) -> LoaderComposer<ListFilm, InMemoryFeedStore> {
         makeSUT(httpClient: httpClient, store: store, file: file, line: line)
     }
     
@@ -101,7 +101,7 @@ final class LoaderComposerTests: XCTestCase {
         store: Store,
         file: StaticString = #file,
         line: UInt = #line
-    ) -> LoaderComposer<Store> {
+    ) -> LoaderComposer<ListFilm, Store> {
         let sut = LoaderComposer(httpClient: httpClient, store: store)
         
         trackForMemoryLeaks(sut, file: file, line: line)
