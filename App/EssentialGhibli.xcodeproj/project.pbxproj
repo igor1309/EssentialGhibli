@@ -55,7 +55,6 @@
 		2AA1E77C28F889B200EC410C /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA1E77A28F8898A00EC410C /* XCTestCase+MemoryLeakTracking.swift */; };
 		2AB6D25728F057AE006C8855 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB6D25628F057AE006C8855 /* ViewModel.swift */; };
 		2AC0165328F09FFF002CA97C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AC0165528F09FFF002CA97C /* Localizable.strings */; };
-		2AC0165E28F0A062002CA97C /* EssentialGhibliTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC0165D28F0A062002CA97C /* EssentialGhibliTests.swift */; };
 		2AC0166528F0A08C002CA97C /* EssentialGhibliLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC0166428F0A08C002CA97C /* EssentialGhibliLocalizationTests.swift */; };
 		2AD17F9528F829FE0047B31A /* LoadingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD17F9428F829FE0047B31A /* LoadingImageView.swift */; };
 		2AD17F9728F82F8B0047B31A /* ImageErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD17F9628F82F8B0047B31A /* ImageErrorView.swift */; };
@@ -113,7 +112,6 @@
 		2AC0165428F09FFF002CA97C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2AC0165628F0A000002CA97C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2AC0165B28F0A062002CA97C /* EssentialGhibliTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialGhibliTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2AC0165D28F0A062002CA97C /* EssentialGhibliTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialGhibliTests.swift; sourceTree = "<group>"; };
 		2AC0166428F0A08C002CA97C /* EssentialGhibliLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialGhibliLocalizationTests.swift; sourceTree = "<group>"; };
 		2AD17F9428F829FE0047B31A /* LoadingImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingImageView.swift; sourceTree = "<group>"; };
 		2AD17F9628F82F8B0047B31A /* ImageErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageErrorView.swift; sourceTree = "<group>"; };
@@ -277,7 +275,6 @@
 			isa = PBXGroup;
 			children = (
 				2AA1E74228F882B200EC410C /* Helpers */,
-				2AC0165D28F0A062002CA97C /* EssentialGhibliTests.swift */,
 				2A8FA65B28F9D03A00D0BE9C /* LoaderComposerTests.swift */,
 				2AC0166428F0A08C002CA97C /* EssentialGhibliLocalizationTests.swift */,
 				2A2E935728F9824700BA48BB /* Adapters */,
@@ -439,7 +436,6 @@
 			files = (
 				2A8FA65C28F9D03A00D0BE9C /* LoaderComposerTests.swift in Sources */,
 				2AC0166528F0A08C002CA97C /* EssentialGhibliLocalizationTests.swift in Sources */,
-				2AC0165E28F0A062002CA97C /* EssentialGhibliTests.swift in Sources */,
 				2A8FA66228FA027200D0BE9C /* json.swift in Sources */,
 				2A8FA66428FA082D00D0BE9C /* XCTestCase+pause.swift in Sources */,
 				2A2E935C28F987DF00BA48BB /* ImageMapperTests.swift in Sources */,
