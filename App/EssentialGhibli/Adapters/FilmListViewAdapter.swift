@@ -31,10 +31,10 @@ struct FilmListViewAdapter<Row: View>: View {
 
 #if DEBUG
 func filmListViewAdapter(
-    _ filmsLoader: @escaping () -> AnyPublisher<[ListFilm], Error>
+    _ listFilmsLoader: @escaping () -> AnyPublisher<[ListFilm], Error>
 ) -> some View {
     FilmListViewAdapter(
-        filmsLoader: filmsLoader,
+        filmsLoader: listFilmsLoader,
         filmRow: { Text($0.title) }
     )
 }
@@ -42,25 +42,25 @@ func filmListViewAdapter(
 struct FilmListViewAdapter_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            filmListViewAdapter(filmsLoader)
+            filmListViewAdapter(listFilmsLoader)
             
-            filmListViewAdapter(emptyFilmsLoader)
+            filmListViewAdapter(emptyListFilmsLoader)
                 .environment(\.locale, .en_US)
                 .previewDisplayName("en-US | Empty List Loader")
             
-            filmListViewAdapter(emptyFilmsLoader)
+            filmListViewAdapter(emptyListFilmsLoader)
                 .environment(\.locale, .ru_RU)
                 .previewDisplayName("ru-RU | Empty List Loader")
             
-            filmListViewAdapter(longFilmsLoader)
+            filmListViewAdapter(longListFilmsLoader)
                 .environment(\.locale, .en_US)
                 .previewDisplayName("en-US | Long List Loader")
             
-            filmListViewAdapter(longFilmsLoader)
+            filmListViewAdapter(longListFilmsLoader)
                 .environment(\.locale, .ru_RU)
                 .previewDisplayName("ru-RU Long List Loader")
             
-            filmListViewAdapter(failingFilmsLoader)
+            filmListViewAdapter(failingListFilmsLoader)
                 .previewDisplayName("Failing List Loader")
         }
         .preferredColorScheme(.dark)

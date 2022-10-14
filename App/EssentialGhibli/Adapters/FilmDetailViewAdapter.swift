@@ -54,39 +54,39 @@ struct FilmDetailViewAdapter_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             filmDetailViewAdapter(
-                loader: filmDetailLoader,
-                imageLoader: filmDetailLImageLoader
+                loader: detailFilmLoader,
+                imageLoader: detailFilmImageLoader
             )
             
             filmDetailViewAdapter(
                 loader: filmDetailLongLoader,
-                imageLoader: filmDetailLImageLoader
+                imageLoader: detailFilmImageLoader
             )
             .environment(\.locale, .en_US)
             .previewDisplayName("en-US | Long Loader")
             
             filmDetailViewAdapter(
                 loader: filmDetailLongLoader,
-                imageLoader: filmDetailLImageLoader
+                imageLoader: detailFilmImageLoader
             )
             .environment(\.locale, .ru_RU)
             .previewDisplayName("ru-RU | Long Loader")
             
             filmDetailViewAdapter(
-                loader: filmDetailLFailingLoader,
-                imageLoader: filmDetailLImageLoader
+                loader: failingDetailFilmLoader,
+                imageLoader: detailFilmImageLoader
             )
             .previewDisplayName("Failing Loader")
             
             filmDetailViewAdapter(
-                loader: filmDetailLoader,
-                imageLoader: filmDetailLLongImageLoader
+                loader: detailFilmLoader,
+                imageLoader: longDetailFilmImageLoader
             )
             .previewDisplayName("Long Image Loader")
             
             filmDetailViewAdapter(
-                loader: filmDetailLoader,
-                imageLoader: filmDetailLFailingImageLoader
+                loader: detailFilmLoader,
+                imageLoader: failingDetailFilmImageLoader
             )
             .previewDisplayName("Failing Image Loader")
             

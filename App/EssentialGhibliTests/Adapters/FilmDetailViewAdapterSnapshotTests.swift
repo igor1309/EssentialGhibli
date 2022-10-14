@@ -13,8 +13,8 @@ final class FilmDetailViewAdapterSnapshotTests: XCTestCase {
     
     func test_snapshot_FilmDetailViewAdapter_loaded() {
         let sut = filmDetailViewAdapter(
-            loader: filmDetailLoader,
-            imageLoader: filmDetailLImageLoader
+            loader: detailFilmLoader,
+            imageLoader: detailFilmImageLoader
         )
         
         assert(snapshot: sut, locale: .en_US, record: record)
@@ -23,7 +23,7 @@ final class FilmDetailViewAdapterSnapshotTests: XCTestCase {
     func test_snapshot_FilmDetailViewAdapter_loading() {
         let sut = filmDetailViewAdapter(
             loader: filmDetailLongLoader,
-            imageLoader: filmDetailLImageLoader
+            imageLoader: detailFilmImageLoader
         )
         
         assert(snapshot: sut, locale: .en_US, record: record)
@@ -32,8 +32,8 @@ final class FilmDetailViewAdapterSnapshotTests: XCTestCase {
     
     func test_snapshot_FilmDetailViewAdapter_loaderFailed() {
         let sut = filmDetailViewAdapter(
-            loader: filmDetailLFailingLoader,
-            imageLoader: filmDetailLImageLoader
+            loader: failingDetailFilmLoader,
+            imageLoader: detailFilmImageLoader
         )
         
         assert(snapshot: sut, locale: .en_US, record: record)
@@ -41,8 +41,8 @@ final class FilmDetailViewAdapterSnapshotTests: XCTestCase {
     
     func test_snapshot_FilmDetailViewAdapter_imageLoading() {
         let sut = filmDetailViewAdapter(
-            loader: filmDetailLoader,
-            imageLoader: filmDetailLLongImageLoader
+            loader: detailFilmLoader,
+            imageLoader: longDetailFilmImageLoader
         )
         
         assert(snapshot: sut, locale: .en_US, record: record)
@@ -50,8 +50,8 @@ final class FilmDetailViewAdapterSnapshotTests: XCTestCase {
     
     func test_snapshot_FilmDetailViewAdapter_imageLoaderFailed() {
         let sut = filmDetailViewAdapter(
-            loader: filmDetailLoader,
-            imageLoader: filmDetailLFailingImageLoader
+            loader: detailFilmLoader,
+            imageLoader: failingDetailFilmImageLoader
         )
         
         assert(snapshot: sut, locale: .en_US, record: record)

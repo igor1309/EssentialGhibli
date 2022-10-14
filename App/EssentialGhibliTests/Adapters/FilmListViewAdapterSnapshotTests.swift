@@ -12,27 +12,27 @@ final class FilmListViewAdapterSnapshotTests: XCTestCase {
     let record = false
     
     func test_snapshot_FilmListViewAdapter_nonEmptyList() {
-        let sut = filmListViewAdapter(filmsLoader)
+        let sut = filmListViewAdapter(listFilmsLoader)
         
         assert(snapshot: sut, locale: .en_US, record: record)
     }
     
     func test_snapshot_FilmListViewAdapter_emptyList() {
-        let sut = filmListViewAdapter(emptyFilmsLoader)
+        let sut = filmListViewAdapter(emptyListFilmsLoader)
         
         assert(snapshot: sut, locale: .en_US, record: record)
         assert(snapshot: sut, locale: .ru_RU, record: record)
     }
     
     func test_snapshot_FilmListViewAdapter_loading() {
-        let sut = filmListViewAdapter(longFilmsLoader)
+        let sut = filmListViewAdapter(longListFilmsLoader)
         
         assert(snapshot: sut, locale: .en_US, record: record)
         assert(snapshot: sut, locale: .ru_RU, record: record)
     }
     
     func test_snapshot_FilmListViewAdapter_failed() {
-        let sut = filmListViewAdapter(failingFilmsLoader)
+        let sut = filmListViewAdapter(failingListFilmsLoader)
         
         assert(snapshot: sut, locale: .en_US, record: record)
     }

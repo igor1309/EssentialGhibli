@@ -47,10 +47,10 @@ struct FilmRowViewAdapter_Previews: PreviewProvider {
         Group {
             filmRowViewAdapter(filmRowImageLoader)
             
-            filmRowViewAdapter(filmRowLongImageLoader)
+            filmRowViewAdapter(longFilmRowImageLoader)
                 .previewDisplayName("Long Image Loader")
             
-            filmRowViewAdapter(filmRowFailingImageLoader)
+            filmRowViewAdapter(failingFilmRowImageLoader)
                 .previewDisplayName("Failing Image Loader")
         }
         .preferredColorScheme(.dark)

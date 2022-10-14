@@ -136,14 +136,6 @@ private extension URL {
     static let anyURL: URL = .init(string: "https://any-url.com")!
 }
 
-private func anyError(message: String = "any error") -> Error {
-    AnyError(message: message)
-}
-
-private struct AnyError: Error {
-    let message: String
-}
-
 private extension UIImage {
     static func make(
         withColor color: UIColor,
