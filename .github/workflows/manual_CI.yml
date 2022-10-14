@@ -1,6 +1,6 @@
 # This is a manually triggered workflow to run Xcode with pre warm up, clean build and test using script
 
-name: CI using script
+name: Manual CI using script
 
 # Controls when the action will run. Manually trigger workflow.
 on:
