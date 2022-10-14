@@ -17,7 +17,7 @@ public struct DetailFilm: Identifiable, Hashable {
     public let director: String
     public let producer: String
     
-    init(
+    public init(
         id: UUID,
         title: String,
         originalTitle: String,
