@@ -16,6 +16,12 @@ import XCTest
 
 final class LoaderComposerTests: XCTestCase {
     
+    func test_shouldDeliverRemoteFeedIfOnline() {
+        let sut = makeSUT(.online, .init(cached: nil))
+        
+        expect(sut, toDeliver: .samples)
+    }
+    
     func test_shouldDeliverEmptyFilmListIfOfflineAndEmptyCache() {
         let sut = makeSUT(.offline, .init(cached: nil))
         
