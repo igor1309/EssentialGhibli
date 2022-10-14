@@ -105,13 +105,13 @@ private extension FeedSaver {
 final class LoaderComposerTests: XCTestCase {
     
     func test_shouldDeliverEmptyFilmListIfOfflineAndEmptyCache() {
-        let sut = makeSUT(.offline, .empty)
+        let sut = makeSUT(.offline, .init(cached: nil))
         
         expect(sut, toDeliver: .empty)
     }
     
     func test_shouldDeliverCachedFilmListIfOfflineAndNonEmptyCache() {
-        let store = InMemoryFeedStore.empty
+        let store = InMemoryFeedStore(cached: nil)
         
         let online = makeSUT(.online, store)
         expect(online, toDeliver: .samples)
@@ -221,11 +221,7 @@ final class LoaderComposerTests: XCTestCase {
     
     private final class InMemoryFeedStore: FeedStore {
         typealias Item = ListFilm
-        
-        static let empty = InMemoryFeedStore(cached: nil)
-        static let nonExpired = InMemoryFeedStore(cached: (.samples, .now))
-        // static let expired = InMemoryFeedStore(cached: (.samples, .distantPast))
-        
+
         private var cached: CachedFeed<ListFilm>?
         
         init(cached: CachedFeed<ListFilm>?) {
@@ -243,7 +239,6 @@ final class LoaderComposerTests: XCTestCase {
         func retrieve() throws -> Cache.CachedFeed<ListFilm>? {
             cached
         }
-        
     }
 }
 
