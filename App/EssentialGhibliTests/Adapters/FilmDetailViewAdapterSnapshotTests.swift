@@ -13,8 +13,8 @@ final class FilmDetailViewAdapterSnapshotTests: XCTestCase {
     
     func test_snapshot_FilmDetailViewAdapter_loaded() {
         let sut = filmDetailViewAdapter(
-            loader: detailFilmLoader,
-            imageLoader: detailFilmImageLoader
+            loader: PreviewLoaders.detailFilmLoader,
+            imageLoader: PreviewLoaders.detailFilmImageLoader
         )
         
         assert(snapshot: sut, locale: .en_US, record: record)
@@ -22,8 +22,8 @@ final class FilmDetailViewAdapterSnapshotTests: XCTestCase {
     
     func test_snapshot_FilmDetailViewAdapter_loading() {
         let sut = filmDetailViewAdapter(
-            loader: filmDetailLongLoader,
-            imageLoader: detailFilmImageLoader
+            loader: PreviewLoaders.filmDetailLongLoader,
+            imageLoader: PreviewLoaders.detailFilmImageLoader
         )
         
         assert(snapshot: sut, locale: .en_US, record: record)
@@ -32,8 +32,8 @@ final class FilmDetailViewAdapterSnapshotTests: XCTestCase {
     
     func test_snapshot_FilmDetailViewAdapter_loaderFailed() {
         let sut = filmDetailViewAdapter(
-            loader: failingDetailFilmLoader,
-            imageLoader: detailFilmImageLoader
+            loader: PreviewLoaders.failingDetailFilmLoader,
+            imageLoader: PreviewLoaders.detailFilmImageLoader
         )
         
         assert(snapshot: sut, locale: .en_US, record: record)
@@ -41,8 +41,8 @@ final class FilmDetailViewAdapterSnapshotTests: XCTestCase {
     
     func test_snapshot_FilmDetailViewAdapter_imageLoading() {
         let sut = filmDetailViewAdapter(
-            loader: detailFilmLoader,
-            imageLoader: longDetailFilmImageLoader
+            loader: PreviewLoaders.detailFilmLoader,
+            imageLoader: PreviewLoaders.longDetailFilmImageLoader
         )
         
         assert(snapshot: sut, locale: .en_US, record: record)
@@ -50,8 +50,8 @@ final class FilmDetailViewAdapterSnapshotTests: XCTestCase {
     
     func test_snapshot_FilmDetailViewAdapter_imageLoaderFailed() {
         let sut = filmDetailViewAdapter(
-            loader: detailFilmLoader,
-            imageLoader: failingDetailFilmImageLoader
+            loader: PreviewLoaders.detailFilmLoader,
+            imageLoader: PreviewLoaders.failingDetailFilmImageLoader
         )
         
         assert(snapshot: sut, locale: .en_US, record: record)

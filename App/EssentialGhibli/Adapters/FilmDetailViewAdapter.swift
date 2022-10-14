@@ -54,39 +54,39 @@ struct FilmDetailViewAdapter_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             filmDetailViewAdapter(
-                loader: detailFilmLoader,
-                imageLoader: detailFilmImageLoader
+                loader: PreviewLoaders.detailFilmLoader,
+                imageLoader: PreviewLoaders.detailFilmImageLoader
             )
             
             filmDetailViewAdapter(
-                loader: filmDetailLongLoader,
-                imageLoader: detailFilmImageLoader
+                loader: PreviewLoaders.filmDetailLongLoader,
+                imageLoader: PreviewLoaders.detailFilmImageLoader
             )
             .environment(\.locale, .en_US)
             .previewDisplayName("en-US | Long Loader")
             
             filmDetailViewAdapter(
-                loader: filmDetailLongLoader,
-                imageLoader: detailFilmImageLoader
+                loader: PreviewLoaders.filmDetailLongLoader,
+                imageLoader: PreviewLoaders.detailFilmImageLoader
             )
             .environment(\.locale, .ru_RU)
             .previewDisplayName("ru-RU | Long Loader")
             
             filmDetailViewAdapter(
-                loader: failingDetailFilmLoader,
-                imageLoader: detailFilmImageLoader
+                loader: PreviewLoaders.failingDetailFilmLoader,
+                imageLoader: PreviewLoaders.detailFilmImageLoader
             )
             .previewDisplayName("Failing Loader")
             
             filmDetailViewAdapter(
-                loader: detailFilmLoader,
-                imageLoader: longDetailFilmImageLoader
+                loader: PreviewLoaders.detailFilmLoader,
+                imageLoader: PreviewLoaders.longDetailFilmImageLoader
             )
             .previewDisplayName("Long Image Loader")
             
             filmDetailViewAdapter(
-                loader: detailFilmLoader,
-                imageLoader: failingDetailFilmImageLoader
+                loader: PreviewLoaders.detailFilmLoader,
+                imageLoader: PreviewLoaders.failingDetailFilmImageLoader
             )
             .previewDisplayName("Failing Image Loader")
             

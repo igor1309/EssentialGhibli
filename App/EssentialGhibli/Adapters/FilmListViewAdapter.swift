@@ -42,25 +42,25 @@ func filmListViewAdapter(
 struct FilmListViewAdapter_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            filmListViewAdapter(listFilmsLoader)
+            filmListViewAdapter(PreviewLoaders.listFilmsLoader)
             
-            filmListViewAdapter(emptyListFilmsLoader)
+            filmListViewAdapter(PreviewLoaders.emptyListFilmsLoader)
                 .environment(\.locale, .en_US)
                 .previewDisplayName("en-US | Empty List Loader")
             
-            filmListViewAdapter(emptyListFilmsLoader)
+            filmListViewAdapter(PreviewLoaders.emptyListFilmsLoader)
                 .environment(\.locale, .ru_RU)
                 .previewDisplayName("ru-RU | Empty List Loader")
             
-            filmListViewAdapter(longListFilmsLoader)
+            filmListViewAdapter(PreviewLoaders.longListFilmsLoader)
                 .environment(\.locale, .en_US)
                 .previewDisplayName("en-US | Long List Loader")
             
-            filmListViewAdapter(longListFilmsLoader)
+            filmListViewAdapter(PreviewLoaders.longListFilmsLoader)
                 .environment(\.locale, .ru_RU)
                 .previewDisplayName("ru-RU Long List Loader")
             
-            filmListViewAdapter(failingListFilmsLoader)
+            filmListViewAdapter(PreviewLoaders.failingListFilmsLoader)
                 .previewDisplayName("Failing List Loader")
         }
         .preferredColorScheme(.dark)

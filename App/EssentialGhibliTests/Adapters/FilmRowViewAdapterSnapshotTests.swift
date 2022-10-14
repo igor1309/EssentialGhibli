@@ -12,19 +12,19 @@ final class FilmRowViewAdapterSnapshotTests: XCTestCase {
     let record = false
     
     func test_snapshot_FilmRowViewAdapter_imageLoaded() {
-        let sut = filmRowViewAdapter(filmRowImageLoader)
+        let sut = filmRowViewAdapter(PreviewLoaders.filmRowImageLoader)
         
         assert(snapshot: sut, locale: .en_US, record: record)
     }
     
     func test_snapshot_FilmRowViewAdapter_imageLoading() {
-        let sut = filmRowViewAdapter(longFilmRowImageLoader)
+        let sut = filmRowViewAdapter(PreviewLoaders.longFilmRowImageLoader)
         
         assert(snapshot: sut, locale: .en_US, record: record)
     }
     
     func test_snapshot_FilmRowViewAdapter_imageLoadingFailed() {
-        let sut = filmRowViewAdapter(failingFilmRowImageLoader)
+        let sut = filmRowViewAdapter(PreviewLoaders.failingFilmRowImageLoader)
         
         assert(snapshot: sut, locale: .en_US, record: record)
     }

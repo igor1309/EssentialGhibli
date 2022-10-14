@@ -45,12 +45,12 @@ func filmRowViewAdapter(
 struct FilmRowViewAdapter_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            filmRowViewAdapter(filmRowImageLoader)
+            filmRowViewAdapter(PreviewLoaders.filmRowImageLoader)
             
-            filmRowViewAdapter(longFilmRowImageLoader)
+            filmRowViewAdapter(PreviewLoaders.longFilmRowImageLoader)
                 .previewDisplayName("Long Image Loader")
             
-            filmRowViewAdapter(failingFilmRowImageLoader)
+            filmRowViewAdapter(PreviewLoaders.failingFilmRowImageLoader)
                 .previewDisplayName("Failing Image Loader")
         }
         .preferredColorScheme(.dark)
