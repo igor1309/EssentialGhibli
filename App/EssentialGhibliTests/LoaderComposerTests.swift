@@ -36,6 +36,7 @@ final class LoaderComposer<Store: FeedStore<ListFilm>> {
 }
 
 extension LoaderComposer {
+    /// Remote feed loader with fallback to local feed cache
     func filmsLoader() -> AnyPublisher<[ListFilm], Error> {
         makeRemoteFeedLoader()
             .caching(to: feedCache)
