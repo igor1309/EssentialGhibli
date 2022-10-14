@@ -9,7 +9,7 @@ import SwiftUI
 
 enum ImageMapper {
     static func map(dataResponse: DataResponse) throws -> Image {
-        guard isOK(response: dataResponse.response)
+        guard dataResponse.response.is200
         else {
             throw MappingError.badResponse
         }
@@ -21,17 +21,14 @@ enum ImageMapper {
         
         return Image(uiImage: uiImage)
     }
+}
+
+enum MappingError: String, Error, LocalizedError {
+    case badResponse
+    case invalidData
     
-    private static func isOK(response: HTTPURLResponse) -> Bool {
-        response.statusCode == 200
-    }
-    
-    enum MappingError: String, Error, LocalizedError {
-        case badResponse
-        case invalidData
-        
-        var errorDescription: String? {
-            rawValue
-        }
+    var errorDescription: String? {
+        rawValue
     }
 }
+

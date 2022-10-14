@@ -11,10 +11,10 @@ import Presentation
 import SwiftUI
 
 typealias DataResponse = (data: Data, response: HTTPURLResponse)
-typealias DataResponsePublisher = AnyPublisher<DataResponse, Error>
 typealias ImagePublisher = AnyPublisher<Image, Error>
 
 struct LoadingImageView: View {
+    var showLabel: Bool = true
     let loader: () -> ImagePublisher
     
     var body: some View {
@@ -33,14 +33,17 @@ struct LoadingImageView: View {
     @ViewBuilder
     func loadingView(loadingState: LoadingState) -> some View {
         if loadingState.isLoading {
-            ProgressView {
-                Text("LOADING", tableName: "Localizable", bundle: .main)
-            }
-        } else {
-            
+//            Color.clear
+//                .overlay {
+                    ProgressView {
+                        if showLabel {
+                            Text("LOADING", tableName: "Localizable", bundle: .main)
+                        }
+                    }
+//                }
         }
     }
-    
+
     private func errorView(errorState: ErrorState) -> some View {
         ImageErrorView(errorState: errorState, font: nil)
             .foregroundColor(.red)
@@ -53,6 +56,12 @@ struct LoadingImageView_Demo: View {
         Just((.greenImage(width: 300, height: 600), .any200))
             .delay(for: 2, scheduler: DispatchQueue.main)
             .tryMap(ImageMapper.map)
+            .eraseToAnyPublisher()
+    }
+    
+    func longLoader() -> ImagePublisher {
+        loader()
+            .delay(for: 10, scheduler: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
     
@@ -74,12 +83,15 @@ struct LoadingImageView_Demo: View {
         VStack {
             Group {
                 LoadingImageView(loader: loader)
-                
+                LoadingImageView(showLabel: false, loader: loader)
+
+                LoadingImageView(loader: longLoader)
+                LoadingImageView(showLabel: false, loader: longLoader)
+
                 LoadingImageView(loader: non200Loader)
-                    .previewDisplayName("Non 2xx Loader")
-                
+                LoadingImageView(showLabel: false, loader: non200Loader)
+
                 LoadingImageView(loader: failingLoader)
-                    .previewDisplayName("Failing Loader")
             }
             .border(.blue, width: 0.5)
         }

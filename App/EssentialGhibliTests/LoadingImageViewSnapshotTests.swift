@@ -15,11 +15,7 @@ final class LoadingImageViewSnapshotTests: XCTestCase {
     let record = false
     
     func test_snapshot_LoadingImageView_loading() {
-        let sut = makeSUT {
-            self.loader()
-                .delay(for: 0.02, scheduler: DispatchQueue.main)
-                .eraseToAnyPublisher()
-        }
+        let sut = makeSUT(loader: longLoader)
         
         assert(snapshot: sut, locale: .en_US, record: record)
         assert(snapshot: sut, locale: .ru_RU, record: record)
@@ -69,6 +65,12 @@ final class LoadingImageViewSnapshotTests: XCTestCase {
             .eraseToAnyPublisher()
     }
     
+    private func longLoader() -> ImagePublisher {
+        loader()
+            .delay(for: 0.02, scheduler: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+    
     private func non200Loader() -> ImagePublisher {
         Just((.greenImage(width: 300, height: 600), .any400))
             .tryMap(ImageMapper.map)
@@ -81,11 +83,6 @@ final class LoadingImageViewSnapshotTests: XCTestCase {
             .eraseToAnyPublisher()
     }
     
-}
-
-private extension Locale {
-    static let en_US: Self = .init(identifier: "en-US")
-    static let ru_RU: Self = .init(identifier: "ru-RU")
 }
 
 private extension Data {

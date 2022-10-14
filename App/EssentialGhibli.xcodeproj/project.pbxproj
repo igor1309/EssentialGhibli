@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A0AD06B28F8E976001488C6 /* HTTPURLResponse+is200.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0AD06A28F8E976001488C6 /* HTTPURLResponse+is200.swift */; };
+		2A0AD06D28F8E989001488C6 /* ListFilmMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0AD06C28F8E989001488C6 /* ListFilmMapper.swift */; };
+		2A0AD06F28F8E99C001488C6 /* DetailFilmMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0AD06E28F8E99C001488C6 /* DetailFilmMapper.swift */; };
+		2A0AD07228F8E9EF001488C6 /* FilmRowViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0AD07128F8E9EF001488C6 /* FilmRowViewAdapter.swift */; };
+		2A0AD07428F8EA0A001488C6 /* FilmDetailViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0AD07328F8EA0A001488C6 /* FilmDetailViewAdapter.swift */; };
+		2A0AD07928F8EAB0001488C6 /* ProgressLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0AD07828F8EAB0001488C6 /* ProgressLoadingView.swift */; };
+		2A0AD07B28F8EAC5001488C6 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0AD07A28F8EAC5001488C6 /* ErrorView.swift */; };
+		2A0AD07D28F8EB1B001488C6 /* DetailNavigationComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0AD07C28F8EB1B001488C6 /* DetailNavigationComposer.swift */; };
 		2A28385328F6BFF10013A761 /* API in Frameworks */ = {isa = PBXBuildFile; productRef = 2A28385228F6BFF10013A761 /* API */; };
 		2A28385528F6BFF10013A761 /* Cache in Frameworks */ = {isa = PBXBuildFile; productRef = 2A28385428F6BFF10013A761 /* Cache */; };
 		2A28385728F6BFF10013A761 /* CacheInfra in Frameworks */ = {isa = PBXBuildFile; productRef = 2A28385628F6BFF10013A761 /* CacheInfra */; };
@@ -18,6 +26,17 @@
 		2A28386328F6BFF20013A761 /* RowFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 2A28386228F6BFF20013A761 /* RowFeature */; };
 		2A28386528F6BFF20013A761 /* SharedAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 2A28386428F6BFF20013A761 /* SharedAPI */; };
 		2A28386728F6BFF20013A761 /* SharedAPIInfra in Frameworks */ = {isa = PBXBuildFile; productRef = 2A28386628F6BFF20013A761 /* SharedAPIInfra */; };
+		2A2E934828F9519100BA48BB /* ListState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2E934728F9519100BA48BB /* ListState.swift */; };
+		2A2E934A28F9586600BA48BB /* FilmListViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2E934928F9586600BA48BB /* FilmListViewAdapter.swift */; };
+		2A2E934C28F9608800BA48BB /* UIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2E934B28F9608800BA48BB /* UIComposer.swift */; };
+		2A2E934E28F960B600BA48BB /* LoaderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2E934D28F960B600BA48BB /* LoaderFactory.swift */; };
+		2A2E935028F96F0100BA48BB /* FilmRowViewAdapterSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2E934F28F96F0100BA48BB /* FilmRowViewAdapterSnapshotTests.swift */; };
+		2A2E935228F96F6D00BA48BB /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2E935128F96F6D00BA48BB /* TestHelpers.swift */; };
+		2A2E935428F975BA00BA48BB /* FilmListViewAdapterSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2E935328F975BA00BA48BB /* FilmListViewAdapterSnapshotTests.swift */; };
+		2A2E935628F97AB100BA48BB /* FilmDetailViewAdapterSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2E935528F97AB100BA48BB /* FilmDetailViewAdapterSnapshotTests.swift */; };
+		2A2E935A28F9829900BA48BB /* DetailFilmMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2E935928F9829900BA48BB /* DetailFilmMapperTests.swift */; };
+		2A2E935C28F987DF00BA48BB /* ImageMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2E935B28F987DF00BA48BB /* ImageMapperTests.swift */; };
+		2A2E935E28F98CAC00BA48BB /* ListFilmMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2E935D28F98CAC00BA48BB /* ListFilmMapperTests.swift */; };
 		2A51FA7428EF0644003D3EA1 /* EssentialGhibliApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A51FA7328EF0644003D3EA1 /* EssentialGhibliApp.swift */; };
 		2A51FA7628EF0644003D3EA1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A51FA7528EF0644003D3EA1 /* ContentView.swift */; };
 		2A51FA7828EF0646003D3EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A51FA7728EF0646003D3EA1 /* Assets.xcassets */; };
@@ -29,7 +48,6 @@
 		2AA1E74728F8832700EC410C /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 2AA1E74628F8832700EC410C /* SnapshotTesting */; };
 		2AA1E77C28F889B200EC410C /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA1E77A28F8898A00EC410C /* XCTestCase+MemoryLeakTracking.swift */; };
 		2AB6D25728F057AE006C8855 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB6D25628F057AE006C8855 /* ViewModel.swift */; };
-		2AC0165028F09DA9002CA97C /* NavigationComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC0164F28F09DA9002CA97C /* NavigationComposer.swift */; };
 		2AC0165328F09FFF002CA97C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AC0165528F09FFF002CA97C /* Localizable.strings */; };
 		2AC0165E28F0A062002CA97C /* EssentialGhibliTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC0165D28F0A062002CA97C /* EssentialGhibliTests.swift */; };
 		2AC0166528F0A08C002CA97C /* EssentialGhibliLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC0166428F0A08C002CA97C /* EssentialGhibliLocalizationTests.swift */; };
@@ -48,7 +66,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A0AD06A28F8E976001488C6 /* HTTPURLResponse+is200.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+is200.swift"; sourceTree = "<group>"; };
+		2A0AD06C28F8E989001488C6 /* ListFilmMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilmMapper.swift; sourceTree = "<group>"; };
+		2A0AD06E28F8E99C001488C6 /* DetailFilmMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFilmMapper.swift; sourceTree = "<group>"; };
+		2A0AD07128F8E9EF001488C6 /* FilmRowViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmRowViewAdapter.swift; sourceTree = "<group>"; };
+		2A0AD07328F8EA0A001488C6 /* FilmDetailViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmDetailViewAdapter.swift; sourceTree = "<group>"; };
+		2A0AD07828F8EAB0001488C6 /* ProgressLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressLoadingView.swift; sourceTree = "<group>"; };
+		2A0AD07A28F8EAC5001488C6 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		2A0AD07C28F8EB1B001488C6 /* DetailNavigationComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNavigationComposer.swift; sourceTree = "<group>"; };
 		2A2D70DA28F2BED400E0802F /* PrivateNotes.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = PrivateNotes.md; path = ../Extras/PrivateNotes.md; sourceTree = "<group>"; };
+		2A2E934728F9519100BA48BB /* ListState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListState.swift; sourceTree = "<group>"; };
+		2A2E934928F9586600BA48BB /* FilmListViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmListViewAdapter.swift; sourceTree = "<group>"; };
+		2A2E934B28F9608800BA48BB /* UIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComposer.swift; sourceTree = "<group>"; };
+		2A2E934D28F960B600BA48BB /* LoaderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderFactory.swift; sourceTree = "<group>"; };
+		2A2E934F28F96F0100BA48BB /* FilmRowViewAdapterSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmRowViewAdapterSnapshotTests.swift; sourceTree = "<group>"; };
+		2A2E935128F96F6D00BA48BB /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
+		2A2E935328F975BA00BA48BB /* FilmListViewAdapterSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmListViewAdapterSnapshotTests.swift; sourceTree = "<group>"; };
+		2A2E935528F97AB100BA48BB /* FilmDetailViewAdapterSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmDetailViewAdapterSnapshotTests.swift; sourceTree = "<group>"; };
+		2A2E935928F9829900BA48BB /* DetailFilmMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFilmMapperTests.swift; sourceTree = "<group>"; };
+		2A2E935B28F987DF00BA48BB /* ImageMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMapperTests.swift; sourceTree = "<group>"; };
+		2A2E935D28F98CAC00BA48BB /* ListFilmMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilmMapperTests.swift; sourceTree = "<group>"; };
 		2A51FA7028EF0644003D3EA1 /* EssentialGhibli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EssentialGhibli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A51FA7328EF0644003D3EA1 /* EssentialGhibliApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialGhibliApp.swift; sourceTree = "<group>"; };
 		2A51FA7528EF0644003D3EA1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,7 +98,6 @@
 		2AA1E74328F882D100EC410C /* XCTest+assert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+assert.swift"; sourceTree = "<group>"; };
 		2AA1E77A28F8898A00EC410C /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "XCTestCase+MemoryLeakTracking.swift"; path = "../../../Tests/GenericResourceViewTests/Helpers/XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		2AB6D25628F057AE006C8855 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		2AC0164F28F09DA9002CA97C /* NavigationComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationComposer.swift; sourceTree = "<group>"; };
 		2AC0165428F09FFF002CA97C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2AC0165628F0A000002CA97C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2AC0165B28F0A062002CA97C /* EssentialGhibliTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialGhibliTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,6 +137,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A0AD06928F8E95C001488C6 /* Mappers */ = {
+			isa = PBXGroup;
+			children = (
+				2A0AD06E28F8E99C001488C6 /* DetailFilmMapper.swift */,
+				2AA1E73E28F8674600EC410C /* ImageMapper.swift */,
+				2A0AD06C28F8E989001488C6 /* ListFilmMapper.swift */,
+				2A0AD06A28F8E976001488C6 /* HTTPURLResponse+is200.swift */,
+			);
+			path = Mappers;
+			sourceTree = "<group>";
+		};
+		2A0AD07028F8E9DD001488C6 /* Adapters */ = {
+			isa = PBXGroup;
+			children = (
+				2A2E934928F9586600BA48BB /* FilmListViewAdapter.swift */,
+				2A0AD07128F8E9EF001488C6 /* FilmRowViewAdapter.swift */,
+				2A0AD07328F8EA0A001488C6 /* FilmDetailViewAdapter.swift */,
+			);
+			path = Adapters;
+			sourceTree = "<group>";
+		};
+		2A0AD07528F8EA89001488C6 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2A0AD07A28F8EAC5001488C6 /* ErrorView.swift */,
+				2A0AD07828F8EAB0001488C6 /* ProgressLoadingView.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		2A2E935728F9824700BA48BB /* Adapters */ = {
+			isa = PBXGroup;
+			children = (
+				2A2E934F28F96F0100BA48BB /* FilmRowViewAdapterSnapshotTests.swift */,
+				2A2E935328F975BA00BA48BB /* FilmListViewAdapterSnapshotTests.swift */,
+				2A2E935528F97AB100BA48BB /* FilmDetailViewAdapterSnapshotTests.swift */,
+			);
+			path = Adapters;
+			sourceTree = "<group>";
+		};
+		2A2E935828F9825B00BA48BB /* Mappers */ = {
+			isa = PBXGroup;
+			children = (
+				2A2E935928F9829900BA48BB /* DetailFilmMapperTests.swift */,
+				2A2E935B28F987DF00BA48BB /* ImageMapperTests.swift */,
+				2A2E935D28F98CAC00BA48BB /* ListFilmMapperTests.swift */,
+			);
+			path = Mappers;
+			sourceTree = "<group>";
+		};
 		2A51FA6728EF0644003D3EA1 = {
 			isa = PBXGroup;
 			children = (
@@ -128,12 +214,17 @@
 				2A51FA7328EF0644003D3EA1 /* EssentialGhibliApp.swift */,
 				2A51FA7528EF0644003D3EA1 /* ContentView.swift */,
 				2AC0165528F09FFF002CA97C /* Localizable.strings */,
-				2AC0164F28F09DA9002CA97C /* NavigationComposer.swift */,
 				2AD17F9428F829FE0047B31A /* LoadingImageView.swift */,
-				2AA1E73E28F8674600EC410C /* ImageMapper.swift */,
+				2A2E934B28F9608800BA48BB /* UIComposer.swift */,
+				2A0AD07C28F8EB1B001488C6 /* DetailNavigationComposer.swift */,
+				2A2E934D28F960B600BA48BB /* LoaderFactory.swift */,
+				2A0AD07528F8EA89001488C6 /* Helpers */,
+				2A0AD07028F8E9DD001488C6 /* Adapters */,
+				2A0AD06928F8E95C001488C6 /* Mappers */,
 				2AD17F9628F82F8B0047B31A /* ImageErrorView.swift */,
 				2A62DCC128F44A3F00AF5560 /* composeLocalFeedLoader.swift */,
 				2AB6D25628F057AE006C8855 /* ViewModel.swift */,
+				2A2E934728F9519100BA48BB /* ListState.swift */,
 				2A51FA7728EF0646003D3EA1 /* Assets.xcassets */,
 				2A51FA7928EF0646003D3EA1 /* Preview Content */,
 			);
@@ -159,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				2AA1E77A28F8898A00EC410C /* XCTestCase+MemoryLeakTracking.swift */,
+				2A2E935128F96F6D00BA48BB /* TestHelpers.swift */,
 				2AA1E74328F882D100EC410C /* XCTest+assert.swift */,
 			);
 			path = Helpers;
@@ -170,6 +262,8 @@
 				2AA1E74228F882B200EC410C /* Helpers */,
 				2AC0165D28F0A062002CA97C /* EssentialGhibliTests.swift */,
 				2AC0166428F0A08C002CA97C /* EssentialGhibliLocalizationTests.swift */,
+				2A2E935828F9825B00BA48BB /* Mappers */,
+				2A2E935728F9824700BA48BB /* Adapters */,
 				2AA1E74028F881D700EC410C /* LoadingImageViewSnapshotTests.swift */,
 			);
 			path = EssentialGhibliTests;
@@ -296,14 +390,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2AC0165028F09DA9002CA97C /* NavigationComposer.swift in Sources */,
+				2A0AD07D28F8EB1B001488C6 /* DetailNavigationComposer.swift in Sources */,
 				2A62DCC228F44A3F00AF5560 /* composeLocalFeedLoader.swift in Sources */,
+				2A2E934C28F9608800BA48BB /* UIComposer.swift in Sources */,
+				2A2E934828F9519100BA48BB /* ListState.swift in Sources */,
+				2A2E934E28F960B600BA48BB /* LoaderFactory.swift in Sources */,
+				2A0AD06D28F8E989001488C6 /* ListFilmMapper.swift in Sources */,
+				2A0AD07228F8E9EF001488C6 /* FilmRowViewAdapter.swift in Sources */,
 				2A51FA7628EF0644003D3EA1 /* ContentView.swift in Sources */,
+				2A0AD07928F8EAB0001488C6 /* ProgressLoadingView.swift in Sources */,
 				2AB6D25728F057AE006C8855 /* ViewModel.swift in Sources */,
+				2A0AD06B28F8E976001488C6 /* HTTPURLResponse+is200.swift in Sources */,
 				2AA1E73F28F8674600EC410C /* ImageMapper.swift in Sources */,
 				2A51FA7428EF0644003D3EA1 /* EssentialGhibliApp.swift in Sources */,
+				2A0AD06F28F8E99C001488C6 /* DetailFilmMapper.swift in Sources */,
 				2AD17F9728F82F8B0047B31A /* ImageErrorView.swift in Sources */,
+				2A2E934A28F9586600BA48BB /* FilmListViewAdapter.swift in Sources */,
 				2AD17F9528F829FE0047B31A /* LoadingImageView.swift in Sources */,
+				2A0AD07428F8EA0A001488C6 /* FilmDetailViewAdapter.swift in Sources */,
+				2A0AD07B28F8EAC5001488C6 /* ErrorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,9 +418,16 @@
 			files = (
 				2AC0166528F0A08C002CA97C /* EssentialGhibliLocalizationTests.swift in Sources */,
 				2AC0165E28F0A062002CA97C /* EssentialGhibliTests.swift in Sources */,
+				2A2E935C28F987DF00BA48BB /* ImageMapperTests.swift in Sources */,
+				2A2E935228F96F6D00BA48BB /* TestHelpers.swift in Sources */,
+				2A2E935E28F98CAC00BA48BB /* ListFilmMapperTests.swift in Sources */,
+				2A2E935A28F9829900BA48BB /* DetailFilmMapperTests.swift in Sources */,
 				2AA1E74428F882D100EC410C /* XCTest+assert.swift in Sources */,
+				2A2E935628F97AB100BA48BB /* FilmDetailViewAdapterSnapshotTests.swift in Sources */,
+				2A2E935428F975BA00BA48BB /* FilmListViewAdapterSnapshotTests.swift in Sources */,
 				2AA1E74128F881D700EC410C /* LoadingImageViewSnapshotTests.swift in Sources */,
 				2AA1E77C28F889B200EC410C /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+				2A2E935028F96F0100BA48BB /* FilmRowViewAdapterSnapshotTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
