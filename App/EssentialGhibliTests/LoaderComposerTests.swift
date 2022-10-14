@@ -48,11 +48,11 @@ final class LoaderComposerTests: XCTestCase {
         let cancellable = sut.filmsLoader()
             .sink { completion in
                 
-                switch (expectedResult, completion) {
-                case let (.failure(expected as NSError), .failure(received as NSError)):
-                    XCTAssertEqual(expected, received, file: file, line: line)
+                switch (completion, expectedResult) {
+                case let (.failure(received as NSError), .failure(expected as NSError)):
+                    XCTAssertEqual(received, expected, file: file, line: line)
                     
-                case (_, .finished):
+                case (.finished, _):
                     break
                     
                 default:
@@ -63,7 +63,7 @@ final class LoaderComposerTests: XCTestCase {
             } receiveValue: { received in
                 switch expectedResult {
                 case let .success(expected):
-                    XCTAssertEqual(expected, received, file: file, line: line)
+                    XCTAssertEqual(received, expected, file: file, line: line)
                     
                 default:
                     XCTFail("Expected \(expectedResult), got \(received) instead.", file: file, line: line)
