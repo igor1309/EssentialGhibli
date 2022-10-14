@@ -22,6 +22,13 @@ final class LoaderComposerTests: XCTestCase {
         expect(sut, toDeliver: .samples)
     }
     
+    func test_shouldDeliverRemoteFeedIfOnlineAndNonEmptyCache() {
+        let nonEmpty = InMemoryFeedStore(cached: (feed: [ListFilm.kikisDeliveryService], .now))
+        let sut = makeSUT(.online, nonEmpty)
+        
+        expect(sut, toDeliver: .samples)
+    }
+    
     func test_shouldDeliverEmptyFilmListIfOfflineAndEmptyCache() {
         let sut = makeSUT(.offline, .init(cached: nil))
         
