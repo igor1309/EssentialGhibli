@@ -60,7 +60,7 @@ final class LoadingImageViewSnapshotTests: XCTestCase {
     }
     
     private func loader() -> ImagePublisher {
-        Just((.greenImage(width: 300, height: 600), .any200))
+        Just((.greenImage(width: 300, height: 600), .statusCode200))
             .tryMap(ImageMapper.map)
             .eraseToAnyPublisher()
     }
@@ -72,7 +72,7 @@ final class LoadingImageViewSnapshotTests: XCTestCase {
     }
     
     private func non200Loader() -> ImagePublisher {
-        Just((.greenImage(width: 300, height: 600), .any400))
+        Just((.greenImage(width: 300, height: 600), .statusCode400))
             .tryMap(ImageMapper.map)
             .eraseToAnyPublisher()
     }

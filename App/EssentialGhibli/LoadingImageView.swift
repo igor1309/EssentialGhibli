@@ -66,7 +66,7 @@ struct LoadingImageView_Demo: View {
     }
     
     func non200Loader() -> ImagePublisher {
-        Just((.greenImage(width: 300, height: 600), .any400))
+        Just((.greenImage(width: 300, height: 600), .statusCode400))
             .delay(for: 2, scheduler: DispatchQueue.main)
             .tryMap(ImageMapper.map)
             .eraseToAnyPublisher()
@@ -129,7 +129,7 @@ private extension Data {
 
 private extension HTTPURLResponse {
     static let any200: HTTPURLResponse = .init(url: .anyURL, statusCode: 200, httpVersion: nil, headerFields: nil)!
-    static let any400: HTTPURLResponse = .init(url: .anyURL, statusCode: 400, httpVersion: nil, headerFields: nil)!
+    static let statusCode400: HTTPURLResponse = .init(url: .anyURL, statusCode: 400, httpVersion: nil, headerFields: nil)!
 }
 
 private extension URL {
