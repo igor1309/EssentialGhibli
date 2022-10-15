@@ -46,6 +46,18 @@ final class LoaderComposerTests: XCTestCase {
         expect(offline, toDeliver: .samples)
     }
     
+    func test_onlineLoaderComposer_shouldDeliverSamples() {
+        let online = LoaderComposer.online
+        
+        expect(online, toDeliver: .samples)
+    }
+
+    func test_offlineLoaderComposer_shouldDeliverEmpty() {
+        let offline = LoaderComposer.offline
+        
+        expect(offline, toDeliver: .empty)
+    }
+
     // MARK: - Helpers
     
     typealias ListFilmResult = Result<[ListFilm], MappingError>
