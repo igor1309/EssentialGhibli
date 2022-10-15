@@ -55,6 +55,8 @@
 		2A8FA67F28FADCB500D0BE9C /* json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FA67E28FADCB500D0BE9C /* json.swift */; };
 		2A8FA68128FADDCD00D0BE9C /* HTTPClientStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FA68028FADDCD00D0BE9C /* HTTPClientStub.swift */; };
 		2A8FA68328FADEE300D0BE9C /* Locale+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FA68228FADEE300D0BE9C /* Locale+ext.swift */; };
+		2A8FA68528FAEAE700D0BE9C /* UIComposerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FA68428FAEAE700D0BE9C /* UIComposerSnapshotTests.swift */; };
+		2A8FA68728FAF1FF00D0BE9C /* DetailNavigationComposerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FA68628FAF1FF00D0BE9C /* DetailNavigationComposerSnapshotTests.swift */; };
 		2AA1E73F28F8674600EC410C /* ImageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA1E73E28F8674600EC410C /* ImageMapper.swift */; };
 		2AA1E74128F881D700EC410C /* LoadingImageViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA1E74028F881D700EC410C /* LoadingImageViewSnapshotTests.swift */; };
 		2AA1E74428F882D100EC410C /* XCTest+assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA1E74328F882D100EC410C /* XCTest+assert.swift */; };
@@ -118,6 +120,8 @@
 		2A8FA67E28FADCB500D0BE9C /* json.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = json.swift; sourceTree = "<group>"; };
 		2A8FA68028FADDCD00D0BE9C /* HTTPClientStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientStub.swift; sourceTree = "<group>"; };
 		2A8FA68228FADEE300D0BE9C /* Locale+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Locale+ext.swift"; sourceTree = "<group>"; };
+		2A8FA68428FAEAE700D0BE9C /* UIComposerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComposerSnapshotTests.swift; sourceTree = "<group>"; };
+		2A8FA68628FAF1FF00D0BE9C /* DetailNavigationComposerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNavigationComposerSnapshotTests.swift; sourceTree = "<group>"; };
 		2AA1E73E28F8674600EC410C /* ImageMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMapper.swift; sourceTree = "<group>"; };
 		2AA1E74028F881D700EC410C /* LoadingImageViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingImageViewSnapshotTests.swift; sourceTree = "<group>"; };
 		2AA1E74328F882D100EC410C /* XCTest+assert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+assert.swift"; sourceTree = "<group>"; };
@@ -317,6 +321,8 @@
 				2A2E935728F9824700BA48BB /* Adapters */,
 				2A2E935828F9825B00BA48BB /* Mappers */,
 				2AA1E74028F881D700EC410C /* LoadingImageViewSnapshotTests.swift */,
+				2A8FA68428FAEAE700D0BE9C /* UIComposerSnapshotTests.swift */,
+				2A8FA68628FAF1FF00D0BE9C /* DetailNavigationComposerSnapshotTests.swift */,
 			);
 			path = EssentialGhibliTests;
 			sourceTree = "<group>";
@@ -478,6 +484,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A8FA65C28F9D03A00D0BE9C /* LoaderComposerTests.swift in Sources */,
+				2A8FA68528FAEAE700D0BE9C /* UIComposerSnapshotTests.swift in Sources */,
 				2A8FA67C28FACF7B00D0BE9C /* LocalFilm+ListFilm.swift in Sources */,
 				2AC0166528F0A08C002CA97C /* EssentialGhibliLocalizationTests.swift in Sources */,
 				2A8FA67128FA2BF900D0BE9C /* InMemoryFeedStore.swift in Sources */,
@@ -488,6 +495,7 @@
 				2A2E935A28F9829900BA48BB /* DetailFilmMapperTests.swift in Sources */,
 				2AA1E74428F882D100EC410C /* XCTest+assert.swift in Sources */,
 				2A2E935628F97AB100BA48BB /* FilmDetailViewAdapterSnapshotTests.swift in Sources */,
+				2A8FA68728FAF1FF00D0BE9C /* DetailNavigationComposerSnapshotTests.swift in Sources */,
 				2A2E935428F975BA00BA48BB /* FilmListViewAdapterSnapshotTests.swift in Sources */,
 				2AA1E74128F881D700EC410C /* LoadingImageViewSnapshotTests.swift in Sources */,
 				2AA1E77C28F889B200EC410C /* XCTestCase+MemoryLeakTracking.swift in Sources */,

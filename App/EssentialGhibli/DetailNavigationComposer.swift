@@ -49,7 +49,10 @@ struct DetailNavigationComposer_Previews: PreviewProvider {
             NavigationView {
                 detailNavigationComposer(PreviewLoaders.listFilmsLoader)
             }
-            
+
+            detailNavigationComposer(PreviewLoaders.longListFilmsLoader)
+                .previewDisplayName("Loading")
+
             detailNavigationComposer(PreviewLoaders.emptyListFilmsLoader)
                 .previewDisplayName("Empty Loader")
             
