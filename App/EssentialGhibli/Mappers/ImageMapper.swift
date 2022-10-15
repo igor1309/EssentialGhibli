@@ -14,7 +14,13 @@ enum ImageMapper {
             throw MappingError.badResponse
         }
         
-        guard let uiImage = UIImage(data: dataResponse.data)
+        return try map(data: dataResponse.data)
+    }
+
+    static func map(data: Data) throws -> Image {
+        guard
+            !data.isEmpty,
+            let uiImage = UIImage(data: data)
         else {
             throw MappingError.invalidData
         }
