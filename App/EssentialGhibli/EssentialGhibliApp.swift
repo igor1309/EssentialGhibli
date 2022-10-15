@@ -7,6 +7,7 @@
 
 import API
 import Combine
+import CacheInfra
 import SharedAPI
 import SharedAPIInfra
 import SwiftUI
@@ -14,23 +15,10 @@ import SwiftUI
 @main
 struct EssentialGhibliApp: App {
     
-    @StateObject private var viewModel = ViewModel(
-        listState: .list(.samples),
-        httpPublisher: {
-            let session: URLSession = .shared
-            let httpClient = URLSessionHTTPClient(session: session)
-            let baseURL = URL(string: "https://ghibliapi.herokuapp.com")!
-            let url = FeedEndpoint.films.url(baseURL: baseURL)
-            let httpPublisher = httpClient
-                .getPublisher(url: url)
-                .delay(for: 2, scheduler: DispatchQueue.main)
-                .eraseToAnyPublisher()
-            return httpPublisher
-        }()
-    )
-    
     var body: some Scene {
         WindowGroup {
+//            UIComposer(loaderComposer: LoaderComposer<CoreDataFeedStore>())
+            
 //            LoadingImageView(loader: {
 //                Just((.greenImage(width: 300, height: 600), .any200))
 //                    .setFailureType(to: Error.self)
@@ -38,7 +26,7 @@ struct EssentialGhibliApp: App {
 //                    .eraseToAnyPublisher()
 //            })
             
-             ContentView(viewModel: viewModel)
+              ContentViewComposer()
             
             // UpdatableResourceStateView_Demo()
             // LoadResourceStateView_Demo(isFailing: true)
