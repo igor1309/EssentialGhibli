@@ -48,11 +48,12 @@
 		2A8FA65E28F9DFB600D0BE9C /* MappingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FA65D28F9DFB600D0BE9C /* MappingError.swift */; };
 		2A8FA66228FA027200D0BE9C /* json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FA66128FA027200D0BE9C /* json.swift */; };
 		2A8FA66428FA082D00D0BE9C /* XCTestCase+pause.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FA66328FA082D00D0BE9C /* XCTestCase+pause.swift */; };
-		2A8FA66628FA234100D0BE9C /* CombineHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FA66528FA234100D0BE9C /* CombineHelpers.swift */; };
-		2A8FA66928FA24C500D0BE9C /* Publisher+fallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FA66828FA24C500D0BE9C /* Publisher+fallback.swift */; };
-		2A8FA66B28FA254400D0BE9C /* LoaderComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FA66A28FA254400D0BE9C /* LoaderComposer.swift */; };
 		2A8FA66F28FA2BD000D0BE9C /* HTTPClientStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FA66E28FA2BD000D0BE9C /* HTTPClientStub.swift */; };
 		2A8FA67128FA2BF900D0BE9C /* InMemoryFeedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FA67028FA2BF900D0BE9C /* InMemoryFeedStore.swift */; };
+		2A8FA67328FAA3BD00D0BE9C /* NullStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FA67228FAA3BD00D0BE9C /* NullStore.swift */; };
+		2A8FA67628FAB0BD00D0BE9C /* LoaderComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FA66A28FA254400D0BE9C /* LoaderComposer.swift */; };
+		2A8FA67728FAB0F700D0BE9C /* CombineHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FA66528FA234100D0BE9C /* CombineHelpers.swift */; };
+		2A8FA67828FAB0FB00D0BE9C /* Publisher+fallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FA66828FA24C500D0BE9C /* Publisher+fallback.swift */; };
 		2AA1E73F28F8674600EC410C /* ImageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA1E73E28F8674600EC410C /* ImageMapper.swift */; };
 		2AA1E74128F881D700EC410C /* LoadingImageViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA1E74028F881D700EC410C /* LoadingImageViewSnapshotTests.swift */; };
 		2AA1E74428F882D100EC410C /* XCTest+assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA1E74328F882D100EC410C /* XCTest+assert.swift */; };
@@ -114,6 +115,7 @@
 		2A8FA66A28FA254400D0BE9C /* LoaderComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderComposer.swift; sourceTree = "<group>"; };
 		2A8FA66E28FA2BD000D0BE9C /* HTTPClientStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientStub.swift; sourceTree = "<group>"; };
 		2A8FA67028FA2BF900D0BE9C /* InMemoryFeedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryFeedStore.swift; sourceTree = "<group>"; };
+		2A8FA67228FAA3BD00D0BE9C /* NullStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullStore.swift; sourceTree = "<group>"; };
 		2AA1E73E28F8674600EC410C /* ImageMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMapper.swift; sourceTree = "<group>"; };
 		2AA1E74028F881D700EC410C /* LoadingImageViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingImageViewSnapshotTests.swift; sourceTree = "<group>"; };
 		2AA1E74328F882D100EC410C /* XCTest+assert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+assert.swift"; sourceTree = "<group>"; };
@@ -239,6 +241,9 @@
 				2A2E934B28F9608800BA48BB /* UIComposer.swift */,
 				2A0AD07C28F8EB1B001488C6 /* DetailNavigationComposer.swift */,
 				2A2E934D28F960B600BA48BB /* LoaderFactory.swift */,
+				2A8FA66A28FA254400D0BE9C /* LoaderComposer.swift */,
+				2A8FA66728FA24B500D0BE9C /* CombineHelpers */,
+				2A8FA67228FAA3BD00D0BE9C /* NullStore.swift */,
 				2A0AD07528F8EA89001488C6 /* Helpers */,
 				2A0AD07028F8E9DD001488C6 /* Adapters */,
 				2A0AD06928F8E95C001488C6 /* Mappers */,
@@ -297,8 +302,6 @@
 			children = (
 				2AA1E74228F882B200EC410C /* Helpers */,
 				2A8FA65B28F9D03A00D0BE9C /* LoaderComposerTests.swift */,
-				2A8FA66A28FA254400D0BE9C /* LoaderComposer.swift */,
-				2A8FA66728FA24B500D0BE9C /* CombineHelpers */,
 				2AC0166428F0A08C002CA97C /* EssentialGhibliLocalizationTests.swift */,
 				2A2E935728F9824700BA48BB /* Adapters */,
 				2A2E935828F9825B00BA48BB /* Mappers */,
@@ -428,6 +431,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A8FA67328FAA3BD00D0BE9C /* NullStore.swift in Sources */,
 				2A0AD07D28F8EB1B001488C6 /* DetailNavigationComposer.swift in Sources */,
 				2A2E936228F99C5500BA48BB /* Helpers.swift in Sources */,
 				2A62DCC228F44A3F00AF5560 /* composeLocalFeedLoader.swift in Sources */,
@@ -435,6 +439,7 @@
 				2A2E934828F9519100BA48BB /* ListState.swift in Sources */,
 				2A2E934E28F960B600BA48BB /* LoaderFactory.swift in Sources */,
 				2A0AD06D28F8E989001488C6 /* ListFilmMapper.swift in Sources */,
+				2A8FA67728FAB0F700D0BE9C /* CombineHelpers.swift in Sources */,
 				2A0AD07228F8E9EF001488C6 /* FilmRowViewAdapter.swift in Sources */,
 				2A51FA7628EF0644003D3EA1 /* ContentView.swift in Sources */,
 				2A8FA65E28F9DFB600D0BE9C /* MappingError.swift in Sources */,
@@ -444,11 +449,13 @@
 				2AA1E73F28F8674600EC410C /* ImageMapper.swift in Sources */,
 				2A51FA7428EF0644003D3EA1 /* EssentialGhibliApp.swift in Sources */,
 				2A0AD06F28F8E99C001488C6 /* DetailFilmMapper.swift in Sources */,
+				2A8FA67828FAB0FB00D0BE9C /* Publisher+fallback.swift in Sources */,
 				2AD17F9728F82F8B0047B31A /* ImageErrorView.swift in Sources */,
 				2A2E934A28F9586600BA48BB /* FilmListViewAdapter.swift in Sources */,
 				2AD17F9528F829FE0047B31A /* LoadingImageView.swift in Sources */,
 				2A0AD07428F8EA0A001488C6 /* FilmDetailViewAdapter.swift in Sources */,
 				2A2E936028F99A3300BA48BB /* Loaders.swift in Sources */,
+				2A8FA67628FAB0BD00D0BE9C /* LoaderComposer.swift in Sources */,
 				2A0AD07B28F8EAC5001488C6 /* ErrorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,13 +473,10 @@
 				2A2E935228F96F6D00BA48BB /* TestHelpers.swift in Sources */,
 				2A2E935E28F98CAC00BA48BB /* ListFilmMapperTests.swift in Sources */,
 				2A2E935A28F9829900BA48BB /* DetailFilmMapperTests.swift in Sources */,
-				2A8FA66628FA234100D0BE9C /* CombineHelpers.swift in Sources */,
-				2A8FA66B28FA254400D0BE9C /* LoaderComposer.swift in Sources */,
 				2AA1E74428F882D100EC410C /* XCTest+assert.swift in Sources */,
 				2A2E935628F97AB100BA48BB /* FilmDetailViewAdapterSnapshotTests.swift in Sources */,
 				2A8FA66F28FA2BD000D0BE9C /* HTTPClientStub.swift in Sources */,
 				2A2E935428F975BA00BA48BB /* FilmListViewAdapterSnapshotTests.swift in Sources */,
-				2A8FA66928FA24C500D0BE9C /* Publisher+fallback.swift in Sources */,
 				2AA1E74128F881D700EC410C /* LoadingImageViewSnapshotTests.swift in Sources */,
 				2AA1E77C28F889B200EC410C /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				2A2E935028F96F0100BA48BB /* FilmRowViewAdapterSnapshotTests.swift in Sources */,

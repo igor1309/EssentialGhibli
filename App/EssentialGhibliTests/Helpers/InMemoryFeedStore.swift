@@ -42,3 +42,13 @@ extension InMemoryFeedStore: FeedStore {
         cached
     }
 }
+
+extension InMemoryFeedStore: FilmImageDataStore {
+    func retrieve(dataForURL url: URL) throws -> Data? {
+        fatalError()
+    }
+    
+    func insert(_ data: Data, for url: URL) throws {
+        fatalError()
+    }
+}

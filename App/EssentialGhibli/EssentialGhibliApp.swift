@@ -46,14 +46,3 @@ struct EssentialGhibliApp: App {
         }
     }
 }
-
-private extension HTTPClient {
-    func getPublisher(url: URL) -> AnyPublisher<(Data, HTTPURLResponse), Error> {
-        Deferred {
-            Future { completion in
-                get(from: url, completion: completion)
-            }
-        }
-        .eraseToAnyPublisher()
-    }
-}

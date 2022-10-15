@@ -7,11 +7,11 @@
 
 import Foundation
 
-enum MappingError: String, Error, LocalizedError, Equatable {
+public enum MappingError: String, Error, LocalizedError, Equatable {
     case badResponse
     case invalidData
     
-    var errorDescription: String? {
+    public var errorDescription: String? {
         rawValue
     }
 }
