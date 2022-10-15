@@ -34,7 +34,6 @@ where Store: FeedStore & FilmImageDataStore,
     
     private func filmDetail(listFilm: ListFilm) -> some View {
         FilmDetailViewAdapter(
-            listFilm: listFilm,
             loader: { loader.detailLoader(listFilm: listFilm) },
             imageLoader: loader.filmDetailImageLoader
         )

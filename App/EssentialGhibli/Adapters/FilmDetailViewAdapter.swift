@@ -12,7 +12,6 @@ import ListFeature
 import SwiftUI
 
 struct FilmDetailViewAdapter: View {
-    let listFilm: ListFilm
     let loader: () -> AnyPublisher<DetailFilm, Error>
     let imageLoader: (DetailFilm) -> ImagePublisher
     
@@ -44,7 +43,6 @@ func filmDetailViewAdapter(
     imageLoader: @escaping (DetailFilm) -> ImagePublisher
 ) -> some View {
     FilmDetailViewAdapter(
-        listFilm: .castleInTheSky,
         loader: loader,
         imageLoader: imageLoader
     )
