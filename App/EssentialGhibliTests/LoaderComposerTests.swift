@@ -17,26 +17,27 @@ import XCTest
 final class LoaderComposerTests: XCTestCase {
     
     func test_shouldDeliverRemoteFeedIfOnline() {
-        let sut = makeSUT(.online, .init(cached: nil))
+        let sut = makeSUT(.online, .empty())
         
         expect(sut, toDeliver: .samples)
     }
     
     func test_shouldDeliverRemoteFeedIfOnlineAndNonEmptyCache() {
-        let nonEmpty = InMemoryFeedStore(cached: (feed: [ListFilm.kikisDeliveryService], .now))
+        let feed = [ListFilm.kikisDeliveryService]
+        let nonEmpty = InMemoryFeedStore(cached: (feed: feed, .now))
         let sut = makeSUT(.online, nonEmpty)
         
         expect(sut, toDeliver: .samples)
     }
     
     func test_shouldDeliverEmptyFilmListIfOfflineAndEmptyCache() {
-        let sut = makeSUT(.offline, .init(cached: nil))
+        let sut = makeSUT(.offline, .empty())
         
         expect(sut, toDeliver: .empty)
     }
     
     func test_shouldDeliverCachedFilmListIfOfflineAndNonEmptyCache() {
-        let store = InMemoryFeedStore(cached: nil)
+        let store = InMemoryFeedStore.empty()
         
         let online = makeSUT(.online, store)
         expect(online, toDeliver: .samples)

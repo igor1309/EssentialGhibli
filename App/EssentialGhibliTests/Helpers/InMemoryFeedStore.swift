@@ -9,7 +9,7 @@ import Cache
 import Foundation
 import ListFeature
 
-final class InMemoryFeedStore: FeedStore {
+final class InMemoryFeedStore {
     typealias Item = ListFilm
     
     private var cached: CachedFeed<ListFilm>?
@@ -17,7 +17,19 @@ final class InMemoryFeedStore: FeedStore {
     init(cached: CachedFeed<ListFilm>?) {
         self.cached = cached
     }
+}
+
+extension InMemoryFeedStore {
+    static func empty() -> InMemoryFeedStore {
+        .init(cached: nil)
+    }
     
+    static func samples() -> InMemoryFeedStore {
+        .init(cached: (.samples, .now))
+    }
+}
+
+extension InMemoryFeedStore: FeedStore {
     func deleteCachedFeed() throws {
         cached = nil
     }
