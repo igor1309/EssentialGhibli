@@ -33,14 +33,11 @@ struct LoadingImageView: View {
     @ViewBuilder
     func loadingView(loadingState: LoadingState) -> some View {
         if loadingState.isLoading {
-//            Color.clear
-//                .overlay {
-                    ProgressView {
-                        if showLabel {
-                            Text("LOADING", tableName: "Localizable", bundle: .main)
-                        }
-                    }
-//                }
+            ProgressView {
+                if showLabel {
+                    Text("LOADING", tableName: "Localizable", bundle: .main)
+                }
+            }
         }
     }
 

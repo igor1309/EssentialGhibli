@@ -176,6 +176,7 @@
 		2A0AD07028F8E9DD001488C6 /* Adapters */ = {
 			isa = PBXGroup;
 			children = (
+				2AD17F9428F829FE0047B31A /* LoadingImageView.swift */,
 				2A2E934928F9586600BA48BB /* FilmListViewAdapter.swift */,
 				2A0AD07128F8E9EF001488C6 /* FilmRowViewAdapter.swift */,
 				2A0AD07328F8EA0A001488C6 /* FilmDetailViewAdapter.swift */,
@@ -239,7 +240,6 @@
 				2A51FA7328EF0644003D3EA1 /* EssentialGhibliApp.swift */,
 				2A8FA67D28FADA6B00D0BE9C /* ContentView */,
 				2AC0165528F09FFF002CA97C /* Localizable.strings */,
-				2AD17F9428F829FE0047B31A /* LoadingImageView.swift */,
 				2A2E934B28F9608800BA48BB /* UIComposer.swift */,
 				2A0AD07C28F8EB1B001488C6 /* DetailNavigationComposer.swift */,
 				2A2E934D28F960B600BA48BB /* LoaderFactory.swift */,
