@@ -7,12 +7,10 @@
 
 import Foundation
 
-public typealias CachedFeed<Item> = (feed: [Item], timestamp: Date)
+public typealias CachedFeed = (feed: [LocalFilm], timestamp: Date)
 
-public protocol FeedStore<Item> {
-    associatedtype Item
-    
+public protocol FeedStore {
     func deleteCachedFeed() throws
-    func insert(_ feed: [Item], timestamp: Date) throws
-    func retrieve() throws -> CachedFeed<Item>?
+    func insert(_ feed: [LocalFilm], timestamp: Date) throws
+    func retrieve() throws -> CachedFeed?
 }

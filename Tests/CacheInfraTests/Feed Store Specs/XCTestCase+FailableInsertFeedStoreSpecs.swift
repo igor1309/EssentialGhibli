@@ -10,7 +10,7 @@ import CacheInfra
 import XCTest
 
 extension FailableInsertFeedStoreSpecs where Self: XCTestCase {
-    func assertThatInsertDeliversErrorOnInsertionError(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
+    func assertThatInsertDeliversErrorOnInsertionError(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {
         
         XCTFail("Unimplemented")
 //        let insertionError = insert((uniqueImageFeed().local, Date()), to: sut)
@@ -18,7 +18,7 @@ extension FailableInsertFeedStoreSpecs where Self: XCTestCase {
 //        XCTAssertNotNil(insertionError, "Expected cache insertion to fail with an error", file: file, line: line)
     }
 
-    func assertThatInsertHasNoSideEffectsOnInsertionError(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
+    func assertThatInsertHasNoSideEffectsOnInsertionError(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {
         
         XCTFail("Unimplemented")
 //        insert((uniqueImageFeed().local, Date()), to: sut)

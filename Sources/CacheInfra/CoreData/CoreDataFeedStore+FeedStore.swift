@@ -10,7 +10,7 @@ import Foundation
 
 extension CoreDataFeedStore: FeedStore {
     
-    public func retrieve() throws -> CachedFeed<LocalFilm>? {
+    public func retrieve() throws -> CachedFeed? {
         try performSync { context in
             Result {
                 try ManagedCache.find(in: context).map { cache in

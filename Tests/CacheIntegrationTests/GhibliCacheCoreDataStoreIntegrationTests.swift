@@ -54,7 +54,7 @@ final class GhibliCacheCoreDataStoreIntegrationTests: XCTestCase {
     
     // MARK: - Helpers
     
-    typealias FilmFeedCache = FeedCache<GhibliFilm, CoreDataFeedStore>
+    typealias FilmFeedCache = FeedCache<GhibliFilm>
     
     private func makeSUT(
         file: StaticString = #file,

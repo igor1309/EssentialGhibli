@@ -111,17 +111,16 @@ final class ValidateFeedCacheUseCaseTests: XCTestCase {
     
     // MARK: - Helpers
     
-    typealias LocalStore = StoreStubSpy<LocalItem>
-    typealias FilmFeedCache = FeedCache<TestItem, LocalStore>
+    typealias FilmFeedCache = FeedCache<TestFilm>
 
     private func makeSUT(
         validate: ((Date, Date) -> Bool)? = nil,
-        retrieveFeed: CachedItems? = (feed: [], timestamp: Date()),
+        retrieveFeed: CachedFeed? = (feed: [], timestamp: Date()),
         file: StaticString = #file,
         line: UInt = #line
     ) -> (
         sut: FilmFeedCache,
-        store: LocalStore
+        store: StoreStubSpy
     ) {
         makeSUT(validate: validate, retrievalResult: .success(retrieveFeed), file: file, line: line)
     }
@@ -133,21 +132,21 @@ final class ValidateFeedCacheUseCaseTests: XCTestCase {
         line: UInt = #line
     ) -> (
         sut: FilmFeedCache,
-        store: LocalStore
+        store: StoreStubSpy
     ) {
         makeSUT(validate: validate, retrievalResult: .failure(retrieveError), file: file, line: line)
     }
     
     private func makeSUT(
         validate: ((Date, Date) -> Bool)? = nil,
-        retrievalResult: Result<CachedItems?, Error>,
+        retrievalResult: Result<CachedFeed?, Error>,
         file: StaticString = #file,
         line: UInt = #line
     ) -> (
         sut: FilmFeedCache,
-        store: LocalStore
+        store: StoreStubSpy
     ) {
-        let store = LocalStore(retrievalResult: retrievalResult)
+        let store = StoreStubSpy(retrievalResult: retrievalResult)
         
         let validate = validate ?? FeedCachePolicy.sevenDays.validate
         

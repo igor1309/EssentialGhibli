@@ -11,11 +11,9 @@ import RowFeature
 import DetailFeature
 import SwiftUI
 
-struct UIComposer<Store>: View
-where Store: FeedStore & FilmImageDataStore,
-      Store.Item == ListFilm {
+struct UIComposer {
     
-    let loader: LoaderComposer<Store>
+    let loader: LoaderComposer
     
     var body: some View {
         DetailNavigationComposer(

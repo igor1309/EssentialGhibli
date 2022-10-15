@@ -8,7 +8,7 @@ Under the hood, it is a project with hyper-modular architecture with decoupled c
 
 ## Instructions
 
-Open the `App/EssentialGhibli.xcodeproj` with Xcode 14.x and select the `EssentialGhibli` scheme to run the app on the simulator. See [Swift 5.7 notes](#swift-57) for details.
+Open the `App/EssentialGhibli.xcodeproj` with Xcode 14.x and select the `EssentialGhibli` scheme to run the app on the simulator.
 
 ## Modules
 
@@ -55,30 +55,6 @@ UI Components are tested using snapshots with [SnapshotTesting](https://github.c
 ## CI
 
 For the demo, a simple `CI` with `GitHub actions` workflow is used: build and run all tests with scheme `CI_iOS` run on push to the `main` branch. Another workflow with the same functionality could be triggered manually. Both `YAML` scripts call `clean_build_test.sh` shell script.
-
-## Swift 5.7
-
-The `primary associated type` feature of Swift 5.7 is used to simplify function signatures in test assertions, like `Feed Store Specs` in `CacheInfraTests`:
-
-before:
-
-```swift
-func assert<Store>(
-    on sut: Store,
-    file: StaticString = #file, 
-    line: UInt = #line
-) where Store: FeedStore, Store.Item == LocalFilm
-```
-
-after:
-
-```swift
-func assert(
-    on sut: any FeedStore<LocalFilm>, 
-    file: StaticString = #file, 
-    line: UInt = #line
-)
-```
 
 ## Film Feed Feature Specs
 

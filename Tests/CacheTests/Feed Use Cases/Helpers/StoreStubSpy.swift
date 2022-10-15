@@ -9,16 +9,14 @@ import Cache
 import XCTest
 
 extension XCTestCase {
-    class StoreStubSpy<LocalItem: Equatable>: FeedStore {
-        typealias CachedItems = CachedFeed<LocalItem>
-        
+    class StoreStubSpy: FeedStore {
         private(set) var messages = [Message]()
-        private var retrievalResult: Result<CachedItems?, Error>
+        private var retrievalResult: Result<CachedFeed?, Error>
         private var deletionResult: Result<Void, Error>
         private var insertionResult: Result<Void, Error>
         
         init(
-            retrievalResult: Result<CachedItems?, Error>,
+            retrievalResult: Result<CachedFeed?, Error>,
             deletionResult: Result<Void, Error> = .success(()),
             insertionResult: Result<Void, Error> = .success(())
         ) {
@@ -29,7 +27,7 @@ extension XCTestCase {
         
         // Retrieve
         
-        func retrieve() throws -> CachedItems? {
+        func retrieve() throws -> CachedFeed? {
             messages.append(.retrieve)
             return try retrievalResult.get()
         }
@@ -42,7 +40,7 @@ extension XCTestCase {
             retrievalResult = .failure(error)
         }
         
-        func stubRetrieval(with items: [LocalItem], timestamp: Date = .now) {
+        func stubRetrieval(with items: [LocalFilm], timestamp: Date = .now) {
             retrievalResult = .success((feed: items, timestamp: timestamp))
         }
         
@@ -63,7 +61,7 @@ extension XCTestCase {
         
         // Save
         
-        func insert(_ feed: [LocalItem], timestamp: Date) throws {
+        func insert(_ feed: [LocalFilm], timestamp: Date) throws {
             messages.append(.insert(feed: feed, timestamp: timestamp))
             try insertionResult.get()
         }
@@ -77,7 +75,7 @@ extension XCTestCase {
         enum Message: Equatable {
             case retrieve
             case deleteCachedFeed
-            case insert(feed: [LocalItem], timestamp: Date)
+            case insert(feed: [LocalFilm], timestamp: Date)
         }
     }
 }

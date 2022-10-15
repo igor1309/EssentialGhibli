@@ -12,8 +12,8 @@ final class NullStore<Item> {}
 
 extension NullStore: FeedStore {
     func deleteCachedFeed() throws {}
-    func insert(_ feed: [Item], timestamp: Date) throws {}
-    func retrieve() throws -> CachedFeed<Item>? { .none }
+    func insert(_ feed: [LocalFilm], timestamp: Date) throws {}
+    func retrieve() throws -> CachedFeed? { .none }
 }
 
 extension NullStore: FilmImageDataStore {

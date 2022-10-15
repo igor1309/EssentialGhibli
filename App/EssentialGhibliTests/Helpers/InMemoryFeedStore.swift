@@ -10,11 +10,9 @@ import Foundation
 import ListFeature
 
 final class InMemoryFeedStore {
-    typealias Item = ListFilm
+    private var cached: CachedFeed?
     
-    private var cached: CachedFeed<ListFilm>?
-    
-    init(cached: CachedFeed<ListFilm>?) {
+    init(cached: CachedFeed?) {
         self.cached = cached
     }
 }
@@ -25,7 +23,7 @@ extension InMemoryFeedStore {
     }
     
     static func samples() -> InMemoryFeedStore {
-        .init(cached: (.samples, .now))
+        .init(cached: ([ListFilm].samples.map(LocalFilm.init), .now))
     }
 }
 
@@ -34,11 +32,11 @@ extension InMemoryFeedStore: FeedStore {
         cached = nil
     }
     
-    func insert(_ feed: [ListFeature.ListFilm], timestamp: Date) throws {
+    func insert(_ feed: [Cache.LocalFilm], timestamp: Date) throws {
         cached = (feed, timestamp)
     }
-    
-    func retrieve() throws -> Cache.CachedFeed<ListFilm>? {
+
+    func retrieve() throws -> Cache.CachedFeed? {
         cached
     }
 }

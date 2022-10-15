@@ -8,39 +8,43 @@
 import Cache
 import Foundation
 
-typealias CachedItems = CachedFeed<LocalItem>
-
-struct TestItem: Equatable {
+struct TestFilm: Identifiable, Hashable {
     let id: UUID
-}
-
-extension TestItem: CustomStringConvertible {
-    var description: String {
-        return "TestItem(\(id.uuidString.prefix(3))...)"
+    let title: String
+    let description: String
+    let imageURL: URL
+    let filmURL: URL
+    
+    init(id: UUID, title: String, description: String, imageURL: URL, filmURL: URL) {
+        self.id = id
+        self.title = title
+        self.description = description
+        self.imageURL = imageURL
+        self.filmURL = filmURL
     }
 }
 
-struct LocalItem: Equatable {
-    let id: UUID
+func uniqueItemFeed() -> (testFilms: [TestFilm], local: [LocalFilm]) {
+    let uniqueItems = (0...9).map { _ in makeUniqueItem() }
+    return (uniqueItems, uniqueItems.map(toLocal))
 }
 
-extension LocalItem: CustomStringConvertible {
-    var description: String {
-        return "LocalItem(\(id.uuidString.prefix(3))...)"
-    }
+func makeUniqueItem() -> TestFilm {
+    .init(
+        id: UUID(),
+        title: "a title",
+        description: "a description",
+        imageURL: .anyURL,
+        filmURL: .anyURL
+    )
 }
 
-func uniqueItemFeed() -> (testItems: [TestItem], local: [LocalItem]) {
-    let testItems = (0...9).map { _ in TestItem(id: .init()) }
-    return (testItems, testItems.map(toLocal))
+func toLocal(_ testFilm: TestFilm) -> LocalFilm {
+    .init(listFilm: testFilm)
 }
 
-func toLocal(_ testItem: TestItem) -> LocalItem {
-    .init(id: testItem.id)
-}
-
-func fromLocal(_ local: LocalItem) -> TestItem {
-    .init(id: local.id)
+func fromLocal(_ localFilm: LocalFilm) -> TestFilm {
+    .init(localFilm: localFilm)
 }
 
 func anyError() -> Error {
@@ -48,3 +52,28 @@ func anyError() -> Error {
 }
 
 struct AnyError: Error, Equatable {}
+
+extension TestFilm {
+    init(localFilm: LocalFilm) {
+        self.init(
+            id: localFilm.id,
+            title: localFilm.title,
+            description: localFilm.description,
+            imageURL: localFilm.imageURL,
+            filmURL: localFilm.filmURL
+        )
+    }
+}
+
+extension LocalFilm {
+    init(listFilm: TestFilm) {
+        self.init(
+            id: listFilm.id,
+            title: listFilm.title,
+            description: listFilm.description,
+            imageURL: listFilm.imageURL,
+            filmURL: listFilm.filmURL
+        )
+    }
+}
+

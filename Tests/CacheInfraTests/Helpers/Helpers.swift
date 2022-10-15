@@ -5,8 +5,9 @@
 //  Created by Igor Malyarov on 10.10.2022.
 //
 
-import Foundation
+import Cache
 import CacheInfra
+import Foundation
 
 func uniqueFilmFeed() -> [LocalFilm] {
     [makeLocalFilm(), makeLocalFilm()]

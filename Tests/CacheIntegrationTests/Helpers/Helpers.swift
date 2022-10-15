@@ -6,6 +6,7 @@
 //
 
 import Domain
+import Cache
 import CacheInfra
 import Foundation
 

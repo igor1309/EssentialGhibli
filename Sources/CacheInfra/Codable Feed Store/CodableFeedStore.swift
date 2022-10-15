@@ -66,7 +66,7 @@ public final class CodableFeedStore: FeedStore {
         try encoded.write(to: storeURL)
     }
     
-    public func retrieve() throws -> CachedFeed<LocalFilm>? {
+    public func retrieve() throws -> CachedFeed? {
         guard let data = try? Data(contentsOf: storeURL)
         else { return nil }
         

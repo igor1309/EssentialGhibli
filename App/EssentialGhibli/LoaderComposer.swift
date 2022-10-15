@@ -16,9 +16,7 @@ import ListFeature
 import SharedAPI
 import SharedAPIInfra
 
-final class LoaderComposer<Store>
-where Store: FeedStore & FilmImageDataStore,
-      Store.Item == ListFilm {
+final class LoaderComposer {
     
     private lazy var baseURL: URL = {
         URL(string: "https://ghibliapi.herokuapp.com")!
@@ -29,31 +27,31 @@ where Store: FeedStore & FilmImageDataStore,
         return URLSessionHTTPClient(session: session)
     }()
     
-    private lazy var store: Store = {
+    private lazy var store: FeedStore & FilmImageDataStore = {
         do {
             let storeURL = NSPersistentContainer
                 .defaultDirectoryURL()
                 .appendingPathComponent("feed-store.sqlite")
             let store = try CoreDataFeedStore(storeURL: storeURL)
-            return store as! Store
+            return store
         } catch {
             let store = NullStore<ListFilm>()
-            return store as! Store
+            return store
         }
     }()
     
-    private lazy var feedCache: FeedCache<ListFilm, Store> = {
+    private lazy var feedCache: FeedCache<ListFilm> = {
         .init(
             store: store,
-            toLocal: { $0 },
-            fromLocal: { $0 },
+            toLocal: LocalFilm.init(listFilm:),
+            fromLocal: ListFilm.init(localFilm:),
             feedCachePolicy: .sevenDays
         )
     }()
     
     init() {}
     
-    convenience init(httpClient: HTTPClient, store: Store) {
+    convenience init(httpClient: HTTPClient, store: FeedStore & FilmImageDataStore) {
         self.init()
         self.httpClient = httpClient
         self.store = store
@@ -114,5 +112,29 @@ extension LoaderComposer {
             .getPublisher(url: filmURL)
             .tryMap(DetailFilmMapper.map)
             .eraseToAnyPublisher()
+    }
+}
+
+private extension ListFilm {
+    init(localFilm: LocalFilm) {
+        self.init(
+            id: localFilm.id,
+            title: localFilm.title,
+            description: localFilm.description,
+            imageURL: localFilm.imageURL,
+            filmURL: localFilm.filmURL
+        )
+    }
+}
+
+private extension LocalFilm {
+    init(listFilm: ListFilm) {
+        self.init(
+            id: listFilm.id,
+            title: listFilm.title,
+            description: listFilm.description,
+            imageURL: listFilm.imageURL,
+            filmURL: listFilm.filmURL
+        )
     }
 }

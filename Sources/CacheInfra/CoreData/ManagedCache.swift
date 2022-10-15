@@ -6,6 +6,7 @@
 //
 //
 
+import Cache
 import CoreData
 
 @objc(ManagedCache)

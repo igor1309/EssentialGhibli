@@ -8,21 +8,19 @@
 import Domain
 import Foundation
 
-public final class FeedCache<Item, Store>
-where Store: FeedStore {
+public final class FeedCache<Item> {
     
-    public typealias LocalItem = Store.Item
     public typealias Validate = (Date, Date) -> Bool
     
-    private let store: Store
-    private let toLocal: (Item) -> LocalItem
-    private let fromLocal: (LocalItem) -> Item
+    private let store: FeedStore
+    private let toLocal: (Item) -> LocalFilm
+    private let fromLocal: (LocalFilm) -> Item
     private let validate: Validate
     
     public init(
-        store: Store,
-        toLocal: @escaping (Item) -> LocalItem,
-        fromLocal: @escaping (LocalItem) -> Item,
+        store: FeedStore,
+        toLocal: @escaping (Item) -> LocalFilm,
+        fromLocal: @escaping (LocalFilm) -> Item,
         validate: @escaping Validate
     ) {
         self.store = store
@@ -34,9 +32,9 @@ where Store: FeedStore {
 
 extension FeedCache {
     public convenience init(
-        store: Store,
-        toLocal: @escaping (Item) -> LocalItem,
-        fromLocal: @escaping (LocalItem) -> Item,
+        store: FeedStore,
+        toLocal: @escaping (Item) -> LocalFilm,
+        fromLocal: @escaping (LocalFilm) -> Item,
         feedCachePolicy: FeedCachePolicy = .sevenDays
     ) {
         self.init(store: store, toLocal: toLocal, fromLocal: fromLocal, validate: feedCachePolicy.validate)

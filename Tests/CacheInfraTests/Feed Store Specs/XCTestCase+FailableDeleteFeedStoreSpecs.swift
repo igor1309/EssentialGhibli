@@ -10,7 +10,7 @@ import CacheInfra
 import XCTest
 
 extension FailableDeleteFeedStoreSpecs where Self: XCTestCase {
-    func assertThatDeleteDeliversErrorOnDeletionError(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
+    func assertThatDeleteDeliversErrorOnDeletionError(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {
         
         XCTFail("Unimplemented")
 //        let deletionError = deleteCache(from: sut)
@@ -18,7 +18,7 @@ extension FailableDeleteFeedStoreSpecs where Self: XCTestCase {
 //        XCTAssertNotNil(deletionError, "Expected cache deletion to fail", file: file, line: line)
     }
 
-    func assertThatDeleteHasNoSideEffectsOnDeletionError(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
+    func assertThatDeleteHasNoSideEffectsOnDeletionError(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {
         
         XCTFail("Unimplemented")
 //        deleteCache(from: sut)

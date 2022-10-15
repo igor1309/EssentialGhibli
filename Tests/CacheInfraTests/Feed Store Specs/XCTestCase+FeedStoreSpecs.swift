@@ -10,17 +10,17 @@ import CacheInfra
 import XCTest
 
 extension FeedStoreSpecs where Self: XCTestCase {
-    func assertThatRetrieveDeliversEmptyOnEmptyCache(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
+    func assertThatRetrieveDeliversEmptyOnEmptyCache(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {
         
         expect(sut, toRetrieve: .success(.none), file: file, line: line)
     }
     
-    func assertThatRetrieveHasNoSideEffectsOnEmptyCache(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
+    func assertThatRetrieveHasNoSideEffectsOnEmptyCache(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {
         
         expect(sut, toRetrieveTwice: .success(.none), file: file, line: line)
     }
     
-    func assertThatRetrieveDeliversFoundValuesOnNonEmptyCache(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
+    func assertThatRetrieveDeliversFoundValuesOnNonEmptyCache(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {
         
         do {
             let feed = uniqueFilmFeed()
@@ -33,7 +33,7 @@ extension FeedStoreSpecs where Self: XCTestCase {
         }
     }
     
-    func assertThatRetrieveHasNoSideEffectsOnNonEmptyCache(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
+    func assertThatRetrieveHasNoSideEffectsOnNonEmptyCache(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {
         
         do {
             let feed = uniqueFilmFeed()
@@ -46,19 +46,19 @@ extension FeedStoreSpecs where Self: XCTestCase {
         }
     }
     
-    func assertThatInsertDeliversNoErrorOnEmptyCache(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
+    func assertThatInsertDeliversNoErrorOnEmptyCache(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {
         
         XCTAssertNoThrow(try sut.insert(uniqueFilmFeed(), timestamp: .now), file: file, line: line)
         
     }
     
-    func assertThatInsertDeliversNoErrorOnNonEmptyCache(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
+    func assertThatInsertDeliversNoErrorOnNonEmptyCache(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {
         
         XCTAssertNoThrow(try sut.insert(uniqueFilmFeed(), timestamp: .now), file: file, line: line)
         XCTAssertNoThrow(try sut.insert(uniqueFilmFeed(), timestamp: .now), file: file, line: line)
     }
     
-    func assertThatInsertOverridesPreviouslyInsertedCacheValues(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
+    func assertThatInsertOverridesPreviouslyInsertedCacheValues(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {
         
         do {
             try sut.insert([makeLocalFilm()], timestamp: Date())
@@ -74,19 +74,19 @@ extension FeedStoreSpecs where Self: XCTestCase {
         }
     }
     
-    func assertThatDeleteDeliversNoErrorOnEmptyCache(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
+    func assertThatDeleteDeliversNoErrorOnEmptyCache(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {
         
         expect(sut, toRetrieve: .success(.none), file: file, line: line)
         XCTAssertNoThrow({ try sut.deleteCachedFeed() }, file: file, line: line)
     }
     
-    func assertThatDeleteHasNoSideEffectsOnEmptyCache(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
+    func assertThatDeleteHasNoSideEffectsOnEmptyCache(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {
         
         XCTAssertNoThrow({ try sut.deleteCachedFeed() }, file: file, line: line)
         expect(sut, toRetrieve: .success(.none), file: file, line: line)
     }
     
-    func assertThatDeleteDeliversNoErrorOnNonEmptyCache(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
+    func assertThatDeleteDeliversNoErrorOnNonEmptyCache(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {
         
         let feed = uniqueFilmFeed()
         let timestamp = Date()
@@ -102,7 +102,7 @@ extension FeedStoreSpecs where Self: XCTestCase {
         }
     }
     
-    func assertThatDeleteEmptiesPreviouslyInsertedCache(on sut: any FeedStore<LocalFilm>, file: StaticString = #file, line: UInt = #line) {
+    func assertThatDeleteEmptiesPreviouslyInsertedCache(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {
         
         let feed = uniqueFilmFeed()
         let timestamp = Date()
@@ -124,14 +124,14 @@ extension FeedStoreSpecs where Self: XCTestCase {
 extension FeedStoreSpecs where Self: XCTestCase {
     typealias RetrievalResult = Result<(feed: [LocalFilm], timestamp: Date)?, Error>
     
-    func expect(_ sut: any FeedStore<LocalFilm>, toRetrieveTwice expectedResult: RetrievalResult, file: StaticString = #file, line: UInt = #line) {
+    func expect(_ sut: FeedStore, toRetrieveTwice expectedResult: RetrievalResult, file: StaticString = #file, line: UInt = #line) {
         
         expect(sut, toRetrieve: expectedResult, file: file, line: line)
         expect(sut, toRetrieve: expectedResult, file: file, line: line)
     }
     
     func expect(
-        _ sut: any FeedStore<LocalFilm>,
+        _ sut: FeedStore,
         toRetrieve expectedResult: RetrievalResult,
         file: StaticString = #file,
         line: UInt = #line

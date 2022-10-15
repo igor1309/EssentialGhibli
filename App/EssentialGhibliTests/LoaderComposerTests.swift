@@ -23,7 +23,7 @@ final class LoaderComposerTests: XCTestCase {
     }
     
     func test_shouldDeliverRemoteFeedIfOnlineAndNonEmptyCache() {
-        let feed = [ListFilm.kikisDeliveryService]
+        let feed = [ListFilm.kikisDeliveryService].map(LocalFilm.init)
         let nonEmpty = InMemoryFeedStore(cached: (feed: feed, .now))
         let sut = makeSUT(.online, nonEmpty)
         
@@ -55,16 +55,16 @@ final class LoaderComposerTests: XCTestCase {
         _ store: InMemoryFeedStore,
         file: StaticString = #file,
         line: UInt = #line
-    ) -> LoaderComposer<InMemoryFeedStore> {
+    ) -> LoaderComposer {
         makeSUT(httpClient: httpClient, store: store, file: file, line: line)
     }
     
-    private func makeSUT<Store: FeedStore>(
+    private func makeSUT(
         httpClient: HTTPClient,
-        store: Store,
+        store: FeedStore & FilmImageDataStore,
         file: StaticString = #file,
         line: UInt = #line
-    ) -> LoaderComposer<Store> {
+    ) -> LoaderComposer {
         let sut = LoaderComposer(httpClient: httpClient, store: store)
         
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -72,8 +72,8 @@ final class LoaderComposerTests: XCTestCase {
         return sut
     }
     
-    private func expect<Store: FeedStore>(
-        _ sut: LoaderComposer<Store>,
+    private func expect(
+        _ sut: LoaderComposer,
         toDeliver expectedResult: ListFilmResult,
         inTime interval: TimeInterval = 1,
         file: StaticString = #file,
