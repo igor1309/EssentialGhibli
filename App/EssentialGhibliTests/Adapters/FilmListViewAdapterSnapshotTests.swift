@@ -1,6 +1,6 @@
 //
 //  FilmListViewAdapterSnapshotTests.swift
-//  EssentialGhibliTests
+//
 //
 //  Created by Igor Malyarov on 14.10.2022.
 //

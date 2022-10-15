@@ -1,6 +1,6 @@
 //
 //  LoadingImageViewSnapshotTests.swift
-//  EssentialGhibliTests
+//
 //
 //  Created by Igor Malyarov on 13.10.2022.
 //

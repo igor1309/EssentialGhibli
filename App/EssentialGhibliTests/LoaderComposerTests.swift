@@ -1,6 +1,6 @@
 //
 //  LoaderComposerTests.swift
-//  EssentialGhibliTests
+//
 //
 //  Created by Igor Malyarov on 14.10.2022.
 //
@@ -55,7 +55,7 @@ final class LoaderComposerTests: XCTestCase {
         _ store: InMemoryFeedStore,
         file: StaticString = #file,
         line: UInt = #line
-    ) -> LoaderComposer<ListFilm, InMemoryFeedStore> {
+    ) -> LoaderComposer<InMemoryFeedStore> {
         makeSUT(httpClient: httpClient, store: store, file: file, line: line)
     }
     
@@ -64,7 +64,7 @@ final class LoaderComposerTests: XCTestCase {
         store: Store,
         file: StaticString = #file,
         line: UInt = #line
-    ) -> LoaderComposer<ListFilm, Store> {
+    ) -> LoaderComposer<Store> {
         let sut = LoaderComposer(httpClient: httpClient, store: store)
         
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -73,7 +73,7 @@ final class LoaderComposerTests: XCTestCase {
     }
     
     private func expect<Store: FeedStore>(
-        _ sut: LoaderComposer<ListFilm, Store>,
+        _ sut: LoaderComposer<Store>,
         toDeliver expectedResult: ListFilmResult,
         inTime interval: TimeInterval = 1,
         file: StaticString = #file,

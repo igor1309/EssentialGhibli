@@ -1,6 +1,6 @@
 //
 //  Publisher+fallback.swift
-//  EssentialGhibliTests
+//
 //
 //  Created by Igor Malyarov on 15.10.2022.
 //
