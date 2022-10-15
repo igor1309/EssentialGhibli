@@ -66,7 +66,6 @@ extension LoaderComposer {
             .caching(to: feedCache)
             .fallback(to: feedCache.loadPublisher)
             .subscribe(on: DispatchQueue.global())
-            .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
     
@@ -86,7 +85,6 @@ extension LoaderComposer {
         filmImageDataLocalLoaderWithRemoteFallback(url: url)
             .tryMap(ImageMapper.map)
             .subscribe(on: DispatchQueue.global())
-            .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
     
@@ -114,7 +112,6 @@ extension LoaderComposer {
             .getPublisher(url: filmURL)
             .tryMap(DetailFilmMapper.map)
             .subscribe(on: DispatchQueue.global())
-            .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
 }
