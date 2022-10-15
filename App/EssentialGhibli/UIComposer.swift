@@ -5,16 +5,21 @@
 //  Created by Igor Malyarov on 14.10.2022.
 //
 
+import Cache
 import ListFeature
+import RowFeature
+import DetailFeature
 import SwiftUI
 
-struct UIComposer: View {
+struct UIComposer<Store>: View
+where Store: FeedStore & FilmImageDataStore,
+      Store.Item == ListFilm {
     
-    let loader: Loader
+    let loader: LoaderComposer<Store>
     
     var body: some View {
         DetailNavigationComposer(
-            filmsLoader: LoaderFactory.filmsLoader(loader: loader),
+            filmsLoader: loader.filmsLoader,
             filmRow: filmRow,
             filmDetail: filmDetail
         )
@@ -23,16 +28,26 @@ struct UIComposer: View {
     private func filmRow(listFilm: ListFilm) -> some View {
         FilmRowViewAdapter(
             listFilm: listFilm,
-            imageLoader: LoaderFactory.filmRowImageLoader(loader: loader)
+            imageLoader: loader.filmRowImageLoader
         )
     }
     
     private func filmDetail(listFilm: ListFilm) -> some View {
         FilmDetailViewAdapter(
             listFilm: listFilm,
-            loader: { LoaderFactory.detailLoader(loader: loader)(listFilm) },
-            imageLoader: LoaderFactory.filmDetailImageLoader(loader: loader)
+            loader: { loader.detailLoader(listFilm: listFilm) },
+            imageLoader: loader.filmDetailImageLoader
         )
+    }
+}
+
+extension LoaderComposer {
+    func filmRowImageLoader(rowFilm: RowFilm) -> ImagePublisher {
+        filmImageLoader(url: rowFilm.imageURL)
+    }
+    
+    func filmDetailImageLoader(detailFilm: DetailFilm) -> ImagePublisher {
+        filmImageLoader(url: detailFilm.imageURL)
     }
 }
 

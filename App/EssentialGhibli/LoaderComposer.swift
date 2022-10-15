@@ -10,6 +10,7 @@ import Cache
 import CacheInfra
 import Combine
 import CoreData
+import DetailFeature
 import Foundation
 import ListFeature
 import SharedAPI
@@ -101,6 +102,17 @@ extension LoaderComposer {
         
         return cache.loadImageDataPublisher(from: url)
             .fallback(to: remote)
+            .eraseToAnyPublisher()
+    }
+}
+
+extension LoaderComposer {
+    func detailLoader(listFilm: ListFilm) -> AnyPublisher<DetailFilm, Error> {
+        let filmURL = FeedEndpoint.film(filmID: listFilm.id.uuidString).url(baseURL: baseURL)
+        
+        return httpClient
+            .getPublisher(url: filmURL)
+            .tryMap(DetailFilmMapper.map)
             .eraseToAnyPublisher()
     }
 }
