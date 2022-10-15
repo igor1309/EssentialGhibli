@@ -16,8 +16,6 @@ Hyper-modular architecture
 
 ![File Structure](./Docs/structure.png)
 
-![Modules: top-level view](./Docs/modules-top.png)
-
 with decoupled components
 
 ![Components](./Docs/components.png)
