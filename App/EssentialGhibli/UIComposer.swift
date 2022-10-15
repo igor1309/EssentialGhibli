@@ -5,22 +5,24 @@
 //  Created by Igor Malyarov on 14.10.2022.
 //
 
-import Cache
 import ListFeature
 import RowFeature
 import DetailFeature
 import SwiftUI
 
-struct UIComposer {
+struct UIComposer: View {
     
     let loader: LoaderComposer
     
     var body: some View {
-        DetailNavigationComposer(
-            filmsLoader: loader.filmsLoader,
-            filmRow: filmRow,
-            filmDetail: filmDetail
-        )
+        NavigationView {
+            DetailNavigationComposer(
+                filmsLoader: loader.filmsLoader,
+                filmRow: filmRow,
+                filmDetail: filmDetail
+            )
+            .navigationTitle(Text("FEED_VIEW_TITLE", tableName: "Localizable", bundle: .main))
+        }
     }
     
     private func filmRow(listFilm: ListFilm) -> some View {
@@ -50,10 +52,33 @@ extension LoaderComposer {
     }
 }
 
-//struct UIComposer_Previews: PreviewProvider {
-//    static var previews: some View {
-//        UIComposer {
-//            
-//        }
-//    }
-//}
+struct UIComposer_Previews: PreviewProvider {
+    static let online = LoaderComposer(
+        httpClient: HTTPClientStub.online,
+        store: NullStore<ListFilm>()
+    )
+    
+    static let offline = LoaderComposer(
+        httpClient: HTTPClientStub.offline,
+        store: NullStore<ListFilm>()
+    )
+    
+    static var previews: some View {
+        Group {
+            UIComposer(loader: online)
+                .environment(\.locale, .ru_RU)
+                .previewDisplayName("ru | Online")
+            
+            UIComposer(loader: online)
+                .previewDisplayName("Online")
+            
+            UIComposer(loader: offline)
+                .previewDisplayName("ru | Offline")
+                .previewDisplayName("Offline")
+            
+            UIComposer(loader: offline)
+                .previewDisplayName("Offline")
+        }
+        .preferredColorScheme(.dark)
+    }
+}
