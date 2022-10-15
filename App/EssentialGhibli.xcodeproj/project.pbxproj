@@ -43,7 +43,6 @@
 		2A51FA7628EF0644003D3EA1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A51FA7528EF0644003D3EA1 /* ContentView.swift */; };
 		2A51FA7828EF0646003D3EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A51FA7728EF0646003D3EA1 /* Assets.xcassets */; };
 		2A51FA7B28EF0646003D3EA1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A51FA7A28EF0646003D3EA1 /* Preview Assets.xcassets */; };
-		2A62DCC228F44A3F00AF5560 /* composeLocalFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A62DCC128F44A3F00AF5560 /* composeLocalFeedLoader.swift */; };
 		2A8FA65C28F9D03A00D0BE9C /* LoaderComposerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FA65B28F9D03A00D0BE9C /* LoaderComposerTests.swift */; };
 		2A8FA65E28F9DFB600D0BE9C /* MappingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FA65D28F9DFB600D0BE9C /* MappingError.swift */; };
 		2A8FA66228FA027200D0BE9C /* json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FA66128FA027200D0BE9C /* json.swift */; };
@@ -107,7 +106,6 @@
 		2A51FA7728EF0646003D3EA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A51FA7A28EF0646003D3EA1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2A51FA8128EF0698003D3EA1 /* EssentialGhibli */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = EssentialGhibli; path = ..; sourceTree = "<group>"; };
-		2A62DCC128F44A3F00AF5560 /* composeLocalFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = composeLocalFeedLoader.swift; sourceTree = "<group>"; };
 		2A8FA65B28F9D03A00D0BE9C /* LoaderComposerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderComposerTests.swift; sourceTree = "<group>"; };
 		2A8FA65D28F9DFB600D0BE9C /* MappingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappingError.swift; sourceTree = "<group>"; };
 		2A8FA66128FA027200D0BE9C /* json.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = json.swift; sourceTree = "<group>"; };
@@ -239,8 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				2A51FA7328EF0644003D3EA1 /* EssentialGhibliApp.swift */,
-				2A51FA7528EF0644003D3EA1 /* ContentView.swift */,
-				2A8FA67928FABD1D00D0BE9C /* ContentViewComposer.swift */,
+				2A8FA67D28FADA6B00D0BE9C /* ContentView */,
 				2AC0165528F09FFF002CA97C /* Localizable.strings */,
 				2AD17F9428F829FE0047B31A /* LoadingImageView.swift */,
 				2A2E934B28F9608800BA48BB /* UIComposer.swift */,
@@ -253,9 +250,6 @@
 				2A0AD07028F8E9DD001488C6 /* Adapters */,
 				2A0AD06928F8E95C001488C6 /* Mappers */,
 				2AD17F9628F82F8B0047B31A /* ImageErrorView.swift */,
-				2A62DCC128F44A3F00AF5560 /* composeLocalFeedLoader.swift */,
-				2AB6D25628F057AE006C8855 /* ViewModel.swift */,
-				2A2E934728F9519100BA48BB /* ListState.swift */,
 				2A51FA7728EF0646003D3EA1 /* Assets.xcassets */,
 				2A51FA7928EF0646003D3EA1 /* Preview Content */,
 			);
@@ -286,6 +280,17 @@
 				2A8FA66828FA24C500D0BE9C /* Publisher+fallback.swift */,
 			);
 			path = CombineHelpers;
+			sourceTree = "<group>";
+		};
+		2A8FA67D28FADA6B00D0BE9C /* ContentView */ = {
+			isa = PBXGroup;
+			children = (
+				2A8FA67928FABD1D00D0BE9C /* ContentViewComposer.swift */,
+				2A51FA7528EF0644003D3EA1 /* ContentView.swift */,
+				2AB6D25628F057AE006C8855 /* ViewModel.swift */,
+				2A2E934728F9519100BA48BB /* ListState.swift */,
+			);
+			path = ContentView;
 			sourceTree = "<group>";
 		};
 		2AA1E74228F882B200EC410C /* Helpers */ = {
@@ -440,7 +445,6 @@
 				2A8FA67328FAA3BD00D0BE9C /* NullStore.swift in Sources */,
 				2A0AD07D28F8EB1B001488C6 /* DetailNavigationComposer.swift in Sources */,
 				2A2E936228F99C5500BA48BB /* Helpers.swift in Sources */,
-				2A62DCC228F44A3F00AF5560 /* composeLocalFeedLoader.swift in Sources */,
 				2A2E934C28F9608800BA48BB /* UIComposer.swift in Sources */,
 				2A2E934828F9519100BA48BB /* ListState.swift in Sources */,
 				2A2E934E28F960B600BA48BB /* LoaderFactory.swift in Sources */,
