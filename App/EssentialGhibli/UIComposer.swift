@@ -73,9 +73,9 @@ struct UIComposer_Previews: PreviewProvider {
                 .previewDisplayName("Online")
             
             UIComposer(loader: offline)
+                .environment(\.locale, .ru_RU)
                 .previewDisplayName("ru | Offline")
-                .previewDisplayName("Offline")
-            
+
             UIComposer(loader: offline)
                 .previewDisplayName("Offline")
         }
