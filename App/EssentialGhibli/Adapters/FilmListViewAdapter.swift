@@ -30,6 +30,10 @@ struct FilmListViewAdapter<Row: View>: View {
 }
 
 #if DEBUG
+func filmListViewAdapter(_ loaderComposer: LoaderComposer) -> some View {
+    filmListViewAdapter(loaderComposer.filmsLoader)
+}
+
 func filmListViewAdapter(
     _ listFilmsLoader: @escaping () -> AnyPublisher<[ListFilm], Error>
 ) -> some View {
@@ -42,13 +46,13 @@ func filmListViewAdapter(
 struct FilmListViewAdapter_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            filmListViewAdapter(LoaderComposer.online.filmsLoader)
+            filmListViewAdapter(LoaderComposer.online)
             
-            filmListViewAdapter(LoaderComposer.offline.filmsLoader)
+            filmListViewAdapter(LoaderComposer.offline)
                 .environment(\.locale, .en_US)
                 .previewDisplayName("en-US | Empty List Loader")
             
-            filmListViewAdapter(LoaderComposer.offline.filmsLoader)
+            filmListViewAdapter(LoaderComposer.offline)
                 .environment(\.locale, .ru_RU)
                 .previewDisplayName("ru-RU | Empty List Loader")
             

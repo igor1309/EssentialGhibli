@@ -10,30 +10,51 @@ import XCTest
 
 final class FilmListViewAdapterSnapshotTests: XCTestCase {
     let record = false
-    
-    func test_snapshot_FilmListViewAdapter_nonEmptyList() {
-        let sut = filmListViewAdapter(PreviewLoaders.listFilmsLoader)
-        
-        assert(snapshot: sut, locale: .en_US, record: record)
-    }
-    
-    func test_snapshot_FilmListViewAdapter_emptyList() {
+
+    func test_shouldShowEmptyList_onEmptyLoader() {
         let sut = filmListViewAdapter(PreviewLoaders.emptyListFilmsLoader)
         
         assert(snapshot: sut, locale: .en_US, record: record)
         assert(snapshot: sut, locale: .ru_RU, record: record)
     }
     
-    func test_snapshot_FilmListViewAdapter_loading() {
+    func test_shouldShowEmptyList_onEmptyLoaderComposer() {
+        let sut = filmListViewAdapter(LoaderComposer.empty)
+        
+        assert(snapshot: sut, locale: .en_US, record: record)
+        assert(snapshot: sut, locale: .ru_RU, record: record)
+    }
+    
+    func test_shouldShowFilmList_onSuccessLoader() {
+        let sut = filmListViewAdapter(PreviewLoaders.listFilmsLoader)
+        
+        assert(snapshot: sut, locale: .en_US, record: record)
+    }
+    
+    func test_shouldShowFilmList_onOnlineLoader() {
+        let sut = filmListViewAdapter(LoaderComposer.online)
+        
+        assert(snapshot: sut, locale: .en_US, record: record)
+    }
+
+    func test_shouldShowLoading_onLongLoader() {
         let sut = filmListViewAdapter(PreviewLoaders.longListFilmsLoader)
         
         assert(snapshot: sut, locale: .en_US, record: record)
         assert(snapshot: sut, locale: .ru_RU, record: record)
     }
     
-    func test_snapshot_FilmListViewAdapter_failed() {
+    func test_shouldShowLoading_onLongOnlineLoader() {
+        let sut = filmListViewAdapter(LoaderComposer.online.longFilmsLoader)
+        
+        assert(snapshot: sut, locale: .en_US, record: record)
+        assert(snapshot: sut, locale: .ru_RU, record: record)
+    }
+        
+    func test_shouldShowError_onFailingLoader() {
         let sut = filmListViewAdapter(PreviewLoaders.failingListFilmsLoader)
         
         assert(snapshot: sut, locale: .en_US, record: record)
+        assert(snapshot: sut, locale: .ru_RU, record: record)
     }
 }
