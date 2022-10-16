@@ -65,7 +65,7 @@ extension LoaderComposer {
         makeRemoteFeedLoader()
             .caching(to: feedCache)
             .fallback(to: feedCache.loadPublisher)
-            .subscribe(on: DispatchQueue.global())
+//            .subscribe(on: DispatchQueue.global())
             .eraseToAnyPublisher()
     }
     
@@ -84,7 +84,7 @@ extension LoaderComposer {
     func filmImageLoader(url: URL) -> ImagePublisher {
         filmImageDataLocalLoaderWithRemoteFallback(url: url)
             .tryMap(ImageMapper.map)
-            .subscribe(on: DispatchQueue.global())
+//            .subscribe(on: DispatchQueue.global())
             .eraseToAnyPublisher()
     }
     
@@ -111,7 +111,7 @@ extension LoaderComposer {
         return httpClient
             .getPublisher(url: filmURL)
             .tryMap(DetailFilmMapper.map)
-            .subscribe(on: DispatchQueue.global())
+//            .subscribe(on: DispatchQueue.global())
             .eraseToAnyPublisher()
     }
 }

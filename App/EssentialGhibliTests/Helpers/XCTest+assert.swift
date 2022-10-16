@@ -10,6 +10,33 @@ import SwiftUI
 import XCTest
 
 extension XCTest {
+    @MainActor
+    func asyncAssert<V: View>(
+        snapshot view: V,
+        as strategies: [Snapshotting<UIViewController, UIImage>] = [.iPhone13Pro_light, .iPhone13Pro_dark],
+        locale: Locale,
+        record: Bool,
+        wait duration: UInt64 = NSEC_PER_MSEC * 100,
+        file: StaticString = #file,
+        testName: String = #function,
+        line: UInt = #line
+    ) async throws {
+        let root = view
+            .environment(\.locale, locale)
+        let controller = UIHostingController(rootView: root)
+        
+        try await Task.sleep(nanoseconds: duration)
+        
+        assertSnapshots(
+            matching: controller,
+            as: strategies,
+            record: false,
+            file: file,
+            testName: testName,
+            line: line
+        )
+    }
+    
     func assert<V: View>(
         snapshot view: V,
         as strategies: [Snapshotting<UIViewController, UIImage>] = [.iPhone13Pro_light, .iPhone13Pro_dark],

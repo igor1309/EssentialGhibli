@@ -30,6 +30,10 @@ private extension ListFilm {
 }
 
 #if DEBUG
+func filmRowViewAdapter(_ loaderComposer: LoaderComposer) -> some View {
+    filmRowViewAdapter(loaderComposer.filmRowImageLoader(rowFilm:))
+}
+
 func filmRowViewAdapter(
     _ imageLoader: @escaping (RowFilm) -> ImagePublisher
 ) -> some View {
@@ -46,6 +50,8 @@ struct FilmRowViewAdapter_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             filmRowViewAdapter(PreviewLoaders.filmRowImageLoader)
+            
+            filmRowViewAdapter(LoaderComposer.online)
             
             filmRowViewAdapter(PreviewLoaders.longFilmRowImageLoader)
                 .previewDisplayName("Long Image Loader")
