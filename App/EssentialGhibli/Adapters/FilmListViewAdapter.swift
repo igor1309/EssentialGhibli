@@ -42,21 +42,21 @@ func filmListViewAdapter(
 struct FilmListViewAdapter_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            filmListViewAdapter(PreviewLoaders.listFilmsLoader)
+            filmListViewAdapter(LoaderComposer.online.filmsLoader)
             
-            filmListViewAdapter(PreviewLoaders.emptyListFilmsLoader)
+            filmListViewAdapter(LoaderComposer.offline.filmsLoader)
                 .environment(\.locale, .en_US)
                 .previewDisplayName("en-US | Empty List Loader")
             
-            filmListViewAdapter(PreviewLoaders.emptyListFilmsLoader)
+            filmListViewAdapter(LoaderComposer.offline.filmsLoader)
                 .environment(\.locale, .ru_RU)
                 .previewDisplayName("ru-RU | Empty List Loader")
             
-            filmListViewAdapter(PreviewLoaders.longListFilmsLoader)
+            filmListViewAdapter(LoaderComposer.online.longFilmsLoader)
                 .environment(\.locale, .en_US)
                 .previewDisplayName("en-US | Long List Loader")
             
-            filmListViewAdapter(PreviewLoaders.longListFilmsLoader)
+            filmListViewAdapter(LoaderComposer.online.longFilmsLoader)
                 .environment(\.locale, .ru_RU)
                 .previewDisplayName("ru-RU Long List Loader")
             

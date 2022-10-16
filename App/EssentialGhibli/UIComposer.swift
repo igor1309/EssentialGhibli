@@ -53,30 +53,21 @@ extension LoaderComposer {
 }
 
 struct UIComposer_Previews: PreviewProvider {
-    static let online = LoaderComposer(
-        httpClient: HTTPClientStub.online,
-        store: NullStore<ListFilm>()
-    )
-    
-    static let offline = LoaderComposer(
-        httpClient: HTTPClientStub.offline,
-        store: NullStore<ListFilm>()
-    )
     
     static var previews: some View {
         Group {
-            UIComposer(loader: online)
+            UIComposer(loader: .online)
                 .environment(\.locale, .ru_RU)
                 .previewDisplayName("ru | Online")
             
-            UIComposer(loader: online)
+            UIComposer(loader: .online)
                 .previewDisplayName("Online")
             
-            UIComposer(loader: offline)
+            UIComposer(loader: .offline)
                 .environment(\.locale, .ru_RU)
                 .previewDisplayName("ru | Offline")
-
-            UIComposer(loader: offline)
+            
+            UIComposer(loader: .offline)
                 .previewDisplayName("Offline")
         }
         .preferredColorScheme(.dark)

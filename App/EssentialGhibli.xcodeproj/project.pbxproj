@@ -57,6 +57,7 @@
 		2A8FA68328FADEE300D0BE9C /* Locale+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FA68228FADEE300D0BE9C /* Locale+ext.swift */; };
 		2A8FA68528FAEAE700D0BE9C /* UIComposerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FA68428FAEAE700D0BE9C /* UIComposerSnapshotTests.swift */; };
 		2A8FA68728FAF1FF00D0BE9C /* DetailNavigationComposerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FA68628FAF1FF00D0BE9C /* DetailNavigationComposerSnapshotTests.swift */; };
+		2A8FA68928FAFA4800D0BE9C /* LoaderComposer+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FA68828FAFA4800D0BE9C /* LoaderComposer+ext.swift */; };
 		2AA1E73F28F8674600EC410C /* ImageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA1E73E28F8674600EC410C /* ImageMapper.swift */; };
 		2AA1E74128F881D700EC410C /* LoadingImageViewSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA1E74028F881D700EC410C /* LoadingImageViewSnapshotTests.swift */; };
 		2AA1E74428F882D100EC410C /* XCTest+assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA1E74328F882D100EC410C /* XCTest+assert.swift */; };
@@ -122,6 +123,7 @@
 		2A8FA68228FADEE300D0BE9C /* Locale+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Locale+ext.swift"; sourceTree = "<group>"; };
 		2A8FA68428FAEAE700D0BE9C /* UIComposerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComposerSnapshotTests.swift; sourceTree = "<group>"; };
 		2A8FA68628FAF1FF00D0BE9C /* DetailNavigationComposerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNavigationComposerSnapshotTests.swift; sourceTree = "<group>"; };
+		2A8FA68828FAFA4800D0BE9C /* LoaderComposer+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoaderComposer+ext.swift"; sourceTree = "<group>"; };
 		2AA1E73E28F8674600EC410C /* ImageMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMapper.swift; sourceTree = "<group>"; };
 		2AA1E74028F881D700EC410C /* LoadingImageViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingImageViewSnapshotTests.swift; sourceTree = "<group>"; };
 		2AA1E74328F882D100EC410C /* XCTest+assert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+assert.swift"; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				2A2E935F28F99A3300BA48BB /* PreviewLoaders.swift */,
 				2A8FA68228FADEE300D0BE9C /* Locale+ext.swift */,
 				2A2E936128F99C5500BA48BB /* AnyError.swift */,
+				2A8FA68828FAFA4800D0BE9C /* LoaderComposer+ext.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 				2A2E934A28F9586600BA48BB /* FilmListViewAdapter.swift in Sources */,
 				2AD17F9528F829FE0047B31A /* LoadingImageView.swift in Sources */,
 				2A0AD07428F8EA0A001488C6 /* FilmDetailViewAdapter.swift in Sources */,
+				2A8FA68928FAFA4800D0BE9C /* LoaderComposer+ext.swift in Sources */,
 				2A2E936028F99A3300BA48BB /* PreviewLoaders.swift in Sources */,
 				2A8FA67628FAB0BD00D0BE9C /* LoaderComposer.swift in Sources */,
 				2A8FA68328FADEE300D0BE9C /* Locale+ext.swift in Sources */,

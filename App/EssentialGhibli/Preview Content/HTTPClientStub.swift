@@ -10,8 +10,8 @@ import SharedAPI
 
 #if DEBUG
 final class HTTPClientStub: HTTPClient {
-    static let offline = HTTPClientStub(result: .error)
     static let online = HTTPClientStub(result: .listFilmSamples)
+    static let offline = HTTPClientStub(result: .error)
     
     private let result: HTTPResult
     

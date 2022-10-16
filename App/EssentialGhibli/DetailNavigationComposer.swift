@@ -33,6 +33,10 @@ where FilmRow: View,
 }
 
 #if DEBUG
+func detailNavigationComposer(loader: LoaderComposer) -> some View {
+    detailNavigationComposer(loader.filmsLoader)
+}
+
 func detailNavigationComposer(
     _ listFilmsLoader: @escaping () -> AnyPublisher<[ListFilm], Error>
 ) -> some View {
@@ -47,13 +51,13 @@ struct DetailNavigationComposer_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             NavigationView {
-                detailNavigationComposer(PreviewLoaders.listFilmsLoader)
+                detailNavigationComposer(loader: .online)
             }
 
-            detailNavigationComposer(PreviewLoaders.longListFilmsLoader)
+            detailNavigationComposer(LoaderComposer.online.longFilmsLoader)
                 .previewDisplayName("Loading")
 
-            detailNavigationComposer(PreviewLoaders.emptyListFilmsLoader)
+            detailNavigationComposer(loader: .offline)
                 .previewDisplayName("Empty Loader")
             
             detailNavigationComposer(PreviewLoaders.failingListFilmsLoader)
