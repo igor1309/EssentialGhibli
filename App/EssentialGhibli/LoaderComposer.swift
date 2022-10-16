@@ -89,14 +89,13 @@ extension LoaderComposer {
     }
     
     private func filmImageDataLocalLoaderWithRemoteFallback(url: URL) -> AnyPublisher<Data, Error> {
-#warning("add caching")
+        let cache = FilmImageDataCache(store: store)
         let remote = { [httpClient] in
             httpClient
                 .getPublisher(url: url)
                 .data(ifResponse: { $0.is200 })
-            //                .caching(to: feedCache. using: url)
+                .caching(to: cache, using: url)
         }
-        let cache = FilmImageDataCache(store: store)
         
         return cache.loadImageDataPublisher(from: url)
             .fallback(to: remote)

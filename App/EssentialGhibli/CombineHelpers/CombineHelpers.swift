@@ -47,6 +47,23 @@ private extension FeedSaver {
     }
 }
 
+extension Publisher where Output == Data {
+    func caching(
+        to cache: FilmImageDataSaver,
+        using url: URL
+    ) -> AnyPublisher<Output, Failure> {
+        handleEvents(receiveOutput: { data in
+            cache.saveIgnoringResult(data, for: url)
+        }).eraseToAnyPublisher()
+    }
+}
+
+private extension FilmImageDataSaver {
+    func saveIgnoringResult(_ data: Data, for url: URL) {
+        try? saveImageData(data, for: url)
+    }
+}
+
 extension FeedCache {
     func loadPublisher() -> AnyPublisher<[Item], Error> {
         Deferred {
