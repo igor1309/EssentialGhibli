@@ -10,13 +10,13 @@ import SharedAPI
 
 #if DEBUG
 final class HTTPClientStub: HTTPClient {
-    static let online = HTTPClientStub(result: .listFilmSamples)
-    static let offline = HTTPClientStub(result: .error)
+    static let online = HTTPClientStub(.listFilmSamples)
+    static let offline = HTTPClientStub(.error)
     
-    private let result: HTTPResult
+    private let stub: HTTPResult
     
-    init(result: HTTPResult) {
-        self.result = result
+    init(_ stub: HTTPResult) {
+        self.stub = stub
     }
     
     private class ClientTask: HTTPClientTask {
@@ -26,7 +26,7 @@ final class HTTPClientStub: HTTPClient {
     func get(
         from url: URL, completion: @escaping (HTTPResult) -> Void
     ) -> HTTPClientTask {
-        completion(result)
+        completion(stub)
         return ClientTask()
     }
 }

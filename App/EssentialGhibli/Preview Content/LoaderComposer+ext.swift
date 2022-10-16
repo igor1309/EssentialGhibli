@@ -17,7 +17,8 @@ extension LoaderComposer {
     
     static let online: LoaderComposer = .init(httpStub: .online)
     static let offline: LoaderComposer = .init(httpStub: .offline)
-    
+    static let empty: LoaderComposer = .init(httpStub: .offline)
+
     func longFilmsLoader() -> AnyPublisher<[ListFilm], Error> {
         filmsLoader()
             .delay(for: 10, scheduler: DispatchQueue.main)
