@@ -10,43 +10,50 @@ import Foundation
 import ListFeature
 
 final class InMemoryFeedStore {
-    private var cached: CachedFeed?
+    private(set) var feedCache: CachedFeed?
+    private var filmImageDataCache: [URL: Data] = [:]
     
-    init(cached: CachedFeed?) {
-        self.cached = cached
+    private init(feedCache: CachedFeed? = nil) {
+        self.feedCache = feedCache
     }
 }
 
 extension InMemoryFeedStore {
-    static func empty() -> InMemoryFeedStore {
-        .init(cached: nil)
+    static func empty() -> InMemoryFeedStore { .init() }
+    
+    static func withExpiredFeedCache() -> InMemoryFeedStore {
+        .init(feedCache: (feed: [], timestamp: Date.distantPast))
     }
     
-    static func samples() -> InMemoryFeedStore {
-        .init(cached: ([ListFilm].samples.map(LocalFilm.init), .now))
+    static func withNonExpiredFeedCache() -> InMemoryFeedStore {
+        .init(feedCache: (.samples, .now))
     }
+}
+
+private extension Array where Element == LocalFilm {
+    static let samples: Self = [ListFilm].samples.map(LocalFilm.init)
 }
 
 extension InMemoryFeedStore: FeedStore {
     func deleteCachedFeed() throws {
-        cached = nil
+        feedCache = nil
     }
     
     func insert(_ feed: [Cache.LocalFilm], timestamp: Date) throws {
-        cached = (feed, timestamp)
+        feedCache = (feed, timestamp)
     }
 
     func retrieve() throws -> Cache.CachedFeed? {
-        cached
+        feedCache
     }
 }
 
 extension InMemoryFeedStore: FilmImageDataStore {
     func retrieve(dataForURL url: URL) throws -> Data? {
-        fatalError()
+        filmImageDataCache[url]
     }
     
     func insert(_ data: Data, for url: URL) throws {
-        fatalError()
+        filmImageDataCache[url] = data
     }
 }
