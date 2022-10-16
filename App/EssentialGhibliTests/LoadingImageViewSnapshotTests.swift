@@ -14,35 +14,35 @@ import XCTest
 final class LoadingImageViewSnapshotTests: XCTestCase {
     let record = false
     
-    func test_snapshot_LoadingImageView_loading() {
+    func test_shouldShowLoading_onImageLoading() {
         let sut = makeSUT(loader: longLoader)
         
         assert(snapshot: sut, locale: .en_US, record: record)
         assert(snapshot: sut, locale: .ru_RU, record: record)
     }
     
-    func test_snapshot_LoadingImageView_loaded() {
+    func test_shouldShowImage_onLoadedImage() {
         let sut = makeSUT(loader: loader)
         
         assert(snapshot: sut, locale: .en_US, record: record)
     }
     
-    func test_snapshot_LoadingImageView_loadedFramed() {
+    func testShouldShowFramedImage_onLoadedImage() {
         let sut = makeSUT(loader: loader)
             .frame(width: 400, height: 300)
         
         assert(snapshot: sut, locale: .en_US, record: record)
     }
     
-    func test_snapshot_LoadingImageView_non200() {
+    func test_shouldShowError_onNon200Response() {
         let sut = makeSUT(loader: non200Loader)
-
+        
         assert(snapshot: sut, locale: .en_US, record: record)
     }
-
-    func test_snapshot_LoadingImageView_failing() {
+    
+    func test_shouldShowError_onFailedImageLoading() {
         let sut = makeSUT(loader: failingLoader)
-
+        
         assert(snapshot: sut, locale: .en_US, record: record)
     }
     
