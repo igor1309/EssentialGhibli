@@ -7,7 +7,9 @@
 
 import Foundation
 
+#if DEBUG
 extension Locale {
     static let en_US: Self = .init(identifier: "en-US")
     static let ru_RU: Self = .init(identifier: "ru-RU")
 }
+#endif

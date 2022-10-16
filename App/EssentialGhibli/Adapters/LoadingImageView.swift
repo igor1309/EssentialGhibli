@@ -49,8 +49,10 @@ struct LoadingImageView: View {
 
 #if DEBUG
 struct LoadingImageView_Demo: View {
+    private let greenImageData: Data = .uiImageData(withColor: .green, width: 300, height: 600)
+    
     func loader() -> ImagePublisher {
-        Just((.greenImage(width: 300, height: 600), .any200))
+        Just((greenImageData, .statusCode200))
             .delay(for: 2, scheduler: DispatchQueue.main)
             .tryMap(ImageMapper.map)
             .eraseToAnyPublisher()
@@ -63,7 +65,7 @@ struct LoadingImageView_Demo: View {
     }
     
     func non200Loader() -> ImagePublisher {
-        Just((.greenImage(width: 300, height: 600), .statusCode400))
+        Just((greenImageData, .statusCode400))
             .delay(for: 2, scheduler: DispatchQueue.main)
             .tryMap(ImageMapper.map)
             .eraseToAnyPublisher()
@@ -105,48 +107,6 @@ struct LoadingImageView_Previews: PreviewProvider {
                 .frame(width: 600, height: 600)
         }
         .preferredColorScheme(.dark)
-    }
-}
-
-private extension Data {
-    static let empty: Self = Data("".utf8)
-    
-    static func greenImage(width: Int, height: Int) -> Data {
-        uiImageData(withColor: .green, width: width, height: height)
-    }
-    
-    static func uiImageData(
-        withColor color: UIColor,
-        width: Int,
-        height: Int
-    ) -> Data {
-        UIImage.make(withColor: color, width: width, height: height).pngData()!
-    }
-}
-
-private extension HTTPURLResponse {
-    static let any200: HTTPURLResponse = .init(url: .anyURL, statusCode: 200, httpVersion: nil, headerFields: nil)!
-    static let statusCode400: HTTPURLResponse = .init(url: .anyURL, statusCode: 400, httpVersion: nil, headerFields: nil)!
-}
-
-private extension URL {
-    static let anyURL: URL = .init(string: "https://any-url.com")!
-}
-
-private extension UIImage {
-    static func make(
-        withColor color: UIColor,
-        width: Int = 1,
-        height: Int = 1
-    ) -> UIImage {
-        let rect = CGRect(x: 0, y: 0, width: width, height: height)
-        UIGraphicsBeginImageContext(rect.size)
-        let context = UIGraphicsGetCurrentContext()!
-        context.setFillColor(color.cgColor)
-        context.fill(rect)
-        let img = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return img!
     }
 }
 #endif

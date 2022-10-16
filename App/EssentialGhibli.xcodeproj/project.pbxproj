@@ -63,6 +63,9 @@
 		2AA1E74428F882D100EC410C /* XCTest+assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA1E74328F882D100EC410C /* XCTest+assert.swift */; };
 		2AA1E74728F8832700EC410C /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 2AA1E74628F8832700EC410C /* SnapshotTesting */; };
 		2AA1E77C28F889B200EC410C /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA1E77A28F8898A00EC410C /* XCTestCase+MemoryLeakTracking.swift */; };
+		2AA785FE28FC3A7A0074F2C7 /* HTTPURLResponse+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA785FD28FC3A7A0074F2C7 /* HTTPURLResponse+ext.swift */; };
+		2AA7860028FC3AF50074F2C7 /* UIImage+make.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA785FF28FC3AF50074F2C7 /* UIImage+make.swift */; };
+		2AA7860228FC3BDC0074F2C7 /* Data+uiImageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA7860128FC3BDC0074F2C7 /* Data+uiImageData.swift */; };
 		2AB6D25728F057AE006C8855 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB6D25628F057AE006C8855 /* ViewModel.swift */; };
 		2AC0165328F09FFF002CA97C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AC0165528F09FFF002CA97C /* Localizable.strings */; };
 		2AC0166528F0A08C002CA97C /* EssentialGhibliLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC0166428F0A08C002CA97C /* EssentialGhibliLocalizationTests.swift */; };
@@ -128,6 +131,9 @@
 		2AA1E74028F881D700EC410C /* LoadingImageViewSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingImageViewSnapshotTests.swift; sourceTree = "<group>"; };
 		2AA1E74328F882D100EC410C /* XCTest+assert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+assert.swift"; sourceTree = "<group>"; };
 		2AA1E77A28F8898A00EC410C /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "XCTestCase+MemoryLeakTracking.swift"; path = "../../../Tests/GenericResourceViewTests/Helpers/XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
+		2AA785FD28FC3A7A0074F2C7 /* HTTPURLResponse+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+ext.swift"; sourceTree = "<group>"; };
+		2AA785FF28FC3AF50074F2C7 /* UIImage+make.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+make.swift"; sourceTree = "<group>"; };
+		2AA7860128FC3BDC0074F2C7 /* Data+uiImageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+uiImageData.swift"; sourceTree = "<group>"; };
 		2AB6D25628F057AE006C8855 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		2AC0165428F09FFF002CA97C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2AC0165628F0A000002CA97C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -266,6 +272,9 @@
 			children = (
 				2A8FA67E28FADCB500D0BE9C /* json.swift */,
 				2A8FA68028FADDCD00D0BE9C /* HTTPClientStub.swift */,
+				2AA7860128FC3BDC0074F2C7 /* Data+uiImageData.swift */,
+				2AA785FF28FC3AF50074F2C7 /* UIImage+make.swift */,
+				2AA785FD28FC3A7A0074F2C7 /* HTTPURLResponse+ext.swift */,
 				2A51FA7A28EF0646003D3EA1 /* Preview Assets.xcassets */,
 				2A2E935F28F99A3300BA48BB /* PreviewLoaders.swift */,
 				2A8FA68228FADEE300D0BE9C /* Locale+ext.swift */,
@@ -453,6 +462,8 @@
 			files = (
 				2A8FA67328FAA3BD00D0BE9C /* NullStore.swift in Sources */,
 				2A0AD07D28F8EB1B001488C6 /* DetailNavigationComposer.swift in Sources */,
+				2AA785FE28FC3A7A0074F2C7 /* HTTPURLResponse+ext.swift in Sources */,
+				2AA7860028FC3AF50074F2C7 /* UIImage+make.swift in Sources */,
 				2A2E936228F99C5500BA48BB /* AnyError.swift in Sources */,
 				2A2E934C28F9608800BA48BB /* UIComposer.swift in Sources */,
 				2A2E934828F9519100BA48BB /* ListState.swift in Sources */,
@@ -466,6 +477,7 @@
 				2A0AD06B28F8E976001488C6 /* HTTPURLResponse+is200.swift in Sources */,
 				2AA1E73F28F8674600EC410C /* ImageMapper.swift in Sources */,
 				2A51FA7428EF0644003D3EA1 /* EssentialGhibliApp.swift in Sources */,
+				2AA7860228FC3BDC0074F2C7 /* Data+uiImageData.swift in Sources */,
 				2A8FA67A28FABD1D00D0BE9C /* ContentViewComposer.swift in Sources */,
 				2A0AD06F28F8E99C001488C6 /* DetailFilmMapper.swift in Sources */,
 				2A8FA67828FAB0FB00D0BE9C /* Publisher+fallback.swift in Sources */,

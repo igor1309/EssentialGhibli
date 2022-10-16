@@ -12,9 +12,9 @@ import ListFeature
 import RowFeature
 import SwiftUI
 
+#if DEBUG
 let filmRowImage = Image(systemName: "camera.macro")
 let filmDetailImage = Image(systemName: "camera.macro")
-
 
 enum PreviewLoaders {
     
@@ -99,3 +99,4 @@ enum PreviewLoaders {
             .eraseToAnyPublisher()
     }
 }
+#endif

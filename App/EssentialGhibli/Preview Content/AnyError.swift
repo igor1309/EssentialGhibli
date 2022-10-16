@@ -7,6 +7,7 @@
 
 import Foundation
 
+#if DEBUG
 func anyError(message: String = "any error") -> Error {
     AnyError(message: message)
 }
@@ -16,3 +17,4 @@ struct AnyError: Error, LocalizedError {
     
     var errorDescription: String? { message }
 }
+#endif

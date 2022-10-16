@@ -5,13 +5,14 @@
 //  Created by Igor Malyarov on 14.10.2022.
 //
 
+#if DEBUG
 func makeJSON_castleInTheSky() -> [String: Any] {
     [
         "id": "2baf70d1-42bb-4437-b551-e5fed5a87abe",
         "title": "Castle in the Sky",
         "original_title": "天空の城ラピュタ",
         "original_title_romanised": "Tenkū no shiro Rapyuta",
-        "image": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/npOnzAbLh6VOIu3naU5QaEcTepo.jpg",
+        "image": "https://image.tmdb.org/image1.jpg",
         "movie_banner": "https://image.tmdb.org/t/p/w533_and_h300_bestv2/3cyjYtLWCBE1uvWINHFsFnE8LUK.jpg",
         "description": "The orphan Sheeta inherited a mysterious crystal that links her to the mythical sky-kingdom of Laputa. With the help of resourceful Pazu and a rollicking band of sky pirates, she makes her way to the ruins of the once-great civilization. Sheeta and Pazu must outwit the evil Muska, who plans to use Laputa's science to make himself ruler of the world.",
         "director": "Hayao Miyazaki",
@@ -47,7 +48,7 @@ func makeJSON_kikisDeliveryService() -> [String: Any] {
         "title": "Kiki's Delivery Service",
         "original_title": "魔女の宅急便",
         "original_title_romanised": "Majo no takkyūbin",
-        "image": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/7nO5DUMnGUuXrA4r2h6ESOKQRrx.jpg",
+        "image": "https://image.tmdb.org/image2.jpg",
         "movie_banner": "https://image.tmdb.org/t/p/original/h5pAEVma835u8xoE60kmLVopLct.jpg",
         "description": "A young witch, on her mandatory year of independent life, finds fitting into a new community difficult while she supports herself by running an air courier service.",
         "director": "Hayao Miyazaki",
@@ -76,3 +77,4 @@ func makeJSON_kikisDeliveryService() -> [String: Any] {
         "url": "https://ghibliapi.herokuapp.com/films/ea660b10-85c4-4ae3-8a5f-41cea3648e3e"
     ]
 }
+#endif

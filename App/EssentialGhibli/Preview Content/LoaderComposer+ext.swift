@@ -11,11 +11,7 @@ import ListFeature
 
 #if DEBUG
 extension LoaderComposer {
-    private convenience init(httpStub: HTTPClientStub) {
-        self.init(httpClient: httpStub, store: NullStore<ListFilm>())
-    }
-    
-    static let online: LoaderComposer = .init(httpStub: .online)
+    static let online: LoaderComposer = .init(httpStub: .online(response200))
     static let offline: LoaderComposer = .init(httpStub: .offline)
     static let empty: LoaderComposer = .init(httpStub: .offline)
 
@@ -23,6 +19,10 @@ extension LoaderComposer {
         filmsLoader()
             .delay(for: 10, scheduler: DispatchQueue.main)
             .eraseToAnyPublisher()
+    }
+    
+    private convenience init(httpStub: HTTPClientStub) {
+        self.init(httpClient: httpStub, store: NullStore<ListFilm>())
     }
 }
 #endif
