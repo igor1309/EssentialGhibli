@@ -11,13 +11,13 @@ import XCTest
 final class FilmRowViewAdapterSnapshotTests: XCTestCase {
     let record = false
     
-    func test_shouldDisplayLoading_beforeImageDownloaded() {
+    func test_shouldDisplayLoading_onImageLoading() {
         let sut = filmRowViewAdapter(PreviewLoaders.longFilmRowImageLoader)
         
         assert(snapshot: sut, locale: .en_US, record: record)
     }
     
-    func test_shouldDisplayLoadedImage_onSuccessfulLoad() {
+    func test_shouldDisplayImage_onLoadedImage() {
         let sut = filmRowViewAdapter(PreviewLoaders.filmRowImageLoader)
         
         assert(snapshot: sut, locale: .en_US, record: record)
