@@ -48,7 +48,7 @@ Extensive use of `TDD` and test `DSL` to decouple tests from implementation deta
 
 UI Components are tested using snapshots with [SnapshotTesting](https://github.com/pointfreeco/swift-snapshot-testing). This testing covers light/dark modes and localization.
 
-![Modules: top-level view](./Docs/loading_empty_list_localized.png)
+![localization and color scheme](./Docs/localization_and_color_scheme.png)
 
 ## CI
 
