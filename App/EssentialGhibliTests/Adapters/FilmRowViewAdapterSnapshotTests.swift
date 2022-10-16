@@ -17,12 +17,6 @@ final class FilmRowViewAdapterSnapshotTests: XCTestCase {
         assert(snapshot: sut, locale: .en_US, record: record)
     }
     
-    func test_shouldDisplayLoading_beforeImageDownloaded() {
-        let sut = filmRowViewAdapter(PreviewLoaders.longFilmRowImageLoader)
-        
-        assert(snapshot: sut, locale: .en_US, record: record)
-    }
-    
     func test_shouldDisplayLoadedImage_onSuccessfulLoad() {
         let sut = filmRowViewAdapter(PreviewLoaders.filmRowImageLoader)
         
