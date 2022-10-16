@@ -12,28 +12,38 @@ import XCTest
 final class UIComposerSnapshotTests: XCTestCase {
     let record = true
     
-    func test() async throws {
-        let sut = UIComposer(loader: .offline)
-        
-        try await asyncAssert(snapshot: sut, locale: .en_US, record: record, wait: NSEC_PER_SEC)
-    }
-    
-    func test_shouldDisplayEmptyList_offlineAndEmptyCache_async() async throws {
-        let sut = UIComposer(loader: .offline)
-        
-        try await asyncAssert(snapshot: sut, locale: .en_US, record: record)
-    }
-    
-    func test_shouldDisplayEmptyList_offlineAndEmptyCache() {
+    func test_shouldDisplayEmptyList_onOfflineAndEmptyCache() {
         let sut = UIComposer(loader: .offline)
 
-        pause(for: 1)
-        
         assert(snapshot: sut, locale: .en_US, record: record)
-        XCTFail("SNAPSHOT IS NOT CORRECT")
-        dump(sut)
+        assert(snapshot: sut, locale: .ru_RU, record: record)
     }
 
+    func test_shouldDisplayFilmList_onOfflineAndNonExpiredCache() {
+        let sut = makeSUT(.offline, .withNonExpiredFeedCache())
+
+        assert(snapshot: sut, locale: .en_US, record: record)
+        assert(snapshot: sut, locale: .ru_RU, record: record)
+    }
+
+    func test_shouldDisplayFilmList_onOnline() {
+        let sut = UIComposer(loader: .online)
+
+        assert(snapshot: sut, locale: .en_US, record: record)
+        assert(snapshot: sut, locale: .ru_RU, record: record)
+    }
+    
+    func test_shouldDisplayCachedFilmList() {
+        let store = InMemoryFeedStore.empty()
+        
+        let online = makeSUT(.online(response200), store)
+        assert(snapshot: online, locale: .en_US, record: record)
+        
+        let offline = makeSUT(.offline, store)
+        assert(snapshot: offline, locale: .en_US, record: record)
+        assert(snapshot: offline, locale: .ru_RU, record: record)
+    }
+    
 //    func test_shouldDisplayFilmList_onlineAndEmptyCache() {
 //        let sut = makeSUT(connectivity: .online, store: .empty())
 //
@@ -47,8 +57,8 @@ final class UIComposerSnapshotTests: XCTestCase {
     // MARK: - Helpers
 
     private func makeSUT(
-        connectivity httpClient: HTTPClientStub,
-        store: InMemoryFeedStore,
+        _ httpClient: HTTPClientStub,
+        _ store: InMemoryFeedStore,
         file: StaticString = #file,
         line: UInt = #line
     ) -> UIComposer {
