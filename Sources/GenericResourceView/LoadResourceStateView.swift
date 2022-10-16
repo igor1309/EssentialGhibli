@@ -71,37 +71,39 @@ extension LoadResourceStateView {
 }
 
 #if DEBUG
-struct LoadResourceStateView_Demo: View {
-    let isFailing: Bool
-    
-    private let publisher: AnyPublisher<String, Error> = Just("This is a real value.")
-        .setFailureType(to: Error.self)
-        .delay(for: 2, scheduler: DispatchQueue.main)
-        .receive(on: DispatchQueue.main)
-        .eraseToAnyPublisher()
-    
-    private let failingPublisher: AnyPublisher<String, Error> = Fail(error: AnyError())
-        .delay(for: 2, scheduler: DispatchQueue.main)
-        .receive(on: DispatchQueue.main)
-        .eraseToAnyPublisher()
-    
-    var body: some View {
-        LoadResourceStateView(
-            viewModel: .init(
-                initialResourceState: .loading,
-                publisher: isFailing ? failingPublisher : publisher
-            ),
-            resourceView: Text.init(verbatim:))
-    }
+private let publisher: AnyPublisher<String, Error> = Just("This is a real value.")
+    .setFailureType(to: Error.self)
+    .eraseToAnyPublisher()
+
+private let longPublisher: AnyPublisher<String, Error> = Just("This is a real value.")
+    .setFailureType(to: Error.self)
+    .delay(for: 20, scheduler: DispatchQueue.main)
+    .eraseToAnyPublisher()
+
+private let failingPublisher: AnyPublisher<String, Error> = Fail(error: AnyError())
+    .eraseToAnyPublisher()
+
+private func loadResourceStateView(
+    _ publisher: AnyPublisher<String, Error>
+) -> some View {
+    LoadResourceStateView(
+        viewModel: .init(
+            initialResourceState: .loading,
+            publisher: publisher
+        ),
+        resourceView: Text.init(verbatim:))
 }
 
 struct LoadResourceStateView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            LoadResourceStateView_Demo(isFailing: false)
+            loadResourceStateView(publisher)
             
-            LoadResourceStateView_Demo(isFailing: true)
-                .previewDisplayName("With Failing Publisher")
+            loadResourceStateView(longPublisher)
+                .previewDisplayName("Long Loading")
+
+            loadResourceStateView(failingPublisher)
+                .previewDisplayName("Failing")
         }
         .preferredColorScheme(.dark)
     }

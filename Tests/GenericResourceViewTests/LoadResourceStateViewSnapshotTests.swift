@@ -13,33 +13,34 @@ import XCTest
 final class LoadResourceStateViewSnapshotTests: XCTestCase {
     let record = false
     
-    func test_snapshotLoad_LoadResourceStateView_notFailingLoading() {
+    func test_shouldShowLoadingFirst_onSuccess() {
         let view = makeSUT(publisher: publisher)
         
         assert(snapshot: view, locale: .en_US, record: record)
         assert(snapshot: view, locale: .ru_RU, record: record)
     }
     
-    func test_snapshotLoad_LoadResourceStateView_notFailingAfterPause() {
+    func test_shouldShowLoadedValue_onSuccess() {
         let view = makeSUT(publisher: publisher)
         
-        pause(for: 1)
+        pause(for: 0.5)
         
         assert(snapshot: view, locale: .ru_RU, record: record)
     }
     
-    func test_snapshotLoad_LoadResourceStateView_failingLoading() {
+    func test_shouldShowLoadingFirst_onFailingLoader() {
         let view = makeSUT(publisher: failingPublisher)
 
         assert(snapshot: view, locale: .en_US, record: record)
         assert(snapshot: view, locale: .ru_RU, record: record)
     }
     
-    func test_snapshotLoad_LoadResourceStateView_failingAfterPause() {
+    func test_shouldShowError_onFailingPublisher() {
         let view = makeSUT(publisher: failingPublisher)
         
-        pause(for: 1)
+        pause(for: 0.5)
         
+        assert(snapshot: view, locale: .ru_RU, record: record)
         assert(snapshot: view, locale: .ru_RU, record: record)
     }
     
@@ -67,10 +68,10 @@ final class LoadResourceStateViewSnapshotTests: XCTestCase {
     
     private let publisher: AnyPublisher<Resource, Error> = Just("This is a real value.")
         .setFailureType(to: Error.self)
-        .receive(on: DispatchQueue.main)
+        .delay(for: 0.01, scheduler: DispatchQueue.main)
         .eraseToAnyPublisher()
     
     private let failingPublisher: AnyPublisher<Resource, Error> = Fail(error: anyError())
-        .receive(on: DispatchQueue.main)
+        .delay(for: 0.01, scheduler: DispatchQueue.main)
         .eraseToAnyPublisher()
 }
