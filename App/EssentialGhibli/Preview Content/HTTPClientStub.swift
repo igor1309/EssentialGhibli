@@ -49,10 +49,10 @@ func makeData(for url: URL) -> Data {
     case "/films":
         return .listFilmSamples
         
-    case "/image1.jpg":
+    case "/t/p/w600_and_h900_bestv2/npOnzAbLh6VOIu3naU5QaEcTepo.jpg":
         return .uiImageData(withColor: .orange, width: 30, height: 40)
         
-    case "/image2.jpg":
+    case "/t/p/w600_and_h900_bestv2/7nO5DUMnGUuXrA4r2h6ESOKQRrx.jpg":
         return .uiImageData(withColor: .red, width: 30, height: 40)
         
     default: return Data()
