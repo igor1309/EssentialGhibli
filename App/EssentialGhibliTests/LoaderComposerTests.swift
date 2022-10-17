@@ -8,6 +8,7 @@
 import API
 import Cache
 import Combine
+import DetailFeature
 import Domain
 @testable import EssentialGhibli
 import ListFeature
@@ -55,6 +56,12 @@ final class LoaderComposerTests: XCTestCase {
         let imageData = Data.uiImageData(withColor: .orange, width: 30, height: 40)
         
         expect(sut, toDeliverImageData: imageData, onSelecting: [ListFilm].samples[0])
+    }
+    
+    func test_shouldDeliverDetail_onOnlineLoaderComposer() {
+        let sut = LoaderComposer.online
+        
+        expect(sut, toDeliverDetailData: .castleInTheSky, onSelecting: [ListFilm].samples[0])
     }
     
     // MARK: - Helpers
@@ -105,7 +112,6 @@ final class LoaderComposerTests: XCTestCase {
                     
                 default:
                     XCTFail("Expected \(expectedResult), got \(received) instead.", file: file, line: line)
-                    
                 }
             }
         
@@ -122,6 +128,7 @@ final class LoaderComposerTests: XCTestCase {
         let url: URL = listFilm.imageURL
         let cancellable = sut.filmImageLoader(url: url)
             .sink { completion in
+                
                 switch completion {
                 case let .failure(error):
                     XCTFail("Expected \(expectedData), got \(error.localizedDescription) instead.", file: file, line: line)
@@ -129,10 +136,35 @@ final class LoaderComposerTests: XCTestCase {
                 case .finished:
                     break
                 }
+                
             } receiveValue: { receivedData in
                 XCTAssertEqual(receivedData, expectedData, file: file, line: line)
             }
         
+        cancellable.cancel()
+    }
+    
+    private func expect(
+        _ sut: LoaderComposer,
+        toDeliverDetailData expectedDetailFilm:  DetailFilm,
+        onSelecting listFilm: ListFilm,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        let cancellable = sut.detailLoader(listFilm: listFilm)
+            .sink { completion in
+                
+                switch completion {
+                case let .failure(error):
+                    XCTFail("Expected \(expectedDetailFilm), got \(error.localizedDescription) instead.", file: file, line: line)
+                    
+                case .finished:
+                    break
+                }
+                
+            } receiveValue: { receivedData in
+                XCTAssertEqual(receivedData, expectedDetailFilm, file: file, line: line)
+            }
         
         cancellable.cancel()
     }
