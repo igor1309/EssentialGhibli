@@ -19,7 +19,12 @@ struct FilmRowViewAdapter: View {
     }
     
     private func thumbnail(rowFilm: RowFilm) -> some View {
-        LoadingImageView(showLabel: false) { imageLoader(rowFilm) }
+        LoadingImageView(
+            contentMode: .fit,
+            showLabel: false
+        ) { imageLoader(rowFilm) }
+            .frame(width: 60, height: 90)
+            .clipped()
     }
 }
 
