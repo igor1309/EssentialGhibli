@@ -60,7 +60,7 @@ final class LoadingImageViewSnapshotTests: XCTestCase {
     }
     
     private func loader() -> ImagePublisher {
-        Just((.greenImage(width: 300, height: 600), .statusCode200))
+        Just((.uiImageData(withColor: .green, width: 300, height: 600), .statusCode200))
             .tryMap(ImageMapper.map)
             .eraseToAnyPublisher()
     }
@@ -72,7 +72,7 @@ final class LoadingImageViewSnapshotTests: XCTestCase {
     }
     
     private func non200Loader() -> ImagePublisher {
-        Just((.greenImage(width: 300, height: 600), .statusCode400))
+        Just((.uiImageData(withColor: .green, width: 300, height: 600), .statusCode400))
             .tryMap(ImageMapper.map)
             .eraseToAnyPublisher()
     }
@@ -81,51 +81,5 @@ final class LoadingImageViewSnapshotTests: XCTestCase {
         Fail<DataResponse, Error>(error: anyError())
             .tryMap(ImageMapper.map)
             .eraseToAnyPublisher()
-    }
-    
-}
-
-private extension Data {
-    static let empty: Self = Data("".utf8)
-    
-    static func greenImage(width: Int, height: Int) -> Data {
-        uiImageData(withColor: .green, width: width, height: height)
-    }
-    
-    static func uiImageData(
-        withColor color: UIColor,
-        width: Int,
-        height: Int
-    ) -> Data {
-        UIImage.make(withColor: color, width: width, height: height).pngData()!
-    }
-}
-
-private extension URL {
-    static let anyURL: URL = .init(string: "https://any-url.com")!
-}
-
-private func anyError(message: String = "any error") -> Error {
-    AnyError(message: message)
-}
-
-private struct AnyError: Error {
-    let message: String
-}
-
-private extension UIImage {
-    static func make(
-        withColor color: UIColor,
-        width: Int = 1,
-        height: Int = 1
-    ) -> UIImage {
-        let rect = CGRect(x: 0, y: 0, width: width, height: height)
-        UIGraphicsBeginImageContext(rect.size)
-        let context = UIGraphicsGetCurrentContext()!
-        context.setFillColor(color.cgColor)
-        context.fill(rect)
-        let img = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return img!
     }
 }
