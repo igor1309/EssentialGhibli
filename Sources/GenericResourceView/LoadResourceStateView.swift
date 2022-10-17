@@ -6,6 +6,7 @@
 //
 
 import Combine
+import CombineSchedulers
 import Presentation
 import SwiftUI
 
@@ -54,7 +55,7 @@ extension LoadResourceStateView {
             resourceState = .loading
             
             cancellable = publisher
-                .dispatchOnMainQueue()
+                .receive(on: UIScheduler.shared)
                 .sink { [weak self] completion in
                     switch completion {
                     case let .failure(error):

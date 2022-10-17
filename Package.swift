@@ -27,6 +27,10 @@ let package = Package(
             url: "https://github.com/pointfreeco/swift-snapshot-testing",
             from: .init(1, 10, 0)
         ),
+        .package(
+            url: "https://github.com/pointfreeco/combine-schedulers",
+            from: .init(0, 8, 0)
+        ),
     ],
     targets: [
         .target(
@@ -75,7 +79,10 @@ let package = Package(
         .target(name: "Domain"),
         .target(
             name: "GenericResourceView",
-            dependencies: ["Presentation"]
+            dependencies: [
+                "Presentation",
+                .product(name: "CombineSchedulers", package: "combine-schedulers")
+            ]
         ),
         .testTarget(
             name: "GenericResourceViewTests",

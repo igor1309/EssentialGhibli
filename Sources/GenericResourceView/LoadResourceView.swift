@@ -6,6 +6,7 @@
 //
 
 import Combine
+import CombineSchedulers
 import Presentation
 import SwiftUI
 
@@ -77,7 +78,7 @@ public final class LoadResourceViewModel<Resource>: ObservableObject {
         didStartLoading()
         
         cancellable = loader()
-            .dispatchOnMainQueue()
+            .receive(on: UIScheduler.shared)
             .sink { [weak self] completion in
                 switch completion {
                 case .finished: break
