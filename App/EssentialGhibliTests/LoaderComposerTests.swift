@@ -69,7 +69,11 @@ final class LoaderComposerTests: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) -> LoaderComposer {
-        let sut = LoaderComposer(httpClient: httpClient, store: store)
+        let sut = LoaderComposer(
+            httpClient: httpClient,
+            store: store,
+            scheduler: .immediate
+        )
         
         trackForMemoryLeaks(sut, file: file, line: line)
         

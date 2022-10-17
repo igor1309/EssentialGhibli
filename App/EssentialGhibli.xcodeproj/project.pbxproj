@@ -71,6 +71,7 @@
 		2AC0166528F0A08C002CA97C /* EssentialGhibliLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC0166428F0A08C002CA97C /* EssentialGhibliLocalizationTests.swift */; };
 		2AD17F9528F829FE0047B31A /* LoadingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD17F9428F829FE0047B31A /* LoadingImageView.swift */; };
 		2AD17F9728F82F8B0047B31A /* ImageErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD17F9628F82F8B0047B31A /* ImageErrorView.swift */; };
+		2ADF314028FD3BFF00F0DE90 /* CombineSchedulers in Frameworks */ = {isa = PBXBuildFile; productRef = 2ADF313F28FD3BFF00F0DE90 /* CombineSchedulers */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,6 +157,7 @@
 				2A28385328F6BFF10013A761 /* API in Frameworks */,
 				2A28385D28F6BFF10013A761 /* GenericResourceView in Frameworks */,
 				2A28386528F6BFF20013A761 /* SharedAPI in Frameworks */,
+				2ADF314028FD3BFF00F0DE90 /* CombineSchedulers in Frameworks */,
 				2A28385728F6BFF10013A761 /* CacheInfra in Frameworks */,
 				2A28385528F6BFF10013A761 /* Cache in Frameworks */,
 				2A28386328F6BFF20013A761 /* RowFeature in Frameworks */,
@@ -367,6 +369,7 @@
 				2A28386228F6BFF20013A761 /* RowFeature */,
 				2A28386428F6BFF20013A761 /* SharedAPI */,
 				2A28386628F6BFF20013A761 /* SharedAPIInfra */,
+				2ADF313F28FD3BFF00F0DE90 /* CombineSchedulers */,
 			);
 			productName = EssentialGhibli;
 			productReference = 2A51FA7028EF0644003D3EA1 /* EssentialGhibli.app */;
@@ -424,6 +427,7 @@
 			mainGroup = 2A51FA6728EF0644003D3EA1;
 			packageReferences = (
 				2AA1E74528F8832700EC410C /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+				2ADF313E28FD3BFF00F0DE90 /* XCRemoteSwiftPackageReference "combine-schedulers" */,
 			);
 			productRefGroup = 2A51FA7128EF0644003D3EA1 /* Products */;
 			projectDirPath = "";
@@ -793,6 +797,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		2ADF313E28FD3BFF00F0DE90 /* XCRemoteSwiftPackageReference "combine-schedulers" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/combine-schedulers";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.8.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -844,6 +856,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2AA1E74528F8832700EC410C /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
 			productName = SnapshotTesting;
+		};
+		2ADF313F28FD3BFF00F0DE90 /* CombineSchedulers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2ADF313E28FD3BFF00F0DE90 /* XCRemoteSwiftPackageReference "combine-schedulers" */;
+			productName = CombineSchedulers;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

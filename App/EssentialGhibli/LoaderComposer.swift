@@ -9,6 +9,7 @@ import API
 import Cache
 import CacheInfra
 import Combine
+import CombineSchedulers
 import CoreData
 import DetailFeature
 import Foundation
@@ -49,12 +50,23 @@ final class LoaderComposer {
         )
     }()
     
-    init() {}
+    private lazy var scheduler: AnySchedulerOf<DispatchQueue> = {
+        return .global(qos: .userInitiated)
+    }()
     
-    convenience init(httpClient: HTTPClient, store: FeedStore & FilmImageDataStore) {
+    init() {}
+}
+
+extension LoaderComposer {
+    convenience init(
+        httpClient: HTTPClient,
+        store: FeedStore & FilmImageDataStore,
+        scheduler: AnySchedulerOf<DispatchQueue>
+    ) {
         self.init()
         self.httpClient = httpClient
         self.store = store
+        self.scheduler = scheduler
     }
 }
 
@@ -65,7 +77,7 @@ extension LoaderComposer {
         makeRemoteFeedLoader()
             .caching(to: feedCache)
             .fallback(to: feedCache.loadPublisher)
-//            .subscribe(on: DispatchQueue.global())
+            .subscribe(on: scheduler)
             .eraseToAnyPublisher()
     }
     
@@ -84,7 +96,7 @@ extension LoaderComposer {
     func filmImageLoader(url: URL) -> ImagePublisher {
         filmImageDataLocalLoaderWithRemoteFallback(url: url)
             .tryMap(ImageMapper.map)
-//            .subscribe(on: DispatchQueue.global())
+            .subscribe(on: scheduler)
             .eraseToAnyPublisher()
     }
     
@@ -110,7 +122,7 @@ extension LoaderComposer {
         return httpClient
             .getPublisher(url: filmURL)
             .tryMap(DetailFilmMapper.map)
-//            .subscribe(on: DispatchQueue.global())
+            .subscribe(on: scheduler)
             .eraseToAnyPublisher()
     }
 }

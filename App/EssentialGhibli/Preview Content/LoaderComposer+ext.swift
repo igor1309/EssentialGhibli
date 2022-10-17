@@ -22,7 +22,7 @@ extension LoaderComposer {
     }
     
     private convenience init(httpStub: HTTPClientStub) {
-        self.init(httpClient: httpStub, store: NullStore<ListFilm>())
+        self.init(httpClient: httpStub, store: NullStore<ListFilm>(), scheduler: .immediate)
     }
 }
 #endif

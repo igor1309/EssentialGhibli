@@ -44,16 +44,6 @@ final class UIComposerSnapshotTests: XCTestCase {
         assert(snapshot: offline, locale: .ru_RU, record: record)
     }
     
-//    func test_shouldDisplayFilmList_onlineAndEmptyCache() {
-//        let sut = makeSUT(connectivity: .online, store: .empty())
-//
-////        pause(for: 1)
-//
-//        assert(snapshot: sut, locale: .en_US, record: record)
-//        assert(snapshot: sut, locale: .ru_RU, record: record)
-//        XCTFail("NOT CORRECT")
-//    }
-
     // MARK: - Helpers
 
     private func makeSUT(
@@ -62,7 +52,11 @@ final class UIComposerSnapshotTests: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) -> UIComposer {
-        let loader = LoaderComposer(httpClient: httpClient, store: store)
+        let loader = LoaderComposer(
+            httpClient: httpClient,
+            store: store,
+            scheduler: .immediate
+        )
         return UIComposer(loader: loader)
     }
 }
