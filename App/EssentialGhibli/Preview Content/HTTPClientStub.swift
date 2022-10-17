@@ -55,6 +55,12 @@ func makeData(for url: URL) -> Data {
     case "/t/p/w600_and_h900_bestv2/7nO5DUMnGUuXrA4r2h6ESOKQRrx.jpg":
         return .uiImageData(withColor: .red, width: 30, height: 40)
         
+    case "/films/2baf70d1-42bb-4437-b551-e5fed5a87abe":
+        return .castleInTheSky
+        
+    case "/films/ea660b10-85c4-4ae3-8a5f-41cea3648e3e":
+        return .kikisDeliveryService
+        
     default: return Data()
     }
 }
@@ -69,5 +75,9 @@ extension Data {
         makeJSON_castleInTheSky(),
         makeJSON_kikisDeliveryService()
     ])
+    
+    static let castleInTheSky: Self = try! JSONSerialization.data(withJSONObject: makeJSON_castleInTheSky())
+    static let kikisDeliveryService: Self = try! JSONSerialization.data(withJSONObject: makeJSON_kikisDeliveryService())
+    
 }
 #endif
