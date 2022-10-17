@@ -26,8 +26,6 @@ Modules dependency done right significantly reduces build time. This project is 
 
 ![Xcode project clean build timeline](./Docs/build_timeline.png)
 
-![Xcode project clean build timeline: center](./Docs/build_timeline_center.png)
-
 ![CPU](./Docs/cpu.png)
 
 ### Composition

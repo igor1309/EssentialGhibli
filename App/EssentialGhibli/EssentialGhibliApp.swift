@@ -17,8 +17,7 @@ struct EssentialGhibliApp: App {
     
     var body: some Scene {
         WindowGroup {
-            UIComposer(loader: .online)
-            // ContentViewComposer()
+            UIComposer(loader: .init())
         }
     }
 }
