@@ -4,6 +4,8 @@ This is a demo app digesting the [iOS Lead Essentials](https://iosacademy.essent
 
 The app presents the feed of [Studio Ghibli](https://en.wikipedia.org/wiki/Studio_Ghibli) films.
 
+![The app](./Docs/app.png)
+
 Under the hood, it is a project with hyper-modular architecture with decoupled components, with modularity enforced by placing modules into separate targets in the `EssentialGhibli` Swift Package.
 
 ## Instructions
