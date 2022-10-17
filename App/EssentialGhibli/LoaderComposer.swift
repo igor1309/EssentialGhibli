@@ -92,10 +92,9 @@ extension LoaderComposer {
 
 extension LoaderComposer {
     
-    /// Local Image loader with remote fallback
-    func filmImageLoader(url: URL) -> ImagePublisher {
+    /// Local Image Data loader with remote fallback
+    func filmImageLoader(url: URL) -> AnyPublisher<Data, Error> {
         filmImageDataLocalLoaderWithRemoteFallback(url: url)
-            .tryMap(ImageMapper.map)
             .subscribe(on: scheduler)
             .eraseToAnyPublisher()
     }

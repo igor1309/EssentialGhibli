@@ -45,10 +45,14 @@ struct UIComposer: View {
 extension LoaderComposer {
     func filmRowImageLoader(rowFilm: RowFilm) -> ImagePublisher {
         filmImageLoader(url: rowFilm.imageURL)
+            .tryMap(ImageMapper.map)
+            .eraseToAnyPublisher()
     }
     
     func filmDetailImageLoader(detailFilm: DetailFilm) -> ImagePublisher {
         filmImageLoader(url: detailFilm.imageURL)
+            .tryMap(ImageMapper.map)
+            .eraseToAnyPublisher()
     }
 }
 
