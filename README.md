@@ -56,21 +56,29 @@ Tests cover `API` and `SharedAPIInfra` with `URLProtocolStub: URLProtocol`.
 
 Tests cover both modules, separating by uses cases, and extensively using DSL to facilitate testing and decouple tests from implementation details.
 
-### Localization
-
-English and Russian localizations are tested, in the app module and in UI modules.
-
 ## Tests
 
 Extensive use of `TDD` and test `DSL` to decouple tests from the implementation details.
 
 UI Components are tested using snapshots with [SnapshotTesting](https://github.com/pointfreeco/swift-snapshot-testing). This testing covers light/dark modes and localization.
 
+Flaky and unreliable UI Tests are not used.
+
+### Localization, Dark mode, Dynamic type
+
+English and Russian localizations are tested, in the app module and in UI modules.
+
+SwiftUI supports Dark mode and Dynamic type out of the box, so the app do as well. 
+
 ![localization and color scheme](./Docs/localization_and_color_scheme.png)
 
 ## CI
 
 For the demo, a simple `CI` with `GitHub actions` workflow is used: build and run all tests with scheme `CI_iOS` run on push to the `main` branch. Another workflow with the same functionality could be triggered manually. Both `YAML` scripts call `clean_build_test.sh` shell script.
+
+## External dependencies
+
+[SnapshotTesting](https://github.com/pointfreeco/swift-snapshot-testing) and [CombineSchedulers](https://github.com/pointfreeco/combine-schedulers) by [Point-Free](https://github.com/pointfreeco).
 
 ## References
 
