@@ -16,7 +16,7 @@ struct ContentViewComposer: View {
             let session: URLSession = .shared
             let httpClient = URLSessionHTTPClient(session: session)
             let baseURL = URL(string: "https://ghibliapi.herokuapp.com")!
-            let url = FeedEndpoint.films.url(baseURL: baseURL)
+            let url = GhibliEndpoint.films.url(baseURL: baseURL)
             let httpPublisher = httpClient
                 .getPublisher(url: url)
                 .delay(for: 2, scheduler: DispatchQueue.main)

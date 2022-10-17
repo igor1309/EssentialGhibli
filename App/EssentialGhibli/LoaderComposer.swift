@@ -82,7 +82,7 @@ extension LoaderComposer {
     }
     
     private func makeRemoteFeedLoader() -> AnyPublisher<[ListFilm], Error> {
-        let filmsURL = FeedEndpoint.films.url(baseURL: baseURL)
+        let filmsURL = GhibliEndpoint.films.url(baseURL: baseURL)
         return httpClient
             .getPublisher(url: filmsURL)
             .tryMap(ListFilmMapper.map)
@@ -117,7 +117,9 @@ extension LoaderComposer {
 
 extension LoaderComposer {
     func detailLoader(listFilm: ListFilm) -> AnyPublisher<DetailFilm, Error> {
-        let filmURL = FeedEndpoint.film(filmID: listFilm.id.uuidString).url(baseURL: baseURL)
+        let filmURL = GhibliEndpoint
+            .film(filmID: listFilm.id)
+            .url(baseURL: baseURL)
         
         return httpClient
             .getPublisher(url: filmURL)

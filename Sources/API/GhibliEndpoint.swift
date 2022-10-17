@@ -1,5 +1,5 @@
 //
-//  FeedEndpoint.swift
+//  GhibliEndpoint.swift
 //  
 //
 //  Created by Igor Malyarov on 07.10.2022.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum FeedEndpoint {
+public enum GhibliEndpoint {
     case films
     case film(filmID: UUID)
     
