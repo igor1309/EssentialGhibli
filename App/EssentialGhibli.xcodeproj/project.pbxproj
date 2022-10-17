@@ -197,6 +197,29 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		2A2C42A928FD8F93003643F9 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				2A2E934B28F9608800BA48BB /* UIComposer.swift */,
+				2A0AD07C28F8EB1B001488C6 /* DetailNavigationComposer.swift */,
+				2A0AD07528F8EA89001488C6 /* Helpers */,
+				2A0AD07028F8E9DD001488C6 /* Adapters */,
+				2AD17F9628F82F8B0047B31A /* ImageErrorView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		2A2C42AA28FD8FD7003643F9 /* LoaderComposer */ = {
+			isa = PBXGroup;
+			children = (
+				2A8FA66A28FA254400D0BE9C /* LoaderComposer.swift */,
+				2A8FA66728FA24B500D0BE9C /* CombineHelpers */,
+				2A8FA67228FAA3BD00D0BE9C /* NullStore.swift */,
+				2A0AD06928F8E95C001488C6 /* Mappers */,
+			);
+			path = LoaderComposer;
+			sourceTree = "<group>";
+		};
 		2A2E935728F9824700BA48BB /* Adapters */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,15 +266,8 @@
 			children = (
 				2A51FA7328EF0644003D3EA1 /* EssentialGhibliApp.swift */,
 				2AC0165528F09FFF002CA97C /* Localizable.strings */,
-				2A2E934B28F9608800BA48BB /* UIComposer.swift */,
-				2A0AD07C28F8EB1B001488C6 /* DetailNavigationComposer.swift */,
-				2A8FA66A28FA254400D0BE9C /* LoaderComposer.swift */,
-				2A8FA66728FA24B500D0BE9C /* CombineHelpers */,
-				2A8FA67228FAA3BD00D0BE9C /* NullStore.swift */,
-				2A0AD07528F8EA89001488C6 /* Helpers */,
-				2A0AD07028F8E9DD001488C6 /* Adapters */,
-				2A0AD06928F8E95C001488C6 /* Mappers */,
-				2AD17F9628F82F8B0047B31A /* ImageErrorView.swift */,
+				2A2C42A928FD8F93003643F9 /* UI */,
+				2A2C42AA28FD8FD7003643F9 /* LoaderComposer */,
 				2A51FA7728EF0646003D3EA1 /* Assets.xcassets */,
 				2A51FA7928EF0646003D3EA1 /* Preview Content */,
 			);
