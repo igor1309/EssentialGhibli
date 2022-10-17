@@ -14,10 +14,6 @@ extension XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        let exp = expectation(description: "Pause for \(interval)")
-        DispatchQueue.main.asyncAfter(deadline: .now() + interval) {
-            exp.fulfill()
-        }
-        wait(for: [exp], timeout: interval + 0.01)
+        _ = XCTWaiter.wait(for: [.init()], timeout: interval)
     }
 }
