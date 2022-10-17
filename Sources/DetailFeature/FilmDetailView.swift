@@ -32,7 +32,6 @@ where Poster: View {
                     .foregroundStyle(.secondary)
                 
                 poster(film)
-                    .cornerRadius(24)
                     .padding(.vertical, 6)
                 
                 VStack {
@@ -69,10 +68,21 @@ struct FilmDetailView_Previews: PreviewProvider {
         Group {
             NavigationView {
                 FilmDetailView(film: .castleInTheSky) { _ in
+                    Color.red
+                        .aspectRatio(2/3, contentMode: .fit)
+                        .cornerRadius(24)
+                        .padding(.horizontal)
+                }
+            }
+            .previewDisplayName("2:3 ratio, rounded corners")
+            
+            NavigationView {
+                FilmDetailView(film: .castleInTheSky) { _ in
                     Color.red.aspectRatio(1, contentMode: .fit)
                 }
             }
-            
+            .previewDisplayName("1:1 reatio")
+
             NavigationView {
                 FilmDetailView(film: .castleInTheSky) { _ in
                     Color.cyan
