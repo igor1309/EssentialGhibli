@@ -14,6 +14,7 @@ typealias DataResponse = (data: Data, response: HTTPURLResponse)
 typealias ImagePublisher = AnyPublisher<Image, Error>
 
 struct LoadingImageView: View {
+    var contentMode: ContentMode = .fit
     var showLabel: Bool = true
     let loader: () -> ImagePublisher
     
@@ -26,8 +27,17 @@ struct LoadingImageView: View {
         )
     }
     
+    @ViewBuilder
     private func resourceView(image: Image) -> some View {
-        image.resizable().scaledToFit()
+        if contentMode == .fit {
+            image
+                .resizable()
+                .scaledToFit()
+        } else {
+            image
+                .resizable()
+                .scaledToFill()
+        }
     }
     
     @ViewBuilder
@@ -81,6 +91,12 @@ struct LoadingImageView_Demo: View {
     var body: some View {
         VStack {
             Group {
+                LoadingImageView(
+                    contentMode: .fill,
+                    showLabel: false,
+                    loader: loader
+                )
+                
                 LoadingImageView(loader: loader)
                 LoadingImageView(showLabel: false, loader: loader)
 
