@@ -60,15 +60,6 @@ final class LoaderComposerTests: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) -> LoaderComposer {
-        makeSUT(httpClient: httpClient, store: store, file: file, line: line)
-    }
-    
-    private func makeSUT(
-        httpClient: HTTPClient,
-        store: FeedStore & FilmImageDataStore,
-        file: StaticString = #file,
-        line: UInt = #line
-    ) -> LoaderComposer {
         let sut = LoaderComposer(
             httpClient: httpClient,
             store: store,
@@ -79,16 +70,13 @@ final class LoaderComposerTests: XCTestCase {
         
         return sut
     }
-    
+        
     private func expect(
         _ sut: LoaderComposer,
         toDeliver expectedResult: ListFilmResult,
-        inTime interval: TimeInterval = 1,
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        let expectation = expectation(description: "Wait for load to complete")
-        
         let cancellable = sut.filmsLoader()
             .sink { completion in
                 
@@ -103,7 +91,6 @@ final class LoaderComposerTests: XCTestCase {
                     XCTFail("Expected \(expectedResult), got \(completion) instead.", file: file, line: line)
                 }
                 
-                expectation.fulfill()
             } receiveValue: { received in
                 switch expectedResult {
                 case let .success(expected):
@@ -114,19 +101,6 @@ final class LoaderComposerTests: XCTestCase {
                     
                 }
             }
-        
-        let result = XCTWaiter.wait(for: [expectation], timeout: interval)
-        
-        switch result {
-        case .timedOut:
-            XCTFail("Timed out: the pipeline did not produce any output.", file: file, line: line)
-            
-        case .completed:
-            break
-            
-        default:
-            XCTFail("Expectation issue: \(result).", file: file, line: line)
-        }
         
         cancellable.cancel()
     }
