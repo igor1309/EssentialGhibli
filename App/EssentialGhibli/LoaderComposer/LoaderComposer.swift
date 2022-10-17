@@ -95,21 +95,23 @@ extension LoaderComposer {
     /// Local Image Data loader with remote fallback
     func filmImageLoader(url: URL) -> AnyPublisher<Data, Error> {
         filmImageDataLocalLoaderWithRemoteFallback(url: url)
-            .subscribe(on: scheduler)
             .eraseToAnyPublisher()
     }
     
     private func filmImageDataLocalLoaderWithRemoteFallback(url: URL) -> AnyPublisher<Data, Error> {
         let cache = FilmImageDataCache(store: store)
-        let remote = { [httpClient] in
+        let remote = { [httpClient, scheduler] in
             httpClient
                 .getPublisher(url: url)
                 .data(ifResponse: { $0.is200 })
                 .caching(to: cache, using: url)
+                .subscribe(on: scheduler)
+                .eraseToAnyPublisher()
         }
         
         return cache.loadImageDataPublisher(from: url)
             .fallback(to: remote)
+            .subscribe(on: scheduler)
             .eraseToAnyPublisher()
     }
 }
