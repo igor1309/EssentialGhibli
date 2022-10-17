@@ -20,6 +20,7 @@ struct ProgressLoadingView: View {
     }
 }
 
+#if DEBUG
 struct ProgressLoadingView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
@@ -37,3 +38,4 @@ struct ProgressLoadingView_Previews: PreviewProvider {
         .preferredColorScheme(.dark)
     }
 }
+#endif

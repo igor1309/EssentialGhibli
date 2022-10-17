@@ -63,6 +63,7 @@ where Poster: View {
     }
 }
 
+#if DEBUG
 struct FilmDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
@@ -87,3 +88,4 @@ struct FilmDetailView_Previews: PreviewProvider {
         .preferredColorScheme(.dark)
     }
 }
+#endif

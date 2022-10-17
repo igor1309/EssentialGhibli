@@ -40,6 +40,7 @@ where Thumbnail: View {
     }
 }
 
+#if DEBUG
 struct FilmRowView_Previews: PreviewProvider {
     static var previews: some View {
         List([RowFilm].samples) {
@@ -61,3 +62,4 @@ struct FilmRowView_Previews: PreviewProvider {
         .preferredColorScheme(.dark)
     }
 }
+#endif

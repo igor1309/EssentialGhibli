@@ -52,8 +52,8 @@ extension LoaderComposer {
     }
 }
 
+#if DEBUG
 struct UIComposer_Previews: PreviewProvider {
-    
     static var previews: some View {
         Group {
             UIComposer(loader: .online)
@@ -73,3 +73,4 @@ struct UIComposer_Previews: PreviewProvider {
         .preferredColorScheme(.dark)
     }
 }
+#endif
