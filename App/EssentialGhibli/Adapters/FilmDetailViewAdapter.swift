@@ -38,6 +38,13 @@ struct FilmDetailViewAdapter: View {
 }
 
 #if DEBUG
+func filmDetailViewAdapter(loaderComposer: LoaderComposer) -> some View {
+    filmDetailViewAdapter(
+        loader: { loaderComposer.detailLoader(listFilm: .castleInTheSky) },
+        imageLoader: loaderComposer.filmDetailImageLoader(detailFilm:)
+    )
+}
+
 func filmDetailViewAdapter(
     loader: @escaping () -> AnyPublisher<DetailFilm, Error>,
     imageLoader: @escaping (DetailFilm) -> ImagePublisher
@@ -51,6 +58,8 @@ func filmDetailViewAdapter(
 struct FilmDetailViewAdapter_Previews: PreviewProvider {
     static var previews: some View {
         Group {
+            filmDetailViewAdapter(loaderComposer: .online)
+            
             filmDetailViewAdapter(
                 loader: PreviewLoaders.detailFilmLoader,
                 imageLoader: PreviewLoaders.detailFilmImageLoader
