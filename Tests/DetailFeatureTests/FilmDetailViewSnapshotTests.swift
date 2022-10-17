@@ -46,7 +46,7 @@ final class FilmDetailViewSnapshotTests: XCTestCase {
         line: UInt = #line
     ) -> some View {
         makeSUT(poster: {
-            color.aspectRatio(1, contentMode: .fit)
+            color.aspectRatio(2/3, contentMode: .fit)
         }, file: file, line:  line)
     }
     
