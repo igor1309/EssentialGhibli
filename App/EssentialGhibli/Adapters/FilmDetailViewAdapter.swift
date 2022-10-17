@@ -30,9 +30,11 @@ struct FilmDetailViewAdapter: View {
     
     private func poster(detailFilm: DetailFilm) -> some View {
         Color.clear
-            .aspectRatio(1, contentMode: .fit)
+            .aspectRatio(2/3, contentMode: .fit)
             .overlay {
-                LoadingImageView { imageLoader(detailFilm) }
+                LoadingImageView {
+                    imageLoader(detailFilm)
+                }
             }
     }
 }
