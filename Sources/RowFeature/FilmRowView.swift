@@ -24,8 +24,6 @@ where Thumbnail: View {
     public var body: some View {
         HStack(spacing: 16) {
             thumbnail(rowFilm)
-                .cornerRadius(12)
-                .frame(width: 88, height: 88)
             
             VStack(alignment: .leading, spacing: 16) {
                 Text(rowFilm.title)
@@ -47,6 +45,18 @@ struct FilmRowView_Previews: PreviewProvider {
             FilmRowView(rowFilm: $0) { _ in
                 Color.red
                     .aspectRatio(1, contentMode: .fit)
+                    .frame(height: 90)
+            }
+
+            FilmRowView(rowFilm: $0) { _ in
+                Color.red
+                    .aspectRatio(2/3, contentMode: .fit)
+            }
+
+            FilmRowView(rowFilm: $0) { _ in
+                Color.indigo
+                    .aspectRatio(2/3, contentMode: .fill)
+                    .frame(width: 60, height: 90)
             }
             
             FilmRowView(rowFilm: $0) { _ in
